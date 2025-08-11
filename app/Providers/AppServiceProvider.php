@@ -26,23 +26,21 @@ class AppServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->group(base_path('routes/web.php'));
 
-        Route::middleware('web')
-            ->group(base_path('routes/user.php'));
+        // Route::middleware('web')
+        //     ->group(base_path('routes/user.php'));
 
-        Route::middleware('web')
-            ->group(base_path('routes/admin.php'));
+        // Route::middleware('web')
+        //     ->group(base_path('routes/admin.php'));
 
-        Route::middleware('api')
-            ->prefix('api')
-            ->group(base_path('routes/api.php'));
+        // Route::middleware('api')
+        //     ->prefix('api')
+        //     ->group(base_path('routes/api.php'));
 
         Inertia::share([
-            // Only share what's absolutely necessary
             'errors' => function () {
                 return session()->get('errors') ?: (object) [];
             },
 
-            // Example of safe minimal shared data
             'auth' => function () {
                 return [
                     'user' => Auth::user() ? [

@@ -2,7 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useSidebar } from '@AdminUtils/context/SidebarContext';
-import { ChevronDownIcon, GridIcon, HorizontaLDots } from '@AdminUtils/icons';
+import { ChevronDownIcon, GridIcon, HorizontaLDots, UserCircleIcon } from '@AdminUtils/icons';
 
 type NavItem = {
     name: string;
@@ -17,16 +17,20 @@ const navItems: NavItem[] = [
         name: 'Dashboard',
         path: '/Admin/',
     },
+    {
+        icon: <UserCircleIcon />,
+        name: 'Account Management',
+        subItems: [
+            { name: 'All Accounts', path: '/Admin/AccountManagement' },
+            { name: 'Add New Account', path: '/Admin/AccountManagement/New' },
+        ],
+    },
     // {
     //     icon: <CalenderIcon />,
     //     name: 'Calendar',
     //     path: '/calendar',
     // },
-    // {
-    //     icon: <UserCircleIcon />,
-    //     name: 'User Profile',
-    //     path: '/profile',
-    // },
+    //
     // {
     //     name: 'Forms',
     //     icon: <ListIcon />,

@@ -24,6 +24,7 @@
         "vite-plugin-svgr": "^4.3.0"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^7.0.0",
         "@headlessui/react": "^2.2.0",
         "@inertiajs/react": "^2.0.0",
         "@radix-ui/react-avatar": "^1.1.3",

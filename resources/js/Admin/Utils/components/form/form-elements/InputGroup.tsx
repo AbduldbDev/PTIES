@@ -1,9 +1,8 @@
+import Input from '@AdminUtils/components/form/input/InputField';
 import { EnvelopeIcon } from '../../../icons';
 import ComponentCard from '../../common/ComponentCard';
 import Label from '../Label';
 import PhoneInput from '../group-input/PhoneInput';
-import Input from '../input/InputField';
-
 export default function InputGroup() {
     const countries = [
         { code: 'US', label: '+1' },
@@ -20,7 +19,8 @@ export default function InputGroup() {
                 <div>
                     <Label>Email</Label>
                     <div className="relative">
-                        <Input placeholder="info@gmail.com" type="text" className="pl-[62px]" />
+                        <Input type="text" label="Full Name" name="fullName" required={true} errorMessage="Please enter your full name" />
+
                         <span className="absolute top-1/2 left-0 -translate-y-1/2 border-r border-gray-200 px-3.5 py-3 text-gray-500 dark:border-gray-800 dark:text-gray-400">
                             <EnvelopeIcon className="size-6" />
                         </span>

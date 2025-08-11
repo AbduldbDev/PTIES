@@ -770,3 +770,41 @@ span.flatpickr-weekday,
 .simplebar-scrollbar.simplebar-visible:before {
     @apply opacity-100;
 }
+
+.flash-message {
+    min-width: 250px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: #fff;
+    animation:
+        slideDown 0.4s ease-out,
+        fadeOut 0.4s ease-in 4.6s forwards;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.flash-message.success {
+    background-color: #28a745;
+}
+
+.flash-message.error {
+    background-color: #dc3545;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translate(0, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        transform: translate(0, -100%);
+        opacity: 0;
+    }
+}

@@ -1,4 +1,3 @@
-import AuthLayout from '@/Auth/Admin/AuthPageLayout';
 import { AppWrapper } from '@AdminUtils/components/common/PageMeta';
 import { ThemeProvider } from '@AdminUtils/context/ThemeContext';
 import { createInertiaApp } from '@inertiajs/react';
@@ -7,7 +6,8 @@ import { ComponentType, JSX, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import '../css/app.css';
-import AdminAuth from './Auth/Admin/AuthPageLayout';
+import AdminAuthLayout from './Auth/Admin/AuthPageLayout';
+import UserAuthLayout from './Auth/User/AuthPageLayout';
 import AdminLayout from './Layouts/Admin/AdminLayout';
 import MainLayout from './Layouts/User/UserLayout';
 
@@ -42,11 +42,13 @@ createInertiaApp({
             } else if (name.startsWith('Auth/Admin/')) {
                 module.default.layout = (page) => (
                     <ThemeProvider>
-                        <AuthLayout>{page}</AuthLayout>
+                        <AdminAuthLayout>{page}</AdminAuthLayout>
                     </ThemeProvider>
                 );
+            } else if (name.startsWith('Auth/User/')) {
+                module.default.layout = (page) => <UserAuthLayout> {page}</UserAuthLayout>;
             } else {
-                module.default.layout = (page) => <AdminAuth>{page}</AdminAuth>;
+                module.default.layout = (page) => <MainLayout>{page}</MainLayout>;
             }
         }
 

@@ -43,6 +43,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user() ? [
                     'id' => $request->user()->id,
                     'name' => $request->user()->name,
+                    'email' => $request->user()->email,
                     // Add other safe fields as needed
                 ] : null,
             ],
@@ -54,8 +55,12 @@ class HandleInertiaRequests extends Middleware
                     'routes' => $this->filterRoutes($request),
                 ]);
             },
+            'flash' => [
+                'success' => fn() => $request->session()->get('success'),
+                'error' => fn() => $request->session()->get('error'),
 
-            // Remove unnecessary data
+            ],
+
             'errors' => fn() => $request->session()->get('errors')
                 ? $request->session()->get('errors')->getBag('default')->getMessages()
                 : (object) [],

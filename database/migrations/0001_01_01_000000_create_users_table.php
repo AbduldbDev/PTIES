@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('google_id')->nullable()->unique();
             $table->string('user_type')->default('user');
+            $table->string('avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -29,13 +30,15 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('first_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
+            $table->string('gender');
+            $table->string('contact');
+            $table->string('address');
             $table->string('position');
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-            $table->string('avatar')->nullable();
             $table->string('facebook')->nullable();
             $table->string('email')->nullable();
+            $table->date('date_employed')->nullable();
             $table->timestamps();
         });
 
@@ -51,14 +54,14 @@ return new class extends Migration
         // });
 
         // Customers personal info
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('account_customers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name')->nullable();
+            $table->string('middle_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('avatar')->nullable();
             $table->timestamps();
         });
 
@@ -76,6 +79,7 @@ return new class extends Migration
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
+            $table->string('contact');
             $table->integer('last_activity')->index();
         });
     }
