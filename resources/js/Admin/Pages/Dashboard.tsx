@@ -27,7 +27,7 @@ type PageProps = {
     };
 };
 
-export default function Home() {
+export default function Home() { 
     const { flash, errors } = usePage<PageProps>().props;
 
     return (

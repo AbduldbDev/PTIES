@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\AdminController\AccountManagementController;
-use App\Http\Controllers\UserContoller\UserLoginController;
+use App\Http\Controllers\UserController\UserLoginController;
 
 
 Route::get('/Admin/AccountManagement', [AccountManagementController::class, 'index'])->name('account.management.index');
