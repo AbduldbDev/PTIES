@@ -228,7 +228,7 @@ const Navbar = () => {
                                 {auth?.user ? (
                                     <>
                                         <span className="text-sm text-gray-600">{auth.user.email}</span>
-                                        <form method="POST" action="/logout">
+                                        <form method="POST" action="/Logout">
                                             <input type="hidden" name="_token" value={csrfToken ?? ''} />
                                             <button type="submit" className="underline">
                                                 Logout
@@ -237,8 +237,8 @@ const Navbar = () => {
                                     </>
                                 ) : (
                                     <a
-                                        href="/login"
-                                        className="transform rounded-full bg-primary px-6 py-2 text-sm font-medium text-white transition duration-300 hover:scale-105 hover:bg-[#083ec1]"
+                                        href="/Login"
+                                        className="transform rounded-full bg-primary px-6 py-2 text-sm font-medium text-white transition duration-300 hover:scale-105 hover:bg-primary/70"
                                     >
                                         Login <i className="fas fa-arrow-right ml-1"></i>
                                     </a>

@@ -55,6 +55,7 @@ class HandleInertiaRequests extends Middleware
                     'routes' => $this->filterRoutes($request),
                 ]);
             },
+
             'flash' => [
                 'success' => fn() => $request->session()->get('success'),
                 'error' => fn() => $request->session()->get('error'),

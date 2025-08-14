@@ -26,24 +26,34 @@ class UserLoginController extends Controller
         return Inertia::render('Auth/User/Signup');
     }
 
-    public function register(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-        try {
-            $user = User::create([
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
+    
 
-            Auth::login($user);
+    // public function register(Request $request): RedirectResponse
+    // {
+    //     // Validate input
+    //     $request->validate([
+    //         'email' => 'required|string|email|max:255|unique:users,email', // fixed lowercase issue
+    //         'password' => ['required', 'confirmed', Rules\Password::defaults()],
+    //     ]);
 
-            return redirect()->route('user.home')
-                ->with('success', 'Account created successfully!');
-        } catch (\Exception $e) {
-            return redirect()->route('user.home')->with('error', 'Something went wrong, please try again.');
-        }
-    }
+    //     try {
+    //         // Create the user
+    //         $user = User::create([
+    //             'email' => strtolower($request->email), // convert to lowercase manually
+    //             'password' => Hash::make($request->password),
+    //         ]);
+
+    //         // Log the user in
+    //         Auth::login($user);
+
+    //         // Redirect to the route
+    //         return redirect()->route('user.home')
+    //             ->with('success', 'Account created successfully!');
+    //     } catch (\Exception $e) {
+    //         // Optional: log the error for debugging
+    //         \Log::error('User registration failed: ' . $e->getMessage());
+
+    //         return redirect()->back()->with('error', 'Something went wrong, please try again.');
+    //     }
+    // }
 }

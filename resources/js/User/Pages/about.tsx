@@ -13,6 +13,7 @@ export default function About() {
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
             </Head>
+
             <Banner
                 title="About Pakil"
                 subtitle="Discover Pakil, Laguna"
@@ -490,7 +491,7 @@ export default function About() {
             <section className="py-20">
                 <div className="container mx-auto px-6">
                     <PageTitle title="Geography" subtitle="Municipal Map & Barangays" desc="Discover the political subdivisions of Pakil"></PageTitle>
-                    
+
                     <div className="mb-12 rounded-xl border border-gray-200 bg-white p-6 shadow-lg">
                         <div className="aspect-w-16 aspect-h-9 flex items-center justify-center">
                             <div className="mx-auto w-full max-w-4xl">
