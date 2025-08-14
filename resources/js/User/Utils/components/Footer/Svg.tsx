@@ -142,8 +142,10 @@ const WaveAnimation = () => {
             </style>
             <defs>
                 <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
-                    <stop offset="5%" stopColor="#052675"></stop>
-                    <stop offset="95%" stopColor="#083ec1"></stop>
+                    <stop offset="5%" stopColor="var(--primary)"></stop>
+                    <stop offset="95%" stopColor="var(--primary)"></stop>
+                    {/* <stop offset="5%" stopColor="#052675"></stop>
+                    <stop offset="95%" stopColor="#083ec1"></stop> */}
                 </linearGradient>
             </defs>
             <path

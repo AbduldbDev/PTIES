@@ -2,20 +2,21 @@ import '@css/user.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { waitForAllAssets } from '@UserUtils/components/Layout/assetLoader';
 import AnimatedBackground from '@UserUtils/components/Layout/Background';
+import CookieConsentBanner from '@UserUtils/components/Layout/Cookies';
 import Loader from '@UserUtils/components/Layout/Loader';
-// import useThemeColors from '@UserUtils/hooks/useThemeColors';
+import useThemeColors from '@UserUtils/components/Layout/ThemeColor';
 import { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { Footer } from './Footer';
 import Navbar from './NavBar';
 
 export default function UserLayout({ children }: PropsWithChildren) {
-    // const colorsLoaded = useThemeColors();
+    const colorsLoaded = useThemeColors();
     const [assetsLoaded, setAssetsLoaded] = useState(false);
     const [showLoader, setShowLoader] = useState(true);
     const loaderTimeout = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
-        // if (!colorsLoaded) return;
+        if (!colorsLoaded) return;
 
         const checkAssets = async () => {
             await waitForAllAssets();
@@ -39,7 +40,7 @@ export default function UserLayout({ children }: PropsWithChildren) {
                 clearTimeout(loaderTimeout.current);
             }
         };
-    });
+    }, [colorsLoaded]);
 
     return (
         <>
@@ -51,6 +52,7 @@ export default function UserLayout({ children }: PropsWithChildren) {
                 <main>{children}</main>
                 <Footer />
                 <section className="floating-texture"></section>
+                <CookieConsentBanner />
             </div>
         </>
     );

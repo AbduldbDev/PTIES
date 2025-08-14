@@ -21,8 +21,8 @@ const AnimatedBackground = () => {
             blobRefs.current.forEach((blob, index) => {
                 const initialPos = initialPositions[index];
 
-                const xOffset = Math.sin(newScroll / 100 + index * 0.5) * 340; 
-                const yOffset = Math.cos(newScroll / 100 + index * 0.5) * 40; 
+                const xOffset = Math.sin(newScroll / 100 + index * 0.5) * 340;
+                const yOffset = Math.cos(newScroll / 100 + index * 0.5) * 40;
 
                 const x = initialPos.x + xOffset;
                 const y = initialPos.y + yOffset;

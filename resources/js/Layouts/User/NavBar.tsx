@@ -20,7 +20,7 @@ const Navbar = () => {
             const now = new Date();
             setCurrentDate(
                 now.toLocaleDateString('en-US', {
-                    weekday: 'long',
+                    weekday: 'short',
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
@@ -53,7 +53,7 @@ const Navbar = () => {
 
     return (
         <nav className="fixed top-0 right-0 left-0 z-50">
-            <div className="flex items-center justify-between bg-[#052675] px-4 py-2 text-sm text-gray-600 text-white sm:text-[11px]">
+            <div className="flex items-center justify-between bg-primary px-4 py-2 text-sm text-gray-600 text-white sm:text-[11px]">
                 <div className="flex items-center space-x-4 text-[11px] sm:text-sm">
                     <span className="sm" id="current-date">
                         {currentDate}
@@ -87,7 +87,7 @@ const Navbar = () => {
                                 <div className="dropdown relative">
                                     <a
                                         href="#"
-                                        className="nav-link px-4 py-3 font-medium text-[#052675] hover:text-blue-600"
+                                        className="nav-link px-4 py-3 font-medium text-primary hover:text-primary/60"
                                         onMouseEnter={() => toggleDropdown('home')}
                                         onMouseLeave={() => toggleDropdown('home')}
                                     >
@@ -98,13 +98,13 @@ const Navbar = () => {
                                         onMouseEnter={() => toggleDropdown('home')}
                                         onMouseLeave={() => toggleDropdown('home')}
                                     >
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Special Offers
                                         </a>
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Travel Guides
                                         </a>
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Seasonal Deals
                                         </a>
                                     </div>
@@ -113,7 +113,7 @@ const Navbar = () => {
                                 <div className="dropdown relative">
                                     <a
                                         href="#"
-                                        className="nav-link px-4 py-3 font-medium text-[#052675] hover:text-blue-600"
+                                        className="nav-link px-4 py-3 font-medium text-primary hover:text-primary/60"
                                         onMouseEnter={() => toggleDropdown('about')}
                                         onMouseLeave={() => toggleDropdown('about')}
                                     >
@@ -124,13 +124,13 @@ const Navbar = () => {
                                         onMouseEnter={() => toggleDropdown('about')}
                                         onMouseLeave={() => toggleDropdown('about')}
                                     >
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Our Story
                                         </a>
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Team
                                         </a>
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Careers
                                         </a>
                                     </div>
@@ -139,7 +139,7 @@ const Navbar = () => {
                                 <div className="dropdown relative">
                                     <a
                                         href="#"
-                                        className="nav-link px-4 py-3 font-medium text-[#052675] hover:text-blue-600"
+                                        className="nav-link px-4 py-3 font-medium text-primary hover:text-primary/60"
                                         onMouseEnter={() => toggleDropdown('market')}
                                         onMouseLeave={() => toggleDropdown('market')}
                                     >
@@ -150,13 +150,13 @@ const Navbar = () => {
                                         onMouseEnter={() => toggleDropdown('market')}
                                         onMouseLeave={() => toggleDropdown('market')}
                                     >
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Flights
                                         </a>
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Hotels
                                         </a>
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Packages
                                         </a>
                                     </div>
@@ -165,7 +165,7 @@ const Navbar = () => {
                                 <div className="dropdown relative">
                                     <a
                                         href="#"
-                                        className="nav-link px-4 py-3 font-medium text-[#052675] hover:text-blue-600"
+                                        className="nav-link px-4 py-3 font-medium text-primary hover:text-primary/60"
                                         onMouseEnter={() => toggleDropdown('explore')}
                                         onMouseLeave={() => toggleDropdown('explore')}
                                     >
@@ -176,28 +176,28 @@ const Navbar = () => {
                                         onMouseEnter={() => toggleDropdown('explore')}
                                         onMouseLeave={() => toggleDropdown('explore')}
                                     >
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Destinations
                                         </a>
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Activities
                                         </a>
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Cultural Tours
                                         </a>
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Adventure Trips
                                         </a>
                                     </div>
                                 </div>
 
-                                <a href="#" className="nav-link px-4 py-3 font-medium text-[#052675] hover:text-blue-600">
+                                <a href="#" className="nav-link px-4 py-3 font-medium text-primary hover:text-primary/60">
                                     Social
                                 </a>
                                 <div className="dropdown relative">
                                     <a
                                         href="#"
-                                        className="nav-link px-4 py-3 font-medium text-[#052675] hover:text-blue-600"
+                                        className="nav-link px-4 py-3 font-medium text-primary hover:text-primary/60"
                                         onMouseEnter={() => toggleDropdown('events')}
                                         onMouseLeave={() => toggleDropdown('events')}
                                     >
@@ -208,18 +208,18 @@ const Navbar = () => {
                                         onMouseEnter={() => toggleDropdown('events')}
                                         onMouseLeave={() => toggleDropdown('events')}
                                     >
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Upcoming
                                         </a>
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Past Events
                                         </a>
-                                        <a href="#" className="block px-4 py-2 text-[#052675] hover:bg-blue-50">
+                                        <a href="#" className="block px-4 py-2 text-primary hover:bg-blue-50">
                                             Gallery
                                         </a>
                                     </div>
                                 </div>
-                                <a href="#" className="nav-link px-4 py-3 font-medium text-[#052675] hover:text-blue-600">
+                                <a href="#" className="nav-link px-4 py-3 font-medium text-primary hover:text-primary/60">
                                     Contact
                                 </a>
                             </div>
@@ -238,7 +238,7 @@ const Navbar = () => {
                                 ) : (
                                     <a
                                         href="/login"
-                                        className="transform rounded-full bg-[#052675] px-6 py-2 text-sm font-medium text-white transition duration-300 hover:scale-105 hover:bg-[#083ec1]"
+                                        className="transform rounded-full bg-primary px-6 py-2 text-sm font-medium text-white transition duration-300 hover:scale-105 hover:bg-[#083ec1]"
                                     >
                                         Login <i className="fas fa-arrow-right ml-1"></i>
                                     </a>
@@ -247,7 +247,7 @@ const Navbar = () => {
                         </div>
 
                         <div className="lg:hidden">
-                            <button id="menu-toggle" className="text-gray-600 hover:text-blue-600 focus:outline-none" onClick={toggleMobileMenu}>
+                            <button id="menu-toggle" className="text-gray-600 hover:text-primary/60 focus:outline-none" onClick={toggleMobileMenu}>
                                 <i className="fas fa-bars text-xl"></i>
                             </button>
                         </div>
@@ -256,25 +256,25 @@ const Navbar = () => {
 
                 <div id="mobile-menu" className={`lg:hidden ${mobileMenuOpen ? 'block' : 'hidden'} border-t bg-white`}>
                     <div className="container space-y-1 px-4 py-2">
-                        <a href="#" className="block rounded-md px-4 py-3 text-[#052675] hover:bg-blue-50">
+                        <a href="#" className="block rounded-md px-4 py-3 text-primary hover:bg-blue-50">
                             Home
                         </a>
-                        <a href="#" className="block rounded-md px-4 py-3 text-[#052675] hover:bg-blue-50">
+                        <a href="#" className="block rounded-md px-4 py-3 text-primary hover:bg-blue-50">
                             About
                         </a>
-                        <a href="#" className="block rounded-md px-4 py-3 text-[#052675] hover:bg-blue-50">
+                        <a href="#" className="block rounded-md px-4 py-3 text-primary hover:bg-blue-50">
                             Market
                         </a>
-                        <a href="#" className="block rounded-md px-4 py-3 text-[#052675] hover:bg-blue-50">
+                        <a href="#" className="block rounded-md px-4 py-3 text-primary hover:bg-blue-50">
                             Explore
                         </a>
-                        <a href="#" className="block rounded-md px-4 py-3 text-[#052675] hover:bg-blue-50">
+                        <a href="#" className="block rounded-md px-4 py-3 text-primary hover:bg-blue-50">
                             Social
                         </a>
-                        <a href="#" className="block rounded-md px-4 py-3 text-[#052675] hover:bg-blue-50">
+                        <a href="#" className="block rounded-md px-4 py-3 text-primary hover:bg-blue-50">
                             Events
                         </a>
-                        <a href="#" className="block rounded-md px-4 py-3 text-[#052675] hover:bg-blue-50">
+                        <a href="#" className="block rounded-md px-4 py-3 text-primary hover:bg-blue-50">
                             Contact
                         </a>
 
