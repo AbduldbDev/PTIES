@@ -39,7 +39,9 @@ Route::post('/cookies/decline', [CookieConsentController::class, 'decline'])->na
 
 Route::post('/Admin/AccountManagement/create', [AccountManagementController::class, 'create'])->name('account.management.create');
 
-
+Route::get('/About', function () {
+    return Inertia::render('User/Pages/About');
+})->name('user.about');
 
 
 
