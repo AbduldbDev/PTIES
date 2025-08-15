@@ -13,4 +13,5 @@ Route::get('/biography', [PageController::class, 'OfficialBio'])->name('user.bio
 Route::get('/guide', [PageController::class, 'Guide'])->name('user.guide');
 Route::get('/terminals', [PageController::class, 'Terminals'])->name('user.terminals');
 
+
 Route::middleware('guest')->group(function () {});
