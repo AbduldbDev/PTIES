@@ -7,6 +7,6 @@ use App\Http\Controllers\UserController\PageController;
 Route::middleware('auth')->group(function () {});
 Route::get('/', [PageController::class, 'Home'])->name('user.home');
 Route::get('/about', [PageController::class, 'About'])->name('user.about');
-
+Route::get('/tourism', [PageController::class, 'AboutTourism'])->name('user.tourism');
 
 Route::middleware('guest')->group(function () {});

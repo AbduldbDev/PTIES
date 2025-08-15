@@ -17,4 +17,10 @@ class PageController extends Controller
     {
         return Inertia::render('User/Pages/About');
     }
+    public function AboutTourism()
+    {
+        return Inertia::render('User/Pages/Tourism');
+    }
+
 }
+ 
