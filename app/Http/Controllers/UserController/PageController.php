@@ -25,5 +25,10 @@ class PageController extends Controller
     {
         return Inertia::render('User/Pages/Officials');
     }
+    public function OfficialBio()
+    {
+        return Inertia::render('User/Pages/Biography');
+    }
+    
 }
  
