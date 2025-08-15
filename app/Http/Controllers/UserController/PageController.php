@@ -25,5 +25,9 @@ class PageController extends Controller
     {
         return Inertia::render('User/Pages/Officials');
     }
+    public function Guide()
+    {
+        return Inertia::render('User/Pages/Guide');
+    }
 }
  
