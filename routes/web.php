@@ -72,5 +72,4 @@ Route::post('/Admin/AccountManagement/create', [AccountManagementController::cla
 
 
 
-
 require __DIR__ . '/auth.php';

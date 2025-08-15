@@ -6,8 +6,11 @@ import { FormEvent, useState } from 'react';
 type FormData = {
     email: string;
     password: string;
+    password_confirmation: string;
+    token: string;
 };
-type PageProps = {
+
+type ResetPasswordPageProps = {
     flash?: {
         success?: string;
         error?: string;
@@ -16,18 +19,23 @@ type PageProps = {
         error?: string;
         [key: string]: string | undefined;
     };
+    email: string;
+    token: string;
 };
 
-export default function Login() {
+export default function ResetPassword() {
     const title = 'Pakil Tourism | Login';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
 
-    const { flash, errors } = usePage<PageProps>().props;
+    const { flash, errors, email, token } = usePage<ResetPasswordPageProps>().props;
     const [touched, setTouched] = useState<Record<string, boolean>>({});
+
     const form = useForm<FormData>({
-        email: '',
+        email: email || '',
         password: '',
+        password_confirmation: '',
+        token: token || '',
     });
 
     const validateField = (field: keyof FormData, value: string) => {
@@ -39,6 +47,9 @@ export default function Login() {
             case 'password':
                 if (!value) return 'Password is required';
                 return value.length < 6 ? 'Password must be at least 6 characters' : '';
+            case 'password_confirmation':
+                if (!value) return 'Confirm your password';
+                return value !== form.data.password ? 'Passwords do not match' : '';
             default:
                 return '';
         }
@@ -52,29 +63,13 @@ export default function Login() {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-
-        let hasError = false;
-        (Object.keys(form.data) as (keyof FormData)[]).forEach((field) => {
-            const error = validateField(field, form.data[field]);
-            if (error) hasError = true;
-            form.setError(field, error ?? '');
-            setTouched((prev) => ({ ...prev, [field]: true }));
-        });
-
-        if (hasError) return;
-
-        form.post('/Login', {
+        form.post('/reset-password', {
             forceFormData: true,
             onSuccess: () => {
                 form.reset();
-                form.clearErrors();
                 setTouched({});
             },
         });
-    };
-
-    const handleGoogleLogin = () => {
-        window.location.href = 'http://localhost:8000/auth/google';
     };
     return (
         <>
@@ -86,7 +81,7 @@ export default function Login() {
 
             <div className="flex h-screen flex-col overflow-hidden md:flex-row">
                 <div className="relative hidden md:block md:w-1/2 lg:w-7/12">
-                    <img src="User/Login/loginbg.jpg" alt="Login background" className="h-full w-full object-cover" />
+                    <img src="/User/Login/loginbg.jpg" alt="Login background" className="h-full w-full object-cover" />
                     <div className="absolute inset-0 z-50 bg-gradient-to-r from-primary to-transparent opacity-70"></div>
                     <div className="absolute bottom-10 left-10 z-51 text-white">
                         <h2 className="mb-2 text-3xl font-bold">Welcome, Mabuhay!</h2>
@@ -105,12 +100,15 @@ export default function Login() {
 
                         <div className="z-100 space-y-3 overflow-hidden rounded-xl bg-white p-8 shadow-md">
                             <div className="mb-8 text-center">
-                                <h2 className="mb-2 text-2xl font-bold text-primary lg:text-3xl">Welcome Back!</h2>
-                                <p className="text-sm text-gray-600 lg:text-lg">
-                                    Sign in to continue exploring attractions, joining events, and earning rewards.
+                                <h2 className="mb-2 text-2xl font-bold text-primary lg:text-3xl">Reset Your Password</h2>
+                                <p className="text-md text-gray-600 lg:text-lg">
+                                    Forgot your password? No worries! Just enter your email and we’ll help you set a new one so you can continue
+                                    exploring attractions and earning Pakil points.
                                 </p>
                             </div>
-                            <form className="space-y-4" onSubmit={handleSubmit}>
+                            <form className="space-y-3" onSubmit={handleSubmit}>
+                                <input type="hidden" name="token" value={form.data.token} />
+                                {/* <input type="hidden" name="email" value={form.data.email} /> */}
                                 <FormIconed
                                     Icon="fas fa-envelope"
                                     className="w-full rounded-lg border px-4 py-3 transition duration-150 outline-none focus:ring-1"
@@ -122,9 +120,8 @@ export default function Login() {
                                     error={form.errors.email}
                                     touched={touched.email}
                                     placeholder="Ex. Juan"
-                                    required
+                                    readOnly
                                 />
-
                                 <FormPassword
                                     Icon="fas fa-lock text-gray/50"
                                     className="w-full rounded-lg border px-4 py-3 transition duration-150 outline-none focus:ring-1"
@@ -139,26 +136,21 @@ export default function Login() {
                                     required
                                 />
 
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center">
-                                        <input
-                                            id="remember-me"
-                                            name="remember-me"
-                                            type="checkbox"
-                                            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                                        />
-                                        <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
-                                            Remember me
-                                        </label>
-                                    </div>
-
-                                    <a href="#" className="text-sm text-primary hover:text-primary/70">
-                                        Forgot password?
-                                    </a>
-                                </div>
-
-                                {flash?.success && <div className="text-green-600">{flash.success}</div>}
-                                {flash?.error && <div className="text-red-600">{flash.error}</div>}
+                                <FormPassword
+                                    Icon="fas fa-lock text-gray/50"
+                                    className="w-full rounded-lg border px-4 py-3 transition duration-150 outline-none focus:ring-1"
+                                    label="Confirm Password"
+                                    id="password_confirmation"
+                                    value={form.data.password_confirmation}
+                                    onChange={(e) => form.setData('password_confirmation', e.target.value)}
+                                    onBlur={() => handleBlur('password_confirmation')}
+                                    error={form.errors.password_confirmation}
+                                    touched={touched.password_confirmation}
+                                    placeholder="*********"
+                                    required
+                                />
+                                {flash?.success && <div className="text-sm text-green-600">{flash.success}</div>}
+                                {flash?.error && <div className="text-sm text-red-600">{flash.error}</div>}
 
                                 <button
                                     type="submit"
@@ -167,43 +159,12 @@ export default function Login() {
                                     Sign in
                                 </button>
                             </form>
-
-                            <div className="mb-6 flex items-center">
-                                <div className="flex-grow border-t border-gray-300"></div>
-                                <span className="mx-4 text-gray-500">or</span>
-                                <div className="flex-grow border-t border-gray-300"></div>
-                            </div>
-
-                            <button
-                                onClick={handleGoogleLogin}
-                                className="mb-6 flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-3 font-medium text-gray-700 transition duration-150 hover:bg-gray-50"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                    <path
-                                        d="M17.5781 9.20578C17.5781 8.56641 17.5223 7.95312 17.4187 7.36523H9.14062V10.8486H13.9688C13.7812 11.9719 13.1625 12.9234 12.1766 13.5578V15.5766H14.9545C16.5539 14.0906 17.5781 11.8852 17.5781 9.20578Z"
-                                        fill="#4285F4"
-                                    />
-                                    <path
-                                        d="M9.14062 17.9999C11.4187 17.9999 13.3219 17.2233 14.9545 15.5765L12.1766 13.5577C11.4187 14.0765 10.4531 14.3671 9.14062 14.3671C6.9375 14.3671 5.07656 12.914 4.42969 10.9359H1.57031V13.014C3.1875 16.0312 5.9625 17.9999 9.14062 17.9999Z"
-                                        fill="#34A853"
-                                    />
-                                    <path
-                                        d="M4.42969 10.9359C4.26094 10.4359 4.1625 9.90303 4.1625 9.35303C4.1625 8.80303 4.26094 8.27015 4.42969 7.77015V5.69203H1.57031C1.01016 6.78278 0.703125 8.01703 0.703125 9.35303C0.703125 10.689 1.01016 11.9233 1.57031 13.014L4.42969 10.9359Z"
-                                        fill="#FBBC05"
-                                    />
-                                    <path
-                                        d="M9.14062 4.33906C10.5187 4.33906 11.7281 4.82656 12.6797 5.78203L15.0328 3.42891C13.3172 1.81406 11.4187 0.706055 9.14062 0.706055C5.9625 0.706055 3.1875 2.67468 1.57031 5.69141L4.42969 7.77047C5.07656 5.79234 6.9375 4.33906 9.14062 4.33906Z"
-                                        fill="#EA4335"
-                                    />
-                                </svg>
-                                Continue with Google
-                            </button>
                         </div>
                         <div className="mt-6 text-center">
                             <p className="text-sm text-gray-600">
-                                Don't have an account?
-                                <a href="/Signup" className="ml-2 font-medium text-primary hover:text-primary/70">
-                                    Sign up
+                                Already have an account?
+                                <a href="/Login" className="ml-2 font-medium text-primary hover:text-primary/70">
+                                    Sign in
                                 </a>
                             </p>
                         </div>

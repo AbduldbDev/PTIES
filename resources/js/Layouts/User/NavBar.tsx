@@ -13,6 +13,7 @@ const Navbar = () => {
         market: false,
         explore: false,
         events: false,
+        UserIcon: false,
     });
 
     useEffect(() => {
@@ -53,7 +54,7 @@ const Navbar = () => {
 
     return (
         <nav className="fixed top-0 right-0 left-0 z-50">
-            <div className="flex items-center justify-between bg-primary px-4 py-2 text-sm text-gray-600 text-white sm:text-[11px]">
+            <div className="flex items-center justify-between bg-primary px-4 py-2 text-sm text-white sm:text-[11px]">
                 <div className="flex items-center space-x-4 text-[11px] sm:text-sm">
                     <span className="sm" id="current-date">
                         {currentDate}
@@ -61,14 +62,28 @@ const Navbar = () => {
                     <span id="current-time">{currentTime}</span>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <div className="relative">
-                        <select className="border-none bg-transparent pr-6 text-[11px] text-white focus:ring-0 focus:outline-none sm:text-sm">
-                            <option className="text-black">EN</option>
-                            <option className="text-black">FIL</option>
+                    <div className="relative inline-block">
+                        <select className="h-8 cursor-pointer appearance-none rounded-md border border-0 pr-8 pl-3 text-xs text-white transition-all hover:bg-white/20 focus:border-blue-300 focus:ring-1 focus:ring-blue-300 focus:outline-none sm:text-sm">
+                            <option value="en" className="bg-white text-gray-900">
+                                EN
+                            </option>
+                            <option value="fil" className="bg-white text-gray-900">
+                                FIL
+                            </option>
                         </select>
+
+                        <div className="pointer-events-none absolute top-1/2 right-2 -translate-y-1/2 transform text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                                <path
+                                    fillRule="evenodd"
+                                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </div>
                     </div>
                     <div className="hidden space-x-2 md:flex">
-                        <a href="#" className="hover:text-blue-500">
+                        <a href="https://www.facebook.com/pakilturismo" className="hover:text-blue-500">
                             <i className="fab fa-facebook-f"></i>
                         </a>
                     </div>
@@ -227,13 +242,78 @@ const Navbar = () => {
                             <div className="ml-6 flex items-center space-x-3">
                                 {auth?.user ? (
                                     <>
-                                        <span className="text-sm text-gray-600">{auth.user.email}</span>
-                                        <form method="POST" action="/Logout">
-                                            <input type="hidden" name="_token" value={csrfToken ?? ''} />
-                                            <button type="submit" className="underline">
-                                                Logout
-                                            </button>
-                                        </form>
+                                        <div className="dropdown relative">
+                                            <div className="flex items-center space-x-2">
+                                                <a
+                                                    href="#"
+                                                    className="nav-link flex items-center px-4 py-3 font-medium text-primary hover:text-primary/60"
+                                                    onMouseEnter={() => toggleDropdown('UserIcon')}
+                                                    onMouseLeave={() => toggleDropdown('UserIcon')}
+                                                >
+                                                    <div className="relative">
+                                                        <i className="fa-regular fa-user text-lg"></i>
+                                                    </div>
+                                                </a>
+                                                <div className="flex items-center rounded-full bg-yellow-50 px-3 py-1 text-sm font-medium text-yellow-800">
+                                                    <img
+                                                        src="/User/Layout/Pakilpoints.png"
+                                                        alt="Points"
+                                                        className="mr-1 h-6 w-6"
+                                                        onError={(e) => {
+                                                            e.currentTarget.src =
+                                                                "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23eab308'%3E%3Cpath d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-1.5a8.5 8.5 0 1 1 0-17 8.5 8.5 0 0 1 0 17zm-3.5-7v1h7v-1h-7z'/%3E%3C/svg%3E";
+                                                        }}
+                                                    />
+                                                    0 points
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                className={`dropdown-menu ${dropdownOpen.UserIcon ? 'block' : 'hidden'} absolute left-0 z-10 w-48 rounded-md border border-primary/30 bg-white shadow-lg`}
+                                                onMouseEnter={() => toggleDropdown('UserIcon')}
+                                                onMouseLeave={() => toggleDropdown('UserIcon')}
+                                            >
+                                                <div className="border-b px-4 py-3">
+                                                    <p className="text-md font-medium text-gray-900">Hello, Tibursyo </p>
+                                                    <p className="mt-2 flex items-center text-sm text-gray-500">
+                                                        <img
+                                                            src="/User/Layout/Pakilpoints.png"
+                                                            alt="Points"
+                                                            className="mr-1 h-6 w-6"
+                                                            onError={(e) => {
+                                                                e.currentTarget.src =
+                                                                    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23eab308'%3E%3Cpath d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-1.5a8.5 8.5 0 1 1 0-17 8.5 8.5 0 0 1 0 17zm-3.5-7v1h7v-1h-7z'/%3E%3C/svg%3E";
+                                                            }}
+                                                        />
+                                                        0 points
+                                                    </p>
+                                                </div>
+
+                                                <div className="py-1">
+                                                    <a href="#" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                                        <i className="fa-regular fa-user mr-3 w-5 text-center"></i>
+                                                        Profile
+                                                    </a>
+                                                    <a href="#" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                                        <i className="fa-solid fa-coins mr-3 w-5 text-center"></i>
+                                                        My Rewards
+                                                    </a>
+                                                </div>
+
+                                                <div className="border-t py-1">
+                                                    <form method="POST" action="/Logout">
+                                                        <input type="hidden" name="_token" value={csrfToken ?? ''} />
+                                                        <button
+                                                            type="submit"
+                                                            className="flex w-full items-center px-4 py-2 text-start text-sm text-gray-700 hover:bg-gray-100"
+                                                        >
+                                                            <i className="fa-solid fa-arrow-right-from-bracket mr-3 w-5 text-center"></i>
+                                                            Logout
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </>
                                 ) : (
                                     <a

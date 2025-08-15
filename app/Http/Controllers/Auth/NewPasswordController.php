@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
@@ -22,7 +23,7 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request): Response
     {
-        return Inertia::render('auth/reset-password', [
+        return Inertia::render('Auth/User/ResetPassword', [
             'email' => $request->email,
             'token' => $request->route('token'),
         ]);
@@ -35,15 +36,37 @@ class NewPasswordController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        // Validate password + required reset fields
+        $validator = Validator::make($request->all(), [
+            'token' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'exists:users,email'],
+            'password' => [
+                'required',
+                'confirmed',
+                Rules\Password::min(8)
+                    ->mixedCase()
+                    ->letters()
+                    ->numbers()
+                    ->uncompromised(),
+            ],
+        ], [
+            'email.exists'          => 'No account found with that email address.',
+            'password.min'          => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.mixed_case'   => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.letters'      => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.numbers'      => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.symbols'      => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
         ]);
 
-        // Here we will attempt to reset the user's password. If it is successful we
-        // will update the password on an actual user model and persist it to the
-        // database. Otherwise we will parse the error and return the response.
+        if ($validator->fails()) {
+            $errors = [];
+            foreach ($validator->errors()->messages() as $field => $messages) {
+                $errors[$field] = $messages[0];
+            }
+            return back()->withErrors($errors)->withInput();
+        }
+
+        // Reset the password
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user) use ($request) {
@@ -56,15 +79,17 @@ class NewPasswordController extends Controller
             }
         );
 
-        // If the password was successfully reset, we will redirect the user back to
-        // the application's home authenticated view. If there is an error we can
-        // redirect them back to where they came from with their error message.
-        if ($status == Password::PasswordReset) {
-            return to_route('login')->with('status', __($status));
+        // Debug what’s happening if it fails
+        if ($status !== Password::PASSWORD_RESET) {
+            logger()->error('Password reset failed', [
+                'status' => $status,
+                'email'  => $request->email,
+            ]);
+            return back()->withErrors(['email' => __($status)]);
         }
 
-        throw ValidationException::withMessages([
-            'email' => [__($status)],
-        ]);
+        return redirect()
+            ->route('login')
+            ->with('success', __('Your password has been reset successfully.'));
     }
 }

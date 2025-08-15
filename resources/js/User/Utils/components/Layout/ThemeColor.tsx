@@ -12,7 +12,7 @@ export default function useThemeColors(): boolean {
     useEffect(() => {
         async function fetchColors() {
             try {
-                const res = await fetch('colors');
+                const res = await fetch('/colors');
                 const data: ThemeColors = await res.json();
 
                 if (data.primary) {
