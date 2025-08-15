@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\ColorTheme;
 
-class WesbiteSettingsController extends Controller
+class WebsiteSettingsController  extends Controller
 {
     public function settings(Request $request)
     {
