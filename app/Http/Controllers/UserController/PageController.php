@@ -21,6 +21,9 @@ class PageController extends Controller
     {
         return Inertia::render('User/Pages/Tourism');
     }
-
+    public function KeyOfficials()
+    {
+        return Inertia::render('User/Pages/Officials');
+    }
 }
  
