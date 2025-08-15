@@ -33,5 +33,9 @@ class PageController extends Controller
     {
         return Inertia::render('User/Pages/Guide');
     }
+    public function Terminals()
+    {
+        return Inertia::render('User/Pages/Terminals');
+    }
 }
  
