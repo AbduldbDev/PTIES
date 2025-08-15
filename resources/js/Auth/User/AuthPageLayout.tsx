@@ -44,7 +44,7 @@ export default function AuthPageLayout({ children }: PropsWithChildren) {
             {showLoader && <Loader />}
 
             <AnimatedBackground />
-            <main>{children}</main>
+            <main className="user-body">{children}</main>
         </>
     );
 }

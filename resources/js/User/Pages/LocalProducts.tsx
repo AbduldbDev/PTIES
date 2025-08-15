@@ -17,7 +17,7 @@ export default function TourismAbout() {
                 title="About Pakil"
                 subtitle="Discover Pakil, Laguna"
                 desc="Explore Pakil's attractions and redeem exciting prizes"
-                imageSrc="/User/Images/church.jpg"
+                imageSrc="/User/Images/ibuli.jpg"
             ></Banner>
 
             <section className="bg-gradient-to-b from-white to-gray-50 py-16">
@@ -39,7 +39,7 @@ export default function TourismAbout() {
                             <div className="group relative">
                                 <div className="absolute -inset-2 rounded-xl bg-primary/20 blur-md transition duration-300 group-hover:blur-lg"></div>
                                 <img
-                                    src="/Images/kayas.JPG"
+                                    src="/User/Images/kayas.JPG"
                                     alt="Kayas woodcarving in Pakil"
                                     className="relative aspect-[3/4] h-auto w-full rounded-xl border-4 border-white object-cover shadow-xl"
                                 />
@@ -156,7 +156,7 @@ export default function TourismAbout() {
                             <div className="group relative">
                                 <div className="absolute -inset-2 rounded-xl bg-secondary/20 blur-md transition duration-300 group-hover:blur-lg"></div>
                                 <img
-                                    src="/Images/kayas.JPG"
+                                    src="/User/Images/kayas.jpg"
                                     alt="Kayas woodcarving in Pakil"
                                     className="relative aspect-[3/4] h-auto w-full rounded-xl border-4 border-white object-cover shadow-xl"
                                 />

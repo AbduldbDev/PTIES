@@ -495,7 +495,7 @@ export default function About() {
                     <div className="mb-12 rounded-xl border border-gray-200 bg-white p-6 shadow-lg">
                         <div className="aspect-w-16 aspect-h-9 flex items-center justify-center">
                             <div className="mx-auto w-full max-w-4xl">
-                                <img src="/ser/SVG/pakil.svg" alt="Pakil Municipal Map" className="h-auto w-full" />
+                                <img src="/User/SVG/pakil.svg" alt="Pakil Municipal Map" className="h-auto w-full" />
 
                                 <div className="svg-fallback flex hidden h-64 items-center justify-center rounded-lg bg-gray-100">
                                     <div className="p-6 text-center">

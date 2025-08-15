@@ -1,5 +1,5 @@
 import { Head } from '@inertiajs/react';
-export default function TourismAbout() {
+export default function AttractionDetails() {
     const title = 'Pakil Tourism | About';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
@@ -16,7 +16,7 @@ export default function TourismAbout() {
                 <div className="container mx-auto px-4">
                     <div className="-mx-4 mb-6 overflow-hidden rounded-xl shadow-lg sm:mx-0">
                         <img
-                            src="Images/church.jpg"
+                            src="/User/Images/church.jpg"
                             alt="San Pedro de Alcantara Church"
                             className="h-[50vh] w-full object-cover sm:h-72 md:h-[50vh]"
                         />
@@ -66,7 +66,7 @@ export default function TourismAbout() {
                         <div className="flex flex-col items-start justify-between space-y-2 sm:flex-row">
                             <h1 className="text-2xl font-bold sm:text-3xl">San Pedro de Alcantara Church</h1>
                             <div className="flex items-center rounded-full bg-secondary/10 px-3 py-1">
-                                <img src="/Images/Pakilpoints.png" className="mr-1 h-[20px] w-[20px]" alt="" />
+                                <img src="/User/Layout/Pakilpoints.png" className="mr-1 h-[20px] w-[20px]" alt="" />
                                 <span className="text-dark font-medium">15 pts</span>
                             </div>
                         </div>
@@ -170,17 +170,17 @@ export default function TourismAbout() {
                                 <h2 className="mb-3 text-xl font-bold text-primary sm:text-2xl">More Images</h2>
                                 <div className="-mx-4 flex overflow-x-auto px-4 pb-4 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                     <img
-                                        src="Images/church.jpg"
+                                        src="/User/Images/church.jpg"
                                         className="mr-3 h-32 w-48 rounded-lg object-cover sm:mr-0 sm:h-40 sm:w-full"
                                         alt="Church interior"
                                     />
                                     <img
-                                        src="Images/church.jpg"
+                                        src="/User/Images/church.jpg"
                                         className="mr-3 h-32 w-48 rounded-lg object-cover sm:mr-0 sm:h-40 sm:w-full"
                                         alt="Church facade"
                                     />
                                     <img
-                                        src="Images/church.jpg"
+                                        src="/User/Images/church.jpg"
                                         className="h-32 w-48 rounded-lg object-cover sm:h-40 sm:w-full"
                                         alt="Church courtyard"
                                     />

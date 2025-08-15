@@ -1,5 +1,5 @@
 import { Head } from '@inertiajs/react';
-import Banner from "@UserUtils/components/Banner/Banner"
+import Banner from '@UserUtils/components/Banner/Banner';
 export default function TourismAbout() {
     const title = 'Pakil Tourism | About';
     const description =
@@ -227,7 +227,7 @@ export default function TourismAbout() {
             </section>
 
             <section className="py-20">
-                <div className="container mx-auto max-w-5xl px-6">
+                <div className="container mx-auto max-w-6xl px-6">
                     <div className="mb-16">
                         <div className="mb-12 text-center">
                             <div className="mb-4 inline-flex items-center">
@@ -275,7 +275,7 @@ export default function TourismAbout() {
                         </div>
                     </div>
 
-                    <div className="mb-16">
+                    <div className="mb-16" id="deparmtent">
                         <div className="mb-12 text-center">
                             <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
                                 <span className="text-primary">Department</span> Structure

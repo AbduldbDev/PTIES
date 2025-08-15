@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 body {
+}
+.user-body {
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
     background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px);
@@ -57,7 +59,7 @@ body {
 }
 
 .floating-texture {
-    background-image: url('User/Layout/bot_text.png');
+    background-image: url('/User/Layout/bot_text.png');
     background-size: 20px 20px;
     height: 20px;
     position: fixed;

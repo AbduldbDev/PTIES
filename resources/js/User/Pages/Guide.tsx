@@ -17,7 +17,7 @@ export default function Guide() {
                 title="About Pakil"
                 subtitle="Discover Pakil, Laguna"
                 desc="Explore Pakil's attractions and redeem exciting prizes"
-                imageSrc="/User/Images/church.jpg"
+                imageSrc="/User/User/Images/church.jpg"
             ></Banner>
             <section className="py-20">
                 <div className="container mx-auto max-w-5xl px-6">
@@ -92,7 +92,7 @@ export default function Guide() {
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
                                 <div className="flex h-40 items-center justify-center bg-gray-100">
-                                    <img src="/Images/church.jpg" alt="" />
+                                    <img src="/User/User/Images/church.jpg" alt="" />
                                 </div>
                                 <div className="p-6">
                                     <h4 className="text-dark mb-2 text-lg font-bold">Oliver Apartelle</h4>
@@ -112,7 +112,7 @@ export default function Guide() {
 
                             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
                                 <div className="flex h-40 items-center justify-center bg-gray-100">
-                                    <img src="/Images/church.jpg" alt="" />
+                                    <img src="/User/Images/church.jpg" alt="" />
                                 </div>
                                 <div className="p-6">
                                     <h4 className="text-dark mb-2 text-lg font-bold">Leo 17 Inn</h4>
@@ -132,7 +132,7 @@ export default function Guide() {
 
                             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
                                 <div className="flex h-40 items-center justify-center bg-gray-100">
-                                    <img src="/Images/church.jpg" alt="" />
+                                    <img src="/User/Images/church.jpg" alt="" />
                                 </div>
                                 <div className="p-6">
                                     <h4 className="text-dark mb-2 text-lg font-bold">Villa Someros Resort</h4>
@@ -163,7 +163,7 @@ export default function Guide() {
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
                                 <div className="flex h-40 items-center justify-center bg-gray-100">
-                                    <img src="/Images/church.jpg" alt="" />
+                                    <img src="/User/Images/church.jpg" alt="" />
                                 </div>
                                 <div className="p-6">
                                     <h4 className="text-dark mb-2 text-lg font-bold">Vista's Art Space and Café</h4>
@@ -183,7 +183,7 @@ export default function Guide() {
 
                             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
                                 <div className="flex h-40 items-center justify-center bg-gray-100">
-                                    <img src="/Images/church.jpg" alt="" />
+                                    <img src="/User/Images/church.jpg" alt="" />
                                 </div>
                                 <div className="p-6">
                                     <h4 className="text-dark mb-2 text-lg font-bold">The Beatles Place</h4>
@@ -203,7 +203,7 @@ export default function Guide() {
 
                             <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
                                 <div className="flex h-40 items-center justify-center bg-gray-100">
-                                    <img src="/Images/church.jpg" alt="" />
+                                    <img src="/User/Images/church.jpg" alt="" />
                                 </div>
                                 <div className="p-6">
                                     <h4 className="text-dark mb-2 text-lg font-bold">Nida's Halo Halo</h4>

@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use App\Models\ColorTheme;
 
 class AccountManagementController extends Controller
 {
@@ -17,6 +18,7 @@ class AccountManagementController extends Controller
     {
         return Inertia::render('Admin/Pages/Dashboard');
     }
+
 
     public function index(Request $request)
     {
@@ -34,7 +36,7 @@ class AccountManagementController extends Controller
         return Inertia::render('Admin/Pages/AccountManagement/Newform');
     }
 
-    
+
     public function create(Request $request)
     {
 

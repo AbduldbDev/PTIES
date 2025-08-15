@@ -54,7 +54,6 @@ const Select: React.FC<SelectProps> = ({
         return '';
     };
 
-    // Revalidate when value changes and touched
     useEffect(() => {
         if (isTouched) {
             setError(validateInput(values));
@@ -101,11 +100,11 @@ const Select: React.FC<SelectProps> = ({
                     aria-invalid={!!error}
                     aria-describedby={error ? `${name}-error` : undefined}
                 >
-                    <option value="" disabled className="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                    <option value="" disabled className="bg-white text-gray-700 dark:bg-gray-900 dark:text-gray-400">
                         {placeholder}
                     </option>
                     {options.map((option) => (
-                        <option key={option.value} value={option.value} className="text-gray-700 dark:bg-gray-900 dark:text-gray-400">
+                        <option key={option.value} value={option.value} className="bg-white text-gray-700 dark:bg-gray-900 dark:text-gray-400">
                             {option.label}
                         </option>
                     ))}

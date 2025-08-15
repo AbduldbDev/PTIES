@@ -1,7 +1,7 @@
 import { SidebarProvider, useSidebar } from '@AdminUtils/context/SidebarContext';
-import '@css/admin.css';
+
 import { usePage } from '@inertiajs/react';
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect } from 'react';
 import AppHeader from '../Admin/AppHeader';
 import AppSidebar from '../Admin/AppSidebar';
 import Backdrop from '../Admin/Backdrop';
@@ -16,7 +16,9 @@ interface LayoutContentProps extends PropsWithChildren {
 
 const LayoutContent: React.FC<LayoutContentProps> = ({ children, auth }) => {
     const { isExpanded, isHovered, isMobileOpen } = useSidebar();
-
+    useEffect(() => {
+        import('@css/admin.css');
+    }, []);
     return (
         <div className="bg-whit min-h-screen bg-white transition-all duration-300 ease-in-out xl:flex dark:bg-[#101828]">
             <div>

@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
-export default function TourismAbout() {
+export default function Attractions() {
     const title = 'Pakil Tourism | About';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
@@ -60,7 +60,7 @@ export default function TourismAbout() {
                             <div className="relative">
                                 <div className="h-48 overflow-hidden">
                                     <img
-                                        src="/Images/church.jpg"
+                                        src="/User/Images/church.jpg"
                                         alt="San Pedro Church"
                                         className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                     />
@@ -93,7 +93,7 @@ export default function TourismAbout() {
                             <div className="relative">
                                 <div className="h-48 overflow-hidden">
                                     <img
-                                        src="/Images/church.jpg"
+                                        src="/User/Images/church.jpg"
                                         alt="Ping-as Falls"
                                         className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                     />
@@ -126,7 +126,7 @@ export default function TourismAbout() {
                             <div className="relative">
                                 <div className="h-48 overflow-hidden">
                                     <img
-                                        src="/Images/church.jpg"
+                                        src="/User/Images/church.jpg"
                                         alt="Town Plaza"
                                         className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                     />
@@ -159,7 +159,7 @@ export default function TourismAbout() {
                             <div className="relative">
                                 <div className="h-48 overflow-hidden">
                                     <img
-                                        src="/Images/church.jpg"
+                                        src="/User/Images/church.jpg"
                                         alt="Turumba Shrine"
                                         className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                     />
@@ -193,7 +193,7 @@ export default function TourismAbout() {
                             <div className="relative">
                                 <div className="h-48 overflow-hidden">
                                     <img
-                                        src="/Images/church.jpg"
+                                        src="/User/Images/church.jpg"
                                         alt="Heritage Houses"
                                         className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                     />
@@ -226,7 +226,7 @@ export default function TourismAbout() {
                             <div className="relative">
                                 <div className="h-48 overflow-hidden">
                                     <img
-                                        src="/Images/church.jpg"
+                                        src="/User/Images/church.jpg"
                                         alt="Music Museum"
                                         className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                     />

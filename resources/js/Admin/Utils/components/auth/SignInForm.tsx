@@ -62,11 +62,13 @@ export default function SignInForm() {
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <Checkbox checked={isChecked} onChange={setIsChecked} />
-                                    <span className="text-theme-sm font-normal text-gray-700 dark:text-gray-300">Keep me logged in</span>
+                                    <span className="text-theme-xs lg:text-theme-sm font-normal text-gray-700 dark:text-gray-300">
+                                        Keep me logged in
+                                    </span>
                                 </div>
                                 <Link
                                     href="/reset-password"
-                                    className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 text-sm font-medium"
+                                    className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 lg:text-theme-sm text-xs font-medium"
                                 >
                                     Forgot password?
                                 </Link>

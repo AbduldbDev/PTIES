@@ -63,18 +63,18 @@ const Navbar = () => {
     // Dropdown items data
     const dropdownItems = {
         about: [
-            { label: 'About Us', href: '#' },
-            { label: 'Department Structure', href: '#' },
-            { label: 'Mission & Vision', href: '#' },
-            { label: 'Citizen Charter', href: '#' },
-            { label: 'Key Officials', href: '#' },
+            { label: 'About Us', href: '/tourism' },
+            // { label: 'Department Structure', href: '#' },
+            // { label: 'Mission & Vision', href: '#' },
+            // { label: 'Citizen Charter', href: '#' },
+            { label: 'Key Officials', href: '/officials' },
         ],
         explore: [
-            { label: 'About Pakil', href: '#' },
-            { label: 'Attractions', href: '#' },
+            { label: 'About Pakil', href: '/about' },
+            { label: 'Attractions', href: '/attractions' },
             { label: 'Personalities', href: '#' },
-            { label: 'Local Products', href: '#' },
-            { label: 'Terminals', href: '#' },
+            { label: 'Local Products', href: '/localproducts' },
+            { label: 'Terminals', href: '/terminals' },
         ],
         Contact: [
             { label: 'Contact Us', href: '#' },
@@ -101,7 +101,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-center space-x-4">
                     <div className="relative inline-block">
-                        <select className="cursor-pointer appearance-none rounded-md border border-0 bg-primary pr-8 pl-3 text-xs text-white transition-all hover:bg-white/20 focus:border-blue-300 focus:ring-1 focus:ring-blue-300 focus:outline-none sm:text-sm">
+                        <select className="cursor-pointer appearance-none rounded-md border-0 bg-primary pr-8 pl-3 text-xs text-white transition-all hover:bg-white/20 focus:border-blue-300 focus:ring-1 focus:ring-blue-300 focus:outline-none sm:text-sm">
                             <option value="en" className="bg-white text-gray-900">
                                 EN
                             </option>

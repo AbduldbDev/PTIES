@@ -1,4 +1,3 @@
-import '@css/user.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { waitForAllAssets } from '@UserUtils/components/Layout/assetLoader';
 import AnimatedBackground from '@UserUtils/components/Layout/Background';
@@ -16,7 +15,9 @@ export default function UserLayout({ children }: PropsWithChildren) {
     const [assetsLoaded, setAssetsLoaded] = useState(false);
     const [showLoader, setShowLoader] = useState(true);
     const loaderTimeout = useRef<NodeJS.Timeout | null>(null);
-
+    useEffect(() => {
+        import('@css/user.css');
+    }, []);
     useEffect(() => {
         if (!colorsLoaded) return;
 
@@ -57,7 +58,7 @@ export default function UserLayout({ children }: PropsWithChildren) {
         <>
             {showLoader && <Loader />}
 
-            <div className="min-h-screen" style={{ opacity: assetsLoaded ? 1 : 0 }}>
+            <div className="user-body min-h-screen" style={{ opacity: assetsLoaded ? 1 : 0 }}>
                 <Navbar />
                 <AnimatedBackground />
                 <main>{children}</main>
