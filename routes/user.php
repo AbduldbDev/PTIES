@@ -12,6 +12,7 @@ Route::get('/officials', [PageController::class, 'KeyOfficials'])->name('user.of
 Route::get('/biography', [PageController::class, 'OfficialBio'])->name('user.biography');
 Route::get('/guide', [PageController::class, 'Guide'])->name('user.guide');
 Route::get('/terminals', [PageController::class, 'Terminals'])->name('user.terminals');
+Route::get('/localproducts', [PageController::class, 'LocalProducts'])->name('user.localproducts');
 
 
 Route::middleware('guest')->group(function () {});
