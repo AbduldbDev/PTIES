@@ -18,6 +18,9 @@ Route::get('/localproducts', [PageController::class, 'LocalProducts'])->name('us
 =======
 Route::get('/attractions', [PageController::class, 'Attractions'])->name('user.attractions');
 Route::get('/attractiondetails', [PageController::class, 'AttractionDetails'])->name('user.attractiondetails');
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 Route::middleware('guest')->group(function () {});

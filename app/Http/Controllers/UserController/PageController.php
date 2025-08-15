@@ -52,6 +52,9 @@ class PageController extends Controller
     {
         return Inertia::render('User/Pages/AttractionDetails');
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
  
