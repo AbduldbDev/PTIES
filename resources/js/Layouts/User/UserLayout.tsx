@@ -5,6 +5,8 @@ import AnimatedBackground from '@UserUtils/components/Layout/Background';
 import CookieConsentBanner from '@UserUtils/components/Layout/Cookies';
 import Loader from '@UserUtils/components/Layout/Loader';
 import useThemeColors from '@UserUtils/components/Layout/ThemeColor';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { Footer } from './Footer';
 import Navbar from './NavBar';
@@ -41,6 +43,15 @@ export default function UserLayout({ children }: PropsWithChildren) {
             }
         };
     }, [colorsLoaded]);
+
+    useEffect(() => {
+        if (!showLoader) {
+            AOS.init({
+                duration: 1000,
+            });
+            AOS.refresh();
+        }
+    }, [showLoader]);
 
     return (
         <>
