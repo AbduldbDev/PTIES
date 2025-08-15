@@ -13,6 +13,11 @@ Route::get('/biography', [PageController::class, 'OfficialBio'])->name('user.bio
 Route::get('/guide', [PageController::class, 'Guide'])->name('user.guide');
 Route::get('/terminals', [PageController::class, 'Terminals'])->name('user.terminals');
 Route::get('/localproducts', [PageController::class, 'LocalProducts'])->name('user.localproducts');
+<<<<<<< Updated upstream
 
+=======
+Route::get('/attractions', [PageController::class, 'Attractions'])->name('user.attractions');
+Route::get('/attractiondetails', [PageController::class, 'AttractionDetails'])->name('user.attractiondetails');
+>>>>>>> Stashed changes
 
 Route::middleware('guest')->group(function () {});
