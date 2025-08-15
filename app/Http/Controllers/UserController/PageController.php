@@ -29,6 +29,9 @@ class PageController extends Controller
     {
         return Inertia::render('User/Pages/Biography');
     }
-    
+    public function Guide()
+    {
+        return Inertia::render('User/Pages/Guide');
+    }
 }
  
