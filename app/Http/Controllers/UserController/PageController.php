@@ -38,6 +38,9 @@ class PageController extends Controller
     {
         return Inertia::render('User/Pages/Terminals');
     }
-
+    public function LocalProducts()
+    {
+        return Inertia::render('User/Pages/LocalProducts');
+    }
 }
  
