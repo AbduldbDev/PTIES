@@ -46,5 +46,9 @@ class PageController extends Controller
     {
         return Inertia::render('User/Pages/Attractions');
     }
+    public function AttractionDetails()
+    {
+        return Inertia::render('User/Pages/AttractionDetails');
+    }
 }
  
