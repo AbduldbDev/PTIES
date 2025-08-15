@@ -42,8 +42,6 @@ class PageController extends Controller
     {
         return Inertia::render('User/Pages/LocalProducts');
     }
-<<<<<<< Updated upstream
-=======
     public function Attractions()
     {
         return Inertia::render('User/Pages/Attractions');
@@ -52,9 +50,5 @@ class PageController extends Controller
     {
         return Inertia::render('User/Pages/AttractionDetails');
     }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }
  
