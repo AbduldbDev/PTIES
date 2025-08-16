@@ -100,6 +100,14 @@ class AccountManagementController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $user = User::with('profile')->findOrFail($id);
+        return Inertia::render('Admin/Pages/AccountManagement/EditForm', [
+            'user' => $user,
+        ]);
+    }
+
     public function delete($id)
     {
         $product = User::findOrFail($id);

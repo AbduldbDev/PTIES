@@ -81,7 +81,7 @@ export default function Attractions() {
                                         <i className="fas fa-clock mr-1"></i>
                                         <span>8AM-5PM Daily</span>
                                     </div>
-                                    <a href="#" className="flex items-center font-medium text-primary hover:text-primary/90">
+                                    <a href="/attractiondetails" className="z-10 flex items-center font-medium text-primary hover:text-primary/90">
                                         View Details <i className="fas fa-arrow-right ml-2"></i>
                                     </a>
                                 </div>
@@ -114,7 +114,7 @@ export default function Attractions() {
                                         <i className="fas fa-clock mr-1"></i>
                                         <span>Daylight Hours</span>
                                     </div>
-                                    <a href="#" className="flex items-center font-medium text-primary hover:text-primary/90">
+                                    <a href="/attractiondetails" className="z-10 flex items-center font-medium text-primary hover:text-primary/90">
                                         View Details <i className="fas fa-arrow-right ml-2"></i>
                                     </a>
                                 </div>
@@ -147,7 +147,7 @@ export default function Attractions() {
                                         <i className="fas fa-clock mr-1"></i>
                                         <span>Open 24/7</span>
                                     </div>
-                                    <a href="#" className="flex items-center font-medium text-primary hover:text-primary/90">
+                                    <a href="/attractiondetails" className="z-10 flex items-center font-medium text-primary hover:text-primary/90">
                                         View Details <i className="fas fa-arrow-right ml-2"></i>
                                     </a>
                                 </div>
@@ -181,7 +181,7 @@ export default function Attractions() {
                                         <i className="fas fa-clock mr-1"></i>
                                         <span>6AM-8PM Daily</span>
                                     </div>
-                                    <a href="#" className="flex items-center font-medium text-primary hover:text-primary/90">
+                                    <a href="/attractiondetails" className="z-10 flex items-center font-medium text-primary hover:text-primary/90">
                                         View Details <i className="fas fa-arrow-right ml-2"></i>
                                     </a>
                                 </div>
@@ -214,7 +214,7 @@ export default function Attractions() {
                                         <i className="fas fa-clock mr-1"></i>
                                         <span>By Appointment</span>
                                     </div>
-                                    <a href="#" className="flex items-center font-medium text-primary hover:text-primary/90">
+                                    <a href="/attractiondetails" className="z-10 flex items-center font-medium text-primary hover:text-primary/90">
                                         View Details <i className="fas fa-arrow-right ml-2"></i>
                                     </a>
                                 </div>
@@ -247,7 +247,7 @@ export default function Attractions() {
                                         <i className="fas fa-clock mr-1"></i>
                                         <span>9AM-4PM Tue-Sun</span>
                                     </div>
-                                    <a href="#" className="flex items-center font-medium text-primary hover:text-primary/90">
+                                    <a href="/attractiondetails" className="z-10 flex items-center font-medium text-primary hover:text-primary/90">
                                         View Details <i className="fas fa-arrow-right ml-2"></i>
                                     </a>
                                 </div>

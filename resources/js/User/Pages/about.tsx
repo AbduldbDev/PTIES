@@ -497,7 +497,7 @@ export default function About() {
                             <div className="mx-auto w-full max-w-4xl">
                                 <img src="/User/SVG/pakil.svg" alt="Pakil Municipal Map" className="h-auto w-full" />
 
-                                <div className="svg-fallback flex hidden h-64 items-center justify-center rounded-lg bg-gray-100">
+                                <div className="svg-fallback flex h-64 items-center justify-center rounded-lg bg-gray-100">
                                     <div className="p-6 text-center">
                                         <i className="fas fa-map mb-3 text-4xl text-primary"></i>
                                         <p className="text-gray-600">Interactive Pakil Map</p>

@@ -30,11 +30,11 @@ export default function SingleOfficial() {
 
                     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
                         <div className="relative w-full">
-                            <img src="Images/mayor.jpg" alt="Hon. Juan Dela Cruz" className="h-[70vh] w-full object-cover" />
+                            <img src="/User/Images/ace.png" alt="Hon. Ethan Young" className="h-[70vh] w-full object-cover" />
                             <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent p-6">
                                 <div className="flex items-end justify-between">
                                     <div>
-                                        <h1 className="text-2xl font-bold text-white md:text-3xl">Hon. Juan Dela Cruz</h1>
+                                        <h1 className="text-2xl font-bold text-white md:text-3xl">Hon. Ethan Young</h1>
                                         <p className="text-white/90">Municipal Mayor of Pakil</p>
                                     </div>
                                     <span className="rounded-full bg-primary px-4 py-1 text-sm font-medium text-white">
@@ -120,20 +120,30 @@ export default function SingleOfficial() {
                                     <div className="rounded-lg border border-primary/10 bg-primary/5 p-5">
                                         <h3 className="text-dark mb-2 font-semibold">Turumba Tourism Program</h3>
                                         <p className="text-sm text-gray-700">
-                                            Increased festival visitors by 120% through enhanced programming and marketing
+                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis quibusdam impedit exercitationem,
+                                            recusandae,
                                         </p>
                                     </div>
                                     <div className="rounded-lg border border-primary/10 bg-primary/5 p-5">
                                         <h3 className="text-dark mb-2 font-semibold">Heritage Conservation</h3>
-                                        <p className="text-sm text-gray-700">Restored 5 historic structures including the San Pedro Church</p>
+                                        <p className="text-sm text-gray-700">
+                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis quibusdam impedit exercitationem,
+                                            recusandae,
+                                        </p>
                                     </div>
                                     <div className="rounded-lg border border-primary/10 bg-primary/5 p-5">
                                         <h3 className="text-dark mb-2 font-semibold">Awards Received</h3>
-                                        <p className="text-sm text-gray-700">2023 Most Tourism-Friendly Municipality (DOT)</p>
+                                        <p className="text-sm text-gray-700">
+                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis quibusdam impedit exercitationem,
+                                            recusandae,
+                                        </p>
                                     </div>
                                     <div className="rounded-lg border border-primary/10 bg-primary/5 p-5">
                                         <h3 className="text-dark mb-2 font-semibold">Infrastructure</h3>
-                                        <p className="text-sm text-gray-700">Completed 12km of farm-to-market roads in rural barangays</p>
+                                        <p className="text-sm text-gray-700">
+                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis quibusdam impedit exercitationem,
+                                            recusandae,
+                                        </p>
                                     </div>
                                 </div>
                             </div>

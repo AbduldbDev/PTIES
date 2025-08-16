@@ -5,7 +5,7 @@ import ColorInputField from '@AdminUtils/components/form/input/InputColor';
 
 import FlashMessage from '@AdminUtils/context/FlashMessage';
 import { Head, useForm, usePage } from '@inertiajs/react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
 type FormData = {
     primary: string;
@@ -35,6 +35,13 @@ export default function AccountCreateForm() {
         secondary: secondary,
         accent: accent,
     });
+    useEffect(() => {
+        form.setData({
+            primary: primary,
+            secondary: secondary,
+            accent: accent,
+        });
+    }, [primary, secondary, accent]);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -42,7 +49,7 @@ export default function AccountCreateForm() {
         form.post('/Admin/Settings/Color/Update', {
             forceFormData: true,
             onSuccess: () => {
-                form.reset();
+                // form.reset();
                 form.clearErrors();
                 setResetSignal((prev) => prev + 1);
             },

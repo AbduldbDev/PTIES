@@ -6,7 +6,7 @@ import Badge from '@AdminUtils/components/ui/badge/Badge';
 import { SortableColumn, SortConfig, Table, TableBody, TableCell, TableHeader, TableRow } from '@AdminUtils/components/ui/table';
 import SortIndicator from '@AdminUtils/components/ui/table/sort-indicator';
 import FlashMessage from '@AdminUtils/context/FlashMessage';
-import { Head, useForm, usePage } from '@inertiajs/react';
+import { Head, router, useForm, usePage } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 
 type UserItem = {
@@ -110,6 +110,10 @@ export default function Home() {
                 console.error('Delete error:', errors);
             },
         });
+    };
+
+    const handleView = (id: any) => {
+        router.get(`/Admin/AccountManagement/Edit/${id}`);
     };
 
     const handleSort = (key: string) => {
@@ -224,6 +228,7 @@ export default function Home() {
 
                                                             <button
                                                                 aria-label="Edit-btn"
+                                                                onClick={() => handleView(user.id)}
                                                                 className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white/90"
                                                             >
                                                                 <svg

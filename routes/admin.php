@@ -11,6 +11,7 @@ Route::middleware('auth')->group(function () {});
 Route::get('/Admin', [AccountManagementController::class, 'app'])->name('account.management.app');
 Route::get('/Admin/AccountManagement', [AccountManagementController::class, 'index'])->name('account.management.index');
 Route::get('/Admin/AccountManagement/New', [AccountManagementController::class, 'form'])->name('account.management.form');
+Route::get('/Admin/AccountManagement/Edit/{id}', [AccountManagementController::class, 'edit'])->name('account.management.form');
 Route::get('/Admin/Settings/Website', [WebsiteSettingsController::class, 'settings'])->name('account.management.settings');
 Route::post('/Admin/Settings/Color/Update', [WebsiteSettingsController::class, 'updateSettings'])->name('account.management.updateSettings');
 

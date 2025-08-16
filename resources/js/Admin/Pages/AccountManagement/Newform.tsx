@@ -67,7 +67,7 @@ export default function AccountCreateForm() {
             onSuccess: () => {
                 form.reset();
                 form.clearErrors();
-                setResetSignal((prev) => prev + 1);
+                setResetSignal(Date.now());
             },
         });
     };
