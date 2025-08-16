@@ -5,14 +5,14 @@ namespace App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\ColorTheme;
+use App\Models\CMSColor;
 
 class WebsiteSettingsController  extends Controller
 {
     public function settings(Request $request)
     {
 
-        $colors = ColorTheme::whereIn('key', ['primary', 'secondary', 'accent'])
+        $colors = CMSColor::whereIn('key', ['primary', 'secondary', 'accent'])
             ->get()
             ->keyBy('key')
             ->map(fn($item) => $item->value)
@@ -37,7 +37,7 @@ class WebsiteSettingsController  extends Controller
 
         try {
             foreach ($validated as $key => $value) {
-                ColorTheme::where('key', $key)
+                CMSColor::where('key', $key)
                     ->update(['value' => $value, 'updated_at' => now()]);
             }
 

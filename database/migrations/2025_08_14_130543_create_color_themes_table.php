@@ -12,14 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('layout_colors', function (Blueprint $table) {
+        Schema::create('cms_color', function (Blueprint $table) {
             $table->id();
             $table->string('key')->unique();
             $table->string('value');
             $table->timestamps();
         });
 
-        DB::table('layout_colors')->insert([
+        DB::table('cms_color')->insert([
             ['key' => 'primary', 'value' => '#052675', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'secondary', 'value' => '#f59e0b', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'accent', 'value' => '#10b981', 'created_at' => now(), 'updated_at' => now()],
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('layout_colors');
+        Schema::dropIfExists('cms_color');
     }
 };

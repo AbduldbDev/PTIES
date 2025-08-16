@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\UserController;
 
 use App\Http\Controllers\Controller;
-use App\Models\ColorTheme;
+use App\Models\CMSColor;
 use Illuminate\Http\Request;
 
 class UserLayout extends Controller
@@ -12,7 +12,7 @@ class UserLayout extends Controller
     public function getThemeColors()
     {
 
-        $colors = ColorTheme::whereIn('key', ['primary', 'secondary', 'accent'])
+        $colors = CMSColor::whereIn('key', ['primary', 'secondary', 'accent'])
             ->get()
             ->keyBy('key')
             ->map(fn($item) => $item->value)

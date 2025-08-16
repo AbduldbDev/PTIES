@@ -57,6 +57,28 @@ export default function AccountCreateForm() {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
+        const requiredFields: (keyof FormData)[] = [
+            'firstname',
+            'lastname',
+            'gender',
+            'contact',
+            'address',
+            'position',
+            'user_type',
+            'email',
+            'password',
+            'password_confirmation',
+        ];
+
+        const emptyFields = requiredFields.filter((field) => !form.data[field]);
+
+        if (emptyFields.length > 0) {
+            emptyFields.forEach((field) => {
+                form.setError(field, `This field is required`);
+            });
+            return;
+        }
+
         if (form.data.password !== form.data.password_confirmation) {
             form.setError('password_confirmation', 'Passwords do not match');
             return;
@@ -90,8 +112,9 @@ export default function AccountCreateForm() {
                 <form onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
                         <ComponentCard title="Add New Account">
-                            <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
+                            <div className="grid grid-cols-1 gap-0 lg:gap-10 xl:grid-cols-2">
                                 <div>
+                                    <h1 className="mb-3 text-black dark:text-white">Pesonal Information</h1>
                                     <InputField
                                         type="text"
                                         label="First Name"
@@ -108,7 +131,7 @@ export default function AccountCreateForm() {
                                         type="text"
                                         label="Middle Name"
                                         name="middlename"
-                                        required={true}
+                                        required={false}
                                         value={form.data.middlename}
                                         onChange={(e) => form.setData('middlename', e.target.value)}
                                         error={form.errors.middlename}
@@ -128,25 +151,11 @@ export default function AccountCreateForm() {
                                         resetSignal={resetSignal}
                                     />
 
-                                    <SelectField
-                                        label="Gender"
-                                        name="gender"
-                                        options={[
-                                            { value: 'male', label: 'Male' },
-                                            { value: 'female', label: 'Female' },
-                                        ]}
-                                        required={true}
-                                        value={form.data.gender}
-                                        onChange={(e) => form.setData('gender', e.target.value)}
-                                        error={form.errors.gender}
-                                        errorMessage="Please select gender"
-                                    />
-
                                     <InputField
                                         type="tel"
                                         label="Phone Number"
                                         name="contact"
-                                        validation={/^[0-9]{10,15}$/}
+                                        // validation={/^[0-9]{10,15}$/}
                                         required={true}
                                         value={form.data.contact}
                                         onChange={(e) => form.setData('contact', e.target.value)}
@@ -166,8 +175,23 @@ export default function AccountCreateForm() {
                                         errorMessage="Please enter user address"
                                         resetSignal={resetSignal}
                                     />
+                                    <SelectField
+                                        label="Gender"
+                                        name="gender"
+                                        options={[
+                                            { value: 'male', label: 'Male' },
+                                            { value: 'female', label: 'Female' },
+                                            { value: 'other', label: 'Other' },
+                                        ]}
+                                        required={true}
+                                        value={form.data.gender}
+                                        onChange={(e) => form.setData('gender', e.target.value)}
+                                        error={form.errors.gender}
+                                        errorMessage="Please select a valid gender"
+                                    />
                                 </div>
                                 <div>
+                                    <h1 className="mb-3 text-black dark:text-white">Account Information</h1>
                                     <InputField
                                         type="text"
                                         label="Position"
