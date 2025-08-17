@@ -3,20 +3,19 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
-
-class UserLoginController extends Controller
+class AdminLoginController extends Controller
 {
     public function showLoginForm()
     {
-        return Inertia::render('Auth/User/Login');
+        return Inertia::render('Auth/Admin/Login');
     }
 
     public function login(LoginRequest $request)
@@ -33,11 +32,22 @@ class UserLoginController extends Controller
             ]);
         }
 
+        // Check if the authenticated user has the required user type
+        $user = Auth::user();
+        if (!$user || !in_array($user->user_type, ['admin', 'content_manager'])) {
+            Auth::logout(); // Log out the user if they don't have the right type
+            RateLimiter::hit($this->throttleKey($request), $seconds = 60);
+
+            throw ValidationException::withMessages([
+                'email' => __('You are not authorized to access this area.'),
+            ]);
+        }
+
         RateLimiter::clear($this->throttleKey($request));
 
         $request->session()->regenerate();
 
-        return redirect()->intended('/');
+        return redirect()->intended('/Admin');
     }
 
     protected function checkTooManyAttempts(Request $request)
@@ -62,6 +72,6 @@ class UserLoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/Admin/Login');
     }
 }

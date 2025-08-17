@@ -104,8 +104,9 @@ export default function AccountEditForm() {
                     <input type="hidden" name="_token" value={csrf_token} />
                     <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
                         <ComponentCard title="Edit Account">
-                            <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
+                            <div className="grid grid-cols-1 gap-0 lg:gap-10 xl:grid-cols-2">
                                 <div>
+                                    <h1 className="mb-3 text-black dark:text-white">Pesonal Information</h1>
                                     <InputField
                                         type="text"
                                         label="First Name"
@@ -142,21 +143,6 @@ export default function AccountEditForm() {
                                         resetSignal={resetSignal}
                                     />
 
-                                    <SelectField
-                                        label="Gender"
-                                        name="gender"
-                                        options={[
-                                            { value: 'male', label: 'Male' },
-                                            { value: 'female', label: 'Female' },
-                                            { value: 'other', label: 'Other' },
-                                        ]}
-                                        required={true}
-                                        value={form.data.gender}
-                                        onChange={(e) => form.setData('gender', e.target.value)}
-                                        error={form.errors.gender}
-                                        errorMessage="Please select a valid gender"
-                                    />
-
                                     <InputField
                                         type="text"
                                         label="Phone Number"
@@ -180,8 +166,23 @@ export default function AccountEditForm() {
                                         errorMessage="Please enter user address"
                                         resetSignal={resetSignal}
                                     />
+                                    <SelectField
+                                        label="Gender"
+                                        name="gender"
+                                        options={[
+                                            { value: 'male', label: 'Male' },
+                                            { value: 'female', label: 'Female' },
+                                            { value: 'other', label: 'Other' },
+                                        ]}
+                                        required={true}
+                                        value={form.data.gender}
+                                        onChange={(e) => form.setData('gender', e.target.value)}
+                                        error={form.errors.gender}
+                                        errorMessage="Please select a valid gender"
+                                    />
                                 </div>
                                 <div>
+                                    <h1 className="mb-3 text-black dark:text-white">Account Information</h1>
                                     <InputField
                                         type="text"
                                         label="Position"

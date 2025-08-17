@@ -36,7 +36,6 @@ class NewPasswordController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // Validate password + required reset fields
         $validator = Validator::make($request->all(), [
             'token' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'exists:users,email'],
@@ -66,7 +65,6 @@ class NewPasswordController extends Controller
             return back()->withErrors($errors)->withInput();
         }
 
-        // Reset the password
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user) use ($request) {
@@ -79,7 +77,7 @@ class NewPasswordController extends Controller
             }
         );
 
-        // Debug what’s happening if it fails
+
         if ($status !== Password::PASSWORD_RESET) {
             logger()->error('Password reset failed', [
                 'status' => $status,

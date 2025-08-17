@@ -28,10 +28,8 @@ class PasswordResetLinkController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // 1️⃣ Rate limit to prevent abuse
         $this->ensureIsNotRateLimited($request);
 
-        // 2️⃣ Validate email and normalize it
         $request->merge([
             'email' => strtolower(trim($request->email)),
         ]);
@@ -40,12 +38,11 @@ class PasswordResetLinkController extends Controller
             'email' => 'required|email',
         ]);
 
-        // 3️⃣ Always send the same response to prevent user enumeration
         $status = Password::sendResetLink($request->only('email'));
         if ($status === Password::RESET_LINK_SENT) {
-            return back()->with('success', __($status)); // ✅ Pass success message
+            return back()->with('success', __($status));
         } else {
-            return back()->with('error', __($status)); // ✅ Pass error message
+            return back()->with('error', __($status));
         }
 
         RateLimiter::hit($this->throttleKey($request));

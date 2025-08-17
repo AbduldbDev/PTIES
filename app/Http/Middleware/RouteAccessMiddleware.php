@@ -14,15 +14,23 @@ class RouteAccessMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next,  $type): Response
+    public function handle(Request $request, Closure $next, $type): Response
     {
+        // For auth routes - must be logged in AND must be regular user
+        if ($type === 'auth') {
+            if (!Auth::check()) {
+                return redirect('/Login');
+            }
 
-        if ($type === 'auth' && !Auth::check()) {
-            return redirect('/Login');
+            // Only allow if user_type is exactly "user"
+            if (Auth::user()->user_type !== "user") {
+                abort(403); // Forbidden access for non-user types
+                return redirect('/Login');
+            }
         }
 
-
-        if ($type === 'guest' && Auth::check()) {
+        // For guest routes - if already logged in as a user, redirect home
+        if ($type === 'guest' && Auth::check() && Auth::user()->user_type === "user") {
             return redirect('/');
         }
 
