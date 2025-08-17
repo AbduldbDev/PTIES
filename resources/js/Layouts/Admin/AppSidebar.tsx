@@ -3,7 +3,25 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useSidebar } from '@AdminUtils/context/SidebarContext';
 import { ChevronDownIcon, GridIcon, HorizontaLDots, PageIcon, UserCircleIcon } from '@AdminUtils/icons';
+export interface UserProfile {
+    first_name: string;
+    middle_name?: string;
+    last_name?: string;
+}
 
+export interface AuthUser {
+    email: string;
+    image: string;
+    profile?: UserProfile;
+}
+
+export interface AuthData {
+    user?: AuthUser;
+}
+
+export interface AppHeaderProps {
+    auth?: AuthData;
+}
 type NavItem = {
     name: string;
     icon: React.ReactNode;
@@ -32,7 +50,7 @@ const navItems: NavItem[] = [
     },
 ];
 
-const AppSidebar: React.FC = () => {
+const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
     const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
     const { url } = usePage();
 
@@ -190,15 +208,28 @@ const AppSidebar: React.FC = () => {
             onMouseLeave={() => setIsHovered(false)}
         >
             <div className={`flex py-8 ${!isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start'}`}>
-                <Link href="/" className="flex items-center justify-center gap-3 align-middle">
+                <Link href="/Admin" className="flex items-center justify-center gap-3 align-middle">
                     {isExpanded || isHovered || isMobileOpen ? (
                         <>
-                            <img className="block rounded-full dark:hidden" src="/images/user/User.png" alt="Logo" width={50} height={50} />
-                            <img className="hidden rounded-full dark:block" src="/images/user/User.png" alt="Logo" width={50} height={50} />
-                            <div className="text-xl text-black dark:text-white">Deborja, Abdul</div>
+                            <img
+                                className="rounded-full"
+                                src={auth?.user?.image ? `/storage/${auth.user.image}` : '/images/user/User.png'}
+                                alt={auth?.user?.profile?.first_name || 'User'}
+                                width={50}
+                                height={50}
+                            />
+                            <div className="text-xl text-black dark:text-white">
+                                {auth?.user?.profile?.last_name || 's'}, {auth?.user?.profile?.first_name || 's'}
+                            </div>
                         </>
                     ) : (
-                        <img className="block rounded-full" src="/images/user/User.png" alt="Logo" width={50} height={50} />
+                        <img
+                            className="rounded-full"
+                            src={auth?.user?.image ? `/storage/${auth.user.image}` : '/images/user/User.png'}
+                            alt={auth?.user?.profile?.first_name || 'User'}
+                            width={50}
+                            height={50}
+                        />
                     )}
                 </Link>
             </div>

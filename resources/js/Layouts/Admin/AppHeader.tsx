@@ -1,14 +1,34 @@
-import { useEffect, useRef, useState } from 'react';
-
 import { ThemeToggleButton } from '@AdminUtils/components/common/ThemeToggleButton';
 import NotificationDropdown from '@AdminUtils/components/header/NotificationDropdown';
 import UserDropdown from '@AdminUtils/components/header/UserDropdown';
 import { useSidebar } from '@AdminUtils/context/SidebarContext';
+import { useEffect, useRef, useState } from 'react';
+export interface UserProfile {
+    first_name: string;
+    middle_name?: string;
+    last_name?: string;
+}
+
+export interface AuthUser {
+    email: string;
+    image: string;
+    profile?: UserProfile;
+}
+
+export interface AuthData {
+    user?: AuthUser;
+}
+
+export interface AppHeaderProps {
+    auth?: AuthData;
+}
+
 type LinkType = {
     name: string;
     url: string;
 };
-const AppHeader: React.FC = () => {
+
+const AppHeader: React.FC<AppHeaderProps> = ({ auth }) => {
     const [query, setQuery] = useState('');
     const [suggestions, setSuggestions] = useState<LinkType[]>([]);
 
@@ -174,7 +194,7 @@ const AppHeader: React.FC = () => {
                         {/* <!-- Notification Menu Area --> */}
                     </div>
                     {/* <!-- User Area --> */}
-                    <UserDropdown />
+                    <UserDropdown auth={auth} />
                 </div>
             </div>
         </header>

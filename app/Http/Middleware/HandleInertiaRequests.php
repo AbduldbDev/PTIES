@@ -41,10 +41,13 @@ class HandleInertiaRequests extends Middleware
             'cookieConsent' => $request->cookie('cookie_consent'),
             'auth' => [
                 'user' => $request->user() ? [
-                    'id' => $request->user()->id,
-                    'name' => $request->user()->name,
+                    'image' => $request->user()->avatar,
                     'email' => $request->user()->email,
-                    // Add other safe fields as needed
+                    'profile' => $request->user()->profile ? [
+                        'first_name' => $request->user()->profile->first_name,
+                        'middle_name' => $request->user()->profile->middle_name,
+                        'last_name' => $request->user()->profile->last_name,
+                    ] : null
                 ] : null,
             ],
 

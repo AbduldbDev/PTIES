@@ -5,13 +5,27 @@ import React, { PropsWithChildren } from 'react';
 import AppHeader from '../Admin/AppHeader';
 import AppSidebar from '../Admin/AppSidebar';
 import Backdrop from '../Admin/Backdrop';
+export interface UserProfile {
+    first_name: string;
+    middle_name?: string;
+    last_name?: string;
+}
 
+export interface AuthUser {
+    email: string;
+    image: string;
+    profile?: UserProfile;
+}
+
+export interface AuthData {
+    user?: AuthUser;
+}
+
+export interface AuthData {
+    user?: AuthUser;
+}
 interface LayoutContentProps extends PropsWithChildren {
-    auth?: {
-        user: {
-            name: string;
-        };
-    };
+    auth?: AuthData;
 }
 
 const LayoutContent: React.FC<LayoutContentProps> = ({ children, auth }) => {
@@ -20,7 +34,7 @@ const LayoutContent: React.FC<LayoutContentProps> = ({ children, auth }) => {
     return (
         <div className="bg-whit min-h-screen bg-white transition-all duration-300 ease-in-out xl:flex dark:bg-[#101828]">
             <div>
-                <AppSidebar />
+                <AppSidebar auth={auth} />
                 <Backdrop />
             </div>
             <div
@@ -28,7 +42,7 @@ const LayoutContent: React.FC<LayoutContentProps> = ({ children, auth }) => {
                     isExpanded || isHovered ? 'lg:ml-[290px]' : 'lg:ml-[90px]'
                 } ${isMobileOpen ? 'ml-0' : ''}`}
             >
-                <AppHeader />
+                <AppHeader auth={auth} />
                 <div className="mx-auto max-w-(--breakpoint-2xl) p-4 md:p-6">{children}</div>
             </div>
         </div>
@@ -36,7 +50,7 @@ const LayoutContent: React.FC<LayoutContentProps> = ({ children, auth }) => {
 };
 
 const AppLayout: React.FC<PropsWithChildren> = ({ children }) => {
-    const { auth } = usePage().props as { auth?: { user: { name: string } } };
+    const { auth } = usePage().props as { auth?: AuthData };
 
     return (
         <SidebarProvider>
