@@ -80,4 +80,12 @@ class PageController extends Controller
             'banner' => $banner,
         ]);
     }
+
+    public function EventsSingle()
+    {
+        $banner = CMSBanner::where('key', 'contact')->first();
+        return Inertia::render('User/Pages/EventsSingle', [
+            'banner' => $banner,
+        ]);
+    }
 }

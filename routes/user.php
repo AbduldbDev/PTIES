@@ -17,4 +17,6 @@ Route::get('/attractions', [PageController::class, 'Attractions'])->name('user.a
 Route::get('/attractiondetails', [PageController::class, 'AttractionDetails'])->name('user.attractiondetails');
 Route::get('/contact', [PageController::class, 'ContactUs'])->name('user.contact');
 Route::get('/events', [PageController::class, 'Events'])->name('user.events');
+Route::get('/eventsingle', [PageController::class, 'EventsSingle'])->name('user.EventsSingle');
+
 Route::middleware('guest')->group(function () {});
