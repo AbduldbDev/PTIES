@@ -1,8 +1,27 @@
 import { useRef, useState } from 'react';
 
-export const PromotionalVideo = () => {
+type PromotionalVideoProps = {
+    title?: string;
+    slogan?: string;
+    videoUrl?: string;
+    description?: string;
+    highlights?: string[];
+    thumbnail?: string;
+};
+
+export const PromotionalVideo = ({
+    title = 'Explore Pakil Through Our Video',
+    slogan = 'Experience the beauty of Pakil through our eyes',
+    videoUrl = '/User/Video/Pakil.mp4',
+    description = "Immerse yourself in the sights and sounds of Pakil with our exclusive promotional video showcasing the town's rich heritage, stunning landscapes, and vibrant culture.\n\nFrom the majestic San Pedro de Alcantara Church to the breathtaking waterfalls and local festivals, this video captures the essence of what makes Pakil a must-visit destination.",
+    highlights = [],
+    thumbnail = '/User/Images/church.jpg',
+}: PromotionalVideoProps) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
+
+    // Split description into paragraphs
+    const paragraphs = description.split('\n').filter((para) => para.trim() !== '');
 
     const togglePlay = () => {
         if (!videoRef.current) return;
@@ -17,6 +36,7 @@ export const PromotionalVideo = () => {
             setIsPlaying(false);
         }
     };
+
     return (
         <>
             <section className="py-20">
@@ -24,16 +44,16 @@ export const PromotionalVideo = () => {
                     <div className="flex flex-col items-center gap-12 lg:flex-row">
                         <div className="lg:w-1/2">
                             <div className="group relative overflow-hidden rounded-xl bg-white shadow-xl">
-                                <video ref={videoRef} className="h-full w-full object-cover" poster="/User/Images/church.jpg" controls>
-                                    <source src="/User/Video/Pakil.mp4" type="video/mp4" />
+                                <video ref={videoRef} className="h-full w-full object-cover" poster={thumbnail} controls>
+                                    <source src={videoUrl} type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
 
-                                {/* Custom play button (optional) */}
                                 {!isPlaying && (
                                     <div className="absolute inset-0 flex items-center justify-center">
                                         <button
                                             onClick={togglePlay}
+                                            type="button"
                                             className="rounded-full bg-white/20 p-4 backdrop-blur-sm transition duration-300 group-hover:scale-110"
                                         >
                                             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary p-4 text-white">
@@ -45,7 +65,7 @@ export const PromotionalVideo = () => {
                             </div>
                             <p className="mt-4 text-center text-lg text-gray-800 italic">
                                 <i className="fas fa-quote-left mr-2 text-secondary"></i>
-                                Experience the beauty of Pakil through our eyes
+                                {slogan}
                                 <i className="fas fa-quote-right ml-2 text-secondary"></i>
                             </p>
                         </div>
@@ -56,18 +76,15 @@ export const PromotionalVideo = () => {
                                 <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Discover</h2>
                             </div>
                             <h3 className="text-dark mb-6 text-3xl font-bold md:text-4xl">
-                                <span className="text-primary">Explore Pakil</span> Through Our Video
+                                <span className="text-primary">{title}</span>
                             </h3>
 
                             <div className="prose prose-lg mb-8 text-gray-600">
-                                <p className="mb-4">
-                                    Immerse yourself in the sights and sounds of Pakil with our exclusive promotional video showcasing the town's rich
-                                    heritage, stunning landscapes, and vibrant culture.
-                                </p>
-                                <p className="mb-4">
-                                    From the majestic San Pedro de Alcantara Church to the breathtaking waterfalls and local festivals, this video
-                                    captures the essence of what makes Pakil a must-visit destination.
-                                </p>
+                                {paragraphs.map((paragraph, index) => (
+                                    <p key={index} className="mb-4">
+                                        {paragraph}
+                                    </p>
+                                ))}
                             </div>
 
                             <div className="flex flex-col gap-4 sm:flex-row">
@@ -84,22 +101,12 @@ export const PromotionalVideo = () => {
                                     <i className="fas fa-star mr-2 text-secondary"></i> Video Highlights
                                 </h4>
                                 <ul className="grid grid-cols-2 gap-2 text-sm">
-                                    <li className="flex items-start">
-                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
-                                        <span>San Pedro de Alcantara Church</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
-                                        <span>Turumba Festival</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
-                                        <span>Local Cuisine</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
-                                        <span>Waterfalls & Nature</span>
-                                    </li>
+                                    {highlights.map((highlight, index) => (
+                                        <li key={index} className="flex items-start">
+                                            <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
+                                            <span>{highlight}</span>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </div>
@@ -109,5 +116,4 @@ export const PromotionalVideo = () => {
         </>
     );
 };
-
 export default PromotionalVideo;

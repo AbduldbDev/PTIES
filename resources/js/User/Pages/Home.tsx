@@ -1,9 +1,20 @@
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import Introduction from '@UserUtils/components/Sections/Home/Introduction';
 import PromotionalVideo from '@UserUtils/components/Sections/Home/Promotion';
 
+type PromotionalVideoProps = {
+    id: string;
+    title: string;
+    slogan: string;
+    description: string;
+    thumbnail: string;
+    video: string;
+    highlights: string[];
+};
+
 export default function Register() {
+    const { promvid } = usePage<{ promvid: PromotionalVideoProps }>().props;
     const title = 'Pakil Tourism | Home';
     const description =
         "Discover Pakil's festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.";
@@ -145,7 +156,14 @@ export default function Register() {
                 </div>
             </section>
 
-            <PromotionalVideo />
+            <PromotionalVideo
+                title={promvid.title}
+                slogan={promvid.slogan}
+                description={promvid.description}
+                highlights={promvid.highlights}
+                thumbnail={`/storage/${promvid.thumbnail}`}
+                videoUrl={`/storage/${promvid.video}`}
+            />
 
             <section className="bg-white py-20">
                 <div className="container mx-auto px-6">

@@ -6,12 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\CMSBanner;
+use App\Models\ContentPromotional;
 
 class PageController extends Controller
 {
     public function Home()
     {
-        return Inertia::render('User/Pages/Home');
+        $promvid = ContentPromotional::first();
+        return Inertia::render('User/Pages/Home', [
+            'promvid' => $promvid,
+        ]);
     }
 
     public function About()

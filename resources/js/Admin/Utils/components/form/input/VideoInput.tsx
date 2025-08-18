@@ -1,28 +1,29 @@
 import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 
-interface FileInputProps {
+interface VideoInputProps {
     label?: string;
     name?: string;
     required?: boolean;
     className?: string;
-    onChange?: (event: ChangeEvent<HTMLInputElement>, isValid: boolean) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement>, file: File | null) => void;
     accept?: string;
     validation?: (file: File | null) => boolean;
     errorMessage?: string;
     error?: string;
+    value?: File | null;
     multiple?: boolean;
     resetSignal?: number; // NEW: triggers reset when changed
 }
 
-const FileInput: FC<FileInputProps> = ({
+const FileInput: FC<VideoInputProps> = ({
     label,
     name = 'fileInput',
     required = false,
     className = '',
     onChange,
-    accept = 'image/png, image/jpeg, image/jpg, image/webp',
+    accept = 'video/mp4, video/quicktime, video/x-msvideo, video/x-ms-wmv, video/x-matroska, video/webm',
     validation,
-    errorMessage = 'Please select a valid image file (PNG, JPG, or WebP)',
+    errorMessage = 'Please select a valid image file (mp4, webm, or wmv)',
     multiple = false,
     resetSignal,
 }) => {
@@ -37,9 +38,9 @@ const FileInput: FC<FileInputProps> = ({
         }
 
         if (file) {
-            const validTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
+            const validTypes = ['video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/x-ms-wmv', 'video/x-matroska', 'video/webm'];
             if (!validTypes.includes(file.type)) {
-                return 'Only PNG, JPG, or WebP files are allowed';
+                return 'Only mp4, webm, or wmv files are allowed';
             }
 
             if (validation && !validation(file)) {
@@ -63,9 +64,8 @@ const FileInput: FC<FileInputProps> = ({
         if (validationError && e.target) {
             e.target.value = '';
         }
-
         if (onChange) {
-            onChange(e, !validationError);
+            onChange(e, file);
         }
     };
 
@@ -76,7 +76,7 @@ const FileInput: FC<FileInputProps> = ({
             setIsTouched(false);
             setFileName('');
             if (inputRef.current) {
-                inputRef.current.value = ''; // clear file selection
+                inputRef.current.value = '';
             }
         }
     }, [resetSignal]);

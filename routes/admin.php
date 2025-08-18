@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController\AccountManagementController;
 use App\Http\Controllers\AdminController\AdminProfileController;
 use App\Http\Controllers\AdminController\WebsiteSettingsController;
 use App\Http\Controllers\AdminController\BannerController;
+use App\Http\Controllers\AdminController\PromotionalvidController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
 
@@ -36,5 +37,8 @@ Route::middleware('admin.access:auth')->group(function () {
     Route::get('/Admin/CMS/Banners', [BannerController::class, 'index'])->name('banners.index');
     Route::get('/Admin/CMS/Banner/Edit/{id}', [BannerController::class, 'edit'])->name('banners.edit');
     Route::post('/Admin/CMS/banner/update', [BannerController::class, 'update'])->name('banners.update');
+
+    Route::get('/Admin/Content/PromotionalVid', [PromotionalvidController::class, 'view'])->name('banners.edit');
+    Route::post('/Admin/Content/PromotionalVid/Update', [PromotionalvidController::class, 'update'])->name('banners.update');
     Route::get('/Admin/Profile', [AdminProfileController::class, 'Profile'])->name('account.management.settings');
 });
