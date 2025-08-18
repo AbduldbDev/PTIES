@@ -1,28 +1,19 @@
 import ComponentCard from '@AdminUtils/components/common/ComponentCard';
 import PageBreadcrumb from '@AdminUtils/components/common/PageBreadCrumb';
 import { AppWrapper, PageMeta } from '@AdminUtils/components/common/PageMeta';
-import DeleteConfirm from '@AdminUtils/components/ui/alert/DeleteConfirm';
-import Badge from '@AdminUtils/components/ui/badge/Badge';
 import { SortableColumn, SortConfig, Table, TableBody, TableCell, TableHeader, TableRow } from '@AdminUtils/components/ui/table';
 import SortIndicator from '@AdminUtils/components/ui/table/sort-indicator';
 import FlashMessage from '@AdminUtils/context/FlashMessage';
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 
-type UserItem = {
+type BannerItem = {
     id: number;
-    firstname: string;
-    middlename?: string;
-    lastname: string;
-    contact: string;
-    gender: string;
-    email: string;
-    phone: string;
-    country: string;
-    user_type: string;
-    avatar?: string;
-    profile: any;
-    created_at: string;
+    key: string;
+    title: string;
+    subtitle: string;
+    desc: string;
+    image: string;
 };
 
 type PageProps = {
@@ -31,89 +22,41 @@ type PageProps = {
         error?: string;
     };
     errors?: Record<string, string | undefined>;
-    items: PaginatedResponse<UserItem>;
+    items: BannerItem[]; // Changed to direct array
 };
 
-interface PaginatedResponse<T> {
-    data: T[];
-    links: {
-        first: string | null;
-        last: string | null;
-        prev: string | null;
-        next: string | null;
-        [key: number]: {
-            url: string | null;
-            label: string;
-            active: boolean;
-        };
-    };
-    meta: {
-        current_page: number;
-        last_page: number;
-        per_page: number;
-        total: number;
-        from?: number;
-        to?: number;
-    };
-}
-
-export default function Home() {
+export default function Banners() {
     const { flash, errors, items } = usePage<PageProps>().props;
     const form = useForm();
     const [sortConfig, setSortConfig] = useState<SortConfig>({
-        key: 'created_at',
+        key: 'title',
         direction: 'desc',
     });
 
     const sortedItems = useMemo(() => {
-        const sortableItems = [...items.data];
+        const sortableItems = [...items]; // Now using items directly
         if (sortConfig.key) {
             sortableItems.sort((a, b) => {
-                if (sortConfig.key === 'name') {
-                    const nameA = `${a.profile.last_name}, ${a.profile.first_name}`.toLowerCase();
-                    const nameB = `${b.profile.last_name}, ${b.profile.first_name}`.toLowerCase();
-                    return sortConfig.direction === 'asc' ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+                if (sortConfig.key === 'title') {
+                    return sortConfig.direction === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
                 }
 
-                if (sortConfig.key === 'email') {
-                    return sortConfig.direction === 'asc' ? a.email.localeCompare(b.email) : b.email.localeCompare(a.email);
+                if (sortConfig.key === 'subtitle') {
+                    return sortConfig.direction === 'asc' ? a.subtitle.localeCompare(b.subtitle) : b.subtitle.localeCompare(a.subtitle);
                 }
 
-                if (sortConfig.key === 'gender') {
-                    return sortConfig.direction === 'asc'
-                        ? a.profile.gender.localeCompare(b.profile.gender)
-                        : b.profile.gender.localeCompare(a.profile.gender);
-                }
-
-                if (sortConfig.key === 'role') {
-                    return sortConfig.direction === 'asc' ? a.user_type.localeCompare(b.user_type) : b.user_type.localeCompare(a.user_type);
-                }
-
-                if (sortConfig.key === 'created_at') {
-                    const dateA = new Date(a.created_at).getTime();
-                    const dateB = new Date(b.created_at).getTime();
-                    return sortConfig.direction === 'asc' ? dateA - dateB : dateB - dateA;
+                if (sortConfig.key === 'desc') {
+                    return sortConfig.direction === 'asc' ? a.desc.localeCompare(b.desc) : b.desc.localeCompare(a.desc);
                 }
 
                 return 0;
             });
         }
         return sortableItems;
-    }, [items.data, sortConfig]);
-
-    const handleDelete = (id: number) => {
-        form.delete(`/Admin/Accounts/Delete/${id}`, {
-            onSuccess: () => {
-                console.log('Deleted successfully');
-            },
-            onError: (errors) => {
-                console.error('Delete error:', errors);
-            },
-        });
-    };
+    }, [items, sortConfig]);
 
     const handleView = (id: any) => {
-        router.get(`/Admin/Accounts/Edit/${id}`);
+        router.get(`/Admin/CMS/Banner/Edit/${id}`);
     };
 
     const handleSort = (key: string) => {
@@ -122,30 +65,25 @@ export default function Home() {
     };
 
     const columns: SortableColumn[] = [
-        { key: 'name', label: 'User', sortable: true },
-        { key: 'email', label: 'Email', sortable: true },
-        { key: 'contact', label: 'Contact', sortable: false },
-        { key: 'gender', label: 'Gender', sortable: true },
-        { key: 'role', label: 'Role', sortable: true, align: 'center' },
-        { key: 'action', label: 'Action', sortable: true, align: 'center' },
+        { key: 'title', label: 'Title', sortable: true },
+        { key: 'subtitle', label: 'Subtitle', sortable: true },
+        { key: 'desc', label: 'Description', sortable: true },
+        { key: 'action', label: 'Action', sortable: false, align: 'center' },
     ];
 
     return (
         <>
-            <Head title="PTIES | Mabuhay!" />
+            <Head title="Banners Management" />
             <AppWrapper>
-                <PageMeta
-                    title="Pakil Tourism Information and Engagement System"
-                    description="Explore Pakil's tourism attractions, events, and engage with the local community through our interactive information platform."
-                />
+                <PageMeta title="Banners Management" description="Manage your website banners" />
                 {flash?.success && <FlashMessage type="success" message={flash.success} />}
                 {errors?.error && <FlashMessage type="error" message={errors.error} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
-                <PageBreadcrumb pageTitle="Account Management" />
+                <PageBreadcrumb pageTitle="Banners Management" />
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
-                    <ComponentCard title="All User Accounts">
+                    <ComponentCard title="All Banners">
                         <div className="overflow-hidden rounded-xl bg-white dark:bg-white/[0.03]">
                             <div className="max-w-full overflow-x-auto">
                                 <Table>
@@ -175,60 +113,24 @@ export default function Home() {
                                     </TableHeader>
 
                                     <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                                        {sortedItems.map((user) => (
-                                            <TableRow key={user.id}>
+                                        {sortedItems.map((banner) => (
+                                            <TableRow key={banner.id}>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="h-10 w-10 overflow-hidden rounded-full">
-                                                            <img
-                                                                className="object-contain"
-                                                                width={40}
-                                                                height={40}
-                                                                src={user.avatar ? `/storage/${user.avatar}` : '/images/user/User.png'}
-                                                                alt={`${user.profile.firstname} ${user.profile.lastname}`}
-                                                            />
-                                                        </div>
-                                                        <div>
-                                                            <span className="font-medium text-gray-800 dark:text-white/90">
-                                                                {user.profile.last_name}, {user.profile.first_name} {user.profile.middle_name}
-                                                            </span>
-                                                        </div>
-                                                    </div>
+                                                    {banner.title}
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                    {user.email}
-                                                </TableCell>
-                                                <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                    {user.profile.contact}
+                                                    {banner.subtitle}
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                    {user.profile.gender}
+                                                    {banner.desc}
                                                 </TableCell>
-                                                <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-center text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                    <Badge
-                                                        size="sm"
-                                                        color={
-                                                            user.user_type === 'admin'
-                                                                ? 'success'
-                                                                : user.user_type === 'content_manager'
-                                                                  ? 'warning'
-                                                                  : 'error'
-                                                        }
-                                                    >
-                                                        {user.user_type}
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <div className="col-span-1 flex justify-center px-4 py-3">
-                                                        <div className="flex w-full items-center justify-center gap-2">
-                                                            <DeleteConfirm
-                                                                onDeleteConfirmed={() => handleDelete(user.id)}
-                                                                message={`Are you sure you want to delete user ${user.profile.last_name} ${user.profile.first_name}?`}
-                                                            />
 
+                                                <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
+                                                    <div className="col-span-1 flex justify-center">
+                                                        <div className="flex w-full items-center justify-center gap-2">
                                                             <button
                                                                 aria-label="Edit-btn"
-                                                                onClick={() => handleView(user.id)}
+                                                                onClick={() => handleView(banner.id)}
                                                                 className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white/90"
                                                             >
                                                                 <svg

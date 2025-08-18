@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CMSBanner extends Model
 {
-    protected $table = 'cms_color';
+    protected $table = 'cms_banner';
     protected $fillable = [
         'key',
         'title',

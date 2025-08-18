@@ -75,6 +75,7 @@ class AccountManagementController extends Controller
             if ($request->hasFile('profileImage')) {
                 $profileImagePath = $request->file('profileImage')->store('EmployeAvatars', 'public');
             }
+            
             $user =  User::create([
                 'email' => $request->email,
                 'password' => Hash::make($request->password),

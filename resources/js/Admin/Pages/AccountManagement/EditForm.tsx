@@ -79,7 +79,7 @@ export default function AccountEditForm() {
             return;
         }
 
-        form.post(`/Admin/AccountManagement/update`, {
+        form.post(`/Admin/Accounts/update`, {
             forceFormData: true,
             onSuccess: () => {
                 form.setData({

@@ -4,7 +4,16 @@
 
 @custom-variant dark (&:is(.dark *));
 
+:root {
+    --primary: #052675;
+    --secondary: #f59e0b;
+    --accent: #10b981;
+}
+
 @theme {
+    --color-primary: var(--primary);
+    --color-secondary: var(--secondary);
+    --color-accent: var(--accent);
     --font-*: initial;
     --font-outfit: Outfit, sans-serif;
 

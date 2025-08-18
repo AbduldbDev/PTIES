@@ -1,10 +1,27 @@
 import { Head } from '@inertiajs/react';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
+import { useRef, useState } from 'react';
+
 export default function Register() {
     const title = 'Pakil Tourism | Home';
     const description =
-        'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
+        "Discover Pakil's festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.";
+    const [isPlaying, setIsPlaying] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
+    const togglePlay = () => {
+        if (!videoRef.current) return;
+
+        if (videoRef.current.paused) {
+            videoRef.current
+                .play()
+                .then(() => setIsPlaying(true))
+                .catch((error) => console.error('Error playing video:', error));
+        } else {
+            videoRef.current.pause();
+            setIsPlaying(false);
+        }
+    };
     return (
         <>
             <Head title={title}>
@@ -115,7 +132,7 @@ export default function Register() {
                     ></PageTitle>
 
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-                        <div className="rounded-xl border border-primary/20 bg-gray-50 p-6 transition-all hover:border-primary/20">
+                        <div className="rounded-xl border border-primary/20 bg-gray-50 p-6 transition-all hover:border-secondary/50">
                             <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
                                 <i className="fas fa-church text-2xl text-primary"></i>
                             </div>
@@ -123,7 +140,7 @@ export default function Register() {
                             <p className="text-gray-600">Explore the historic San Pedro de Alcantara Church and other spiritual landmarks.</p>
                         </div>
 
-                        <div className="rounded-xl border border-primary/20 bg-gray-50 p-6 transition-all hover:border-primary/20">
+                        <div className="rounded-xl border border-primary/20 bg-gray-50 p-6 transition-all hover:border-secondary/50">
                             <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
                                 <i className="fas fa-water text-2xl text-primary"></i>
                             </div>
@@ -131,7 +148,7 @@ export default function Register() {
                             <p className="text-gray-600">Discover beautiful waterfalls and scenic landscapes around Pakil.</p>
                         </div>
 
-                        <div className="rounded-xl border border-primary/20 bg-gray-50 p-6 transition-all hover:border-primary/20">
+                        <div className="rounded-xl border border-primary/20 bg-gray-50 p-6 transition-all hover:border-secondary/50">
                             <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
                                 <i className="fas fa-utensils text-2xl text-primary"></i>
                             </div>
@@ -142,9 +159,167 @@ export default function Register() {
                 </div>
             </section>
 
-            <section className="py-10">
+            <section className="py-20">
                 <div className="container mx-auto px-6">
                     <div className="flex flex-col items-center gap-12 lg:flex-row">
+                        <div className="lg:w-1/2">
+                            <div className="group relative overflow-hidden rounded-xl bg-white shadow-xl">
+                                <video ref={videoRef} className="h-full w-full object-cover" poster="/User/Images/church.jpg" controls>
+                                    <source src="/User/Video/Pakil.mp4" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+
+                                {/* Custom play button (optional) */}
+                                {!isPlaying && (
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <button
+                                            onClick={togglePlay}
+                                            className="rounded-full bg-white/20 p-4 backdrop-blur-sm transition duration-300 group-hover:scale-110"
+                                        >
+                                            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary p-4 text-white">
+                                                <i className="fas fa-play text-xl"></i>
+                                            </div>
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                            <p className="mt-4 text-center text-gray-600 italic">"Experience the beauty of Pakil through our eyes"</p>
+                        </div>
+
+                        <div className="rounded-xl bg-white/80 p-8 shadow-lg backdrop-blur-sm lg:w-1/2">
+                            <div className="mb-4 flex items-center">
+                                <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
+                                <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Discover</h2>
+                            </div>
+                            <h3 className="text-dark mb-6 text-3xl font-bold md:text-4xl">
+                                <span className="text-primary">Explore Pakil</span> Through Our Video
+                            </h3>
+
+                            <div className="prose prose-lg mb-8 text-gray-600">
+                                <p className="mb-4">
+                                    Immerse yourself in the sights and sounds of Pakil with our exclusive promotional video showcasing the town's rich
+                                    heritage, stunning landscapes, and vibrant culture.
+                                </p>
+                                <p className="mb-4">
+                                    From the majestic San Pedro de Alcantara Church to the breathtaking waterfalls and local festivals, this video
+                                    captures the essence of what makes Pakil a must-visit destination.
+                                </p>
+                            </div>
+
+                            <div className="flex flex-col gap-4 sm:flex-row">
+                                <a
+                                    href="#"
+                                    className="flex items-center justify-center rounded-full bg-primary px-6 py-2 text-center text-sm font-medium text-white transition duration-300 hover:bg-primary/90"
+                                >
+                                    <i className="fas fa-share-alt mr-2"></i> Share This Video
+                                </a>
+                            </div>
+
+                            <div className="mt-8">
+                                <h4 className="text-dark mb-3 flex items-center font-bold">
+                                    <i className="fas fa-star mr-2 text-secondary"></i> Video Highlights
+                                </h4>
+                                <ul className="grid grid-cols-2 gap-2 text-sm">
+                                    <li className="flex items-start">
+                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
+                                        <span>San Pedro de Alcantara Church</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
+                                        <span>Turumba Festival</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
+                                        <span>Local Cuisine</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
+                                        <span>Waterfalls & Nature</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="bg-white py-20">
+                <div className="container mx-auto px-6">
+                    <div className="mb-12 text-center">
+                        <div className="mb-4 inline-flex items-center">
+                            <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
+                            <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Local Treasures</h2>
+                            <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
+                        </div>
+                        <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
+                            Pakil's <span className="text-primary">Local Products</span>
+                        </h3>
+                        <p className="mx-auto max-w-3xl text-lg text-gray-600">Discover unique handicrafts and delicacies made by local artisans</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-20 md:grid-cols-3">
+                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
+                            <div className="relative h-70">
+                                <img src="/User/Images/church.jpg" alt="Wood Carvings" className="h-full w-full object-cover" />
+                                <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                                    <h4 className="font-bold text-white">Wood Carvings</h4>
+                                </div>
+                            </div>
+                            <div className="p-6">
+                                <p className="mb-4 text-gray-600">
+                                    Handcrafted wooden religious icons and decorative items made by skilled Pakil artisans.
+                                </p>
+                                <div className="flex items-center justify-between">
+                                    <span className="font-bold text-primary">From ₱500</span>
+                                    <a href="#" className="text-sm font-medium text-primary hover:text-primary/80">
+                                        View Market <i className="fas fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
+                            <div className="relative h-70">
+                                <img src="/User/Images/church.jpg" alt="Kakanin" className="h-full w-full object-cover" />
+                                <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                                    <h4 className="font-bold text-white">Local Kakanin</h4>
+                                </div>
+                            </div>
+                            <div className="p-6">
+                                <p className="mb-4 text-gray-600">Traditional Filipino rice cakes and sweets made with generations-old recipes.</p>
+                                <div className="flex items-center justify-between">
+                                    <span className="font-bold text-primary">From ₱50</span>
+                                    <a href="#" className="text-sm font-medium text-primary hover:text-primary/80">
+                                        View Market <i className="fas fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
+                            <div className="relative h-70">
+                                <img src="/User/Images/church.jpg" alt="Religious Souvenirs" className="h-full w-full object-cover" />
+                                <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                                    <h4 className="font-bold text-white">Religious Souvenirs</h4>
+                                </div>
+                            </div>
+                            <div className="p-6">
+                                <p className="mb-4 text-gray-600">Unique religious items and Our Lady of Turumba memorabilia for pilgrims.</p>
+                                <div className="flex items-center justify-between">
+                                    <span className="font-bold text-primary">From ₱200</span>
+                                    <a href="#" className="text-sm font-medium text-primary hover:text-primary/80">
+                                        View Market <i className="fas fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-10">
+                <div className="container mx-auto px-6">
+                    <div className="flex flex-col gap-12 lg:flex-row">
                         <div className="lg:w-1/2">
                             <div className="group relative">
                                 <div className="absolute -inset-2 rounded-xl bg-primary/20 blur-md transition duration-300 group-hover:blur-lg"></div>
@@ -192,15 +367,15 @@ export default function Register() {
                         </div>
 
                         <div className="lg:w-1/2">
-                            <div className="mb-4 flex items-center">
-                                <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                                <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Discover</h2>
-                            </div>
-                            <h3 className="text-dark mb-6 text-3xl font-bold md:text-4xl">
-                                <span className="text-primary">Introduction</span> to Pakil
-                            </h3>
+                            <div className="prose prose-lg mb-8 rounded-xl bg-white/80 p-8 shadow-lg backdrop-blur-sm">
+                                <div className="mb-4 flex items-center">
+                                    <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
+                                    <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Discover</h2>
+                                </div>
+                                <h3 className="text-dark mb-6 text-3xl font-bold md:text-4xl">
+                                    <span className="text-primary">Introduction</span> to Pakil
+                                </h3>
 
-                            <div className="prose prose-lg mb-8 rounded-xl bg-gray-100 p-5">
                                 <p className="mb-4">
                                     Pakil is a fascinating little town located at the foot of Sierra Madre and bordered by Laguna Lake. A visit to our
                                     town gives you a peek of the old-world; from the picturesque facade of the

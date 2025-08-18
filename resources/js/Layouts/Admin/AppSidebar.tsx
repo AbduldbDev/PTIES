@@ -39,14 +39,17 @@ const navItems: NavItem[] = [
         icon: <UserCircleIcon />,
         name: 'Account Management',
         subItems: [
-            { name: 'All Accounts', path: '/Admin/AccountManagement' },
-            { name: 'Add New Account', path: '/Admin/AccountManagement/New' },
+            { name: 'All Accounts', path: '/Admin/Accounts' },
+            { name: 'Add New Account', path: '/Admin/Accounts/New' },
         ],
     },
     {
         icon: <PageIcon />,
         name: 'Website Settings',
-        subItems: [{ name: 'Theme Settitngs', path: '/Admin/Settings/Website' }],
+        subItems: [
+            { name: 'Theme Settitngs', path: '/Admin/Settings/Website' },
+            { name: 'Page Banners', path: '/Admin/CMS/Banners' },
+        ],
     },
 ];
 
