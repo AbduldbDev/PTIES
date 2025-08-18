@@ -65,7 +65,7 @@ export const Events = () => {
                     <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
                             <div className="relative">
-                                <img src="Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
+                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
                             </div>
                             <div className="p-6">
                                 <div className="mb-3 flex items-center text-sm text-gray-500">
@@ -86,7 +86,7 @@ export const Events = () => {
 
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
                             <div className="relative">
-                                <img src="Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
+                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
                             </div>
                             <div className="p-6">
                                 <div className="mb-3 flex items-center text-sm text-gray-500">
@@ -107,7 +107,7 @@ export const Events = () => {
 
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
                             <div className="relative">
-                                <img src="Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
+                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
                             </div>
                             <div className="p-6">
                                 <div className="mb-3 flex items-center text-sm text-gray-500">
@@ -128,7 +128,7 @@ export const Events = () => {
 
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
                             <div className="relative">
-                                <img src="Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
+                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
                             </div>
                             <div className="p-6">
                                 <div className="mb-3 flex items-center text-sm text-gray-500">
@@ -149,7 +149,7 @@ export const Events = () => {
 
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
                             <div className="relative">
-                                <img src="Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
+                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
                             </div>
                             <div className="p-6">
                                 <div className="mb-3 flex items-center text-sm text-gray-500">
@@ -170,7 +170,7 @@ export const Events = () => {
 
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
                             <div className="relative">
-                                <img src="Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
+                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
                             </div>
                             <div className="p-6">
                                 <div className="mb-3 flex items-center text-sm text-gray-500">

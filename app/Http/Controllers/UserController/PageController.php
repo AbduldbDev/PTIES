@@ -96,4 +96,12 @@ class PageController extends Controller
             'banner' => $banner,
         ]);
     }
+
+    public function PakilGuide()
+    {
+        $banner = CMSBanner::where('key', 'contact')->first();
+        return Inertia::render('User/Pages/Pakilguide', [
+            'banner' => $banner,
+        ]);
+    }
 }

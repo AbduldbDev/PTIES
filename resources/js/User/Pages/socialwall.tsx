@@ -46,7 +46,7 @@ export default function About() {
                     <div className="mx-auto mb-8 max-w-4xl">
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
                             <div className="relative">
-                                <img src="Images/church.jpg" alt="Featured Pakil Image" className="h-80 w-full object-cover md:h-96" />
+                                <img src="/User/Images/church.jpg" alt="Featured Pakil Image" className="h-80 w-full object-cover md:h-96" />
                                 <div className="absolute top-4 right-4 rounded-full bg-white/90 p-2 shadow">
                                     <i className="fas fa-crown text-xl text-secondary"></i>
                                 </div>
@@ -81,7 +81,7 @@ export default function About() {
 
                     <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
                         <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
+                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
                             <div className="p-4">
                                 <p className="mb-3 line-clamp-2 text-xs text-gray-700">
                                     "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
@@ -99,7 +99,7 @@ export default function About() {
                         </div>
 
                         <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
+                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
                             <div className="p-4">
                                 <p className="mb-3 line-clamp-2 text-xs text-gray-700">
                                     "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
@@ -117,7 +117,7 @@ export default function About() {
                         </div>
 
                         <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
+                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
                             <div className="p-4">
                                 <p className="mb-3 line-clamp-2 text-xs text-gray-700">
                                     "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
@@ -135,7 +135,7 @@ export default function About() {
                         </div>
 
                         <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
+                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
                             <div className="p-4">
                                 <p className="mb-3 line-clamp-2 text-xs text-gray-700">
                                     "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
@@ -153,7 +153,7 @@ export default function About() {
                         </div>
 
                         <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
+                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
                             <div className="p-4">
                                 <p className="mb-3 line-clamp-2 text-xs text-gray-700">
                                     "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
@@ -171,7 +171,7 @@ export default function About() {
                         </div>
 
                         <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
+                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
                             <div className="p-4">
                                 <p className="mb-3 line-clamp-2 text-xs text-gray-700">
                                     "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
@@ -189,7 +189,7 @@ export default function About() {
                         </div>
 
                         <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
+                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
                             <div className="p-4">
                                 <p className="mb-3 line-clamp-2 text-xs text-gray-700">
                                     "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
@@ -207,7 +207,7 @@ export default function About() {
                         </div>
 
                         <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
+                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
                             <div className="p-4">
                                 <p className="mb-3 line-clamp-2 text-xs text-gray-700">
                                     "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."

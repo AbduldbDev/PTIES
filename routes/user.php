@@ -19,4 +19,5 @@ Route::get('/contact', [PageController::class, 'ContactUs'])->name('user.contact
 Route::get('/events', [PageController::class, 'Events'])->name('user.events');
 Route::get('/eventsingle', [PageController::class, 'EventsSingle'])->name('user.EventsSingle');
 Route::get('/socialwall', [PageController::class, 'SocialWall'])->name('user.socialwall');
+Route::get('/pakilguide', [PageController::class, 'PakilGuide'])->name('user.pakilguide');
 Route::middleware('guest')->group(function () {});
