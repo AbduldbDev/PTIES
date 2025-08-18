@@ -16,4 +16,12 @@ Route::get('/localproducts', [PageController::class, 'LocalProducts'])->name('us
 Route::get('/attractions', [PageController::class, 'Attractions'])->name('user.attractions');
 Route::get('/attractiondetails', [PageController::class, 'AttractionDetails'])->name('user.attractiondetails');
 Route::get('/contact', [PageController::class, 'ContactUs'])->name('user.contact');
+Route::get('/events', [PageController::class, 'Events'])->name('user.events');
+Route::get('/eventsingle', [PageController::class, 'EventsSingle'])->name('user.EventsSingle');
+Route::get('/socialwall', [PageController::class, 'SocialWall'])->name('user.socialwall');
+Route::get('/pakilguide', [PageController::class, 'PakilGuide'])->name('user.pakilguide');
+Route::get('/rewardshop', [PageController::class, 'RewardShop'])->name('user.rewardshop');
+Route::get('/profile', [PageController::class, 'Profile'])->name('user.profile');
+
+
 Route::middleware('guest')->group(function () {});

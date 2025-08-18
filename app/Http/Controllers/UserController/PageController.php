@@ -72,4 +72,52 @@ class PageController extends Controller
             'banner' => $banner,
         ]);
     }
+
+    public function Events()
+    {
+        $banner = CMSBanner::where('key', 'contact')->first();
+        return Inertia::render('User/Pages/Events', [
+            'banner' => $banner,
+        ]);
+    }
+
+    public function EventsSingle()
+    {
+        $banner = CMSBanner::where('key', 'contact')->first();
+        return Inertia::render('User/Pages/EventsSingle', [
+            'banner' => $banner,
+        ]);
+    }
+
+    public function SocialWall()
+    {
+        $banner = CMSBanner::where('key', 'contact')->first();
+        return Inertia::render('User/Pages/socialwall', [
+            'banner' => $banner,
+        ]);
+    }
+
+    public function PakilGuide()
+    {
+        $banner = CMSBanner::where('key', 'contact')->first();
+        return Inertia::render('User/Pages/Pakilguide', [
+            'banner' => $banner,
+        ]);
+    }
+
+    public function RewardShop()
+    {
+        $banner = CMSBanner::where('key', 'contact')->first();
+        return Inertia::render('User/Pages/rewardshop', [
+            'banner' => $banner,
+        ]);
+    }
+
+    public function Profile()
+    {
+        $banner = CMSBanner::where('key', 'contact')->first();
+        return Inertia::render('User/Pages/Profile', [
+            'banner' => $banner,
+        ]);
+    }
 }
