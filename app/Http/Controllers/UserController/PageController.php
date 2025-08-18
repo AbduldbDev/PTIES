@@ -104,4 +104,20 @@ class PageController extends Controller
             'banner' => $banner,
         ]);
     }
+
+    public function RewardShop()
+    {
+        $banner = CMSBanner::where('key', 'contact')->first();
+        return Inertia::render('User/Pages/rewardshop', [
+            'banner' => $banner,
+        ]);
+    }
+
+    public function Profile()
+    {
+        $banner = CMSBanner::where('key', 'contact')->first();
+        return Inertia::render('User/Pages/Profile', [
+            'banner' => $banner,
+        ]);
+    }
 }
