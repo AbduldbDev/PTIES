@@ -15,5 +15,5 @@ Route::get('/terminals', [PageController::class, 'Terminals'])->name('user.termi
 Route::get('/localproducts', [PageController::class, 'LocalProducts'])->name('user.localproducts');
 Route::get('/attractions', [PageController::class, 'Attractions'])->name('user.attractions');
 Route::get('/attractiondetails', [PageController::class, 'AttractionDetails'])->name('user.attractiondetails');
-
+Route::get('/contact', [PageController::class, 'ContactUs'])->name('user.contact');
 Route::middleware('guest')->group(function () {});
