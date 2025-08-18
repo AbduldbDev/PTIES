@@ -220,7 +220,7 @@ export default function About() {
                 </div>
             </section>
 
-            <section className="py-10">
+            <section className="py-20">
                 <div className="container mx-auto px-6">
                     <div className="mb-16 text-center">
                         <div className="mb-4 inline-flex items-center">
