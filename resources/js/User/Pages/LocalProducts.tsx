@@ -1,7 +1,17 @@
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
-export default function TourismAbout() {
-    const title = 'Pakil Tourism | About';
+
+type PageBannerProps = {
+    title: string;
+    subtitle: string;
+    desc: string;
+    image: string;
+};
+
+export default function LocalProducts() {
+    const { banner } = usePage<{ banner: PageBannerProps }>().props;
+
+    const title = 'Pakil Tourism | Products';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
 
@@ -14,10 +24,10 @@ export default function TourismAbout() {
             </Head>
 
             <Banner
-                title="About Pakil"
-                subtitle="Discover Pakil, Laguna"
-                desc="Explore Pakil's attractions and redeem exciting prizes"
-                imageSrc="/User/Images/church.jpg"
+                title={banner?.title}
+                subtitle={banner?.subtitle}
+                desc={banner?.desc}
+                imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
             ></Banner>
 
             <section className="bg-gradient-to-b from-white to-gray-50 py-16">

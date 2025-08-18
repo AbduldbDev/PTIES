@@ -7,10 +7,10 @@ type PageBannerProps = {
     image: string;
 };
 
-export const Events = () => {
+export const EventsSingle = () => {
     const { banner } = usePage<{ banner: PageBannerProps }>().props;
 
-    const title = 'Pakil Tourism | About';
+    const title = 'Pakil Tourism | Events';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
 
@@ -188,4 +188,4 @@ export const Events = () => {
         </>
     );
 };
-export default Events;
+export default EventsSingle;

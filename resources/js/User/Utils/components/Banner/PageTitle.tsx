@@ -12,19 +12,19 @@ const PageTitle: React.FC<PageTitleProps> = ({ title = '', subtitle, desc = '' }
 
     return (
         <>
-            <div className="mb-16 text-center">
+            <div className="mb-10 text-center lg:mb-16">
                 {title && (
                     <div className="mb-4 inline-flex items-center">
                         <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                        <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">{title}</h2>
+                        <h2 className="text-xs font-semibold tracking-wider text-primary uppercase lg:text-sm">{title}</h2>
                         <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
                     </div>
                 )}
 
-                <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
+                <h3 className="text-dark mb-4 text-xl font-bold md:text-4xl">
                     <span className="text-primary">{firstHalf}</span> {secondHalf}
                 </h3>
-                {desc && <p className="mx-auto max-w-3xl text-lg text-gray-600">{desc}</p>}
+                {desc && <p className="mx-auto max-w-3xl text-sm text-gray-600 lg:text-lg">{desc}</p>}
             </div>
         </>
     );

@@ -1,6 +1,7 @@
 import { Head, usePage } from '@inertiajs/react';
+import Banner from '@UserUtils/components/Banner/Banner';
 import ContactUs from '@UserUtils/components/Sections/Contact/contactform';
-import Banner from '@UserUtils/components/Banner/Banner'
+import { useEffect } from 'react';
 
 type PageBannerProps = {
     title: string;
@@ -8,12 +9,26 @@ type PageBannerProps = {
     desc: string;
     image: string;
 };
-export default function About() {
+export default function Contact() {
     const { banner } = usePage<{ banner: PageBannerProps }>().props;
 
-    const title = 'Pakil Tourism | About';
+    const title = 'Pakil Tourism | Contact Us';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
+    const { url } = usePage();
+
+    useEffect(() => {
+        if (url.includes('#')) {
+            const hash = url.split('#')[1];
+            const element = document.getElementById(hash);
+
+            if (element) {
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+        }
+    }, [url]);
 
     return (
         <>
@@ -32,7 +47,7 @@ export default function About() {
 
             <ContactUs />
 
-            <section className="py-8">
+            <section id="hotlines" className="border py-8">
                 <div className="container mx-auto px-4">
                     <div className="mb-16 text-center">
                         <div className="mb-4 inline-flex items-center">
@@ -220,7 +235,7 @@ export default function About() {
                 </div>
             </section>
 
-            <section className="py-20">
+            <section id="tourguides" className="py-20">
                 <div className="container mx-auto px-6">
                     <div className="mb-16 text-center">
                         <div className="mb-4 inline-flex items-center">

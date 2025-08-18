@@ -1,7 +1,7 @@
+import FileInput from '@/Admin/Utils/components/form/input/FileInput';
 import ComponentCard from '@AdminUtils/components/common/ComponentCard';
 import PageBreadcrumb from '@AdminUtils/components/common/PageBreadCrumb';
 import { AppWrapper, PageMeta } from '@AdminUtils/components/common/PageMeta';
-import FileInput from '@AdminUtils/components/form/input/FileInput';
 import InputField from '@AdminUtils/components/form/input/InputField';
 import FlashMessage from '@AdminUtils/context/FlashMessage';
 import { Head, useForm, usePage } from '@inertiajs/react';

@@ -7,10 +7,11 @@ type PageBannerProps = {
     desc: string;
     image: string;
 };
-export default function About() {
+
+export default function Profile() {
     const { banner } = usePage<{ banner: PageBannerProps }>().props;
 
-    const title = 'Pakil Tourism | About';
+    const title = 'Pakil Tourism | Profile';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
 
@@ -26,8 +27,9 @@ export default function About() {
                 title={banner?.title}
                 subtitle={banner?.subtitle}
                 desc={banner?.desc}
-                imageSrc={banner?.image ? `/storage/${banner.image}` : '/User//User/User/Images/church.jpg'}
+                imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
             ></Banner>
+
             <section className="min-h-screen py-4 md:py-8">
                 <div className="container mx-auto px-4">
                     <div className="mb-8 hidden items-start gap-6 md:flex">

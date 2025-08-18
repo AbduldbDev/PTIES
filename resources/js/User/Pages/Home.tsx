@@ -13,7 +13,7 @@ type PromotionalVideoProps = {
     highlights: string[];
 };
 
-export default function Register() {
+export default function Home() {
     const { promvid } = usePage<{ promvid: PromotionalVideoProps }>().props;
     const title = 'Pakil Tourism | Home';
     const description =

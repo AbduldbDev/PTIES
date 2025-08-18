@@ -1,9 +1,29 @@
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
+import PageTitle from '@UserUtils/components/Banner/PageTitle';
+import CitizenCharter from '@UserUtils/components/Sections/Tourism/CitizenCharter';
+import DeparmentStructure from '@UserUtils/components/Sections/Tourism/DepartmentStructure';
+import { useState } from 'react';
+
+type PageBannerProps = {
+    title: string;
+    subtitle: string;
+    desc: string;
+    image: string;
+};
+
 export default function TourismAbout() {
-    const title = 'Pakil Tourism | About';
+    const { banner } = usePage<{ banner: PageBannerProps }>().props;
+    const title = 'Pakil Tourism | Tourism';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
+    const [mainImage, setMainImage] = useState('/User/Images/church.jpg');
+
+    const images = [
+        { src: '/User/Images/church.jpg', alt: 'Church' },
+        { src: '/User/Images/kayas.jpg', alt: 'Town Plaza' },
+        { src: '/User/Images/ibuli.jpg', alt: 'Nature' },
+    ];
 
     return (
         <>
@@ -12,54 +32,61 @@ export default function TourismAbout() {
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
             </Head>
-
             <Banner
-                title="About Pakil"
-                subtitle="Discover Pakil, Laguna"
-                desc="Explore Pakil's attractions and redeem exciting prizes"
-                imageSrc="/User/Images/church.jpg"
+                title={banner?.title}
+                subtitle={banner?.subtitle}
+                desc={banner?.desc}
+                imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
             ></Banner>
 
-            <section className="relative py-20">
+            <section className="relative py-10">
                 <div className="absolute inset-0 -z-10">
                     <div className="absolute inset-0 bg-[url('/User/Images/church.jpg')] bg-cover bg-center opacity-5"></div>
                 </div>
 
                 <div className="container mx-auto px-6">
-                    <div className="mb-16 text-center">
-                        <div className="mb-4 inline-flex items-center">
-                            <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                            <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Local Government</h2>
-                            <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
-                        </div>
-                        <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
-                            <span className="text-primary">Tourism Department</span> of Pakil, Laguna
-                        </h3>
-                        <p className="mx-auto max-w-3xl text-lg text-gray-600">
-                            Preserving heritage, promoting sustainable tourism, and enhancing visitor experiences
-                        </p>
-                    </div>
+                    <PageTitle
+                        title="Local Government"
+                        subtitle="Tourism Department of Pakil, Laguna"
+                        desc="Preserving heritage, promoting sustainable tourism, and enhancing visitor experiences"
+                    ></PageTitle>
 
                     <div className="flex flex-col items-center gap-12 lg:flex-row">
                         <div className="lg:w-1/2">
                             <div className="group relative">
                                 <div className="absolute -inset-2 rounded-xl bg-primary/20 blur-md transition duration-300 group-hover:blur-lg"></div>
                                 <img
-                                    src="/User/Images/church.jpg"
-                                    alt="Pakil Tourism Office"
+                                    src={mainImage}
+                                    alt="Pakil Town View"
                                     className="relative h-auto w-full rounded-xl border-4 border-white shadow-xl"
                                 />
                                 <div className="absolute -right-5 -bottom-5 hidden rounded-xl border border-gray-100 bg-white p-4 shadow-lg md:block">
                                     <div className="flex items-center">
                                         <div className="mr-3 rounded-lg bg-primary/10 p-3">
-                                            <i className="fas fa-map-marked-alt text-xl text-primary"></i>
+                                            <i className="fas fa-landmark text-xl text-primary"></i>
                                         </div>
                                         <div>
-                                            <p className="text-xs text-gray-500">Visit Us</p>
-                                            <p className="text-dark text-sm font-semibold">Municipal Hall Complex</p>
+                                            <p className="text-xs text-gray-500">Did you know?</p>
+                                            <p className="text-dark text-sm font-semibold">Oldest musical academy in PH</p>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div className="mt-6 grid grid-cols-3 gap-4">
+                                {images.map((image, index) => (
+                                    <div
+                                        key={index}
+                                        className="cursor-pointer overflow-hidden rounded-lg border-1 border-white shadow transition duration-300 hover:border-primary"
+                                        onClick={() => setMainImage(image.src)}
+                                    >
+                                        <img
+                                            src={image.src}
+                                            alt={image.alt}
+                                            className="h-24 w-full object-cover transition duration-300 hover:scale-110"
+                                        />
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
@@ -217,7 +244,7 @@ export default function TourismAbout() {
                             development.
                         </p>
                         <a
-                            href="#"
+                            href="/contact"
                             className="inline-flex items-center rounded-full border border-transparent bg-primary px-6 py-3 text-white shadow-sm transition duration-300 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
                         >
                             <i className="fas fa-envelope mr-2"></i> Contact Tourism Office
@@ -226,218 +253,57 @@ export default function TourismAbout() {
                 </div>
             </section>
 
-            <section className="py-20">
-                <div className="container mx-auto max-w-6xl px-6">
-                    <div className="mb-16">
-                        <div className="mb-12 text-center">
-                            <div className="mb-4 inline-flex items-center">
-                                <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                                <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Governance</h2>
-                                <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
+            <section id="mission&vision" className="py-0 md:py-16">
+                <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+                    <PageTitle title="Governance" subtitle="Mission & Vision" desc="" />
+
+                    <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2">
+                        <div className="rounded-xl border border-primary/20 bg-primary/5 p-6 transition-all hover:shadow-lg md:p-8">
+                            <div className="mb-4 flex items-center md:mb-6">
+                                <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg text-white md:mr-4 md:h-12 md:w-12 md:text-xl">
+                                    <i className="fas fa-bullseye"></i>
+                                </div>
+                                <h4 className="text-dark text-xl font-bold md:text-2xl">Mission</h4>
                             </div>
-                            <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
-                                <span className="text-primary">Mission</span> & Vision
-                            </h3>
+                            <div className="prose text-gray-700">
+                                <p className="text-sm md:text-base">
+                                    To provide effective and efficient public service through transparent governance, sustainable development, and
+                                    preservation of Pakil's cultural heritage while promoting tourism and improving the quality of life for all
+                                    Pakileños.
+                                </p>
+                            </div>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                            <div className="rounded-xl border border-primary/20 bg-primary/5 p-8">
-                                <div className="mb-6 flex items-center">
-                                    <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-xl text-white">
-                                        <i className="fas fa-bullseye"></i>
-                                    </div>
-                                    <h4 className="text-dark text-2xl font-bold">Mission</h4>
+                        <div className="rounded-xl border border-primary/20 bg-primary/5 p-6 transition-all hover:shadow-lg md:p-8">
+                            <div className="mb-4 flex items-center md:mb-6">
+                                <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg text-white md:mr-4 md:h-12 md:w-12 md:text-xl">
+                                    <i className="fas fa-eye"></i>
                                 </div>
-                                <div className="prose text-gray-700">
-                                    <p>
-                                        To provide effective and efficient public service through transparent governance, sustainable development, and
-                                        preservation of Pakil's cultural heritage while promoting tourism and improving the quality of life for all
-                                        Pakileños.
-                                    </p>
-                                </div>
+                                <h4 className="text-dark text-xl font-bold md:text-2xl">Vision</h4>
                             </div>
-
-                            <div className="rounded-xl border border-primary/20 bg-primary/5 p-8">
-                                <div className="mb-6 flex items-center">
-                                    <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-xl text-white">
-                                        <i className="fas fa-eye"></i>
-                                    </div>
-                                    <h4 className="text-dark text-2xl font-bold">Vision</h4>
-                                </div>
-                                <div className="prose text-gray-700">
-                                    <p>
-                                        A progressive, culturally-rich, and spiritually-nourished municipality where empowered citizens enjoy
-                                        sustainable development, quality public services, and a thriving tourism industry anchored on Pakil's unique
-                                        heritage and natural beauty.
-                                    </p>
-                                </div>
+                            <div className="prose text-gray-700">
+                                <p className="text-sm md:text-base">
+                                    A progressive, culturally-rich, and spiritually-nourished municipality where empowered citizens enjoy sustainable
+                                    development, quality public services, and a thriving tourism industry anchored on Pakil's unique heritage and
+                                    natural beauty.
+                                </p>
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+            <DeparmentStructure />
+            <CitizenCharter />
 
-                    <div className="mb-16" id="deparmtent">
-                        <div className="mb-12 text-center">
-                            <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
-                                <span className="text-primary">Department</span> Structure
-                            </h3>
-                            <p className="mx-auto max-w-3xl text-lg text-gray-600">Organizational framework of Pakil's municipal government</p>
-                        </div>
-
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                                <div className="border-b border-primary/20 bg-primary/10 p-5">
-                                    <h4 className="text-lg font-bold text-primary">Mayor's Office</h4>
-                                </div>
-                                <div className="p-6">
-                                    <div className="mb-4 flex items-center">
-                                        <div className="mr-3 rounded-full bg-primary/10 p-2">
-                                            <i className="fas fa-user-tie text-primary"></i>
-                                        </div>
-                                        <div>
-                                            <p className="text-dark font-medium">Hon. Vince Soriano</p>
-                                            <p className="text-sm text-gray-600">Municipal Mayor</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center text-gray-700">
-                                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                                        <span>049-XXX-XXXX</span>
-                                    </div>
-                                    <div className="mt-2 flex items-center text-gray-700">
-                                        <i className="fas fa-envelope mr-2 text-primary"></i>
-                                        <span>mayor@pakil.gov.ph</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                                <div className="border-b border-primary/20 bg-primary/10 p-5">
-                                    <h4 className="text-lg font-bold text-primary">Mayor's Office</h4>
-                                </div>
-                                <div className="p-6">
-                                    <div className="mb-4 flex items-center">
-                                        <div className="mr-3 rounded-full bg-primary/10 p-2">
-                                            <i className="fas fa-user-tie text-primary"></i>
-                                        </div>
-                                        <div>
-                                            <p className="text-dark font-medium">Hon. Vince Soriano</p>
-                                            <p className="text-sm text-gray-600">Municipal Mayor</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center text-gray-700">
-                                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                                        <span>049-XXX-XXXX</span>
-                                    </div>
-                                    <div className="mt-2 flex items-center text-gray-700">
-                                        <i className="fas fa-envelope mr-2 text-primary"></i>
-                                        <span>mayor@pakil.gov.ph</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                                <div className="border-b border-primary/20 bg-primary/10 p-5">
-                                    <h4 className="text-lg font-bold text-primary">Mayor's Office</h4>
-                                </div>
-                                <div className="p-6">
-                                    <div className="mb-4 flex items-center">
-                                        <div className="mr-3 rounded-full bg-primary/10 p-2">
-                                            <i className="fas fa-user-tie text-primary"></i>
-                                        </div>
-                                        <div>
-                                            <p className="text-dark font-medium">Hon. Vince Soriano</p>
-                                            <p className="text-sm text-gray-600">Municipal Mayor</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center text-gray-700">
-                                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                                        <span>049-XXX-XXXX</span>
-                                    </div>
-                                    <div className="mt-2 flex items-center text-gray-700">
-                                        <i className="fas fa-envelope mr-2 text-primary"></i>
-                                        <span>mayor@pakil.gov.ph</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                                <div className="border-b border-primary/20 bg-primary/10 p-5">
-                                    <h4 className="text-lg font-bold text-primary">Mayor's Office</h4>
-                                </div>
-                                <div className="p-6">
-                                    <div className="mb-4 flex items-center">
-                                        <div className="mr-3 rounded-full bg-primary/10 p-2">
-                                            <i className="fas fa-user-tie text-primary"></i>
-                                        </div>
-                                        <div>
-                                            <p className="text-dark font-medium">Hon. Vince Soriano</p>
-                                            <p className="text-sm text-gray-600">Municipal Mayor</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center text-gray-700">
-                                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                                        <span>049-XXX-XXXX</span>
-                                    </div>
-                                    <div className="mt-2 flex items-center text-gray-700">
-                                        <i className="fas fa-envelope mr-2 text-primary"></i>
-                                        <span>mayor@pakil.gov.ph</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                                <div className="border-b border-primary/20 bg-primary/10 p-5">
-                                    <h4 className="text-lg font-bold text-primary">Mayor's Office</h4>
-                                </div>
-                                <div className="p-6">
-                                    <div className="mb-4 flex items-center">
-                                        <div className="mr-3 rounded-full bg-primary/10 p-2">
-                                            <i className="fas fa-user-tie text-primary"></i>
-                                        </div>
-                                        <div>
-                                            <p className="text-dark font-medium">Hon. Vince Soriano</p>
-                                            <p className="text-sm text-gray-600">Municipal Mayor</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center text-gray-700">
-                                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                                        <span>049-XXX-XXXX</span>
-                                    </div>
-                                    <div className="mt-2 flex items-center text-gray-700">
-                                        <i className="fas fa-envelope mr-2 text-primary"></i>
-                                        <span>mayor@pakil.gov.ph</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                                <div className="border-b border-primary/20 bg-primary/10 p-5">
-                                    <h4 className="text-lg font-bold text-primary">Mayor's Office</h4>
-                                </div>
-                                <div className="p-6">
-                                    <div className="mb-4 flex items-center">
-                                        <div className="mr-3 rounded-full bg-primary/10 p-2">
-                                            <i className="fas fa-user-tie text-primary"></i>
-                                        </div>
-                                        <div>
-                                            <p className="text-dark font-medium">Hon. Vince Soriano</p>
-                                            <p className="text-sm text-gray-600">Municipal Mayor</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center text-gray-700">
-                                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                                        <span>049-XXX-XXXX</span>
-                                    </div>
-                                    <div className="mt-2 flex items-center text-gray-700">
-                                        <i className="fas fa-envelope mr-2 text-primary"></i>
-                                        <span>mayor@pakil.gov.ph</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+            
+            {/* <section id="citizen_charter" className="py-10">
+                <div className="max-w-8xl container mx-auto px-6">
                     <div>
-                        <div className="mb-12 text-center">
-                            <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
-                                <span className="text-primary">Citizen's</span> Charter
-                            </h3>
-                            <p className="mx-auto max-w-3xl text-lg text-gray-600">Our commitment to transparent and efficient public service</p>
-                        </div>
+                        <PageTitle
+                            title="Governance"
+                            subtitle="Citizen's Charter"
+                            desc="Our commitment to transparent and efficient public service"
+                        ></PageTitle>
 
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
                             <div className="md:flex">
@@ -467,7 +333,7 @@ export default function TourismAbout() {
                                             </button>
                                             <div className="mt-4 text-sm text-gray-500">
                                                 <p>
-                                                    Or
+                                                    Or <br />
                                                     <a href="#" className="text-primary hover:underline">
                                                         view online
                                                     </a>
@@ -480,7 +346,7 @@ export default function TourismAbout() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
         </>
     );
 }

@@ -20,7 +20,7 @@ class PageController extends Controller
 
     public function About()
     {
-        $banner = CMSBanner::where('key', 'about')->first();
+        $banner = CMSBanner::where('key', 'About Pakil')->first();
         return Inertia::render('User/Pages/About', [
             'banner' => $banner,
         ]);
@@ -28,37 +28,55 @@ class PageController extends Controller
 
     public function AboutTourism()
     {
-        return Inertia::render('User/Pages/Tourism');
+        $banner = CMSBanner::where('key', 'About Tourism')->first();
+        return Inertia::render('User/Pages/Tourism', [
+            'banner' => $banner,
+        ]);
     }
 
     public function KeyOfficials()
     {
-        return Inertia::render('User/Pages/Officials');
+        $banner = CMSBanner::where('key', 'Key Officials')->first();
+        return Inertia::render('User/Pages/Officials', [
+            'banner' => $banner,
+        ]);
     }
 
     public function OfficialBio()
     {
-        return Inertia::render('User/Pages/Biography');
+        $banner = CMSBanner::where('key', 'Key Officials')->first();
+        return Inertia::render('User/Pages/Biography', [
+            'banner' => $banner,
+        ]);
     }
 
     public function Guide()
     {
-        return Inertia::render('User/Pages/Guide');
+        $banner = CMSBanner::where('key', 'Pakil Guide')->first();
+        return Inertia::render('User/Pages/Guide', [
+            'banner' => $banner,
+        ]);
     }
 
     public function Terminals()
     {
-        return Inertia::render('User/Pages/Terminals');
+        $banner = CMSBanner::where('key', 'Terminals')->first();
+        return Inertia::render('User/Pages/Terminals', [
+            'banner' => $banner,
+        ]);
     }
 
     public function LocalProducts()
     {
-        return Inertia::render('User/Pages/LocalProducts');
+        $banner = CMSBanner::where('key', 'Local Products')->first();
+        return Inertia::render('User/Pages/LocalProducts', [
+            'banner' => $banner,
+        ]);
     }
 
     public function Attractions()
     {
-        $banner = CMSBanner::where('key', 'attractions')->first();
+        $banner = CMSBanner::where('key', 'Attractions')->first();
         return Inertia::render('User/Pages/Attractions', [
             'banner' => $banner,
         ]);
@@ -66,12 +84,13 @@ class PageController extends Controller
 
     public function AttractionDetails()
     {
+
         return Inertia::render('User/Pages/AttractionDetails');
     }
 
     public function ContactUs()
     {
-        $banner = CMSBanner::where('key', 'contact')->first();
+        $banner = CMSBanner::where('key', 'Contact Us')->first();
         return Inertia::render('User/Pages/Contact', [
             'banner' => $banner,
         ]);
@@ -87,15 +106,13 @@ class PageController extends Controller
 
     public function EventsSingle()
     {
-        $banner = CMSBanner::where('key', 'contact')->first();
-        return Inertia::render('User/Pages/EventsSingle', [
-            'banner' => $banner,
-        ]);
+
+        return Inertia::render('User/Pages/EventsSingle');
     }
 
     public function SocialWall()
     {
-        $banner = CMSBanner::where('key', 'contact')->first();
+        $banner = CMSBanner::where('key', 'Social Wall')->first();
         return Inertia::render('User/Pages/socialwall', [
             'banner' => $banner,
         ]);
@@ -103,7 +120,7 @@ class PageController extends Controller
 
     public function PakilGuide()
     {
-        $banner = CMSBanner::where('key', 'contact')->first();
+        $banner = CMSBanner::where('key', 'Rewards')->first();
         return Inertia::render('User/Pages/Pakilguide', [
             'banner' => $banner,
         ]);
@@ -111,7 +128,7 @@ class PageController extends Controller
 
     public function RewardShop()
     {
-        $banner = CMSBanner::where('key', 'contact')->first();
+        $banner = CMSBanner::where('key', 'Rewards')->first();
         return Inertia::render('User/Pages/rewardshop', [
             'banner' => $banner,
         ]);
@@ -119,7 +136,7 @@ class PageController extends Controller
 
     public function Profile()
     {
-        $banner = CMSBanner::where('key', 'contact')->first();
+        $banner = CMSBanner::where('key', 'Profile Section')->first();
         return Inertia::render('User/Pages/Profile', [
             'banner' => $banner,
         ]);

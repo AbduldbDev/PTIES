@@ -15,6 +15,7 @@ const Navbar = () => {
         explore: false,
         events: false,
         UserIcon: false,
+        rewards: false,
     });
 
     useEffect(() => {
@@ -60,13 +61,12 @@ const Navbar = () => {
         }));
     };
 
-    // Dropdown items data
     const dropdownItems = {
         about: [
-            { label: 'About Us', href: '/tourism' },
-            // { label: 'Department Structure', href: '#' },
-            // { label: 'Mission & Vision', href: '#' },
-            // { label: 'Citizen Charter', href: '#' },
+            { label: 'About Us', href: '/tourism#' },
+            { label: 'Mission & Vision', href: '/tourism#mission&vision' },
+            { label: 'Department Structure', href: '/tourism#department_structure' },
+            { label: 'Citizen Charter', href: '/tourism#citizen_charter' },
             { label: 'Key Officials', href: '/officials' },
         ],
         explore: [
@@ -75,17 +75,21 @@ const Navbar = () => {
             { label: 'Personalities', href: '#' },
             { label: 'Local Products', href: '/localproducts' },
             { label: 'Terminals', href: '/terminals' },
+            { label: 'Guide', href: '/guide' },
         ],
         Contact: [
-            { label: 'Contact Us', href: '#' },
-            { label: 'FAQs', href: '#' },
-            { label: 'Emergency Hotlines', href: '#' },
-            { label: 'Tour Guides', href: '#' },
+            { label: 'Contact Us', href: '/contact#' },
+            { label: 'Emergency Hotlines', href: '/contact#hotlines' },
+            { label: 'Tour Guides', href: '/contact#tourguides' },
         ],
         events: [
-            { label: 'Events', href: '#' },
-            { label: 'News', href: '#' },
-            { label: 'Social Wall', href: '#' },
+            { label: 'Events', href: '/events' },
+            // { label: 'News', href: '#' },
+            { label: 'Social Wall', href: '/socialwall' },
+        ],
+        rewards: [
+            { label: 'Rewards', href: '/rewardshop' },
+            { label: 'Guide', href: '/pakilguide' },
         ],
     };
 
@@ -128,7 +132,7 @@ const Navbar = () => {
             </div>
 
             {/* Main navigation */}
-            <header className="bg-opacity-80 bg-white shadow-sm backdrop-blur-sm">
+            <header className="bg-white/80 shadow-sm backdrop-blur-sm">
                 <div className="container mx-auto px-4">
                     <nav className="flex items-center justify-between py-2">
                         <a href="#" className="flex items-center space-x-2">
@@ -251,9 +255,31 @@ const Navbar = () => {
                                     </div>
                                 </div>
 
-                                <a href="#" className="nav-link px-4 py-3 font-medium text-primary hover:text-primary/60">
-                                    Rewards
-                                </a>
+                                <div className="dropdown relative">
+                                    <a
+                                        href="#"
+                                        className="nav-link group px-4 py-3 font-medium text-primary hover:text-primary/60"
+                                        onMouseEnter={() => toggleDropdown('rewards')}
+                                        onMouseLeave={() => toggleDropdown('rewards')}
+                                    >
+                                        Rewards
+                                    </a>
+                                    <div
+                                        className={`ring-opacity-5 absolute top-9 left-0 z-10 w-56 origin-top-right rounded-lg bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${dropdownOpen.rewards ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
+                                        onMouseEnter={() => toggleDropdown('rewards')}
+                                        onMouseLeave={() => toggleDropdown('rewards')}
+                                    >
+                                        {dropdownItems.rewards.map((item, index) => (
+                                            <a
+                                                key={index}
+                                                href={item.href}
+                                                className="block rounded-md px-4 py-2 text-primary transition-colors hover:bg-primary/10 hover:text-primary/90"
+                                            >
+                                                {item.label}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
                                 <a href="#" className="nav-link px-4 py-3 font-medium text-primary hover:text-primary/60">
                                     Market
                                 </a>
@@ -312,7 +338,7 @@ const Navbar = () => {
 
                                                 <div className="py-1">
                                                     <a
-                                                        href="#"
+                                                        href="/profile"
                                                         className="flex items-center rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                                     >
                                                         <i className="fa-regular fa-user mr-3 w-5 text-center"></i>
@@ -488,9 +514,34 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <a href="#" className="block rounded-md px-4 py-3 text-primary hover:bg-primary/8">
-                            Rewards
-                        </a>
+                        <div>
+                            <button
+                                onClick={() => toggleMobileSubMenu('rewards')}
+                                className="flex w-full items-center justify-between rounded-md px-4 py-3 text-primary hover:bg-primary/8"
+                            >
+                                <span>Rewards</span>
+                                <svg
+                                    className={`h-4 w-4 transition-transform ${mobileSubMenuOpen === 'rewards' ? 'rotate-180' : ''}`}
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div
+                                className={`overflow-hidden rounded-md bg-primary/5 transition-all duration-300 ${mobileSubMenuOpen === 'rewards' ? 'max-h-96' : 'max-h-0'}`}
+                            >
+                                <div className="space-y-2 py-2">
+                                    {dropdownItems.rewards.map((item, index) => (
+                                        <a key={index} href={item.href} className="block rounded-md px-9 py-2 text-primary hover:bg-primary/30">
+                                            {item.label}
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
                         <a href="#" className="block rounded-md px-4 py-3 text-primary hover:bg-primary/8">
                             Market
                         </a>
@@ -514,7 +565,7 @@ const Navbar = () => {
                                             0 points
                                         </div>
                                     </div>
-                                    <a href="#" className="block rounded-md px-4 py-2 text-primary hover:bg-primary/8">
+                                    <a href="/profile" className="block rounded-md px-4 py-2 text-primary hover:bg-primary/8">
                                         <i className="fa-regular fa-user mr-3"></i> Profile
                                     </a>
                                     <a href="#" className="block rounded-md px-4 py-2 text-primary hover:bg-primary/8">

@@ -7,10 +7,10 @@ type PageBannerProps = {
     desc: string;
     image: string;
 };
-export default function About() {
+export default function GamificationGuid() {
     const { banner } = usePage<{ banner: PageBannerProps }>().props;
 
-    const title = 'Pakil Tourism | About';
+    const title = 'Pakil Tourism | Guide';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
 
