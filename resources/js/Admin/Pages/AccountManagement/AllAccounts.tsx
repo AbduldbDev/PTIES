@@ -218,8 +218,8 @@ export default function Home() {
                                                         {user.user_type}
                                                     </Badge>
                                                 </TableCell>
-                                                <TableCell>
-                                                    <div className="col-span-1 flex justify-center px-4 py-3">
+                                                <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
+                                                    <div className="col-span-1 flex justify-center">
                                                         <div className="flex w-full items-center justify-center gap-2">
                                                             <DeleteConfirm
                                                                 onDeleteConfirmed={() => handleDelete(user.id)}

@@ -1,0 +1,113 @@
+import { useRef, useState } from 'react';
+
+export const PromotionalVideo = () => {
+    const [isPlaying, setIsPlaying] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    const togglePlay = () => {
+        if (!videoRef.current) return;
+
+        if (videoRef.current.paused) {
+            videoRef.current
+                .play()
+                .then(() => setIsPlaying(true))
+                .catch((error) => console.error('Error playing video:', error));
+        } else {
+            videoRef.current.pause();
+            setIsPlaying(false);
+        }
+    };
+    return (
+        <>
+            <section className="py-20">
+                <div className="container mx-auto px-6">
+                    <div className="flex flex-col items-center gap-12 lg:flex-row">
+                        <div className="lg:w-1/2">
+                            <div className="group relative overflow-hidden rounded-xl bg-white shadow-xl">
+                                <video ref={videoRef} className="h-full w-full object-cover" poster="/User/Images/church.jpg" controls>
+                                    <source src="/User/Video/Pakil.mp4" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+
+                                {/* Custom play button (optional) */}
+                                {!isPlaying && (
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <button
+                                            onClick={togglePlay}
+                                            className="rounded-full bg-white/20 p-4 backdrop-blur-sm transition duration-300 group-hover:scale-110"
+                                        >
+                                            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary p-4 text-white">
+                                                <i className="fas fa-play text-xl"></i>
+                                            </div>
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                            <p className="mt-4 text-center text-lg text-gray-800 italic">
+                                <i className="fas fa-quote-left mr-2 text-secondary"></i>
+                                Experience the beauty of Pakil through our eyes
+                                <i className="fas fa-quote-right ml-2 text-secondary"></i>
+                            </p>
+                        </div>
+
+                        <div className="rounded-xl bg-white/80 p-8 shadow-lg backdrop-blur-sm lg:w-1/2">
+                            <div className="mb-4 flex items-center">
+                                <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
+                                <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Discover</h2>
+                            </div>
+                            <h3 className="text-dark mb-6 text-3xl font-bold md:text-4xl">
+                                <span className="text-primary">Explore Pakil</span> Through Our Video
+                            </h3>
+
+                            <div className="prose prose-lg mb-8 text-gray-600">
+                                <p className="mb-4">
+                                    Immerse yourself in the sights and sounds of Pakil with our exclusive promotional video showcasing the town's rich
+                                    heritage, stunning landscapes, and vibrant culture.
+                                </p>
+                                <p className="mb-4">
+                                    From the majestic San Pedro de Alcantara Church to the breathtaking waterfalls and local festivals, this video
+                                    captures the essence of what makes Pakil a must-visit destination.
+                                </p>
+                            </div>
+
+                            <div className="flex flex-col gap-4 sm:flex-row">
+                                <a
+                                    href="#"
+                                    className="flex items-center justify-center rounded-full bg-primary px-6 py-2 text-center text-sm font-medium text-white transition duration-300 hover:bg-primary/90"
+                                >
+                                    <i className="fas fa-share-alt mr-2"></i> Share This Video
+                                </a>
+                            </div>
+
+                            <div className="mt-8">
+                                <h4 className="text-dark mb-3 flex items-center font-bold">
+                                    <i className="fas fa-star mr-2 text-secondary"></i> Video Highlights
+                                </h4>
+                                <ul className="grid grid-cols-2 gap-2 text-sm">
+                                    <li className="flex items-start">
+                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
+                                        <span>San Pedro de Alcantara Church</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
+                                        <span>Turumba Festival</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
+                                        <span>Local Cuisine</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
+                                        <span>Waterfalls & Nature</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </>
+    );
+};
+
+export default PromotionalVideo;

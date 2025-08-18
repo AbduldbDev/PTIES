@@ -64,4 +64,12 @@ class PageController extends Controller
     {
         return Inertia::render('User/Pages/AttractionDetails');
     }
+
+    public function ContactUs()
+    {
+        $banner = CMSBanner::where('key', 'contact')->first();
+        return Inertia::render('User/Pages/Contact', [
+            'banner' => $banner,
+        ]);
+    }
 }
