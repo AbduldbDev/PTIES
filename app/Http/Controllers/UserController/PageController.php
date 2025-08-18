@@ -88,4 +88,12 @@ class PageController extends Controller
             'banner' => $banner,
         ]);
     }
+
+    public function SocialWall()
+    {
+        $banner = CMSBanner::where('key', 'contact')->first();
+        return Inertia::render('User/Pages/socialwall', [
+            'banner' => $banner,
+        ]);
+    }
 }
