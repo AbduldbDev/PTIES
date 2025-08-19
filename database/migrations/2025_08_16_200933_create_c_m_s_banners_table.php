@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('cms_banner', function (Blueprint $table) {
             $table->id();
+            $table->string('key');
+            $table->string('title');
+            $table->string('subtitle');
+            $table->string('desc');
+            $table->string('image');
             $table->timestamps();
         });
     }
