@@ -7,15 +7,33 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\CMSBanner;
 use App\Models\ContentPromotional;
+use App\Models\CmsContent;
 
 class PageController extends Controller
 {
     public function Home()
     {
-        $promvid = ContentPromotional::first();
+        $contents = CmsContent::where('page_key', "home_page")
+            ->orderBy('section_key')
+            ->orderBy('content_key')
+            ->get();
+
+        // Transform to grouped structure
+        $pageData = [];
+        foreach ($contents as $content) {
+            $pageData['sections'][$content->section_key][$content->content_key] =
+                $this->parseContentValue($content->content_value);
+        }
+
         return Inertia::render('User/Pages/Home', [
-            'promvid' => $promvid,
+            'content' => $pageData['sections'] ?? []
         ]);
+    }
+
+    protected function parseContentValue($value)
+    {
+        $decoded = json_decode($value, true);
+        return (json_last_error() === JSON_ERROR_NONE) ? $decoded : $value;
     }
 
     public function About()

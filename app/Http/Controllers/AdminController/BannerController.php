@@ -26,6 +26,8 @@ class BannerController extends Controller
             'details' => $details
         ]);
     }
+
+    
     public function update(Request $request)
     {
         try {

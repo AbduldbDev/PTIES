@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController\AccountManagementController;
 use App\Http\Controllers\AdminController\AdminProfileController;
 use App\Http\Controllers\AdminController\WebsiteSettingsController;
 use App\Http\Controllers\AdminController\BannerController;
+use App\Http\Controllers\AdminController\HomeCMSController;
 use App\Http\Controllers\AdminController\PromotionalvidController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
@@ -40,5 +41,19 @@ Route::middleware('admin.access:auth')->group(function () {
 
     Route::get('/Admin/Content/PromotionalVid', [PromotionalvidController::class, 'view'])->name('banners.edit');
     Route::post('/Admin/Content/PromotionalVid/Update', [PromotionalvidController::class, 'update'])->name('banners.update');
+
+    Route::get('/Admin/CMS/HeroSection', [HomeCMSController::class, 'HeroSection'])->name('cms.HeroSection');
+    Route::get('/Admin/CMS/IntroductionSection', [HomeCMSController::class, 'IntroductionSection'])->name('cms.HeroSection');
+
+
+    Route::post('/Admin/CMS/UpdateHeroSection', [HomeCMSController::class, 'updateHeroSection'])->name('cms.updateHeroSection');
+    Route::post('/Admin/CMS/updateIntroductionSection', [HomeCMSController::class, 'updateIntroductionSection'])->name('cms.updateHeroSection');
+
+
+
+
+
+
+
     Route::get('/Admin/Profile', [AdminProfileController::class, 'Profile'])->name('account.management.settings');
 });

@@ -20,7 +20,6 @@ export const PromotionalVideo = ({
     const [isPlaying, setIsPlaying] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
 
-    // Split description into paragraphs
     const paragraphs = description.split('\n').filter((para) => para.trim() !== '');
 
     const togglePlay = () => {

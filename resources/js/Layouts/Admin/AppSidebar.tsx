@@ -1,5 +1,5 @@
 import { useSidebar } from '@AdminUtils/context/SidebarContext';
-import { ChevronDownIcon, GridIcon, HorizontaLDots, PageIcon, UserCircleIcon } from '@AdminUtils/icons';
+import { ChevronDownIcon, DocsIcon, GridIcon, HorizontaLDots, PageIcon, UserCircleIcon } from '@AdminUtils/icons';
 import { Link, usePage } from '@inertiajs/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -60,19 +60,24 @@ const navItems: NavItem[] = [
         ],
     },
     {
-        icon: <PageIcon />,
-        name: 'Website Settings',
+        icon: <DocsIcon />,
+        name: 'Content Management',
         subItems: [
-            { name: 'Color Theme', path: '/Admin/Settings/Website' },
+            { name: 'Page Banners', path: '/Admin/CMS/Banners' },
             {
-                name: 'Page Banners',
-                path: '/Admin/CMS/Banners',
+                name: 'Home Sections',
+                path: '',
                 subItems: [
-                    { name: 'Page Banners', path: '/Admin/CMS/Banners' },
+                    { name: 'Landing Page', path: '/Admin/CMS/HeroSection' },
                     { name: 'Promotional Vid', path: '/Admin/Content/PromotionalVid' },
                 ],
             },
         ],
+    },
+    {
+        icon: <PageIcon />,
+        name: 'Website Settings',
+        subItems: [{ name: 'Color Theme', path: '/Admin/Settings/Website' }],
     },
 ];
 

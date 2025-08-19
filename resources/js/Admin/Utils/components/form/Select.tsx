@@ -24,7 +24,7 @@ const Select: React.FC<SelectProps> = ({
     options,
     label,
     name,
-    placeholder = 'Select an option',
+    placeholder = 'SELECT',
     required = false,
     value = '',
     onChange,
