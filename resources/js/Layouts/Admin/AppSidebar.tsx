@@ -77,7 +77,10 @@ const navItems: NavItem[] = [
             {
                 name: 'About Sections',
                 path: '',
-                subItems: [{ name: 'Tourism About', path: '/Admin/CMS/TourismSection' }],
+                subItems: [
+                    { name: 'Tourism About', path: '/Admin/CMS/TourismSection' },
+                    { name: 'Mission & Vision', path: '/Admin/CMS/MissionVision' },
+                ],
             },
         ],
     },

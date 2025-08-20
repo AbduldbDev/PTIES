@@ -16,9 +16,11 @@ section {
     overflow-x: hidden;
     min-height: 100vh;
 }
+
 .dropdown:hover .dropdown-menu {
     display: block;
 }
+
 .dropdown-menu {
     animation: fadeIn 0.2s ease-in-out;
 }

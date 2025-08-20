@@ -45,10 +45,16 @@ Route::middleware('admin.access:auth')->group(function () {
     Route::get('/Admin/CMS/HeroSection', [HomeCMSController::class, 'HeroSection'])->name('cms.HeroSection');
     Route::get('/Admin/CMS/IntroductionSection', [HomeCMSController::class, 'IntroductionSection'])->name('cms.HeroSection');
     Route::get('/Admin/CMS/TourismSection', [HomeCMSController::class, 'TourismSection'])->name('cms.HeroSection');
+    Route::get('/Admin/CMS/MissionVision', [HomeCMSController::class, 'MissionVision'])->name('cms.HeroSection');
+
+
+
 
     Route::post('/Admin/CMS/UpdateHeroSection', [HomeCMSController::class, 'updateHeroSection'])->name('cms.updateHeroSection');
     Route::post('/Admin/CMS/updateIntroductionSection', [HomeCMSController::class, 'updateIntroductionSection'])->name('cms.updateHeroSection');
     Route::post('/Admin/CMS/UpdateTourismAboutSection', [HomeCMSController::class, 'UpdateTourismAboutSection'])->name('cms.UpdateTourismAboutSection');
+    Route::post('/Admin/CMS/UpdateMissionVision', [HomeCMSController::class, 'UpdateMissionVision'])->name('cms.UpdateTourismAboutSection');
+
 
 
 

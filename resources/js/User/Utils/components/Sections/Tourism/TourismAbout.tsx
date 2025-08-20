@@ -54,7 +54,11 @@ export default function TourismAbout({ content }: Props) {
                 <div className="lg:w-1/2">
                     <div className="group relative">
                         <div className="absolute -inset-2 rounded-xl bg-primary/20 blur-md transition duration-300 group-hover:blur-lg"></div>
-                        <img src={mainImage} alt="Pakil Town View" className="relative h-auto w-full rounded-xl border-4 border-white shadow-xl" />
+                        <img
+                            src={mainImage}
+                            alt="Pakil Town View"
+                            className="relative aspect-16/9 h-auto w-full rounded-xl border-4 border-white object-cover shadow-xl"
+                        />
                         <div className="absolute -right-5 -bottom-5 hidden rounded-xl border border-gray-100 bg-white p-4 shadow-lg md:block">
                             <div className="flex items-center">
                                 <div className="mr-3 rounded-lg bg-primary/10 p-3">

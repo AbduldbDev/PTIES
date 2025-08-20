@@ -3,6 +3,7 @@ import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import CitizenCharter from '@UserUtils/components/Sections/Tourism/CitizenCharter';
 import DeparmentStructure from '@UserUtils/components/Sections/Tourism/DepartmentStructure';
+import MissionVision from '@UserUtils/components/Sections/Tourism/MissionVision';
 import TourismAbout from '@UserUtils/components/Sections/Tourism/TourismAbout';
 import { CmsContent } from '@UserUtils/Types/cms';
 
@@ -52,6 +53,7 @@ export default function TourismAboutPage() {
                         subtitle="Tourism Department of Pakil, Laguna"
                         desc="Preserving heritage, promoting sustainable tourism, and enhancing visitor experiences"
                     ></PageTitle>
+
                     {content.about && (
                         <TourismAbout
                             content={{
@@ -124,42 +126,10 @@ export default function TourismAboutPage() {
             <section id="mission&vision" className="py-0 md:py-16">
                 <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                     <PageTitle title="Governance" subtitle="Mission & Vision" desc="" />
-
-                    <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-2">
-                        <div className="rounded-xl border border-primary/20 bg-primary/5 p-6 transition-all hover:shadow-lg md:p-8">
-                            <div className="mb-4 flex items-center md:mb-6">
-                                <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg text-white md:mr-4 md:h-12 md:w-12 md:text-xl">
-                                    <i className="fas fa-bullseye"></i>
-                                </div>
-                                <h4 className="text-dark text-xl font-bold md:text-2xl">Mission</h4>
-                            </div>
-                            <div className="prose text-gray-700">
-                                <p className="text-sm md:text-base">
-                                    To provide effective and efficient public service through transparent governance, sustainable development, and
-                                    preservation of Pakil's cultural heritage while promoting tourism and improving the quality of life for all
-                                    Pakileños.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="rounded-xl border border-primary/20 bg-primary/5 p-6 transition-all hover:shadow-lg md:p-8">
-                            <div className="mb-4 flex items-center md:mb-6">
-                                <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg text-white md:mr-4 md:h-12 md:w-12 md:text-xl">
-                                    <i className="fas fa-eye"></i>
-                                </div>
-                                <h4 className="text-dark text-xl font-bold md:text-2xl">Vision</h4>
-                            </div>
-                            <div className="prose text-gray-700">
-                                <p className="text-sm md:text-base">
-                                    A progressive, culturally-rich, and spiritually-nourished municipality where empowered citizens enjoy sustainable
-                                    development, quality public services, and a thriving tourism industry anchored on Pakil's unique heritage and
-                                    natural beauty.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <MissionVision content={content.mission_vision} />
                 </div>
             </section>
+
             <DeparmentStructure />
             <CitizenCharter />
 

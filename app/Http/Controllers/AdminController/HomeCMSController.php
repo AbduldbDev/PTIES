@@ -99,25 +99,6 @@ class HomeCMSController extends Controller
         ]);
     }
 
-    public function TourismSection()
-    {
-        $contents = CmsContent::where('page_key', "about_page")
-            ->where('section_key', 'about')
-            ->orderBy('content_key')
-            ->get();
-
-
-        $pageData = [];
-        foreach ($contents as $content) {
-            $pageData['sections'][$content->section_key][$content->content_key] =
-                $this->parseContentValue($content->content_value);
-        }
-
-        return Inertia::render('Admin/Pages/CMS/TourismAbout', [
-            'content' => $pageData['sections'] ?? []
-        ]);
-    }
-
     public function updateIntroductionSection(Request $request)
     {
         $request->validate([
@@ -131,7 +112,6 @@ class HomeCMSController extends Controller
         ]);
 
         try {
-            // Update text fields
             $fields = ['title', 'description', 'facts'];
             Log::info('Files received:', $request->allFiles());
             foreach ($fields as $field) {
@@ -147,7 +127,6 @@ class HomeCMSController extends Controller
                 );
             }
 
-            // Save highlights as JSON
             if ($request->has('highlights')) {
                 CmsContent::updateOrCreate(
                     [
@@ -156,12 +135,11 @@ class HomeCMSController extends Controller
                         'content_key' => 'highlights',
                     ],
                     [
-                        'content_value' => json_encode($request->highlights), // Encode as JSON
+                        'content_value' => json_encode($request->highlights),
                     ]
                 );
             }
 
-            // Handle multiple images
             $imageFields = ['image1', 'image2', 'image3'];
 
             foreach ($imageFields as $imageField) {
@@ -188,6 +166,24 @@ class HomeCMSController extends Controller
         }
     }
 
+    public function TourismSection()
+    {
+        $contents = CmsContent::where('page_key', "about_page")
+            ->where('section_key', 'about')
+            ->orderBy('content_key')
+            ->get();
+
+
+        $pageData = [];
+        foreach ($contents as $content) {
+            $pageData['sections'][$content->section_key][$content->content_key] =
+                $this->parseContentValue($content->content_value);
+        }
+
+        return Inertia::render('Admin/Pages/CMS/TourismAbout', [
+            'content' => $pageData['sections'] ?? []
+        ]);
+    }
 
     public function UpdateTourismAboutSection(Request $request)
     {
@@ -264,10 +260,60 @@ class HomeCMSController extends Controller
                 }
             }
 
-            return redirect()->back()->with('success', 'Introduction section updated successfully!');
+            return redirect()->back()->with('success', 'Tourism about section updated successfully!');
         } catch (\Throwable $e) {
             return redirect()->back()
-                ->with('error', 'Something went wrong while updating the Introduction section. Please try again later.');
+                ->with('error', 'Something went wrong while updating the Tourism about section. Please try again later.');
+        }
+    }
+
+    public function MissionVision()
+    {
+        $contents = CmsContent::where('page_key', "about_page")
+            ->where('section_key', 'mission_vision')
+            ->orderBy('content_key')
+            ->get();
+
+
+        $pageData = [];
+        foreach ($contents as $content) {
+            $pageData['sections'][$content->section_key][$content->content_key] =
+                $this->parseContentValue($content->content_value);
+        }
+
+        return Inertia::render('Admin/Pages/CMS/MissionVision', [
+            'content' => $pageData['sections'] ?? []
+        ]);
+    }
+
+    public function UpdateMissionVision(Request $request)
+    {
+        $request->validate([
+            'mission' => 'required|string',
+            'vision' => 'required|string',
+
+        ]);
+
+        try {
+
+            $fields = ['mission', 'vision'];
+            foreach ($fields as $field) {
+                CmsContent::updateOrCreate(
+                    [
+                        'page_key'    => 'about_page',
+                        'section_key' => 'mission_vision',
+                        'content_key' => $field,
+                    ],
+                    [
+                        'content_value' => $request->$field,
+                    ]
+                );
+            }
+
+            return redirect()->back()->with('success', 'Mission & Vision section updated successfully!');
+        } catch (\Throwable $e) {
+            return redirect()->back()
+                ->with('error', 'Something went wrong while updating the Mission & Vision section. Please try again later.');
         }
     }
 

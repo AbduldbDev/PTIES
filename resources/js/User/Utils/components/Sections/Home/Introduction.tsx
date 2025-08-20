@@ -54,7 +54,7 @@ export default function IntroductionSection({ content }: Props) {
                             <img
                                 src={mainImage}
                                 alt="Pakil Town View"
-                                className="relative h-auto w-full rounded-xl border-4 border-white object-cover shadow-xl"
+                                className="relative aspect-16/9 h-auto w-full rounded-xl border-4 border-white object-cover shadow-xl"
                                 loading="lazy"
                             />
                             <div className="absolute -right-5 -bottom-5 hidden rounded-xl border border-gray-100 bg-white p-4 shadow-lg md:block">
