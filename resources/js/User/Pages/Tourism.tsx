@@ -3,7 +3,13 @@ import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import CitizenCharter from '@UserUtils/components/Sections/Tourism/CitizenCharter';
 import DeparmentStructure from '@UserUtils/components/Sections/Tourism/DepartmentStructure';
-import { useState } from 'react';
+import TourismAbout from '@UserUtils/components/Sections/Tourism/TourismAbout';
+import { CmsContent } from '@UserUtils/Types/cms';
+
+interface PageProps {
+    content: CmsContent;
+    [key: string]: unknown;
+}
 
 type PageBannerProps = {
     title: string;
@@ -12,18 +18,14 @@ type PageBannerProps = {
     image: string;
 };
 
-export default function TourismAbout() {
+export default function TourismAboutPage() {
+    const { props } = usePage<PageProps>();
     const { banner } = usePage<{ banner: PageBannerProps }>().props;
+    const { content } = props;
+
     const title = 'Pakil Tourism | Tourism';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
-    const [mainImage, setMainImage] = useState('/User/Images/church.jpg');
-
-    const images = [
-        { src: '/User/Images/church.jpg', alt: 'Church' },
-        { src: '/User/Images/kayas.jpg', alt: 'Town Plaza' },
-        { src: '/User/Images/ibuli.jpg', alt: 'Nature' },
-    ];
 
     return (
         <>
@@ -50,150 +52,16 @@ export default function TourismAbout() {
                         subtitle="Tourism Department of Pakil, Laguna"
                         desc="Preserving heritage, promoting sustainable tourism, and enhancing visitor experiences"
                     ></PageTitle>
-
-                    <div className="flex flex-col items-center gap-12 lg:flex-row">
-                        <div className="lg:w-1/2">
-                            <div className="group relative">
-                                <div className="absolute -inset-2 rounded-xl bg-primary/20 blur-md transition duration-300 group-hover:blur-lg"></div>
-                                <img
-                                    src={mainImage}
-                                    alt="Pakil Town View"
-                                    className="relative h-auto w-full rounded-xl border-4 border-white shadow-xl"
-                                />
-                                <div className="absolute -right-5 -bottom-5 hidden rounded-xl border border-gray-100 bg-white p-4 shadow-lg md:block">
-                                    <div className="flex items-center">
-                                        <div className="mr-3 rounded-lg bg-primary/10 p-3">
-                                            <i className="fas fa-landmark text-xl text-primary"></i>
-                                        </div>
-                                        <div>
-                                            <p className="text-xs text-gray-500">Did you know?</p>
-                                            <p className="text-dark text-sm font-semibold">Oldest musical academy in PH</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="mt-6 grid grid-cols-3 gap-4">
-                                {images.map((image, index) => (
-                                    <div
-                                        key={index}
-                                        className="cursor-pointer overflow-hidden rounded-lg border-1 border-white shadow transition duration-300 hover:border-primary"
-                                        onClick={() => setMainImage(image.src)}
-                                    >
-                                        <img
-                                            src={image.src}
-                                            alt={image.alt}
-                                            className="h-24 w-full object-cover transition duration-300 hover:scale-110"
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="lg:w-1/2">
-                            <div className="prose prose-lg mb-8 text-gray-600">
-                                <p className="mb-4">
-                                    The
-                                    <span className="font-semibold text-primary">Tourism Department of Pakil, Laguna</span>
-                                    serves as the primary arm of the local government responsible for the planning, promotion, and sustainable
-                                    management of the municipality's tourism sector. With Pakil being a town rich in history, culture, and natural
-                                    beauty, we aim to position the municipality as a premier cultural and eco-tourism destination in Laguna and the
-                                    Philippines.
-                                </p>
-                                <p className="mb-4">
-                                    Our mission is to stimulate local economic growth, create livelihood opportunities, and foster pride in the town's
-                                    heritage while ensuring that development is inclusive and environmentally responsible.
-                                </p>
-                            </div>
-
-                            <div className="mb-8">
-                                <h4 className="mb-4 flex items-center text-xl font-bold text-primary">
-                                    <i className="fas fa-bullseye mr-3 text-secondary"></i> Our Goals
-                                </h4>
-                                <ul className="space-y-3 text-gray-700">
-                                    <li className="flex items-start">
-                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
-                                        <span>
-                                            Promote Pakil as a premier tourist destination showcasing cultural festivals, heritage sites, and natural
-                                            attractions
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
-                                        <span>Preserve and protect our heritage and environment for future generations</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
-                                        <span>Foster community involvement in tourism development</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
-                                        <span>Enhance visitor experience through quality services and infrastructure</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <i className="fas fa-check-circle mt-1 mr-2 text-secondary"></i>
-                                        <span>Promote sustainable tourism practices that respect local culture and environment</span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h4 className="mb-4 flex items-center text-xl font-bold text-primary">
-                                    <i className="fas fa-tasks mr-3 text-secondary"></i> Key Responsibilities
-                                </h4>
-                                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                                    <div className="rounded-lg border border-gray-200 bg-white/80 p-4 backdrop-blur-sm">
-                                        <div className="mb-2 flex items-start">
-                                            <div className="mr-3 rounded-lg bg-primary/10 p-2">
-                                                <i className="fas fa-bullhorn text-primary"></i>
-                                            </div>
-                                            <h5 className="text-dark font-semibold">Tourism Promotion</h5>
-                                        </div>
-                                        <p className="text-sm text-gray-600">
-                                            Develop marketing campaigns, produce promotional materials, and build partnerships to increase visitor
-                                            reach.
-                                        </p>
-                                    </div>
-
-                                    <div className="rounded-lg border border-gray-200 bg-white/80 p-4 backdrop-blur-sm">
-                                        <div className="mb-2 flex items-start">
-                                            <div className="mr-3 rounded-lg bg-primary/10 p-2">
-                                                <i className="fas fa-landmark text-primary"></i>
-                                            </div>
-                                            <h5 className="text-dark font-semibold">Heritage Preservation</h5>
-                                        </div>
-                                        <p className="text-sm text-gray-600">
-                                            Organize cultural events, maintain historical sites, and document local traditions.
-                                        </p>
-                                    </div>
-
-                                    <div className="rounded-lg border border-gray-200 bg-white/80 p-4 backdrop-blur-sm">
-                                        <div className="mb-2 flex items-start">
-                                            <div className="mr-3 rounded-lg bg-primary/10 p-2">
-                                                <i className="fas fa-map-signs text-primary"></i>
-                                            </div>
-                                            <h5 className="text-dark font-semibold">Tourism Development</h5>
-                                        </div>
-                                        <p className="text-sm text-gray-600">
-                                            Develop tourism sites, improve infrastructure, and identify new opportunities.
-                                        </p>
-                                    </div>
-
-                                    <div className="rounded-lg border border-gray-200 bg-white/80 p-4 backdrop-blur-sm">
-                                        <div className="mb-2 flex items-start">
-                                            <div className="mr-3 rounded-lg bg-primary/10 p-2">
-                                                <i className="fas fa-hands-helping text-primary"></i>
-                                            </div>
-                                            <h5 className="text-dark font-semibold">Visitor Assistance</h5>
-                                        </div>
-                                        <p className="text-sm text-gray-600">
-                                            Operate information centers, provide trained guides, and address tourist concerns.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {content.about && (
+                        <TourismAbout
+                            content={{
+                                ...content.about,
+                                image1: content.about.about ? `/storage/${content.about.image1}` : '/User/Images/church.jpg',
+                                image2: content.about.image2 ? `/storage/${content.about.image2}` : '/User/Images/church.jpg',
+                                image3: content.about.image3 ? `/storage/${content.about.image3}` : '/User/Images/church.jpg',
+                            }}
+                        />
+                    )}
 
                     <div className="mt-16 rounded-xl border border-gray-200 bg-gradient-to-r from-primary/10 to-accent/10 p-8 backdrop-blur-sm">
                         <div className="flex flex-col items-center md:flex-row">
@@ -295,7 +163,6 @@ export default function TourismAbout() {
             <DeparmentStructure />
             <CitizenCharter />
 
-            
             {/* <section id="citizen_charter" className="py-10">
                 <div className="max-w-8xl container mx-auto px-6">
                     <div>

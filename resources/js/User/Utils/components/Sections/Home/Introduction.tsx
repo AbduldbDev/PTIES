@@ -7,7 +7,7 @@ interface IntroductionContent {
     image1: string;
     image2: string;
     image3: string;
-    highlights: Highlight[];
+    highlights?: Highlight[];
 }
 
 type Highlight = {

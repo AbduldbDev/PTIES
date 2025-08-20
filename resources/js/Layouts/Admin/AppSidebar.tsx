@@ -68,9 +68,16 @@ const navItems: NavItem[] = [
                 name: 'Home Sections',
                 path: '',
                 subItems: [
-                    { name: 'Landing Page', path: '/Admin/CMS/HeroSection' },
+                    { name: 'Banner ', path: '/Admin/CMS/HeroSection' },
+                    { name: 'Introduction ', path: '/Admin/CMS/IntroductionSection' },
+
                     { name: 'Promotional Vid', path: '/Admin/Content/PromotionalVid' },
                 ],
+            },
+            {
+                name: 'About Sections',
+                path: '',
+                subItems: [{ name: 'Tourism About', path: '/Admin/CMS/TourismSection' }],
             },
         ],
     },

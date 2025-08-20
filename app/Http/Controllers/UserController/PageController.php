@@ -24,9 +24,10 @@ class PageController extends Controller
             $pageData['sections'][$content->section_key][$content->content_key] =
                 $this->parseContentValue($content->content_value);
         }
-
+        $promvid = ContentPromotional::first();
         return Inertia::render('User/Pages/Home', [
-            'content' => $pageData['sections'] ?? []
+            'content' => $pageData['sections'] ?? [],
+            'promvid' => $promvid,
         ]);
     }
 
@@ -46,9 +47,21 @@ class PageController extends Controller
 
     public function AboutTourism()
     {
+        $contents = CmsContent::where('page_key', "about_page")
+            ->orderBy('section_key')
+            ->orderBy('content_key')
+            ->get();
+
+        $pageData = [];
+        foreach ($contents as $content) {
+            $pageData['sections'][$content->section_key][$content->content_key] =
+                $this->parseContentValue($content->content_value);
+        }
+
         $banner = CMSBanner::where('key', 'About Tourism')->first();
         return Inertia::render('User/Pages/Tourism', [
             'banner' => $banner,
+            'content' => $pageData['sections'] ?? [],
         ]);
     }
 

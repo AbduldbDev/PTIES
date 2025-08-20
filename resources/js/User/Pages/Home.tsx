@@ -2,6 +2,7 @@ import { Head, usePage } from '@inertiajs/react';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import HeroSection from '@UserUtils/components/Sections/Home/Hero';
 import Introduction from '@UserUtils/components/Sections/Home/Introduction';
+import PromotionalVideo from '@UserUtils/components/Sections/Home/Promotion';
 import { CmsContent } from '@UserUtils/Types/cms';
 
 interface PageProps {
@@ -9,9 +10,19 @@ interface PageProps {
     [key: string]: unknown;
 }
 
+type PromotionalVideoProps = {
+    id: string;
+    title: string;
+    slogan: string;
+    description: string;
+    thumbnail: string;
+    video: string;
+    highlights: string[];
+};
 export default function Home() {
     const { props } = usePage<PageProps>();
-    const { promvid, content } = props;
+    const { promvid } = usePage<{ promvid: PromotionalVideoProps }>().props;
+    const { content } = props;
 
     const title = 'Pakil Tourism | Home';
     const description =
@@ -70,14 +81,14 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* <PromotionalVideo
+            <PromotionalVideo
                 title={promvid.title}
                 slogan={promvid.slogan}
                 description={promvid.description}
                 highlights={promvid.highlights}
                 thumbnail={`/storage/${promvid.thumbnail}`}
                 videoUrl={`/storage/${promvid.video}`}
-            /> */}
+            />
 
             <section className="bg-white py-20">
                 <div className="container mx-auto px-6">

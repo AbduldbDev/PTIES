@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\CmsContent;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 
 class HomeCMSController extends Controller
@@ -99,22 +99,41 @@ class HomeCMSController extends Controller
         ]);
     }
 
+    public function TourismSection()
+    {
+        $contents = CmsContent::where('page_key', "about_page")
+            ->where('section_key', 'about')
+            ->orderBy('content_key')
+            ->get();
+
+
+        $pageData = [];
+        foreach ($contents as $content) {
+            $pageData['sections'][$content->section_key][$content->content_key] =
+                $this->parseContentValue($content->content_value);
+        }
+
+        return Inertia::render('Admin/Pages/CMS/TourismAbout', [
+            'content' => $pageData['sections'] ?? []
+        ]);
+    }
+
     public function updateIntroductionSection(Request $request)
     {
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'facts' => 'required|string',
-            'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'image3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'highlights' => 'nullable|array', // Add validation for highlights
+            'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
+            'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
+            'image3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
+            'highlights' => 'nullable|array',
         ]);
 
         try {
             // Update text fields
             $fields = ['title', 'description', 'facts'];
-
+            Log::info('Files received:', $request->allFiles());
             foreach ($fields as $field) {
                 CmsContent::updateOrCreate(
                     [
@@ -170,6 +189,87 @@ class HomeCMSController extends Controller
     }
 
 
+    public function UpdateTourismAboutSection(Request $request)
+    {
+        $request->validate([
+            'description' => 'required|string',
+            'facts' => 'required|string',
+            'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
+            'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
+            'image3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
+            'responsibilities' => 'nullable|array',
+            'goals' => 'nullable|array',
+        ]);
+
+        try {
+
+            $fields = ['description', 'facts'];
+            foreach ($fields as $field) {
+                CmsContent::updateOrCreate(
+                    [
+                        'page_key'    => 'about_page',
+                        'section_key' => 'about',
+                        'content_key' => $field,
+                    ],
+                    [
+                        'content_value' => $request->$field,
+                    ]
+                );
+            }
+
+            if ($request->has('responsibilities')) {
+                CmsContent::updateOrCreate(
+                    [
+                        'page_key'    => 'about_page',
+                        'section_key' => 'about',
+                        'content_key' => 'responsibilities',
+                    ],
+                    [
+                        'content_value' => json_encode($request->responsibilities),
+                    ]
+                );
+            }
+
+            if ($request->has('goals')) {
+                CmsContent::updateOrCreate(
+                    [
+                        'page_key'    => 'about_page',
+                        'section_key' => 'about',
+                        'content_key' => 'goals',
+                    ],
+                    [
+                        'content_value' => json_encode($request->goals),
+                    ]
+                );
+            }
+
+
+
+            $imageFields = ['image1', 'image2', 'image3'];
+
+            foreach ($imageFields as $imageField) {
+                if ($request->hasFile($imageField)) {
+                    $path = $request->file($imageField)->store('CMSBanner', 'public');
+
+                    CmsContent::updateOrCreate(
+                        [
+                            'page_key'    => 'about_page',
+                            'section_key' => 'about',
+                            'content_key' => $imageField,
+                        ],
+                        [
+                            'content_value' => $path,
+                        ]
+                    );
+                }
+            }
+
+            return redirect()->back()->with('success', 'Introduction section updated successfully!');
+        } catch (\Throwable $e) {
+            return redirect()->back()
+                ->with('error', 'Something went wrong while updating the Introduction section. Please try again later.');
+        }
+    }
 
     protected function parseContentValue($value)
     {

@@ -11,6 +11,7 @@ import Introduction from '@UserUtils/components/Sections/Home/Introduction';
 import { FormEvent, useMemo, useState } from 'react';
 
 type IntroductionProps = {
+    highlights: never[];
     title: string;
     description: string;
     facts: string;
@@ -53,7 +54,7 @@ export default function HeroSectionEditForm() {
         title: content.introduction_section.title,
         description: content.introduction_section.description,
         facts: content.introduction_section.facts,
-        highlights: [] as Highlight[],
+        highlights: content.introduction_section.highlights || [],
         image1: null,
         image2: null,
         image3: null,
@@ -232,7 +233,7 @@ export default function HeroSectionEditForm() {
                                                 { value: 'fa-seedling', label: 'Seedling' },
                                                 { value: 'fa-tree', label: 'Tree' },
                                                 { value: 'fa-user-graduate', label: 'User' },
-                                                { value: 'fa-tools', label: 'Toolds' },
+                                                { value: 'fa-tools', label: 'Tools' },
                                                 { value: 'fa-map-marked-alt', label: 'Maps' },
                                             ]}
                                             required={true}
@@ -280,7 +281,7 @@ export default function HeroSectionEditForm() {
                                                     { value: 'fa-seedling', label: 'Seedling' },
                                                     { value: 'fa-tree', label: 'Tree' },
                                                     { value: 'fa-user-graduate', label: 'User' },
-                                                    { value: 'fa-tools', label: 'Toolds' },
+                                                    { value: 'fa-tools', label: 'Tools' },
                                                     { value: 'fa-map-marked-alt', label: 'Maps' },
                                                 ]}
                                                 required={true}
