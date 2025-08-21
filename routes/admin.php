@@ -46,6 +46,7 @@ Route::middleware('admin.access:auth')->group(function () {
     Route::get('/Admin/CMS/IntroductionSection', [HomeCMSController::class, 'IntroductionSection'])->name('cms.HeroSection');
     Route::get('/Admin/CMS/TourismSection', [HomeCMSController::class, 'TourismSection'])->name('cms.HeroSection');
     Route::get('/Admin/CMS/MissionVision', [HomeCMSController::class, 'MissionVision'])->name('cms.HeroSection');
+    Route::get('/Admin/CMS/PakilIntro', [HomeCMSController::class, 'PakilIntro'])->name('cms.PakilIntro');
 
 
 
@@ -54,9 +55,23 @@ Route::middleware('admin.access:auth')->group(function () {
     Route::post('/Admin/CMS/updateIntroductionSection', [HomeCMSController::class, 'updateIntroductionSection'])->name('cms.updateHeroSection');
     Route::post('/Admin/CMS/UpdateTourismAboutSection', [HomeCMSController::class, 'UpdateTourismAboutSection'])->name('cms.UpdateTourismAboutSection');
     Route::post('/Admin/CMS/UpdateMissionVision', [HomeCMSController::class, 'UpdateMissionVision'])->name('cms.UpdateTourismAboutSection');
+    Route::post('/Admin/CMS/UpdatePakilIntro', [HomeCMSController::class, 'UpdatePakilIntro'])->name('cms.UpdatePakilIntro');
 
 
 
+
+
+    // Route::prefix('admin/cms')->name('cms.')->group(function () {
+    //     Route::get('hero-section', [HomeCMSController::class, 'heroSection'])->name('hero');
+    //     Route::get('introduction-section', [HomeCMSController::class, 'introductionSection'])->name('introduction');
+    //     Route::get('tourism-section', [HomeCMSController::class, 'tourismSection'])->name('tourism');
+    //     Route::get('mission-vision', [HomeCMSController::class, 'missionVision'])->name('missionvision');
+
+    //     Route::put('hero-section', [HomeCMSController::class, 'updateHeroSection'])->name('hero.update');
+    //     Route::put('introduction-section', [HomeCMSController::class, 'updateIntroductionSection'])->name('introduction.update');
+    //     Route::put('tourism-section', [HomeCMSController::class, 'updateTourismSection'])->name('tourism.update');
+    //     Route::put('mission-vision', [HomeCMSController::class, 'updateMissionVision'])->name('missionvision.update');
+    // });
 
 
 

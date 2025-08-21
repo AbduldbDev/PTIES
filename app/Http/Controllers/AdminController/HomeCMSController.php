@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Log;
 
 class HomeCMSController extends Controller
 {
+    protected function parseContentValue($value)
+    {
+        $decoded = json_decode($value, true);
+        return (json_last_error() === JSON_ERROR_NONE) ? $decoded : $value;
+    }
+
     public function HeroSection()
     {
         $contents = CmsContent::where('page_key', "home_page")
@@ -317,9 +323,90 @@ class HomeCMSController extends Controller
         }
     }
 
-    protected function parseContentValue($value)
+
+    public function PakilIntro()
     {
-        $decoded = json_decode($value, true);
-        return (json_last_error() === JSON_ERROR_NONE) ? $decoded : $value;
+        $contents = CmsContent::where('page_key', "explore_pakil")
+            ->where('section_key', 'introduction')
+            ->orderBy('content_key')
+            ->get();
+
+
+        $pageData = [];
+        foreach ($contents as $content) {
+            $pageData['sections'][$content->section_key][$content->content_key] =
+                $this->parseContentValue($content->content_value);
+        }
+
+        return Inertia::render('Admin/Pages/CMS/AboutIntro', [
+            'content' => $pageData['sections'] ?? []
+        ]);
+    }
+
+    public function UpdatePakilIntro(Request $request)
+    {
+        $request->validate([
+            'description' => 'required|string',
+            'highlights' => 'nullable|array',
+            'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
+            'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
+            'image3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
+            'image4' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
+        ]);
+
+        try {
+
+            $fields = ['description'];
+            foreach ($fields as $field) {
+                CmsContent::updateOrCreate(
+                    [
+                        'page_key'    => 'explore_pakil',
+                        'section_key' => 'introduction',
+                        'content_key' => $field,
+                    ],
+                    [
+                        'content_value' => $request->$field,
+                    ]
+                );
+            }
+
+            $imageFields = ['image1', 'image2', 'image3', 'image4'];
+
+            foreach ($imageFields as $imageField) {
+                if ($request->hasFile($imageField)) {
+                    $path = $request->file($imageField)->store('CMSBanner', 'public');
+
+                    CmsContent::updateOrCreate(
+                        [
+                            'page_key'    => 'explore_pakil',
+                            'section_key' => 'introduction',
+                            'content_key' => $imageField,
+                        ],
+                        [
+                            'content_value' => $path,
+                        ]
+                    );
+                }
+            }
+
+            if ($request->has('highlights')) {
+                CmsContent::updateOrCreate(
+                    [
+                        'page_key'    => 'explore_pakil',
+                        'section_key' => 'introduction',
+                        'content_key' => 'highlights',
+                    ],
+                    [
+                        'content_value' => json_encode($request->highlights),
+                    ]
+                );
+            }
+
+
+            return redirect()->back()->with('success', 'Pakil introduction updated successfully!');
+        } catch (\Throwable $e) {
+            return redirect()->back()
+                ->with('error', 'Something went wrong while updating the Pakil introduction section. Please try again later.');
+        }
     }
 }

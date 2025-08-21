@@ -18,7 +18,6 @@ class PageController extends Controller
             ->orderBy('content_key')
             ->get();
 
-        // Transform to grouped structure
         $pageData = [];
         foreach ($contents as $content) {
             $pageData['sections'][$content->section_key][$content->content_key] =
@@ -39,9 +38,22 @@ class PageController extends Controller
 
     public function About()
     {
+        $contents = CmsContent::where('page_key', "explore_pakil")
+            ->orderBy('section_key')
+            ->orderBy('content_key')
+            ->get();
+
+        $pageData = [];
+        foreach ($contents as $content) {
+            $pageData['sections'][$content->section_key][$content->content_key] =
+                $this->parseContentValue($content->content_value);
+        }
+
         $banner = CMSBanner::where('key', 'About Pakil')->first();
         return Inertia::render('User/Pages/About', [
             'banner' => $banner,
+            'content' => $pageData['sections'] ?? [],
+
         ]);
     }
 

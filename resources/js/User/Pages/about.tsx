@@ -1,6 +1,13 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
+import Introductions from '@UserUtils/components/Sections/About/Introduction';
+import { CmsContent } from '@UserUtils/Types/cms';
+
+interface PageProps {
+    content: CmsContent;
+    [key: string]: unknown;
+}
 
 type PageBannerProps = {
     title: string;
@@ -8,8 +15,11 @@ type PageBannerProps = {
     desc: string;
     image: string;
 };
+
 export default function About() {
+    const { props } = usePage<PageProps>();
     const { banner } = usePage<{ banner: PageBannerProps }>().props;
+    const { content } = props;
 
     const title = 'Pakil Tourism | About';
     const description =
@@ -30,166 +40,23 @@ export default function About() {
                 imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
             ></Banner>
 
-            <section className="bg-white py-20">
-                <div className="container mx-auto max-w-5xl px-6">
+            <section className="px-4 py-12 md:py-16 lg:py-20">
+                <div className="mx-auto max-w-5xl">
                     <PageTitle
                         title="Discover"
                         subtitle="Introduction to Pakil"
                         desc="Where faith, heritage, and natural beauty converge"
                     ></PageTitle>
 
-                    <div className="flex flex-col items-start gap-12 lg:flex-row">
-                        <div className="lg:w-2/3">
-                            <div className="prose prose-lg max-w-none text-gray-700">
-                                <p className="text-dark mb-6">
-                                    Pakil is a fascinating little town located at the foot of Sierra Madre and bordered by Laguna Lake. A visit to our
-                                    town gives you a peek of the old-world; from the picturesque facade of the San Pedro Garavito de Alcantara Church
-                                    to the quaint Town Plaza that serves as the center of life of the Pakileños.
-                                </p>
-
-                                <div className="space-y-6">
-                                    <div className="flex">
-                                        <div className="mt-1 mr-4 flex-shrink-0">
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                                <i className="fa-solid fa-paintbrush text-primary"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <h4 className="text-dark mb-2 text-lg font-bold">Musical Heritage</h4>
-                                            <p>
-                                                The town is known for its rich musical heritage. It is the birthplace of the icon of church music, the
-                                                Palestrina of the Philippines - Marcelo Adonay. It is also where the first musical academy in the
-                                                country was initiated by a Guardian of the Franciscan Order, San Pedro Bautista in 1586. He trained
-                                                children choirs called "tiple".
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex">
-                                        <div className="mt-1 mr-4 flex-shrink-0">
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                                <i className="fas fa-church"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <h4 className="text-dark mb-2 text-lg font-bold">Spiritual Heart</h4>
-                                            <p>
-                                                This pilgrimage town is home to the "Patroness of the Laguna Lake", the Nuestra Señora de los Dolores
-                                                de Turumba. The St. Peter de Alcantara Church enshrines the Our Lady of Turumba painting, a replica of
-                                                the Nuestra Señora de las Antiguas which was found by fishermen on September 15, 1788 after a storm.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex">
-                                        <div className="mt-1 mr-4 flex-shrink-0">
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                                <i className="fa-solid fa-paintbrush text-primary"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <h4 className="text-dark mb-2 text-lg font-bold">Turumba Festival</h4>
-                                            <p>
-                                                The festival in honor of Our Lady of Turumba is the longest religious festival in the country. It
-                                                consists of seven novenas or "lupi" that last for seven months commemorating the seven sorrows of the
-                                                Virgin Mary.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex">
-                                        <div className="mt-1 mr-4 flex-shrink-0">
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                                <i className="fas fa-mountain"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <h4 className="text-dark mb-2 text-lg font-bold">Natural Beauty</h4>
-                                            <p>
-                                                If you are looking for a more pristine paradise, a hike to Mount Ping-as would definitely give you a
-                                                view that is stunningly different. Apart from the luscious foliages, you would see a single large
-                                                cross, revive spirituality and discover century-old traditions. A destination for the weary and for
-                                                those who want to escape stress completely!
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="w-full lg:w-1/3">
-                            <div className="rounded-xl border border-primary/10 bg-primary/5 p-6">
-                                <h4 className="mb-4 flex items-center text-xl font-bold text-primary">
-                                    <i className="fas fa-star mr-3"></i> Pakil Highlights
-                                </h4>
-
-                                <div className="space-y-4">
-                                    <div className="flex items-start">
-                                        <i className="fas fa-landmark mt-1 mr-2 text-primary"></i>
-                                        <div>
-                                            <h5 className="text-dark font-bold">San Pedro de Alcantara Church</h5>
-                                            <p className="text-sm text-gray-700">18th century Baroque church with remarkable facade</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start">
-                                        <i className="fas fa-mountain mt-1 mr-2 text-primary"></i>
-                                        <div>
-                                            <h5 className="text-dark font-bold">Laguna Lake</h5>
-                                            <p className="text-sm text-gray-700">Bordered by the largest lake in the Philippines</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start">
-                                        <i className="fas fa-mountain mt-1 mr-2 text-primary"></i>
-                                        <div>
-                                            <h5 className="text-dark font-bold">Mount Ping-as</h5>
-                                            <p className="text-sm text-gray-700">Scenic hiking destination with spiritual significance</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start">
-                                        <i className="fa-solid fa-paintbrush mt-1 mr-2 text-primary"></i>
-                                        <div>
-                                            <h5 className="text-dark font-bold">Marcelo Adonay</h5>
-                                            <p className="text-sm text-gray-700">The "Palestrina of the Philippines"</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
-                        <div className="overflow-hidden rounded-xl border-2 border-white shadow-md">
-                            <img
-                                src="/User/Images/church.jpg"
-                                alt="Church"
-                                className="h-40 w-full object-cover transition duration-300 hover:scale-110"
-                            />
-                        </div>
-                        <div className="overflow-hidden rounded-xl border-2 border-white shadow-md">
-                            <img
-                                src="/User/Images/church.jpg"
-                                alt="Town Plaza"
-                                className="h-40 w-full object-cover transition duration-300 hover:scale-110"
-                            />
-                        </div>
-                        <div className="overflow-hidden rounded-xl border-2 border-white shadow-md">
-                            <img
-                                src="/User/Images/church.jpg"
-                                alt="Music"
-                                className="h-40 w-full object-cover transition duration-300 hover:scale-110"
-                            />
-                        </div>
-                        <div className="overflow-hidden rounded-xl border-2 border-white shadow-md">
-                            <img
-                                src="/User/Images/church.jpg"
-                                alt="Nature"
-                                className="h-40 w-full object-cover transition duration-300 hover:scale-110"
-                            />
-                        </div>
-                    </div>
+                    <Introductions
+                        content={{
+                            ...content.introduction,
+                            image1: content.introduction.image1 ? `/storage/${content.introduction.image1}` : '/User/Images/church.jpg',
+                            image2: content.introduction.image2 ? `/storage/${content.introduction.image2}` : '/User/Images/church.jpg',
+                            image3: content.introduction.image3 ? `/storage/${content.introduction.image3}` : '/User/Images/church.jpg',
+                            image4: content.introduction.image4 ? `/storage/${content.introduction.image4}` : '/User/Images/church.jpg',
+                        }}
+                    />
                 </div>
             </section>
 

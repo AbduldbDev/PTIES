@@ -82,6 +82,11 @@ const navItems: NavItem[] = [
                     { name: 'Mission & Vision', path: '/Admin/CMS/MissionVision' },
                 ],
             },
+            {
+                name: 'Explore Sections',
+                path: '',
+                subItems: [{ name: 'About Pakil', path: '/Admin/CMS/PakilIntro' }],
+            },
         ],
     },
     {

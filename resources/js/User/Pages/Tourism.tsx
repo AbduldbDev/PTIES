@@ -35,6 +35,7 @@ export default function TourismAboutPage() {
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
             </Head>
+            
             <Banner
                 title={banner?.title}
                 subtitle={banner?.subtitle}
@@ -132,58 +133,6 @@ export default function TourismAboutPage() {
 
             <DeparmentStructure />
             <CitizenCharter />
-
-            {/* <section id="citizen_charter" className="py-10">
-                <div className="max-w-8xl container mx-auto px-6">
-                    <div>
-                        <PageTitle
-                            title="Governance"
-                            subtitle="Citizen's Charter"
-                            desc="Our commitment to transparent and efficient public service"
-                        ></PageTitle>
-
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                            <div className="md:flex">
-                                <div className="border-b border-gray-200 bg-primary/5 p-8 md:w-1/3 md:border-r md:border-b-0">
-                                    <h4 className="mb-4 flex items-center text-xl font-bold text-primary">
-                                        <i className="fas fa-file-contract mr-3"></i> About the Charter
-                                    </h4>
-                                    <div className="prose text-gray-700">
-                                        <p>
-                                            The Citizen's Charter outlines our services, procedures, and response times to ensure accountability and
-                                            transparency in local governance.
-                                        </p>
-                                        <p className="mt-4">
-                                            This document serves as our social contract with the people of Pakil, detailing what services they can
-                                            expect from their local government.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="p-8 md:w-2/3">
-                                    <div className="flex h-96 items-center justify-center rounded-lg border-2 border-dashed border-gray-300">
-                                        <div className="p-6 text-center">
-                                            <i className="fas fa-file-pdf mb-4 text-5xl text-primary"></i>
-                                            <h5 className="text-dark mb-2 text-lg font-bold">Pakil Citizen's Charter 2025</h5>
-                                            <p className="mb-4 text-gray-600">PDF document | 2.4MB</p>
-                                            <button className="inline-flex items-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none">
-                                                <i className="fas fa-download mr-2"></i> Download Charter
-                                            </button>
-                                            <div className="mt-4 text-sm text-gray-500">
-                                                <p>
-                                                    Or <br />
-                                                    <a href="#" className="text-primary hover:underline">
-                                                        view online
-                                                    </a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section> */}
         </>
     );
 }
