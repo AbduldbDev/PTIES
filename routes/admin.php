@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController\WebsiteSettingsController;
 use App\Http\Controllers\AdminController\BannerController;
 use App\Http\Controllers\AdminController\HomeCMSController;
 use App\Http\Controllers\AdminController\PromotionalvidController;
+use App\Http\Controllers\AdminController\TerminalController;
 use App\Http\Controllers\AdminController\TourGuideController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
@@ -65,6 +66,13 @@ Route::middleware('admin.access:auth')->group(function () {
     Route::post('/Admin/tour-guides/create', [TourGuideController::class, 'create'])->name('tourguide.create');
     Route::delete('/Admin/tour-guides/delete/{id}', [TourGuideController::class, 'delete'])->name('tourguide.delete');
 
+
+    Route::get('/Admin/terminals', [TerminalController::class, 'index'])->name('terminal.index');
+    Route::get('/Admin/terminals/new', [TerminalController::class, 'new'])->name('terminal.new');
+    Route::get('/Admin/terminals/edit/{id}', [TerminalController::class, 'edit'])->name('terminal.edit');
+    Route::post('/Admin/terminal/update/{id}', [TerminalController::class, 'update'])->name('terminal.update');
+    Route::post(' /Admin/terminal/create', [TerminalController::class, 'create'])->name('terminal.create');
+    Route::delete('/Admin/terminal/delete/{id}', [TerminalController::class, 'delete'])->name('terminal.delete');
 
 
 

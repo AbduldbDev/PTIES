@@ -94,6 +94,14 @@ const navItems: NavItem[] = [
             { name: 'All Tour Guide', path: '/Admin/tour-guides' },
         ],
     },
+    {
+        icon: <PageIcon />,
+        name: 'Terminals',
+        subItems: [
+            { name: 'Add New Terminal', path: '/Admin/terminals/new' },
+            { name: 'All Terminal', path: '/Admin/terminals' },
+        ],
+    },
 ];
 
 const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {

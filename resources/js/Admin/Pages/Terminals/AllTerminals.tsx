@@ -8,14 +8,18 @@ import FlashMessage from '@AdminUtils/context/FlashMessage';
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 
-type UserItem = {
+interface TerminalProps {
     id: number;
     name: string;
-    gender: string;
-    description: string;
-    contact: string;
-    facebook: string;
-    image: string;
+    sched: string;
+    sched_desc: string;
+    long: string;
+    lat: string;
+    routes: Routes[];
+}
+
+type Routes = {
+    name: string;
 };
 
 type PageProps = {
@@ -24,7 +28,7 @@ type PageProps = {
         error?: string;
     };
     errors?: Record<string, string | undefined>;
-    items: PaginatedResponse<UserItem>;
+    items: PaginatedResponse<TerminalProps>;
 };
 
 interface PaginatedResponse<T> {
@@ -65,9 +69,6 @@ export default function Home() {
                 if (sortConfig.key === 'name') {
                     return sortConfig.direction === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
                 }
-                if (sortConfig.key === 'gender') {
-                    return sortConfig.direction === 'asc' ? a.gender.localeCompare(b.gender) : b.gender.localeCompare(a.gender);
-                }
 
                 return 0;
             });
@@ -76,11 +77,11 @@ export default function Home() {
     }, [items.data, sortConfig]);
 
     const handleDelete = (id: number) => {
-        form.delete(`/Admin/tour-guides/delete/${id}`);
+        form.delete(`/Admin/terminal/delete/${id}`);
     };
 
     const handleView = (id: any) => {
-        router.get(`/Admin/tour-guides/edit/${id}`);
+        router.get(`/Admin/terminals/edit/${id}`);
     };
 
     const handleSort = (key: string) => {
@@ -89,11 +90,11 @@ export default function Home() {
     };
 
     const columns: SortableColumn[] = [
-        { key: 'name', label: 'User', sortable: true },
-        { key: 'gender', label: 'Gender', sortable: true },
-        { key: 'contact', label: 'Contact', sortable: true },
-        { key: 'description', label: 'Description', sortable: false },
-        { key: 'facebook', label: 'Facebook', sortable: false, align: 'center' },
+        { key: 'name', label: 'Terminal', sortable: true },
+        { key: 'sched', label: 'Schedule', sortable: false },
+        { key: 'sched_desc', label: 'Schedule Description', sortable: false },
+        { key: 'routes', label: 'Routes', sortable: false },
+        { key: 'facebook', label: 'Maps', sortable: false },
         { key: 'action', label: 'Action', sortable: false, align: 'center' },
     ];
 
@@ -109,10 +110,10 @@ export default function Home() {
                 {errors?.error && <FlashMessage type="error" message={errors.error} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
-                <PageBreadcrumb pageTitle="Tour Guides Management" />
+                <PageBreadcrumb pageTitle="Terminals Management" />
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
-                    <ComponentCard title="All Pakil Tour Guides">
+                    <ComponentCard title="All Terminals">
                         <div className="overflow-hidden rounded-xl bg-white dark:bg-white/[0.03]">
                             <div className="max-w-full overflow-x-auto">
                                 <Table>
@@ -142,55 +143,50 @@ export default function Home() {
                                     </TableHeader>
 
                                     <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                                        {sortedItems.map((user) => (
-                                            <TableRow key={user.id}>
+                                        {sortedItems.map((Terminal) => (
+                                            <TableRow key={Terminal.id}>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="h-10 w-10 overflow-hidden rounded-full">
-                                                            <img
-                                                                className="object-contain"
-                                                                width={40}
-                                                                height={40}
-                                                                src={user.image ? `/storage/${user.image}` : '/images/user/User.png'}
-                                                                alt={`${user.name} ${user.name}`}
-                                                            />
-                                                        </div>
-                                                        <div>
-                                                            <span className="font-medium text-gray-800 dark:text-white/90">
-                                                                {user.name}, {user.name} {user.name}
-                                                            </span>
-                                                        </div>
-                                                    </div>
+                                                    {Terminal.name}
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                    {user.gender}
+                                                    {Terminal.sched}
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                    {user.contact}
+                                                    {Terminal.sched_desc}
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                    {user.description}
+                                                    <ul style={{ listStyleType: 'disc' }}>
+                                                        {Terminal && Terminal.routes && Terminal.routes.length > 0 ? (
+                                                            <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                                                                {Terminal.routes.map((route, index) => (
+                                                                    <li key={index}>{route.name}</li>
+                                                                ))}
+                                                            </ul>
+                                                        ) : (
+                                                            <i>No routes available</i>
+                                                        )}
+                                                    </ul>
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-center text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                     <a
                                                         target="_blank"
-                                                        className="rounded-full bg-blue-800/50 px-3 py-1 text-black dark:text-gray-300"
-                                                        href={user.facebook}
+                                                        className="rounded-full bg-green-800/50 px-3 py-1 text-black dark:text-gray-300"
+                                                        href={`https://www.google.com/maps?q=${Terminal.lat},${Terminal.long}&z=15&t=m`}
                                                     >
-                                                        View facebook
+                                                        View Maps
                                                     </a>
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                     <div className="col-span-1 flex justify-center">
                                                         <div className="flex w-full items-center justify-center gap-2">
                                                             <DeleteConfirm
-                                                                onDeleteConfirmed={() => handleDelete(user.id)}
-                                                                message={`Are you sure you want to delete tour guide named ${user.name}?`}
+                                                                onDeleteConfirmed={() => handleDelete(Terminal.id)}
+                                                                message={`Are you sure you want to delete Terminal ${Terminal.name} ${Terminal.name}?`}
                                                             />
 
                                                             <button
                                                                 aria-label="Edit-btn"
-                                                                onClick={() => handleView(user.id)}
+                                                                onClick={() => handleView(Terminal.id)}
                                                                 className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white/90"
                                                             >
                                                                 <svg

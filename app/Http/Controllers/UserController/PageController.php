@@ -9,6 +9,7 @@ use App\Models\CMSBanner;
 use App\Models\ContentPromotional;
 use App\Models\CmsContent;
 use App\Models\PakilGuides;
+use App\Models\PakilTerminals;
 
 class PageController extends Controller
 {
@@ -102,14 +103,21 @@ class PageController extends Controller
         ]);
     }
 
-    public function Terminals()
+    public function terminals()
     {
         $banner = CMSBanner::where('key', 'Terminals')->first();
+
+        $terminals = PakilTerminals::get()->map(function ($terminal) {
+            $terminal->routes = $this->parseContentValue($terminal->routes);
+            return $terminal;
+        });
+
         return Inertia::render('User/Pages/Terminals', [
             'banner' => $banner,
+            'terminals' => $terminals,
         ]);
     }
-
+    
     public function LocalProducts()
     {
         $banner = CMSBanner::where('key', 'Local Products')->first();

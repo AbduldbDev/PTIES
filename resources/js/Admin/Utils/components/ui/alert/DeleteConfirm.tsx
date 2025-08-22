@@ -43,7 +43,7 @@ export default function DeleteConfirm({ onDeleteConfirmed, message = 'Are you su
             </div>
 
             {open && (
-                <div className="bg-opacity-50 fixed inset-0 z-999999999 flex items-center justify-center px-4 backdrop-blur-md">
+                <div className="bg-opacity-50 px-m fixed inset-0 z-999999999 flex items-center justify-center backdrop-blur-xs">
                     <div className="relative max-w-lg rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-[#1E2634]">
                         <button
                             onClick={closeDialog}
