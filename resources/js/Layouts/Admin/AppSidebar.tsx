@@ -86,6 +86,14 @@ const navItems: NavItem[] = [
         name: 'Website Settings',
         subItems: [{ name: 'Color Theme', path: '/Admin/Settings/Website' }],
     },
+    {
+        icon: <PageIcon />,
+        name: 'Tour Guides',
+        subItems: [
+            { name: 'Add Tour Guide', path: '/Admin/tour-guides/new' },
+            { name: 'All Tour Guide', path: '/Admin/tour-guides' },
+        ],
+    },
 ];
 
 const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
@@ -154,13 +162,11 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
 
             if (!element) return newState;
 
-           
             if (animationRefs.current[key]) {
                 animationRefs.current[key].cancel();
             }
 
             if (newState[key]) {
-               
                 element.style.display = 'block';
                 element.style.height = '0px';
                 element.style.overflow = 'hidden';
@@ -178,7 +184,6 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
 
                 animationRefs.current[key] = animation;
             } else {
-                
                 const startHeight = element.scrollHeight;
                 element.style.height = `${startHeight}px`;
                 element.style.overflow = 'hidden';

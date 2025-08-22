@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController\WebsiteSettingsController;
 use App\Http\Controllers\AdminController\BannerController;
 use App\Http\Controllers\AdminController\HomeCMSController;
 use App\Http\Controllers\AdminController\PromotionalvidController;
+use App\Http\Controllers\AdminController\TourGuideController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
 
@@ -57,6 +58,13 @@ Route::middleware('admin.access:auth')->group(function () {
     Route::post('/Admin/CMS/UpdateMissionVision', [HomeCMSController::class, 'UpdateMissionVision'])->name('cms.UpdateTourismAboutSection');
     Route::post('/Admin/CMS/UpdatePakilIntro', [HomeCMSController::class, 'UpdatePakilIntro'])->name('cms.UpdatePakilIntro');
 
+    Route::get('/Admin/tour-guides', [TourGuideController::class, 'index'])->name('tourguide.index');
+    Route::get('/Admin/tour-guides/new', [TourGuideController::class, 'newtourguide'])->name('tourguide.new');
+    Route::get('/Admin/tour-guides/edit/{id}', [TourGuideController::class, 'edit'])->name('tourguide.edit');
+    Route::post('/Admin/tour-guides/update/{id}', [TourGuideController::class, 'update'])->name('guides.update');
+    Route::post('/Admin/tour-guides/create', [TourGuideController::class, 'create'])->name('tourguide.create');
+    Route::delete('/Admin/tour-guides/delete/{id}', [TourGuideController::class, 'delete'])->name('tourguide.delete');
+
 
 
 
@@ -72,6 +80,9 @@ Route::middleware('admin.access:auth')->group(function () {
     //     Route::put('tourism-section', [HomeCMSController::class, 'updateTourismSection'])->name('tourism.update');
     //     Route::put('mission-vision', [HomeCMSController::class, 'updateMissionVision'])->name('missionvision.update');
     // });
+
+
+    //
 
 
 

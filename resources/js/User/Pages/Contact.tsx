@@ -1,6 +1,7 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
+import TourGuide from '@UserUtils/components/Cards/TourGuide';
 import ContactUs from '@UserUtils/components/Sections/Contact/contactform';
 import { useEffect } from 'react';
 
@@ -10,8 +11,24 @@ type PageBannerProps = {
     desc: string;
     image: string;
 };
+interface PakilGuideProps {
+    id: number;
+    name: string;
+    description: string;
+    gender: string;
+    contact: string;
+    image: string;
+    facebook: string;
+}
+
+interface PageProps {
+    banner: PageBannerProps;
+    guide: PakilGuideProps[];
+    [key: string]: unknown;
+}
+
 export default function Contact() {
-    const { banner } = usePage<{ banner: PageBannerProps }>().props;
+    const { banner, guide } = usePage<PageProps>().props;
 
     const title = 'Pakil Tourism | Contact Us';
     const description =
@@ -231,94 +248,15 @@ export default function Contact() {
                 </div>
             </section>
 
-            <section id="tourguides" className="py-20">
-                <div className="container mx-auto px-6">
+            <section id="tourguides" className="py-12 md:py-20">
+                <div className="container mx-auto px-4 sm:px-6">
                     <PageTitle
                         title="Local Experts"
                         subtitle="Certified Tour Guides"
                         desc="Explore Pakil with our knowledgeable local guides"
                     ></PageTitle>
-
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg transition duration-300 hover:shadow-xl">
-                            <div className="relative h-48">
-                                <img src="/User/Images/ace.png" alt="Tour Guide" className="h-full w-full object-cover" />
-                                <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                                    <h4 className="text-xl font-bold text-white">Juan Dela Cruz</h4>
-                                </div>
-                            </div>
-                            <div className="p-6">
-                                <p className="mb-4 text-gray-600">
-                                    Specializes in historical and cultural tours of Pakil's heritage sites. Fluent in English, Filipino, and local
-                                    dialect.
-                                </p>
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="text-sm text-gray-500">Contact:</p>
-                                        <p className="font-medium">0917 123 4567</p>
-                                    </div>
-                                    <a
-                                        href="#"
-                                        className="flex items-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-white transition duration-300 hover:bg-primary/90"
-                                    >
-                                        <i className="fa-brands fa-facebook-f mr-2"></i> View Facebook
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg transition duration-300 hover:shadow-xl">
-                            <div className="relative h-48">
-                                <img src="/User/Images/ace.png" alt="Tour Guide" className="h-full w-full object-cover" />
-                                <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                                    <h4 className="text-xl font-bold text-white">Maria Santos</h4>
-                                </div>
-                            </div>
-                            <div className="p-6">
-                                <p className="mb-4 text-gray-600">
-                                    Expert in nature and adventure tours. Knows all the hidden gems of Pakil's natural attractions and hiking trails.
-                                </p>
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="text-sm text-gray-500">Contact:</p>
-                                        <p className="font-medium">0922 987 6543</p>
-                                    </div>
-                                    <a
-                                        href="#"
-                                        className="flex items-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-white transition duration-300 hover:bg-primary/90"
-                                    >
-                                        <i className="fa-brands fa-facebook-f mr-2"></i> View Facebook
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg transition duration-300 hover:shadow-xl">
-                            <div className="relative h-48">
-                                <img src="/User/Images/ace.png" alt="Tour Guide" className="h-full w-full object-cover" />
-                                <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                                    <h4 className="text-xl font-bold text-white">Pedro Reyes</h4>
-                                </div>
-                            </div>
-                            <div className="p-6">
-                                <p className="mb-4 text-gray-600">
-                                    Specializes in culinary and arts tours. Perfect for visitors interested in Pakil's local cuisine and traditional
-                                    crafts.
-                                </p>
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="text-sm text-gray-500">Contact:</p>
-                                        <p className="font-medium">0933 456 7890</p>
-                                    </div>
-                                    <a
-                                        href="#"
-                                        className="flex items-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-white transition duration-300 hover:bg-primary/90"
-                                    >
-                                        <i className="fa-brands fa-facebook-f mr-2"></i> View Facebook
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+                        {guide && guide.map((guideItem: PakilGuideProps) => <TourGuide key={guideItem.id} guide={guideItem} />)}
                     </div>
                 </div>
             </section>
