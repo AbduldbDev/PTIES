@@ -1,5 +1,5 @@
+import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import { useState } from 'react';
-
 const ContactAndFAQ = () => {
     // State for FAQ accordion
     const [openFaqs, setOpenFaqs] = useState<Record<number, boolean>>({});
@@ -39,19 +39,11 @@ const ContactAndFAQ = () => {
     return (
         <section className="py-16">
             <div className="container mx-auto px-4">
-                <div className="mb-12 text-center">
-                    <div className="mb-3 inline-flex items-center">
-                        <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                        <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Get In Touch</h2>
-                        <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
-                    </div>
-                    <h3 className="text-dark mb-3 text-3xl font-bold">
-                        <span className="text-primary">Contact Us</span> & FAQs
-                    </h3>
-                    <p className="mx-auto max-w-2xl text-gray-600">
-                        Have questions about visiting Pakil? Reach out to us or browse our frequently asked questions.
-                    </p>
-                </div>
+                <PageTitle
+                    title="Get In Touch"
+                    subtitle="Contact Us & FAQs"
+                    desc="Have questions about visiting Pakil? Reach out to us or browse our frequently asked questions."
+                ></PageTitle>
 
                 <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
                     {/* Contact Form */}

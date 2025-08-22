@@ -1,5 +1,6 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
+import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import ContactUs from '@UserUtils/components/Sections/Contact/contactform';
 import { useEffect } from 'react';
 
@@ -42,24 +43,19 @@ export default function Contact() {
                 title={banner?.title}
                 subtitle={banner?.subtitle}
                 desc={banner?.desc}
-                imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
+                imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/User/Images/ace.png'}
             ></Banner>
 
             <ContactUs />
 
-            <section id="hotlines" className="border py-8">
+            <section id="hotlines" className="py-8">
                 <div className="container mx-auto px-4">
-                    <div className="mb-16 text-center">
-                        <div className="mb-4 inline-flex items-center">
-                            <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                            <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Safety First</h2>
-                            <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
-                        </div>
-                        <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
-                            <span className="text-primary">Emergency</span> Hotlines & Locations
-                        </h3>
-                        <p className="mx-auto max-w-3xl text-lg text-gray-600">Important contacts and locations for your safety in Pakil</p>
-                    </div>
+                    <PageTitle
+                        title="Safety First"
+                        subtitle="Emergency Hotlines & Locations"
+                        desc="Important contacts and locations for your safety in Pakil"
+                    ></PageTitle>
+
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         <div className="rounded-lg border border-gray-100 bg-white p-4 shadow-sm">
                             <div className="mb-3 flex items-start">
@@ -237,22 +233,16 @@ export default function Contact() {
 
             <section id="tourguides" className="py-20">
                 <div className="container mx-auto px-6">
-                    <div className="mb-16 text-center">
-                        <div className="mb-4 inline-flex items-center">
-                            <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                            <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Local Experts</h2>
-                            <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
-                        </div>
-                        <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
-                            <span className="text-primary">Certified</span> Tour Guides
-                        </h3>
-                        <p className="mx-auto max-w-3xl text-lg text-gray-600">Explore Pakil with our knowledgeable local guides</p>
-                    </div>
+                    <PageTitle
+                        title="Local Experts"
+                        subtitle="Certified Tour Guides"
+                        desc="Explore Pakil with our knowledgeable local guides"
+                    ></PageTitle>
 
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg transition duration-300 hover:shadow-xl">
                             <div className="relative h-48">
-                                <img src="/Images/church.jpg" alt="Tour Guide" className="h-full w-full object-cover" />
+                                <img src="/User/Images/ace.png" alt="Tour Guide" className="h-full w-full object-cover" />
                                 <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                                     <h4 className="text-xl font-bold text-white">Juan Dela Cruz</h4>
                                 </div>
@@ -279,7 +269,7 @@ export default function Contact() {
 
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg transition duration-300 hover:shadow-xl">
                             <div className="relative h-48">
-                                <img src="/Images/church.jpg" alt="Tour Guide" className="h-full w-full object-cover" />
+                                <img src="/User/Images/ace.png" alt="Tour Guide" className="h-full w-full object-cover" />
                                 <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                                     <h4 className="text-xl font-bold text-white">Maria Santos</h4>
                                 </div>
@@ -305,7 +295,7 @@ export default function Contact() {
 
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg transition duration-300 hover:shadow-xl">
                             <div className="relative h-48">
-                                <img src="/Images/church.jpg" alt="Tour Guide" className="h-full w-full object-cover" />
+                                <img src="/User/Images/ace.png" alt="Tour Guide" className="h-full w-full object-cover" />
                                 <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                                     <h4 className="text-xl font-bold text-white">Pedro Reyes</h4>
                                 </div>

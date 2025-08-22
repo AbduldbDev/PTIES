@@ -81,14 +81,16 @@ export default function Home() {
                 </div>
             </section>
 
-            <PromotionalVideo
-                title={promvid.title}
-                slogan={promvid.slogan}
-                description={promvid.description}
-                highlights={promvid.highlights}
-                thumbnail={`/storage/${promvid.thumbnail}`}
-                videoUrl={`/storage/${promvid.video}`}
-            />
+            {promvid && (
+                <PromotionalVideo
+                    title={promvid.title}
+                    slogan={promvid.slogan}
+                    description={promvid.description}
+                    highlights={promvid.highlights}
+                    thumbnail={`/storage/${promvid.thumbnail}`}
+                    videoUrl={`/storage/${promvid.video}`}
+                />
+            )}
 
             <section className="bg-white py-20">
                 <div className="container mx-auto px-6">
@@ -177,19 +179,11 @@ export default function Home() {
 
             <section className="py-10">
                 <div className="container mx-auto px-6">
-                    <div className="mb-16 text-center">
-                        <div className="mb-4 inline-flex items-center">
-                            <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                            <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Geography</h2>
-                            <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
-                        </div>
-                        <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
-                            <span className="text-primary">Location</span> & Demographics
-                        </h3>
-                        <p className="mx-auto max-w-3xl text-lg text-gray-600">
-                            Discover Pakil's strategic position in Laguna and key statistical information
-                        </p>
-                    </div>
+                    <PageTitle
+                        title="Geography"
+                        subtitle="Location & Demographics"
+                        desc="Discover Pakil's strategic position in Laguna and key statistical information"
+                    ></PageTitle>
 
                     <div className="flex flex-col gap-12 lg:flex-row">
                         <div className="lg:w-1/2">
@@ -360,17 +354,7 @@ export default function Home() {
 
             <section className="py-10" id="featured_posts">
                 <div className="container mx-auto px-6">
-                    <div className="mb-12 text-center">
-                        <div className="mb-4 inline-flex items-center">
-                            <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                            <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Social Wall</h2>
-                            <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
-                        </div>
-                        <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
-                            <span className="text-primary">Featured</span> Post
-                        </h3>
-                        <p className="mx-auto max-w-3xl text-lg text-gray-600">A glimpse of Pakil through the eyes of our visitors</p>
-                    </div>
+                    <PageTitle title="Social Wall" subtitle="Featured Post" desc="A glimpse of Pakil through the eyes of our visitors"></PageTitle>
 
                     <div className="mx-auto max-w-2xl">
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg transition-all hover:shadow-xl">
@@ -426,17 +410,7 @@ export default function Home() {
 
             <section className="bg-white py-10">
                 <div className="container mx-auto px-6">
-                    <div className="mb-16 text-center">
-                        <div className="mb-4 inline-flex items-center">
-                            <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                            <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Updates</h2>
-                            <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
-                        </div>
-                        <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
-                            <span className="text-primary">Events</span> & News
-                        </h3>
-                        <p className="mx-auto max-w-3xl text-lg text-gray-600">Stay updated with the latest happenings in Pakil</p>
-                    </div>
+                    <PageTitle title="Updates" subtitle="Events & News" desc="Stay updated with the latest happenings in Pakil"></PageTitle>
 
                     <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">

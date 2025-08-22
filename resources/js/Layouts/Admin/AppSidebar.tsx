@@ -47,16 +47,8 @@ const navItems: NavItem[] = [
         icon: <UserCircleIcon />,
         name: 'Account Management',
         subItems: [
-            {
-                name: 'All Accounts',
-                path: '',
-                subItems: [{ name: 'Active Accounts', path: '/Admin/Accounts' }],
-            },
-            {
-                name: 'Add New Account',
-                path: '',
-                subItems: [{ name: 'Add Account', path: '/Admin/Accounts/New' }],
-            },
+            { name: 'Add Account', path: '/Admin/Accounts/New' },
+            { name: 'All Accounts', path: '/Admin/Accounts' },
         ],
     },
     {
@@ -119,7 +111,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
 
                 if (isActive(item.path)) {
                     foundActive = true;
-                    // Open all parent menus
+
                     parentKeys.forEach((key, i) => {
                         const partialKey = parentKeys.slice(0, i + 1).join('-');
                         newOpenSubmenus[partialKey] = true;
@@ -148,7 +140,6 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
     }, [url, isActive]);
 
     useEffect(() => {
-        // Clean up animations on unmount
         return () => {
             Object.values(animationRefs.current).forEach((animation) => {
                 if (animation) animation.cancel();
@@ -163,13 +154,13 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
 
             if (!element) return newState;
 
-            // Cancel any ongoing animation
+           
             if (animationRefs.current[key]) {
                 animationRefs.current[key].cancel();
             }
 
             if (newState[key]) {
-                // Opening animation
+               
                 element.style.display = 'block';
                 element.style.height = '0px';
                 element.style.overflow = 'hidden';
@@ -187,7 +178,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
 
                 animationRefs.current[key] = animation;
             } else {
-                // Closing animation
+                
                 const startHeight = element.scrollHeight;
                 element.style.height = `${startHeight}px`;
                 element.style.overflow = 'hidden';

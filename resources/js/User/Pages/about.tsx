@@ -33,32 +33,36 @@ export default function About() {
                 <meta property="og:description" content={description} />
             </Head>
 
-            <Banner
-                title={banner?.title}
-                subtitle={banner?.subtitle}
-                desc={banner?.desc}
-                imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
-            ></Banner>
+            {banner && (
+                <Banner
+                    title={banner?.title}
+                    subtitle={banner?.subtitle}
+                    desc={banner?.desc}
+                    imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
+                ></Banner>
+            )}
 
-            <section className="px-4 py-12 md:py-16 lg:py-20">
-                <div className="mx-auto max-w-5xl">
-                    <PageTitle
-                        title="Discover"
-                        subtitle="Introduction to Pakil"
-                        desc="Where faith, heritage, and natural beauty converge"
-                    ></PageTitle>
+            {content.introduction && (
+                <section className="px-4 py-12 md:py-16 lg:py-20">
+                    <div className="mx-auto max-w-5xl">
+                        <PageTitle
+                            title="Discover"
+                            subtitle="Introduction to Pakil"
+                            desc="Where faith, heritage, and natural beauty converge"
+                        ></PageTitle>
 
-                    <Introductions
-                        content={{
-                            ...content.introduction,
-                            image1: content.introduction.image1 ? `/storage/${content.introduction.image1}` : '/User/Images/church.jpg',
-                            image2: content.introduction.image2 ? `/storage/${content.introduction.image2}` : '/User/Images/church.jpg',
-                            image3: content.introduction.image3 ? `/storage/${content.introduction.image3}` : '/User/Images/church.jpg',
-                            image4: content.introduction.image4 ? `/storage/${content.introduction.image4}` : '/User/Images/church.jpg',
-                        }}
-                    />
-                </div>
-            </section>
+                        <Introductions
+                            content={{
+                                ...content.introduction,
+                                image1: content.introduction.image1 ? `/storage/${content.introduction.image1}` : '/User/Images/church.jpg',
+                                image2: content.introduction.image2 ? `/storage/${content.introduction.image2}` : '/User/Images/church.jpg',
+                                image3: content.introduction.image3 ? `/storage/${content.introduction.image3}` : '/User/Images/church.jpg',
+                                image4: content.introduction.image4 ? `/storage/${content.introduction.image4}` : '/User/Images/church.jpg',
+                            }}
+                        />
+                    </div>
+                </section>
+            )}
 
             <section className="py-20">
                 <div className="container mx-auto max-w-5xl px-6">

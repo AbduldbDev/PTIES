@@ -141,7 +141,7 @@ class PageController extends Controller
 
     public function Events()
     {
-        $banner = CMSBanner::where('key', 'contact')->first();
+        $banner = CMSBanner::where('key', 'Events')->first();
         return Inertia::render('User/Pages/Events', [
             'banner' => $banner,
         ]);

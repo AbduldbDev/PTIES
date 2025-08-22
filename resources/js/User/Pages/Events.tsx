@@ -22,12 +22,15 @@ export const Events = () => {
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
             </Head>
-            <Banner
-                title={banner?.title}
-                subtitle={banner?.subtitle}
-                desc={banner?.desc}
-                imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
-            ></Banner>
+
+            {banner && (
+                <Banner
+                    title={banner?.title}
+                    subtitle={banner?.subtitle}
+                    desc={banner?.desc}
+                    imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
+                ></Banner>
+            )}
             <section className="py-16">
                 <div className="container mx-auto px-4">
                     <div className="mb-12 text-center">
