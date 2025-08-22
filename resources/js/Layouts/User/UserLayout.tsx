@@ -5,6 +5,7 @@ import AnimatedBackground from '@UserUtils/components/Layout/Background';
 import CookieConsentBanner from '@UserUtils/components/Layout/Cookies';
 import Loader from '@UserUtils/components/Layout/Loader';
 import useThemeColors from '@UserUtils/components/Layout/ThemeColor';
+import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { Footer } from './Footer';
@@ -15,6 +16,17 @@ export default function UserLayout({ children }: PropsWithChildren) {
     const [assetsLoaded, setAssetsLoaded] = useState(false);
     const [showLoader, setShowLoader] = useState(true);
     const loaderTimeout = useRef<NodeJS.Timeout | null>(null);
+    useEffect(() => {
+        Aos.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            mirror: false,
+            offset: 500,
+        });
+
+        // refresh animations if dynamic content loads later
+        Aos.refresh();
+    }, []);
 
     useEffect(() => {
         if (!colorsLoaded) return;

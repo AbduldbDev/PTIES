@@ -74,7 +74,7 @@ export default function Officials() {
                         </div>
                     </div>
 
-                    <div className="mx-auto mb-16 max-w-4xl">
+                    <div className="mx-auto mb-16 max-w-4xl"  data-aos="fade-up">
                         <div className="overflow-hidden rounded-2xl border-primary bg-[#eceef5] to-white shadow-xl">
                             <div className="flex-column md:flex">
                                 <div className="relative md:w-1/3">
