@@ -236,7 +236,7 @@ export default function GuideCreateForm() {
                                     form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
                                 }`}
                             >
-                                {form.processing ? 'Processing...' : 'Add Tour Guide'}
+                                {form.processing ? 'Processing...' : 'Add Terminal'}
                             </button>
                         </ComponentCard>
                         <ComponentCard title="Pin Terminal Map">

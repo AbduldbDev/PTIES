@@ -152,10 +152,17 @@ export default function AllHotilines() {
                                                     {Hotlines.location}
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                                                        <li> {Hotlines.hotline}</li>
-                                                        <li> {Hotlines.contact}</li>
-                                                        <li> {Hotlines.location}</li>
+                                                    <ul className="space-y-2">
+                                                        <li>
+                                                            <i className="fas fa-phone-alt mr-2"></i> {Hotlines.hotline}
+                                                        </li>
+                                                        <li>
+                                                            <i className="fas fa-mobile-alt mr-2"></i> {Hotlines.contact}
+                                                        </li>
+                                                        <li>
+                                                            <i className="fas fa-map-marker-alt mt-0.5 mr-2"></i>
+                                                            {Hotlines.location}
+                                                        </li>
                                                     </ul>
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-center text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">

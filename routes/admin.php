@@ -73,6 +73,6 @@ Route::middleware('admin.access:auth')->group(function () {
     Route::get('/Admin/hotlines/new', [HotlinesController::class, 'new'])->name('hotlines.new');
     Route::get('/Admin/hotlines/edit/{id}', [HotlinesController::class, 'edit'])->name('hotlines.edit');
     Route::post('/Admin/hotlines/create', [HotlinesController::class, 'create'])->name('hotlines.create');
-    Route::post('/Admin/hotlines/update', [HotlinesController::class, 'update'])->name('hotlines.update');
+    Route::post('/Admin/hotlines/update/{id}', [HotlinesController::class, 'update'])->name('hotlines.update');
     Route::delete('/Admin/hotlines/delete/{id}', [HotlinesController::class, 'delete'])->name('hotlines.delete');
 });

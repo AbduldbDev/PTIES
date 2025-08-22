@@ -8,6 +8,17 @@ import FlashMessage from '@AdminUtils/context/FlashMessage';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent, useEffect, useState } from 'react';
 
+type HotlineProps = {
+    id: number;
+    name: string;
+    category: string;
+    icon: string;
+    hotline: string;
+    contact: string;
+    location: string;
+    long: string;
+    lat: string;
+};
 type FormData = {
     name: string;
     category: string;
@@ -28,18 +39,19 @@ type PageProps = {
         error?: string;
         [key: string]: string | undefined;
     };
+    item: HotlineProps;
 };
 
 export default function GuideCreateForm() {
-    const { flash, errors } = usePage<PageProps>().props;
+    const { flash, errors, item } = usePage<PageProps>().props;
     const [resetSignal, setResetSignal] = useState(0);
     const form = useForm<FormData>({
-        name: '',
-        category: '',
-        icon: '',
-        hotline: '',
-        contact: '',
-        location: '',
+        name: item.name,
+        category: item.category,
+        icon: item.icon,
+        hotline: item.hotline,
+        contact: item.contact,
+        location: item.location,
         long: '',
         lat: '',
     });
@@ -68,13 +80,15 @@ export default function GuideCreateForm() {
             return;
         }
 
-        form.post('/Admin/hotlines/create', {
+        form.post(`/Admin/hotlines/update/${item.id}`, {
             forceFormData: true,
             onSuccess: () => {
                 form.reset();
+                form.setData({
+                    ...form.data,
+                });
                 form.clearErrors();
                 setResetSignal(Date.now());
-              
             },
         });
     };
@@ -183,7 +197,7 @@ export default function GuideCreateForm() {
                                     form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
                                 }`}
                             >
-                                {form.processing ? 'Processing...' : 'Add Emergency Hotline'}
+                                {form.processing ? 'Processing...' : 'Update Emergency Hotline'}
                             </button>
                         </ComponentCard>
                         <ComponentCard title="Pin Hotline Location">

@@ -55,6 +55,37 @@ class HotlinesController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $item = PakilHotlines::findOrFail($id);
+        return Inertia::render('Admin/Pages/Hotlines/EditHotline', [
+            'item' => $item,
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'category' => 'required|string|max:255',
+                'icon' => 'required|string|max:255',
+                'hotline' => 'required|string|max:255',
+                'contact' => 'required|string|max:255',
+                'location' => 'required|string|max:255',
+                'long' => 'required',
+                'lat' => 'required',
+            ]);
+
+            $guide = PakilHotlines::findOrFail($id);
+            $guide->update($request->all());
+
+            return redirect()->back()->with('success', 'Hotline updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' =>  $e->getMessage()]);
+        }
+    }
+
     public function delete($id)
     {
         try {
