@@ -147,6 +147,7 @@ const InputField = ({
                         </svg>
                     </span>
                 )}
+                
                 {type != 'password' && isTouched && !error && !externalError && value && (
                     <span className="absolute top-1/2 right-3.5 -translate-y-1/2">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -159,6 +160,7 @@ const InputField = ({
                         </svg>
                     </span>
                 )}
+
                 {type === 'password' && (
                     <button
                         type="button"

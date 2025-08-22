@@ -102,6 +102,14 @@ const navItems: NavItem[] = [
             { name: 'All Terminal', path: '/Admin/terminals' },
         ],
     },
+    {
+        icon: <PageIcon />,
+        name: 'Emergency Hotlines',
+        subItems: [
+            { name: 'Add New Hotlines', path: '/Admin/hotlines/new' },
+            { name: 'All Hotlines', path: '/Admin/hotlines' },
+        ],
+    },
 ];
 
 const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {

@@ -53,7 +53,7 @@ export default function SignInForm() {
                     </div>
 
                     {/* Form */}
-                    <form>
+                    <form onClick={handleSubmit}>
                         <div className="space-y-5">
                             {/* Email */}
                             <div>
@@ -103,7 +103,7 @@ export default function SignInForm() {
                             </div>
 
                             <div>
-                                <Button className="w-full" size="sm" onClick={handleSubmit}>
+                                <Button className="w-full" size="sm" type="submit">
                                     Sign in
                                 </Button>
                             </div>

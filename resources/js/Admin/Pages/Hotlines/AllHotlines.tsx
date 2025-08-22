@@ -8,19 +8,17 @@ import FlashMessage from '@AdminUtils/context/FlashMessage';
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 
-interface TerminalProps {
+interface HotlinesProps {
     id: number;
     name: string;
-    sched: string;
-    sched_desc: string;
+    category: string;
+    icon: string;
+    hotline: string;
+    contact: string;
+    location: string;
     long: string;
     lat: string;
-    routes: Routes[];
 }
-
-type Routes = {
-    name: string;
-};
 
 type PageProps = {
     flash?: {
@@ -28,7 +26,7 @@ type PageProps = {
         error?: string;
     };
     errors?: Record<string, string | undefined>;
-    items: PaginatedResponse<TerminalProps>;
+    items: PaginatedResponse<HotlinesProps>;
 };
 
 interface PaginatedResponse<T> {
@@ -54,7 +52,7 @@ interface PaginatedResponse<T> {
     };
 }
 
-export default function AllTerminals() {
+export default function AllHotilines() {
     const { flash, errors, items } = usePage<PageProps>().props;
     const form = useForm();
     const [sortConfig, setSortConfig] = useState<SortConfig>({
@@ -77,11 +75,11 @@ export default function AllTerminals() {
     }, [items.data, sortConfig]);
 
     const handleDelete = (id: number) => {
-        form.delete(`/Admin/terminal/delete/${id}`);
+        form.delete(`/Admin/hotlines/delete/${id}`);
     };
 
     const handleView = (id: any) => {
-        router.get(`/Admin/terminals/edit/${id}`);
+        router.get(`/Admin/hotlines/edit/${id}`);
     };
 
     const handleSort = (key: string) => {
@@ -90,11 +88,10 @@ export default function AllTerminals() {
     };
 
     const columns: SortableColumn[] = [
-        { key: 'name', label: 'Terminal', sortable: true },
-        { key: 'sched', label: 'Schedule', sortable: false },
-        { key: 'sched_desc', label: 'Schedule Description', sortable: false },
-        { key: 'routes', label: 'Routes', sortable: false },
-        { key: 'facebook', label: 'Maps', sortable: false },
+        { key: 'name', label: 'Hotlines', sortable: true },
+        { key: 'category', label: 'Schedule', sortable: false },
+        { key: 'Hotlines', label: 'Schedule Description', sortable: false },
+        { key: 'Maps', label: 'Schedule Description', sortable: false },
         { key: 'action', label: 'Action', sortable: false, align: 'center' },
     ];
 
@@ -110,10 +107,10 @@ export default function AllTerminals() {
                 {errors?.error && <FlashMessage type="error" message={errors.error} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
-                <PageBreadcrumb pageTitle="Terminals Management" />
+                <PageBreadcrumb pageTitle="Hotliness Management" />
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
-                    <ComponentCard title="All Terminals">
+                    <ComponentCard title="All Hotliness">
                         <div className="overflow-hidden rounded-xl bg-white dark:bg-white/[0.03]">
                             <div className="max-w-full overflow-x-auto">
                                 <Table>
@@ -143,33 +140,29 @@ export default function AllTerminals() {
                                     </TableHeader>
 
                                     <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-                                        {sortedItems.map((Terminal) => (
-                                            <TableRow key={Terminal.id}>
+                                        {sortedItems.map((Hotlines) => (
+                                            <TableRow key={Hotlines.id}>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                    {Terminal.name}
+                                                    {Hotlines.name}
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                    {Terminal.sched}
+                                                    {Hotlines.category}
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                    {Terminal.sched_desc}
+                                                    {Hotlines.location}
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                    {Terminal && Terminal.routes && Terminal.routes.length > 0 ? (
-                                                        <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                                                            {Terminal.routes.map((route, index) => (
-                                                                <li key={index}>{route.name}</li>
-                                                            ))}
-                                                        </ul>
-                                                    ) : (
-                                                        <i>No routes available</i>
-                                                    )}
+                                                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                                                        <li> {Hotlines.hotline}</li>
+                                                        <li> {Hotlines.contact}</li>
+                                                        <li> {Hotlines.location}</li>
+                                                    </ul>
                                                 </TableCell>
                                                 <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-center text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                     <a
                                                         target="_blank"
                                                         className="rounded-full bg-green-800/50 px-3 py-1 text-black dark:text-gray-300"
-                                                        href={`https://www.google.com/maps?q=${Terminal.lat},${Terminal.long}&z=15&t=m`}
+                                                        href={`https://www.google.com/maps?q=${Hotlines.lat},${Hotlines.long}&z=15&t=m`}
                                                     >
                                                         View Maps
                                                     </a>
@@ -178,13 +171,13 @@ export default function AllTerminals() {
                                                     <div className="col-span-1 flex justify-center">
                                                         <div className="flex w-full items-center justify-center gap-2">
                                                             <DeleteConfirm
-                                                                onDeleteConfirmed={() => handleDelete(Terminal.id)}
-                                                                message={`Are you sure you want to delete Terminal ${Terminal.name} ${Terminal.name}?`}
+                                                                onDeleteConfirmed={() => handleDelete(Hotlines.id)}
+                                                                message={`Are you sure you want to delete Hotlines ${Hotlines.name} ${Hotlines.name}?`}
                                                             />
 
                                                             <button
                                                                 aria-label="Edit-btn"
-                                                                onClick={() => handleView(Terminal.id)}
+                                                                onClick={() => handleView(Hotlines.id)}
                                                                 className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white/90"
                                                             >
                                                                 <svg

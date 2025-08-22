@@ -9,9 +9,10 @@ interface ButtonProps {
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
     disabled?: boolean;
     className?: string;
+    type?: 'button' | 'submit' | 'reset';
 }
 
-const Button = ({ children, size = 'md', variant = 'primary', startIcon, endIcon, onClick, className = '', disabled = false }: ButtonProps) => {
+const Button = ({ children, size = 'md', variant = 'primary', startIcon, endIcon, onClick, className = '', disabled = false, type }: ButtonProps) => {
     // Size Classes
     const sizeClasses = {
         sm: 'px-4 py-3 text-sm',
@@ -38,6 +39,7 @@ const Button = ({ children, size = 'md', variant = 'primary', startIcon, endIcon
             } ${variantClasses[variant]} ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
             onClick={handleClick}
             disabled={disabled}
+            type={type}
         >
             {startIcon && <span className="flex items-center">{startIcon}</span>}
             {children}

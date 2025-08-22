@@ -44,7 +44,7 @@ export const PromotionalVideo = ({
                         <div className="lg:w-1/2">
                             <div className="group relative overflow-hidden rounded-xl bg-white shadow-xl">
                                 <video ref={videoRef} className="h-full w-full object-cover" poster={thumbnail} controls>
-                                    <source src={videoUrl} type="video/mp4" />
+                                    <source src="/User/Video/Pakil.mp4" type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
 

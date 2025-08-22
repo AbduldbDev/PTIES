@@ -9,6 +9,7 @@ use App\Models\CMSBanner;
 use App\Models\ContentPromotional;
 use App\Models\CmsContent;
 use App\Models\PakilGuides;
+use App\Models\PakilHotlines;
 use App\Models\PakilTerminals;
 
 class PageController extends Controller
@@ -117,7 +118,7 @@ class PageController extends Controller
             'terminals' => $terminals,
         ]);
     }
-    
+
     public function LocalProducts()
     {
         $banner = CMSBanner::where('key', 'Local Products')->first();
@@ -144,9 +145,12 @@ class PageController extends Controller
     {
         $banner = CMSBanner::where('key', 'Contact Us')->first();
         $guide = PakilGuides::get();
+        $hotlines = PakilHotlines::get();
+
         return Inertia::render('User/Pages/Contact', [
             'banner' => $banner,
             'guide' => $guide,
+            'hotlines' => $hotlines,
         ]);
     }
 
