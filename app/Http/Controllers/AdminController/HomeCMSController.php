@@ -43,7 +43,7 @@ class HomeCMSController extends Controller
             'subtitle' => 'required|string|max:255',
             'slogan' => 'required|string',
             'feature_title' => 'required|string|max:255',
-            'feature_img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'feature_img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:25600',
         ]);
 
         try {

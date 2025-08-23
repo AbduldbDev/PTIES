@@ -27,7 +27,7 @@ class BannerController extends Controller
         ]);
     }
 
-    
+
     public function update(Request $request)
     {
         try {
@@ -49,7 +49,9 @@ class BannerController extends Controller
                     Storage::disk('public')->delete($banner->image);
                 }
 
-                $imagePath = $request->file('image')->store('CMSBanner', 'public');
+                $filename = uniqid() . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+                $imagePath = $request->file('image')->storeAs('CMSBanner', $filename, 'public');
+
                 $banner->image = $imagePath;
             }
 

@@ -62,7 +62,7 @@ export default function AccountEditForm() {
             return;
         }
 
-        form.post(`/Admin/CMS/banner/update`, {
+        form.post(`/Admin/cms/banner/update`, {
             forceFormData: true,
             onSuccess: () => {
                 form.setData({

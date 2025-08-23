@@ -15,7 +15,7 @@ use App\Models\CMSColor;
 class AccountManagementController extends Controller
 {
 
-    public function App(Request $request)
+    public function dashboard(Request $request)
     {
         return Inertia::render('Admin/Pages/Dashboard');
     }
@@ -32,7 +32,7 @@ class AccountManagementController extends Controller
     }
 
 
-    public function form(Request $request)
+    public function new(Request $request)
     {
         return Inertia::render('Admin/Pages/AccountManagement/Newform');
     }
@@ -46,7 +46,7 @@ class AccountManagementController extends Controller
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|min:8|confirmed',
                 'user_type' => 'required|string',
-                'profileImage' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'profileImage' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:25600',
                 'firstname' => 'required|string|max:255',
                 'middlename' => 'nullable|string|max:255',
                 'lastname' => 'required|string|max:255',
@@ -75,7 +75,7 @@ class AccountManagementController extends Controller
             if ($request->hasFile('profileImage')) {
                 $profileImagePath = $request->file('profileImage')->store('EmployeAvatars', 'public');
             }
-            
+
             $user =  User::create([
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
@@ -107,7 +107,7 @@ class AccountManagementController extends Controller
         try {
             $request->validate([
                 'user_type' => 'required|string',
-                'profileImage' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'profileImage' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:25600',
                 'firstname' => 'required|string|max:255',
                 'middlename' => 'nullable|string|max:255',
                 'lastname' => 'required|string|max:255',

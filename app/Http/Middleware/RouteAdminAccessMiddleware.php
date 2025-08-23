@@ -19,12 +19,12 @@ class RouteAdminAccessMiddleware
         // For auth routes - must be logged in AND must be admin/content_manager
         if ($type === 'auth') {
             if (!Auth::check()) {
-                return redirect('/Admin/Login');
+                return redirect('/Admin/login');
             }
 
             // Check user type for auth routes
             if (!in_array(Auth::user()->user_type, ['admin', 'content_manager'])) {
-                return redirect('/Admin/Login');
+                return redirect('/Admin/login');
             }
         }
 

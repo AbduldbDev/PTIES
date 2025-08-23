@@ -84,7 +84,7 @@ export default function AccountCreateForm() {
             return;
         }
 
-        form.post('/Admin/Accounts/create', {
+        form.post('/Admin/accounts/create', {
             forceFormData: true,
             onSuccess: () => {
                 form.reset();

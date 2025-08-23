@@ -73,7 +73,7 @@ export default function UserDropdown({ auth }: UserDropdownProps) {
                         <DropdownItem
                             onItemClick={closeDropdown}
                             tag="a"
-                            to="/Admin/Profile"
+                            to="/Admin/profile"
                             className="group text-theme-sm flex items-center gap-3 rounded-lg px-3 py-2 font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
                         >
                             <svg
@@ -146,7 +146,7 @@ export default function UserDropdown({ auth }: UserDropdownProps) {
                     </li> */}
                 </ul>
                 <Link
-                    href="/Admin/Logout"
+                    href="/Admin/logout"
                     method="post"
                     as="button"
                     className="group text-theme-sm mt-3 flex items-center gap-3 rounded-lg px-3 py-2 font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"

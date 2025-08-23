@@ -11,7 +11,7 @@ use App\Models\User;
 
 class AdminProfileController extends Controller
 {
-    public function Profile(Request $request)
+    public function profile(Request $request)
     {
         $profile = User::with('profile')->where('id', Auth::id())->first();
 

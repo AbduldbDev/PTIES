@@ -32,7 +32,7 @@ export default function SignInForm() {
             return;
         }
 
-        form.post('/Admin/Login', {
+        form.post('/Admin/login', {
             forceFormData: true,
             onSuccess: () => {
                 form.reset();

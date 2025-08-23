@@ -62,7 +62,7 @@ export default function HeroSectionEditForm() {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        form.post(`/Admin/CMS/updateIntroductionSection`, {
+        form.post(`/Admin/cms/update/introduction-section`, {
             forceFormData: true,
             onSuccess: () => {
                 setResetSignal(Date.now());
@@ -313,7 +313,7 @@ export default function HeroSectionEditForm() {
                                 form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
                             }`}
                         >
-                            {form.processing ? 'Processing...' : 'Update Hero Section'}
+                            {form.processing ? 'Processing...' : 'Update Introduction Section'}
                         </button>
                     </ComponentCard>
                 </form>

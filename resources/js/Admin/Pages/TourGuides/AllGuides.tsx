@@ -156,9 +156,7 @@ export default function Home() {
                                                             />
                                                         </div>
                                                         <div>
-                                                            <span className="font-medium text-gray-800 dark:text-white/90">
-                                                                {user.name}, {user.name} {user.name}
-                                                            </span>
+                                                            <span className="font-medium text-gray-800 dark:text-white/90">{user.name}</span>
                                                         </div>
                                                     </div>
                                                 </TableCell>

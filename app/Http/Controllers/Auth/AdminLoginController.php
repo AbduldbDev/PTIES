@@ -72,6 +72,6 @@ class AdminLoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/Admin/Login');
+        return redirect('/Admin/login');
     }
 }

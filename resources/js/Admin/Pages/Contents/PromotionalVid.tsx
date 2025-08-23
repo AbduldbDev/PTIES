@@ -57,7 +57,7 @@ export default function PromotionalVideoEditForm() {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        form.post(`/Admin/Content/PromotionalVid/Update`, {
+        form.post(`/Admin/contentcontent/promotional-video/update`, {
             forceFormData: true,
             onSuccess: () => {
                 setResetSignal(Date.now());

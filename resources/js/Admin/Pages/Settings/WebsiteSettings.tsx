@@ -46,7 +46,7 @@ export default function AccountCreateForm() {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
-        form.post('/Admin/Settings/Color/Update', {
+        form.post('/Admin/theme/color/update', {
             forceFormData: true,
             onSuccess: () => {
                 // form.reset();

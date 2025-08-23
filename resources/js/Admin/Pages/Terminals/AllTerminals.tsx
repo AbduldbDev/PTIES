@@ -81,7 +81,7 @@ export default function AllTerminals() {
     };
 
     const handleView = (id: any) => {
-        router.get(`/Admin/terminals/edit/${id}`);
+        router.get(`/Admin/terminal/edit/${id}`);
     };
 
     const handleSort = (key: string) => {

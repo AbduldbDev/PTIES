@@ -78,7 +78,7 @@ export default function Contact() {
 
             <ContactUs />
 
-            {hotlines && (
+            {hotlines && hotlines.length > 0 && (
                 <section id="hotlines" className="py-8">
                     <div className="container mx-auto px-4">
                         <PageTitle
@@ -96,7 +96,7 @@ export default function Contact() {
                 </section>
             )}
 
-            {guide && (
+            {guide && guide.length > 0 && (
                 <section id="tourguides" className="py-12 md:py-20">
                     <div className="container mx-auto px-4 sm:px-6">
                         <PageTitle

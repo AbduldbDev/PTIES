@@ -22,7 +22,7 @@ class TourGuideController extends Controller
     }
 
 
-    public function newtourguide()
+    public function new()
     {
         return Inertia::render('Admin/Pages/TourGuides/NewGuide');
     }

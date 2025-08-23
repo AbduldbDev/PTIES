@@ -47,44 +47,44 @@ const navItems: NavItem[] = [
         icon: <UserCircleIcon />,
         name: 'Account Management',
         subItems: [
-            { name: 'Add Account', path: '/Admin/Accounts/New' },
-            { name: 'All Accounts', path: '/Admin/Accounts' },
+            { name: 'Add Account', path: '/Admin/accounts/new' },
+            { name: 'All Accounts', path: '/Admin/accounts' },
         ],
     },
     {
         icon: <DocsIcon />,
         name: 'Content Management',
         subItems: [
-            { name: 'Page Banners', path: '/Admin/CMS/Banners' },
+            { name: 'Page Banners', path: '/Admin/cms/banner' },
             {
                 name: 'Home Sections',
                 path: '',
                 subItems: [
-                    { name: 'Banner ', path: '/Admin/CMS/HeroSection' },
-                    { name: 'Introduction ', path: '/Admin/CMS/IntroductionSection' },
+                    { name: 'Banner ', path: '/Admin/cms/hero-section' },
+                    { name: 'Introduction ', path: '/Admin/cms/introduction-section' },
 
-                    { name: 'Promotional Vid', path: '/Admin/Content/PromotionalVid' },
+                    { name: 'Promotional Vid', path: '/Admin/content/promotional-video' },
                 ],
             },
             {
                 name: 'About Sections',
                 path: '',
                 subItems: [
-                    { name: 'Tourism About', path: '/Admin/CMS/TourismSection' },
-                    { name: 'Mission & Vision', path: '/Admin/CMS/MissionVision' },
+                    { name: 'Tourism About', path: '/Admin/cms/tourism-section' },
+                    { name: 'Mission & Vision', path: '/Admin/cms/mission-vision' },
                 ],
             },
             {
                 name: 'Explore Sections',
                 path: '',
-                subItems: [{ name: 'About Pakil', path: '/Admin/CMS/PakilIntro' }],
+                subItems: [{ name: 'About Pakil', path: '/Admin/cms/pakil-intro' }],
             },
         ],
     },
     {
         icon: <PageIcon />,
         name: 'Website Settings',
-        subItems: [{ name: 'Color Theme', path: '/Admin/Settings/Website' }],
+        subItems: [{ name: 'Color Theme', path: '/Admin/theme/color' }],
     },
     {
         icon: <PageIcon />,
@@ -98,8 +98,8 @@ const navItems: NavItem[] = [
         icon: <PageIcon />,
         name: 'Terminals',
         subItems: [
-            { name: 'Add New Terminal', path: '/Admin/terminals/new' },
-            { name: 'All Terminal', path: '/Admin/terminals' },
+            { name: 'Add New Terminal', path: '/Admin/terminal/new' },
+            { name: 'All Terminal', path: '/Admin/terminal' },
         ],
     },
     {

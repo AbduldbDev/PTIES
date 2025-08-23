@@ -102,7 +102,7 @@ export default function Home() {
     }, [items.data, sortConfig]);
 
     const handleDelete = (id: number) => {
-        form.delete(`/Admin/Accounts/Delete/${id}`, {
+        form.delete(`/Admin/accounts/delete/${id}`, {
             onSuccess: () => {
                 console.log('Deleted successfully');
             },
@@ -113,7 +113,7 @@ export default function Home() {
     };
 
     const handleView = (id: any) => {
-        router.get(`/Admin/Accounts/Edit/${id}`);
+        router.get(`/Admin/accounts/edit/${id}`);
     };
 
     const handleSort = (key: string) => {

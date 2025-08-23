@@ -49,7 +49,7 @@ export default function HeroSectionEditForm() {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        form.post(`/Admin/CMS/UpdateHeroSection`, {
+        form.post(`/Admin/cms/update/hero-section`, {
             forceFormData: true,
             onSuccess: () => {
                 setResetSignal(Date.now());

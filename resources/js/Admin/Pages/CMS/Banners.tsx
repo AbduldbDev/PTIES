@@ -56,7 +56,7 @@ export default function Banners() {
     }, [items, sortConfig]);
 
     const handleView = (id: any) => {
-        router.get(`/Admin/CMS/Banner/Edit/${id}`);
+        router.get(`/Admin/cms/banner/edit/${id}`);
     };
 
     const handleSort = (key: string) => {

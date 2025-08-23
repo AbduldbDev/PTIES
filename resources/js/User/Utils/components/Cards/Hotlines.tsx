@@ -15,6 +15,11 @@ interface Props {
 }
 
 export default function Hotlines({ hotlines }: Props) {
+    // Function to handle click-to-call
+    const handleCall = (phoneNumber: string) => {
+        window.location.href = `tel:${phoneNumber}`;
+    };
+
     return (
         <>
             <div className="rounded-lg border border-gray-100 bg-white p-4 shadow-sm">
@@ -28,22 +33,34 @@ export default function Hotlines({ hotlines }: Props) {
                     </div>
                 </div>
                 <div className="space-y-2 pl-12">
-                    <div className="flex items-center text-sm">
-                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                        <span>{hotlines.hotline}</span>
+                    <div className="group flex cursor-pointer items-center text-sm" onClick={() => handleCall(hotlines.hotline)}>
+                        <div className="mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
+                            <i className="fas fa-phone-alt text-xs text-primary"></i>
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="font-medium">{hotlines.hotline}</span>
+                            <span className="text-xs font-semibold text-primary group-hover:underline">Click to call</span>
+                        </div>
                     </div>
-                    <div className="flex items-center text-sm">
-                        <i className="fas fa-mobile-alt mr-2 text-primary"></i>
-                        <span>{hotlines.contact}</span>
+                    <div className="group flex cursor-pointer items-center text-sm" onClick={() => handleCall(hotlines.contact)}>
+                        <div className="mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
+                            <i className="fas fa-mobile-alt text-xs text-primary"></i>
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="font-medium">{hotlines.contact}</span>
+                            <span className="text-xs font-semibold text-primary group-hover:underline">Click to call</span>
+                        </div>
                     </div>
                     <div className="flex items-start text-sm">
-                        <i className="fas fa-map-marker-alt mt-0.5 mr-2 text-primary"></i>
+                        <div className="mt-0.5 mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
+                            <i className="fas fa-map-marker-alt text-xs text-primary"></i>
+                        </div>
                         <span>{hotlines.location}</span>
                     </div>
                 </div>
                 <a
                     href={`https://www.google.com/maps?q=${hotlines.lat},${hotlines.long}&z=15&t=m`}
-                    className="mt-3 inline-block text-sm font-medium text-primary"
+                    className="mt-3 inline-block text-sm font-medium text-primary hover:underline"
                     target="_blank"
                 >
                     <i className="fas fa-directions mr-1"></i> View Directions
