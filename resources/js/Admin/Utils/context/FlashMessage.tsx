@@ -3,19 +3,25 @@ import { useEffect, useState } from 'react';
 type FlashMessageProps = {
     type: 'success' | 'error';
     message: string;
+    key?: string | number;
 };
 
-export default function FlashMessage({ type, message }: FlashMessageProps) {
+export default function FlashMessage({ type, message, key }: FlashMessageProps) {
     const [visible, setVisible] = useState(true);
+    const [internalMessage, setInternalMessage] = useState(message);
+    const [internalType, setInternalType] = useState(type);
 
     useEffect(() => {
         setVisible(true);
+        setInternalMessage(message);
+        setInternalType(type);
+
         const timer = setTimeout(() => {
             setVisible(false);
         }, 5000);
 
         return () => clearTimeout(timer);
-    }, [message, type]);
+    }, [message, type, key]);
 
     if (!visible) return null;
 
@@ -32,13 +38,13 @@ export default function FlashMessage({ type, message }: FlashMessageProps) {
         },
     };
 
-    const { container, iconColor, title } = styles[type];
+    const { container, iconColor, title } = styles[internalType];
 
     return (
         <div className={`${container} flash-message mb-5 rounded-xl border p-4 shadow-lg transition-all`}>
             <div className="flex items-start gap-3">
                 <div className={`${iconColor} -mt-0.5`}>
-                    {type === 'success' ? (
+                    {internalType === 'success' ? (
                         <svg className="fill-current" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 fillRule="evenodd"
@@ -59,7 +65,7 @@ export default function FlashMessage({ type, message }: FlashMessageProps) {
                 </div>
                 <div>
                     <h4 className="mb-1 text-sm font-semibold text-gray-800 dark:text-white/90">{title}</h4>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{message}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{internalMessage}</p>
                 </div>
             </div>
         </div>

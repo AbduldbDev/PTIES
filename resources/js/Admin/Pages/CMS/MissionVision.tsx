@@ -23,8 +23,8 @@ type PageProps = {
         error?: string;
     };
     errors?: Record<string, string>;
-    content: {
-        mission_vision: IntroductionProps;
+    content?: {
+        mission_vision?: IntroductionProps;
     };
     csrf_token: string;
 };
@@ -32,10 +32,12 @@ type PageProps = {
 export default function HeroSectionEditForm() {
     const { flash, errors, content, csrf_token } = usePage<PageProps>().props;
     const [resetSignal, setResetSignal] = useState(0);
-    const form = useForm<FormData>({
-        mission: content.mission_vision.mission || '',
-        vision: content.mission_vision.vision || '',
-    });
+    const initialFormData = {
+        mission: content?.mission_vision?.mission || '',
+        vision: content?.mission_vision?.vision || '',
+    };
+
+    const form = useForm<FormData>(initialFormData);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -49,7 +51,7 @@ export default function HeroSectionEditForm() {
 
     return (
         <>
-            <Head title="Edit Introduction Section" />
+            <Head title="Admin | CMS" />
             <AppWrapper>
                 <PageMeta title="Edit Hero Section" description="Edit hero section content" />
                 <PageBreadcrumb pageTitle="Content Management" />
@@ -62,47 +64,47 @@ export default function HeroSectionEditForm() {
 
                     <ComponentCard title="Edit Mission & Vision Section">
                         <div className="texture-box overflow-hidden rounded-xl p-4">
-                            {content.mission_vision && <MissionVision content={form.data} />}
+                            <MissionVision content={form.data} />
                         </div>
-                        <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
-                            <div>
-                                <Textarea
-                                    label="Mission"
-                                    name="mission"
-                                    value={form.data.mission}
-                                    onChange={(e) => form.setData('mission', e.target.value)}
-                                    required={true}
-                                    readonly={false}
-                                    error={form.errors.mission}
-                                    errorMessage="Please enter mission"
-                                    rows={15}
-                                />
-                            </div>
-                            <div>
-                                <Textarea
-                                    label="Vision"
-                                    name="vision"
-                                    value={form.data.vision}
-                                    onChange={(e) => form.setData('vision', e.target.value)}
-                                    required={true}
-                                    readonly={false}
-                                    error={form.errors.vision}
-                                    errorMessage="Please enter vision"
-                                    rows={15}
-                                />
-                            </div>
-                        </div>
-
-                        <button
-                            type="submit"
-                            disabled={form.processing}
-                            className={`mt-6 w-full rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
-                                form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
-                            }`}
-                        >
-                            {form.processing ? 'Processing...' : 'Update Mission & Vision Section'}
-                        </button>
                     </ComponentCard>
+                    <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
+                        <ComponentCard className="mt-10" title="Edit Mission Content">
+                            <Textarea
+                                label="Mission"
+                                name="mission"
+                                value={form.data.mission}
+                                onChange={(e) => form.setData('mission', e.target.value)}
+                                required={true}
+                                readonly={false}
+                                error={form.errors.mission}
+                                errorMessage="Please enter mission"
+                                rows={15}
+                            />
+                        </ComponentCard>
+                        <ComponentCard className="mt-10" title="Edit Vision Content">
+                            <Textarea
+                                label="Vision"
+                                name="vision"
+                                value={form.data.vision}
+                                onChange={(e) => form.setData('vision', e.target.value)}
+                                required={true}
+                                readonly={false}
+                                error={form.errors.vision}
+                                errorMessage="Please enter vision"
+                                rows={15}
+                            />
+                        </ComponentCard>
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={form.processing}
+                        className={`mt-6 w-full rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
+                            form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
+                        }`}
+                    >
+                        {form.processing ? 'Processing...' : 'Update Mission & Vision Section'}
+                    </button>
                 </form>
             </AppWrapper>
         </>

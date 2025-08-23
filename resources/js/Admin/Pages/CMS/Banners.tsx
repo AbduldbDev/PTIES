@@ -73,7 +73,7 @@ export default function Banners() {
 
     return (
         <>
-            <Head title="Banners Management" />
+            <Head title="Admin | CMS" />
             <AppWrapper>
                 <PageMeta title="Banners Management" description="Manage your website banners" />
                 {flash?.success && <FlashMessage type="success" message={flash.success} />}

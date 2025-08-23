@@ -50,7 +50,7 @@ export default function TourismAbout({ content }: Props) {
 
     return (
         <>
-            <div className="flex flex-col items-center gap-12 lg:flex-row">
+            <div className="flex flex-col items-start gap-12 lg:flex-row">
                 <div className="lg:w-1/2">
                     <div className="group relative">
                         <div className="absolute -inset-2 rounded-xl bg-primary/20 blur-md transition duration-300 group-hover:blur-lg"></div>
@@ -116,6 +116,7 @@ export default function TourismAbout({ content }: Props) {
                             </ul>
                         </div>
                     )}
+                    
                     {content.responsibilities && content.responsibilities.length > 0 && (
                         <div>
                             <h4 className="mb-4 flex items-center text-xl font-bold text-primary">

@@ -785,9 +785,7 @@ span.flatpickr-weekday,
     padding: 12px 16px;
     border-radius: 8px;
     color: #fff;
-    animation:
-        slideDown 0.4s ease-out,
-        fadeOut 0.4s ease-in 4.6s forwards;
+    animation: fadeOut 0.4s ease-in 4.6s forwards;
     z-index: 9999;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }

@@ -75,7 +75,7 @@ export default function AccountEditForm() {
 
     return (
         <>
-            <Head title="Edit User Account" />
+            <Head title="Admin | CMS" />
             <AppWrapper>
                 <PageMeta title="Edit User Account" description="Edit existing user account information" />
                 <PageBreadcrumb pageTitle="Content Management" />

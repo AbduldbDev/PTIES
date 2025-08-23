@@ -41,8 +41,8 @@ type PageProps = {
         error?: string;
     };
     errors?: Record<string, string>;
-    content: {
-        introduction_section: IntroductionProps;
+    content?: {
+        introduction_section?: IntroductionProps;
     };
     csrf_token: string;
 };
@@ -50,15 +50,17 @@ type PageProps = {
 export default function HeroSectionEditForm() {
     const { flash, errors, content, csrf_token } = usePage<PageProps>().props;
     const [resetSignal, setResetSignal] = useState(0);
-    const form = useForm<FormData>({
-        title: content.introduction_section.title,
-        description: content.introduction_section.description,
-        facts: content.introduction_section.facts,
-        highlights: content.introduction_section.highlights || [],
+
+    const initialFormData = {
+        title: content?.introduction_section?.title || '',
+        description: content?.introduction_section?.description || '',
+        facts: content?.introduction_section?.facts || '',
+        highlights: content?.introduction_section?.highlights || [],
         image1: null,
         image2: null,
         image3: null,
-    });
+    };
+    const form = useForm<FormData>(initialFormData);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -80,22 +82,22 @@ export default function HeroSectionEditForm() {
         if (form.data.image1 instanceof File) {
             return URL.createObjectURL(form.data.image1);
         }
-        return content.introduction_section.image1 ? `/storage/${content.introduction_section.image1}` : '/User/Images/church.jpg';
-    }, [form.data.image1, content.introduction_section.image1]);
+        return content?.introduction_section?.image1 ? `/storage/${content?.introduction_section?.image1}` : '/User/Images/church.jpg';
+    }, [form.data.image1, content?.introduction_section?.image1]);
 
     const heroImageUrl2 = useMemo(() => {
         if (form.data.image2 instanceof File) {
             return URL.createObjectURL(form.data.image2);
         }
-        return content.introduction_section.image2 ? `/storage/${content.introduction_section.image2}` : '/User/Images/church.jpg';
-    }, [form.data.image2, content.introduction_section.image2]);
+        return content?.introduction_section?.image2 ? `/storage/${content?.introduction_section?.image2}` : '/User/Images/church.jpg';
+    }, [form.data.image2, content?.introduction_section?.image2]);
 
     const heroImageUrl3 = useMemo(() => {
         if (form.data.image3 instanceof File) {
             return URL.createObjectURL(form.data.image3);
         }
-        return content.introduction_section.image3 ? `/storage/${content.introduction_section.image3}` : '/User/Images/church.jpg';
-    }, [form.data.image3, content.introduction_section.image3]);
+        return content?.introduction_section?.image3 ? `/storage/${content?.introduction_section?.image3}` : '/User/Images/church.jpg';
+    }, [form.data.image3, content?.introduction_section?.image3]);
 
     const [newHighlight, setNewHighlight] = useState<Highlight>({
         text: '',
@@ -122,9 +124,9 @@ export default function HeroSectionEditForm() {
 
     return (
         <>
-            <Head title="Edit Introduction Section" />
+            <Head title="Admin | CMS" />
             <AppWrapper>
-                <PageMeta title="Edit Hero Section" description="Edit hero section content" />
+                <PageMeta title="Edit Introduction Section" description="Edit introduction section content" />
                 <PageBreadcrumb pageTitle="Content Management" />
                 {flash?.success && <FlashMessage type="success" message={flash.success} />}
                 {errors?.error && <FlashMessage type="error" message={errors.error} />}
@@ -133,20 +135,20 @@ export default function HeroSectionEditForm() {
                 <form onSubmit={handleSubmit}>
                     <input type="hidden" name="_token" value={csrf_token} />
 
-                    <ComponentCard title="Edit Hero Section">
+                    <ComponentCard title="Edit Introduction Section">
                         <div className="texture-box overflow-hidden rounded-xl">
-                            {content.introduction_section && (
-                                <Introduction
-                                    content={{
-                                        ...form.data,
-                                        image1: heroImageUrl1,
-                                        image2: heroImageUrl2,
-                                        image3: heroImageUrl3,
-                                    }}
-                                />
-                            )}
+                            <Introduction
+                                content={{
+                                    ...form.data,
+                                    image1: heroImageUrl1,
+                                    image2: heroImageUrl2,
+                                    image3: heroImageUrl3,
+                                }}
+                            />
                         </div>
-                        <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
+                    </ComponentCard>
+                    <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
+                        <ComponentCard className="mt-10" title="Introduction Content">
                             <div>
                                 <InputField
                                     type="text"
@@ -209,64 +211,20 @@ export default function HeroSectionEditForm() {
                                     resetSignal={resetSignal}
                                 />
                             </div>
+                        </ComponentCard>
+                        <ComponentCard className="mt-10" title="Highlights Content">
                             <div>
-                                <div className="mb-4 flex items-center gap-2">
-                                    <div className="flex-1">
-                                        <InputField
-                                            label="Highlight Text"
-                                            name="new_highlight"
-                                            value={newHighlight.text}
-                                            onChange={(e) => setNewHighlight({ ...newHighlight, text: e.target.value })}
-                                            required={false}
-                                            error={form.errors.description}
-                                            errorMessage="Please enter highlight text"
-                                        />
-                                    </div>
-                                    <div className="w-35">
-                                        <SelectField
-                                            label="Icon"
-                                            name="Icon"
-                                            options={[
-                                                { value: 'fa-church', label: 'Religion' },
-                                                { value: 'fa-music', label: 'Music' },
-                                                { value: 'fa-calendar-day', label: 'Calendar' },
-                                                { value: 'fa-seedling', label: 'Seedling' },
-                                                { value: 'fa-tree', label: 'Tree' },
-                                                { value: 'fa-user-graduate', label: 'User' },
-                                                { value: 'fa-tools', label: 'Tools' },
-                                                { value: 'fa-map-marked-alt', label: 'Maps' },
-                                            ]}
-                                            required={true}
-                                            value={newHighlight.icon}
-                                            onChange={(e) => setNewHighlight({ ...newHighlight, icon: e.target.value })}
-                                            error={form.errors.highlights}
-                                            errorMessage="Please enter highlight text"
-                                        />
-                                    </div>
-                                    <button
-                                        type="button"
-                                        onClick={addHighlight}
-                                        disabled={form.processing || !newHighlight.text.trim()}
-                                        className={`rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
-                                            form.processing || !newHighlight.text.trim()
-                                                ? 'cursor-not-allowed bg-blue-400'
-                                                : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
-                                        }`}
-                                    >
-                                        <i className="fa-solid fa-plus"></i>
-                                    </button>
-                                </div>
-
-                                {form.data.highlights.map((highlight, index) => (
-                                    <div className="mb-3 flex items-center gap-2" key={index}>
+                                <div className="rounded-lg border border-gray-200 p-6 dark:border-gray-700">
+                                    <h3 className="mb-4 text-lg font-medium text-gray-800 dark:text-white/90">Add New Highlights</h3>
+                                    <div className="flex items-center gap-2">
                                         <div className="flex-1">
                                             <InputField
-                                                label={`Highlight ${index + 1}`}
-                                                name={`highlight_${index}`}
-                                                value={highlight.text}
-                                                onChange={(e) => updateHighlight(index, { ...highlight, text: e.target.value })}
-                                                required={true}
-                                                error={form.errors.highlights}
+                                                label="Highlight Text"
+                                                name="new_highlight"
+                                                value={newHighlight.text}
+                                                onChange={(e) => setNewHighlight({ ...newHighlight, text: e.target.value })}
+                                                required={false}
+                                                error={form.errors.description}
                                                 errorMessage="Please enter highlight text"
                                             />
                                         </div>
@@ -285,37 +243,117 @@ export default function HeroSectionEditForm() {
                                                     { value: 'fa-map-marked-alt', label: 'Maps' },
                                                 ]}
                                                 required={true}
-                                                value={highlight.icon}
-                                                onChange={(e) => updateHighlight(index, { ...highlight, icon: e.target.value })}
+                                                value={newHighlight.icon}
+                                                onChange={(e) => setNewHighlight({ ...newHighlight, icon: e.target.value })}
                                                 error={form.errors.highlights}
                                                 errorMessage="Please enter highlight text"
                                             />
                                         </div>
                                         <button
                                             type="button"
-                                            onClick={() => removeHighlight(index)}
-                                            disabled={form.processing}
+                                            onClick={addHighlight}
+                                            disabled={form.processing || !newHighlight.text.trim()}
                                             className={`rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
-                                                form.processing ? 'cursor-not-allowed bg-red-400' : 'bg-red-600 hover:bg-red-700 focus:ring-red-300'
+                                                form.processing || !newHighlight.text.trim()
+                                                    ? 'cursor-not-allowed bg-blue-400'
+                                                    : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
                                             }`}
                                         >
-                                            <i className="fas fa-trash"></i>
+                                            <i className="fa-solid fa-plus"></i>
                                         </button>
                                     </div>
-                                ))}
-                            </div>
-                        </div>
+                                </div>
+                                <div className="mt-6 rounded-lg">
+                                    <div className="mb-4 flex items-center justify-between">
+                                        <h4 className="text-lg font-medium text-gray-800 dark:text-white/90">
+                                            Current Highlights
+                                            {form.data.highlights.length > 0 && (
+                                                <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
+                                                    (Items: {form.data.highlights.length})
+                                                </span>
+                                            )}
+                                        </h4>
+                                    </div>
 
-                        <button
-                            type="submit"
-                            disabled={form.processing}
-                            className={`mt-6 w-full rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
-                                form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
-                            }`}
-                        >
-                            {form.processing ? 'Processing...' : 'Update Introduction Section'}
-                        </button>
-                    </ComponentCard>
+                                    {form.data.highlights.length === 0 ? (
+                                        <div className="rounded-lg border border-dashed border-gray-300 py-8 text-center text-gray-500 dark:border-gray-700 dark:text-gray-400">
+                                            <i className="fa-solid fa-list-check mb-2 block text-3xl"></i>
+                                            <p>No highlights added yet</p>
+                                        </div>
+                                    ) : (
+                                        <div className="space-y-4">
+                                            {form.data.highlights.map((highlight, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="rounded-lg border border-gray-200 p-4 transition-all hover:shadow-sm dark:border-gray-700"
+                                                >
+                                                    <div className="flex items-center gap-2">
+                                                        <div className="w-10 text-center text-gray-500 active:cursor-grabbing dark:text-gray-400">
+                                                            <i className={`fas ${highlight.icon} text-lg`}></i>
+                                                        </div>
+                                                        <div className="flex-1">
+                                                            <InputField
+                                                                label={`Highlight ${index + 1}`}
+                                                                name={`highlight_${index}`}
+                                                                value={highlight.text}
+                                                                onChange={(e) => updateHighlight(index, { ...highlight, text: e.target.value })}
+                                                                required={true}
+                                                                error={form.errors.highlights}
+                                                                errorMessage="Please enter highlight text"
+                                                            />
+                                                        </div>
+                                                        <div className="w-35">
+                                                            <SelectField
+                                                                label="Icon"
+                                                                name="Icon"
+                                                                options={[
+                                                                    { value: 'fa-church', label: 'Religion' },
+                                                                    { value: 'fa-music', label: 'Music' },
+                                                                    { value: 'fa-calendar-day', label: 'Calendar' },
+                                                                    { value: 'fa-seedling', label: 'Seedling' },
+                                                                    { value: 'fa-tree', label: 'Tree' },
+                                                                    { value: 'fa-user-graduate', label: 'User' },
+                                                                    { value: 'fa-tools', label: 'Tools' },
+                                                                    { value: 'fa-map-marked-alt', label: 'Maps' },
+                                                                ]}
+                                                                required={true}
+                                                                value={highlight.icon}
+                                                                onChange={(e) => updateHighlight(index, { ...highlight, icon: e.target.value })}
+                                                                error={form.errors.highlights}
+                                                                errorMessage="Please enter highlight text"
+                                                            />
+                                                        </div>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => removeHighlight(index)}
+                                                            disabled={form.processing}
+                                                            className={`rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
+                                                                form.processing
+                                                                    ? 'cursor-not-allowed bg-red-400'
+                                                                    : 'bg-red-600 hover:bg-red-700 focus:ring-red-300'
+                                                            }`}
+                                                        >
+                                                            <i className="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </ComponentCard>
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={form.processing}
+                        className={`mt-6 w-full rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
+                            form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
+                        }`}
+                    >
+                        {form.processing ? 'Processing...' : 'Update Introduction Section'}
+                    </button>
                 </form>
             </AppWrapper>
         </>

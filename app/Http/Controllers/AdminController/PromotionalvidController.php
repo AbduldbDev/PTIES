@@ -28,22 +28,18 @@ class PromotionalvidController extends Controller
                 'description' => 'required|string',
                 'highlights' => 'required|array',
                 'highlights.*' => 'string|max:255',
-                'thumbnail' => 'nullable|max:5120',
-                'video' => 'nullable|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/x-matroska|max:25600',
+                'thumbnail' => 'required|max:5120',
+                'video' => 'required|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo,video/x-wmv,video/x-matroska|max:25600',
             ]);
 
-            $content = ContentPromotional::findOrFail(1);
-
-
+            $content = ContentPromotional::firstOrNew(['id' => 1]);
             $imagePath = $content->thumbnail;
             if ($request->hasFile('thumbnail')) {
-
                 if ($content->thumbnail && Storage::disk('public')->exists($content->thumbnail)) {
                     Storage::disk('public')->delete($content->thumbnail);
                 }
                 $imagePath = $request->file('thumbnail')->store('ContentImages', 'public');
             }
-
             $videoPath = $content->video;
             if ($request->hasFile('video')) {
                 if ($content->video && Storage::disk('public')->exists($content->video)) {
@@ -52,14 +48,17 @@ class PromotionalvidController extends Controller
                 $videoPath = $request->file('video')->store('ContentVideos', 'public');
             }
 
-            $content->update([
-                'title' => $request->title,
-                'slogan' => $request->slogan,
-                'description' => $request->description,
-                'highlights' => $request->highlights,
-                'thumbnail' => $imagePath,
-                'video' => $videoPath,
-            ]);
+            ContentPromotional::updateOrCreate(
+                ['id' => 1],
+                [
+                    'title' => $request->title,
+                    'slogan' => $request->slogan,
+                    'description' => $request->description,
+                    'highlights' => $request->highlights,
+                    'thumbnail' => $imagePath,
+                    'video' => $videoPath,
+                ]
+            );
 
             return redirect()->back()->with('success', 'Promotional video updated successfully!');
         } catch (\Exception $e) {

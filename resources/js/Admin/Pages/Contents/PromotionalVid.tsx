@@ -36,7 +36,7 @@ type PageProps = {
         error?: string;
     };
     errors?: Record<string, string>;
-    details: PromotionalVideoProps;
+    details?: PromotionalVideoProps;
     csrf_token: string;
 };
 
@@ -45,19 +45,20 @@ export default function PromotionalVideoEditForm() {
     const [resetSignal, setResetSignal] = useState(0);
     const [newHighlight, setNewHighlight] = useState('');
 
-    const form = useForm<FormData>({
-        id: details.id,
-        title: details.title,
-        slogan: details.slogan,
-        description: details.description,
-        highlights: details.highlights || [],
+    const initialFormData = {
+        id: details?.id || '',
+        title: details?.title || '',
+        slogan: details?.slogan || '',
+        description: details?.description || '',
+        highlights: details?.highlights || [],
         thumbnail: null,
         video: null,
-    });
+    };
+    const form = useForm<FormData>(initialFormData);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        form.post(`/Admin/contentcontent/promotional-video/update`, {
+        form.post(`/Admin/content/promotional-video/update`, {
             forceFormData: true,
             onSuccess: () => {
                 setResetSignal(Date.now());
@@ -131,20 +132,22 @@ export default function PromotionalVideoEditForm() {
                                 thumbnail={
                                     form.data.thumbnail instanceof File
                                         ? URL.createObjectURL(form.data.thumbnail)
-                                        : details.thumbnail
-                                          ? `/storage/${details.thumbnail}`
+                                        : details?.thumbnail
+                                          ? `/storage/${details?.thumbnail}`
                                           : ''
                                 }
                                 videoUrl={
                                     form.data.video instanceof File
                                         ? URL.createObjectURL(form.data.video)
-                                        : details.video
-                                          ? `/storage/${details.video}`
+                                        : details?.video
+                                          ? `/storage/${details?.video}`
                                           : ''
                                 }
                             />
                         </div>
-                        <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
+                    </ComponentCard>
+                    <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
+                        <ComponentCard className="mt-10" title="Video Details">
                             <div>
                                 <InputField
                                     type="text"
@@ -209,6 +212,8 @@ export default function PromotionalVideoEditForm() {
                                     resetSignal={resetSignal}
                                 />
                             </div>
+                        </ComponentCard>
+                        <ComponentCard className="mt-10" title="Video Highlights">
                             <div>
                                 <div className="flex items-center gap-2">
                                     <div className="flex-1">
@@ -232,43 +237,68 @@ export default function PromotionalVideoEditForm() {
                                         <i className="fa-solid fa-plus"></i>
                                     </button>
                                 </div>
-                                {form.data.highlights.map((highlight, index) => (
-                                    <div className="flex items-center gap-2" key={index}>
-                                        <InputField
-                                            label={`Video Highlight ${index + 1}`}
-                                            name={`highlight_${index}`}
-                                            className="flex-1"
-                                            value={highlight}
-                                            onChange={(e) => updateHighlight(index, e.target.value)}
-                                            required={true}
-                                            error={form.errors.description}
-                                            errorMessage="Please enter video highlights"
-                                        />
-
-                                        <button
-                                            type="button"
-                                            onClick={() => removeHighlight(index)}
-                                            className={`rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
-                                                form.processing ? 'bg-blue-400' : 'bg-red-600 hover:bg-red-700 focus:ring-red-300'
-                                            }`}
-                                        >
-                                            <i className="fas fa-trash"></i>
-                                        </button>
+                                <div className="mt-6 rounded-lg">
+                                    <div className="mb-4 flex items-center justify-between">
+                                        <h4 className="text-lg font-medium text-gray-800 dark:text-white/90">
+                                            Current Highlights
+                                            {form.data.highlights.length > 0 && (
+                                                <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
+                                                    (Items: {form.data.highlights.length})
+                                                </span>
+                                            )}
+                                        </h4>
                                     </div>
-                                ))}
-                            </div>
-                        </div>
+                                    {form.data.highlights.length === 0 ? (
+                                        <div className="rounded-lg border border-dashed border-gray-300 py-8 text-center text-gray-500 dark:border-gray-700 dark:text-gray-400">
+                                            <i className="fa-solid fa-list-check mb-2 block text-3xl"></i>
+                                            <p>No highlights added yet</p>
+                                        </div>
+                                    ) : (
+                                        <div className="space-y-4">
+                                            {form.data.highlights.map((highlight, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="rounded-lg border border-gray-200 p-4 transition-all hover:shadow-sm dark:border-gray-700"
+                                                >
+                                                    <div className="flex items-center gap-2">
+                                                        <InputField
+                                                            label={`Video Highlight ${index + 1}`}
+                                                            name={`highlight_${index}`}
+                                                            className="flex-1"
+                                                            value={highlight}
+                                                            onChange={(e) => updateHighlight(index, e.target.value)}
+                                                            required={true}
+                                                            error={form.errors.description}
+                                                            errorMessage="Please enter video highlights"
+                                                        />
 
-                        <button
-                            type="submit"
-                            disabled={form.processing}
-                            className={`mt-3 w-full rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
-                                form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
-                            }`}
-                        >
-                            {form.processing ? 'Processing...' : 'Update Video'}
-                        </button>
-                    </ComponentCard>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => removeHighlight(index)}
+                                                            className={`rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
+                                                                form.processing ? 'bg-blue-400' : 'bg-red-600 hover:bg-red-700 focus:ring-red-300'
+                                                            }`}
+                                                        >
+                                                            <i className="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </ComponentCard>
+                    </div>
+                    <button
+                        type="submit"
+                        disabled={form.processing}
+                        className={`mt-10 w-full rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
+                            form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
+                        }`}
+                    >
+                        {form.processing ? 'Processing...' : 'Update Video'}
+                    </button>
                 </form>
             </AppWrapper>
         </>

@@ -30,8 +30,8 @@ type PageProps = {
         error?: string;
     };
     errors?: Record<string, string>;
-    content: {
-        hero: HeroSectionProps;
+    content?: {
+        hero?: HeroSectionProps;
     };
     csrf_token: string;
 };
@@ -39,13 +39,15 @@ type PageProps = {
 export default function HeroSectionEditForm() {
     const { flash, errors, content, csrf_token } = usePage<PageProps>().props;
     const [resetSignal, setResetSignal] = useState(0);
-    const form = useForm<FormData>({
-        title: content.hero.title,
-        subtitle: content.hero.subtitle,
-        slogan: content.hero.slogan,
-        feature_title: content.hero.feature_title,
+
+    const initialFormData = {
+        title: content?.hero?.title || '',
+        subtitle: content?.hero?.subtitle || '',
+        slogan: content?.hero?.slogan || '',
+        feature_title: content?.hero?.feature_title || '',
         feature_img: null,
-    });
+    };
+    const form = useForm<FormData>(initialFormData);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -67,12 +69,12 @@ export default function HeroSectionEditForm() {
         if (form.data.feature_img instanceof File) {
             return URL.createObjectURL(form.data.feature_img);
         }
-        return content.hero.feature_img ? `/storage/${content.hero.feature_img}` : '/User/Images/church.jpg';
-    }, [form.data.feature_img, content.hero.feature_img]);
+        return content?.hero?.feature_img ? `/storage/${content?.hero?.feature_img}` : '/User/Images/church.jpg';
+    }, [form.data.feature_img, content?.hero?.feature_img]);
 
     return (
         <>
-            <Head title="Edit Hero Section" />
+            <Head title="Admin | CMS" />
             <AppWrapper>
                 <PageMeta title="Edit Hero Section" description="Edit hero section content" />
                 <PageBreadcrumb pageTitle="Content Management" />
@@ -85,87 +87,84 @@ export default function HeroSectionEditForm() {
 
                     <ComponentCard title="Edit Hero Section">
                         <div className="texture-box overflow-hidden rounded-xl">
-                            {content.hero && (
-                                <HeroSection
-                                    content={{
-                                        ...form.data,
-                                        feature_img: heroImageUrl,
-                                    }}
-                                />
-                            )}
+                            <HeroSection
+                                content={{
+                                    ...form.data,
+                                    feature_img: heroImageUrl,
+                                }}
+                            />
                         </div>
-                        <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
-                            <div>
-                                <InputField
-                                    type="text"
-                                    label="Title"
-                                    name="title"
-                                    required={true}
-                                    value={form.data.title}
-                                    onChange={(e) => form.setData('title', e.target.value)}
-                                    error={form.errors.title}
-                                    errorMessage="Please enter title"
-                                    resetSignal={resetSignal}
-                                />
-
-                                <InputField
-                                    type="text"
-                                    label="Subtitle"
-                                    name="subtitle"
-                                    required={true}
-                                    value={form.data.subtitle}
-                                    onChange={(e) => form.setData('subtitle', e.target.value)}
-                                    error={form.errors.subtitle}
-                                    errorMessage="Please enter subtitle"
-                                    resetSignal={resetSignal}
-                                />
-
-                                <InputField
-                                    type="text"
-                                    label="Slogan"
-                                    name="slogan"
-                                    required={true}
-                                    value={form.data.slogan}
-                                    onChange={(e) => form.setData('slogan', e.target.value)}
-                                    error={form.errors.slogan}
-                                    errorMessage="Please enter slogan"
-                                    resetSignal={resetSignal}
-                                />
-                            </div>
-                            <div>
-                                <InputField
-                                    type="text"
-                                    label="Feature Title"
-                                    name="feature_title"
-                                    required={true}
-                                    value={form.data.feature_title}
-                                    onChange={(e) => form.setData('feature_title', e.target.value)}
-                                    error={form.errors.feature_title}
-                                    errorMessage="Please enter feature title"
-                                    resetSignal={resetSignal}
-                                />
-
-                                <FileInput
-                                    label="Feature Image"
-                                    name="feature_img"
-                                    onChange={handleImageChange}
-                                    error={form.errors.feature_img}
-                                    errorMessage="Please select a valid image"
-                                    resetSignal={resetSignal}
-                                />
-                            </div>
-                        </div>
-
-                        <button
-                            type="submit"
-                            disabled={form.processing}
-                            className={`mt-3 w-full rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
-                                form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
-                            }`}
-                        >
-                            {form.processing ? 'Processing...' : 'Update Hero Section'}
-                        </button>
                     </ComponentCard>
+                    <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
+                        <ComponentCard className="mt-10" title="Hero Content ">
+                            <InputField
+                                type="text"
+                                label="Title"
+                                name="title"
+                                required={true}
+                                value={form.data.title}
+                                onChange={(e) => form.setData('title', e.target.value)}
+                                error={form.errors.title}
+                                errorMessage="Please enter title"
+                                resetSignal={resetSignal}
+                            />
+
+                            <InputField
+                                type="text"
+                                label="Subtitle"
+                                name="subtitle"
+                                required={true}
+                                value={form.data.subtitle}
+                                onChange={(e) => form.setData('subtitle', e.target.value)}
+                                error={form.errors.subtitle}
+                                errorMessage="Please enter subtitle"
+                                resetSignal={resetSignal}
+                            />
+
+                            <InputField
+                                type="text"
+                                label="Slogan"
+                                name="slogan"
+                                required={true}
+                                value={form.data.slogan}
+                                onChange={(e) => form.setData('slogan', e.target.value)}
+                                error={form.errors.slogan}
+                                errorMessage="Please enter slogan"
+                                resetSignal={resetSignal}
+                            />
+                        </ComponentCard>
+                        <ComponentCard className="mt-10" title="Floating Featured">
+                            <InputField
+                                type="text"
+                                label="Feature Title"
+                                name="feature_title"
+                                required={true}
+                                value={form.data.feature_title}
+                                onChange={(e) => form.setData('feature_title', e.target.value)}
+                                error={form.errors.feature_title}
+                                errorMessage="Please enter feature title"
+                                resetSignal={resetSignal}
+                            />
+
+                            <FileInput
+                                label="Featured Image"
+                                name="feature_img"
+                                onChange={handleImageChange}
+                                error={form.errors.feature_img}
+                                errorMessage="Please select a valid image"
+                                resetSignal={resetSignal}
+                            />
+                        </ComponentCard>
+                    </div>
+                    <button
+                        type="submit"
+                        disabled={form.processing}
+                        className={`mt-10 w-full rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
+                            form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
+                        }`}
+                    >
+                        {form.processing ? 'Processing...' : 'Update Hero Section'}
+                    </button>
                 </form>
             </AppWrapper>
         </>
