@@ -246,6 +246,7 @@ export default function HeroSectionEditForm() {
                                             value={newResponsibilities.title}
                                             onChange={(e) => setNewResponsibilities({ ...newResponsibilities, title: e.target.value })}
                                             required={false}
+                                            error={form.errors.responsibilities}
                                             errorMessage="Please enter responsibility text"
                                             placeholder="Enter responsibility title"
                                         />
@@ -423,6 +424,7 @@ export default function HeroSectionEditForm() {
                                                 value={newGoals.title}
                                                 onChange={(e) => setNewGoals({ ...newGoals, title: e.target.value })}
                                                 required={false}
+                                                error={form.errors.goals}
                                                 errorMessage="Please enter Responsibilities text"
                                             />
                                         </div>
