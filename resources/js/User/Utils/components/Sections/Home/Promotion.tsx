@@ -43,7 +43,7 @@ export const PromotionalVideo = ({
                     <div className="flex flex-col items-center gap-12 lg:flex-row">
                         <div className="lg:w-1/2">
                             <div className="group relative overflow-hidden rounded-xl bg-white shadow-xl">
-                                <video ref={videoRef} className="h-full w-full object-cover" poster={thumbnail} controls>
+                                <video ref={videoRef} className="aspect-16/9 h-full w-full object-cover" poster={thumbnail} controls>
                                     <source src={videoUrl} type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
