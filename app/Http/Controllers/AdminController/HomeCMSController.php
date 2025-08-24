@@ -323,7 +323,6 @@ class HomeCMSController extends Controller
         }
     }
 
-
     public function PakilIntro()
     {
         $contents = CmsContent::where('page_key', "explore_pakil")

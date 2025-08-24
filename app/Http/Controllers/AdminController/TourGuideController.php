@@ -12,9 +12,26 @@ class TourGuideController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $items = PakilGuides::latest()->paginate(20);
+        $perPage = $request->input('per_page', 20);
+
+        if ($request->input('per_page') === 'all') {
+            $items = PakilGuides::latest()->get();
+
+            return Inertia::render('Admin/Pages/TourGuides/AllGuides', [
+                'items' => [
+                    'data' => $items,
+                    'links' => [],
+                    'meta' => null
+                ],
+            ]);
+        }
+
+        $items = PakilGuides::latest()->paginate($perPage);
+        if ($request->has('per_page')) {
+            $items->appends(['per_page' => $perPage]);
+        }
 
         return Inertia::render('Admin/Pages/TourGuides/AllGuides', [
             'items' => $items

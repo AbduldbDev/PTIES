@@ -35,9 +35,9 @@ interface TableCellProps {
     className?: string;
     sortable?: boolean;
     sortDirection?: SortDirection;
+    colSpan?: number;
     onClick?: () => void;
 }
-
 
 // Table Component
 const Table: React.FC<TableProps> = ({ children, className }) => {
@@ -60,9 +60,13 @@ const TableRow: React.FC<TableRowProps> = ({ children, className }) => {
 };
 
 // TableCell Component
-const TableCell: React.FC<TableCellProps> = ({ children, isHeader = false, className }) => {
+const TableCell: React.FC<TableCellProps> = ({ children, isHeader = false, className, colSpan }) => {
     const CellTag = isHeader ? 'th' : 'td';
-    return <CellTag className={` ${className}`}>{children}</CellTag>;
+    return (
+        <CellTag colSpan={colSpan} className={` ${className}`}>
+            {children}
+        </CellTag>
+    );
 };
 
 export { Table, TableBody, TableCell, TableHeader, TableRow };

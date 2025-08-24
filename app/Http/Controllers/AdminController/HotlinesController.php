@@ -10,9 +10,27 @@ use Illuminate\Support\Facades\Storage;
 
 class HotlinesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $items = PakilHotlines::latest()->paginate(20);
+        $perPage = $request->input('per_page', 20);
+
+        if ($request->input('per_page') === 'all') {
+            $items = PakilHotlines::latest()->get();
+
+            return Inertia::render('Admin/Pages/Hotlines/AllHotlines', [
+                'items' => [
+                    'data' => $items,
+                    'links' => [],
+                    'meta' => null
+                ],
+            ]);
+        }
+
+        $items = PakilHotlines::latest()->paginate($perPage);
+        if ($request->has('per_page')) {
+            $items->appends(['per_page' => $perPage]);
+        }
+
         return Inertia::render('Admin/Pages/Hotlines/AllHotlines', [
             'items' => $items,
         ]);

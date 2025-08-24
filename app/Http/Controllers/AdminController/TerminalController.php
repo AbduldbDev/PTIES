@@ -11,9 +11,30 @@ use Illuminate\Support\Facades\Storage;
 class TerminalController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $terminals = PakilTerminals::latest()->paginate(20);
+        $perPage = $request->input('per_page', 20);
+        if ($request->input('per_page') === 'all') {
+            $terminals = PakilTerminals::latest()->get();
+            $terminals->transform(function ($terminal) {
+                $terminal->routes = $this->parseContentValue($terminal->routes);
+                return $terminal;
+            });
+
+            return Inertia::render('Admin/Pages/Terminals/AllTerminals', [
+                'items' => [
+                    'data' => $terminals,
+                    'links' => [],
+                    'meta' => null
+                ],
+            ]);
+        }
+
+        $terminals = PakilTerminals::latest()->paginate($perPage);
+        if ($request->has('per_page')) {
+            $terminals->appends(['per_page' => $perPage]);
+        }
+
         $terminals->getCollection()->transform(function ($terminal) {
             $terminal->routes = $this->parseContentValue($terminal->routes);
             return $terminal;
@@ -23,6 +44,7 @@ class TerminalController extends Controller
             'items' => $terminals,
         ]);
     }
+
 
     public function new()
     {

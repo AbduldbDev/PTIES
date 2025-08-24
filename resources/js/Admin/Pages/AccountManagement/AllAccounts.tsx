@@ -34,20 +34,16 @@ type PageProps = {
     items: PaginatedResponse<UserItem>;
 };
 
+interface PaginationLink {
+    url: string | null;
+    label: string;
+    active: boolean;
+}
+
 interface PaginatedResponse<T> {
     data: T[];
-    links: {
-        first: string | null;
-        last: string | null;
-        prev: string | null;
-        next: string | null;
-        [key: number]: {
-            url: string | null;
-            label: string;
-            active: boolean;
-        };
-    };
-    meta: {
+    links: PaginationLink[]; // Changed from object to array
+    meta?: {
         current_page: number;
         last_page: number;
         per_page: number;
