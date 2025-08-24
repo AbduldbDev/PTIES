@@ -305,7 +305,6 @@ export default function HeroSectionEditForm() {
                                                                 value={highlight.title}
                                                                 onChange={(e) => updateHighlight(index, { ...highlight, title: e.target.value })}
                                                                 required={true}
-                                                                error={form.errors.highlights}
                                                                 errorMessage="Please enter highlight text"
                                                             />
                                                         </div>
@@ -326,7 +325,6 @@ export default function HeroSectionEditForm() {
                                                                 required={true}
                                                                 value={highlight.icon}
                                                                 onChange={(e) => updateHighlight(index, { ...highlight, icon: e.target.value })}
-                                                                error={form.errors.highlights}
                                                                 errorMessage="Please enter highlight text"
                                                             />
                                                         </div>

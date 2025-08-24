@@ -74,7 +74,6 @@ export default function GuideCreateForm() {
                 form.reset();
                 form.clearErrors();
                 setResetSignal(Date.now());
-              
             },
         });
     };
@@ -131,7 +130,7 @@ export default function GuideCreateForm() {
 
                             <InputField
                                 type="text"
-                                label="Holtine Category"
+                                label="Hotline Category"
                                 name="category"
                                 required={true}
                                 value={form.data.category}

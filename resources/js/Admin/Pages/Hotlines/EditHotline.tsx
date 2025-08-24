@@ -145,7 +145,7 @@ export default function GuideCreateForm() {
 
                             <InputField
                                 type="text"
-                                label="Holtine Category"
+                                label="Hotline Category"
                                 name="category"
                                 required={true}
                                 value={form.data.category}
