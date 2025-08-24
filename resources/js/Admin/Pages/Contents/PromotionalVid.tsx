@@ -59,7 +59,7 @@ export default function PromotionalVideoEditForm() {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         if (form.data.description.length > 255) {
-            form.setError('description', 'Description must not exceed 255     characters');
+            form.setError('description', 'Description must not exceed 255 characters');
             return;
         }
 
