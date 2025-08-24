@@ -12,6 +12,12 @@ interface UseTableManagementProps<T> {
     customSearchFilter?: (item: T, searchTerm: string) => boolean;
 }
 
+const getNestedValue = (obj: any, path: string): any => {
+    return path.split('.').reduce((current, key) => {
+        return current && current[key] !== undefined ? current[key] : null;
+    }, obj);
+};
+
 export const useTableManagement = <T extends Record<string, any>>({
     data,
     initialSort,
@@ -27,6 +33,7 @@ export const useTableManagement = <T extends Record<string, any>>({
 
     const { sortConfig, handleSort } = useTableSort({ initialSort });
     const { searchTerm, handleSearch } = useTableSearch();
+
     const filteredItems = useMemo(() => {
         if (!searchTerm) return data;
 
@@ -37,7 +44,7 @@ export const useTableManagement = <T extends Record<string, any>>({
 
             if (searchFields) {
                 return searchFields.some((field) => {
-                    const value = item[field];
+                    const value = getNestedValue(item, field as string);
                     if (typeof value === 'string') {
                         return value.toLowerCase().includes(searchTerm.toLowerCase());
                     }
@@ -52,15 +59,27 @@ export const useTableManagement = <T extends Record<string, any>>({
             });
         });
     }, [data, searchTerm, searchFields, customSearchFilter]);
+
     const sortedItems = useMemo(() => {
         const sortableItems = [...filteredItems];
         if (sortConfig.key) {
             sortableItems.sort((a, b) => {
-                const aValue = a[sortConfig.key];
-                const bValue = b[sortConfig.key];
+                const aValue = getNestedValue(a, sortConfig.key);
+                const bValue = getNestedValue(b, sortConfig.key);
+
+                if (aValue === null || aValue === undefined) return 1;
+                if (bValue === null || bValue === undefined) return -1;
 
                 if (typeof aValue === 'string' && typeof bValue === 'string') {
                     return sortConfig.direction === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+                }
+
+                if (typeof aValue === 'number' && typeof bValue === 'number') {
+                    return sortConfig.direction === 'asc' ? aValue - bValue : bValue - aValue;
+                }
+
+                if (aValue instanceof Date && bValue instanceof Date) {
+                    return sortConfig.direction === 'asc' ? aValue.getTime() - bValue.getTime() : bValue.getTime() - aValue.getTime();
                 }
 
                 return 0;

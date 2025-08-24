@@ -23,9 +23,20 @@ class AccountManagementController extends Controller
 
     public function index(Request $request)
     {
+        $perPage = $request->input('per_page', 20);
+        if ($request->input('per_page') === 'all') {
+            $items = User::with('profile')->whereIn('user_type', ['admin', 'content_manager'])->latest()->get();
 
-        $items = User::with('profile')->whereIn('user_type', ['admin', 'content_manager'])->latest()->paginate(20)
-            ->withQueryString();
+            return Inertia::render('Admin/Pages/AccountManagement/AllAccounts', [
+                'items' => [
+                    'data' => $items,
+                    'links' => [],
+                    'meta' => null
+                ],
+            ]);
+        }
+
+        $items = User::with('profile')->whereIn('user_type', ['admin', 'content_manager'])->latest()->paginate($perPage);
         return Inertia::render('Admin/Pages/AccountManagement/AllAccounts', [
             'items' => $items
         ]);

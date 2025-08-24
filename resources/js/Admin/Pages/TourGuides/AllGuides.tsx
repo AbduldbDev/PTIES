@@ -2,12 +2,13 @@ import ComponentCard from '@AdminUtils/components/common/ComponentCard';
 import PageBreadcrumb from '@AdminUtils/components/common/PageBreadCrumb';
 import { AppWrapper, PageMeta } from '@AdminUtils/components/common/PageMeta';
 import { TableControls } from '@AdminUtils/components/tables/TableControls';
+import { useTableManagement } from '@AdminUtils/hooks/useTableManagement';
 import DeleteConfirm from '@AdminUtils/components/ui/alert/DeleteConfirm';
 import { SortableColumn, Table, TableBody, TableCell, TableHeader, TableRow } from '@AdminUtils/components/ui/table';
 import Pagination from '@AdminUtils/components/ui/table/pagination';
 import SortIndicator from '@AdminUtils/components/ui/table/sort-indicator';
 import FlashMessage from '@AdminUtils/context/FlashMessage';
-import { useTableManagement } from '@AdminUtils/hooks/useTableManagement';
+
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 
 type TourGuideProps = {
@@ -149,15 +150,14 @@ export default function Home() {
                                                 <TableRow key={user.id}>
                                                     <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
                                                         <div className="flex items-center gap-3">
-                                                            <div className="h-10 w-10 overflow-hidden rounded-full">
-                                                                <img
-                                                                    className="object-contain"
-                                                                    width={40}
-                                                                    height={40}
-                                                                    src={user.image ? `/storage/${user.image}` : '/images/user/User.png'}
-                                                                    alt={`${user.name} ${user.name}`}
-                                                                />
-                                                            </div>
+                                                            <img
+                                                                className="h-10 w-10 overflow-hidden rounded-full object-cover"
+                                                                width={40}
+                                                                height={40}
+                                                                src={user.image ? `/storage/${user.image}` : '/images/user/User.png'}
+                                                                alt={`${user.name} ${user.name}`}
+                                                            />
+
                                                             <div>
                                                                 <span className="font-medium text-gray-800 dark:text-white/90">{user.name}</span>
                                                             </div>
