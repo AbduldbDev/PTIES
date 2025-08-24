@@ -58,6 +58,11 @@ export default function PromotionalVideoEditForm() {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
+        if (form.data.description.length > 255) {
+            form.setError('description', 'Description must not exceed 255     characters');
+            return;
+        }
+
         form.post(`/Admin/content/promotional-video/update`, {
             forceFormData: true,
             onSuccess: () => {
@@ -223,7 +228,7 @@ export default function PromotionalVideoEditForm() {
                                             value={newHighlight}
                                             onChange={(e) => setNewHighlight(e.target.value)}
                                             required={true}
-                                            error={form.errors.description}
+                                            error={form.errors.highlights}
                                             errorMessage="Please enter video highlights"
                                         />
                                     </div>
@@ -268,7 +273,6 @@ export default function PromotionalVideoEditForm() {
                                                             value={highlight}
                                                             onChange={(e) => updateHighlight(index, e.target.value)}
                                                             required={true}
-                                                            error={form.errors.description}
                                                             errorMessage="Please enter video highlights"
                                                         />
 
