@@ -181,7 +181,7 @@ export default function EditGuide() {
                                     form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
                                 }`}
                             >
-                                {form.processing ? 'Processing...' : 'update Tour Guide'}
+                                {form.processing ? 'Processing...' : 'Update Tour Guide'}
                             </button>
                         </ComponentCard>
                     </div>

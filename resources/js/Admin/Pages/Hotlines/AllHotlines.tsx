@@ -103,7 +103,7 @@ export default function AllHotilines() {
                 {errors?.error && <FlashMessage type="error" message={errors.error} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
-                <PageBreadcrumb pageTitle="Hotliness Management" />
+                <PageBreadcrumb pageTitle="Hotlines Management" />
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
                     <ComponentCard title="All Hotliness">
