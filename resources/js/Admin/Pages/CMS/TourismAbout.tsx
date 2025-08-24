@@ -264,6 +264,10 @@ export default function HeroSectionEditForm() {
                                                 { value: 'fa-user-graduate', label: 'User' },
                                                 { value: 'fa-tools', label: 'Tools' },
                                                 { value: 'fa-map-marked-alt', label: 'Maps' },
+                                                { value: 'fa-solid fa-building-columns', label: 'Building' },
+                                                { value: 'fa-mountain', label: 'Mountain' },
+                                                { value: 'fa-water', label: 'Water' },
+                                                { value: 'fa-solid  fa-paintbrush', label: 'Paint' },
                                             ]}
                                             required={true}
                                             value={newResponsibilities.icon}
@@ -359,6 +363,10 @@ export default function HeroSectionEditForm() {
                                                                     { value: 'fa-user-graduate', label: 'User' },
                                                                     { value: 'fa-tools', label: 'Tools' },
                                                                     { value: 'fa-map-marked-alt', label: 'Maps' },
+                                                                    { value: 'fa-solid fa-building-columns', label: 'Building' },
+                                                                    { value: 'fa-mountain', label: 'Mountain' },
+                                                                    { value: 'fa-water', label: 'Water' },
+                                                                    { value: 'fa-solid  fa-paintbrush', label: 'Paint' },
                                                                 ]}
                                                                 required={true}
                                                                 value={responsibility.icon}
