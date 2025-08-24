@@ -13,7 +13,7 @@ const DepartmentStructure = () => {
                 <PageTitle
                     title="Organization"
                     subtitle="  Department of Tourism Structure"
-                    desc="he organizational hierarchy and leadership of Pakil's Tourism Department"
+                    desc="The organizational hierarchy and leadership of Pakil's Tourism Department"
                 />
 
                 {/* Mobile Accordion View */}

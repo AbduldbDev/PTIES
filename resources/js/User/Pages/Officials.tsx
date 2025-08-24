@@ -39,7 +39,7 @@ export default function Officials() {
                             <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
                         </div>
                         <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
-                            <span className="text-primary">Municpal</span> Mayor
+                            <span className="text-primary">Municipal</span> Mayor
                         </h3>
                         <p className="mx-auto max-w-3xl text-lg text-gray-600"></p>
                     </div>

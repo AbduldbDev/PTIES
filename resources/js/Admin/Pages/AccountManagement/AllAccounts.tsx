@@ -55,7 +55,6 @@ interface PaginatedResponse<T> {
     };
 }
 
-// Helper function to get nested property values
 const getNestedValue = (obj: any, path: string): any => {
     return path.split('.').reduce((current, key) => {
         return current && current[key] !== undefined ? current[key] : null;
