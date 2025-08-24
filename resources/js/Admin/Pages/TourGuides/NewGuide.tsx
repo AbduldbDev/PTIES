@@ -54,6 +54,11 @@ export default function GuideCreateForm() {
             });
             return;
         }
+        const contactRegex = /^(09|\+639)\d{9}$/;
+        if (!contactRegex.test(form.data.contact)) {
+            form.setError('contact', 'Please enter a valid phone number');
+            return;
+        }
 
         form.post('/Admin/tour-guides/create', {
             forceFormData: true,
@@ -112,6 +117,7 @@ export default function GuideCreateForm() {
                                 type="text"
                                 label="Contact No."
                                 name="contact"
+                                validation={/^[0-9]{10,15}$/}
                                 required={true}
                                 value={form.data.contact}
                                 onChange={(e) => form.setData('contact', e.target.value)}
