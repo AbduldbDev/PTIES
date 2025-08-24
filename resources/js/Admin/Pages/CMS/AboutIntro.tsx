@@ -259,6 +259,16 @@ export default function HeroSectionEditForm() {
                                             <i className="fa-solid fa-plus"></i>
                                         </button>
                                     </div>
+                                    <Textarea
+                                        rows={3}
+                                        label="Description"
+                                        name="Description"
+                                        value={newHighlight.desc}
+                                        onChange={(e) => setNewHighlight({ ...newHighlight, desc: e.target.value })}
+                                        error={form.errors.highlights}
+                                        errorMessage="Please enter responsibility description"
+                                        placeholder="Enter detailed description of this responsibility"
+                                    />
                                 </div>
                                 <div className="mt-6 rounded-lg">
                                     <div className="mb-4 flex items-center justify-between">
@@ -333,6 +343,16 @@ export default function HeroSectionEditForm() {
                                                             <i className="fas fa-trash"></i>
                                                         </button>
                                                     </div>
+                                                    <Textarea
+                                                        rows={3}
+                                                        label="Description"
+                                                        name="Description"
+                                                        value={highlight.desc}
+                                                        onChange={(e) => setNewHighlight({ ...highlight, desc: e.target.value })}
+                                                        error={form.errors.highlights}
+                                                        errorMessage="Please enter responsibility description"
+                                                        placeholder="Enter detailed description of this responsibility"
+                                                    />
                                                 </div>
                                             ))}
                                         </div>

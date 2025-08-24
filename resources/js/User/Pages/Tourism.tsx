@@ -61,7 +61,7 @@ export default function TourismAboutPage() {
                         <TourismAbout
                             content={{
                                 ...content.about,
-                                image1: content.about.about ? `/storage/${content.about.image1}` : '/User/Images/church.jpg',
+                                image1: content.about.image1 ? `/storage/${content.about.image1}` : '/User/Images/church.jpg',
                                 image2: content.about.image2 ? `/storage/${content.about.image2}` : '/User/Images/church.jpg',
                                 image3: content.about.image3 ? `/storage/${content.about.image3}` : '/User/Images/church.jpg',
                             }}

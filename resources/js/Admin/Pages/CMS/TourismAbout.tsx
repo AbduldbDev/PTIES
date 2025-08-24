@@ -183,7 +183,6 @@ export default function HeroSectionEditForm() {
                                     name="description"
                                     value={form.data.description}
                                     onChange={(e) => form.setData('description', e.target.value)}
-                                    required={true}
                                     readonly={false}
                                     error={form.errors.description}
                                     errorMessage="Please enter video description"
@@ -297,7 +296,6 @@ export default function HeroSectionEditForm() {
                                     name="Description"
                                     value={newResponsibilities.desc}
                                     onChange={(e) => setNewResponsibilities({ ...newResponsibilities, desc: e.target.value })}
-                                    required={true}
                                     error={form.errors.responsibilities}
                                     errorMessage="Please enter responsibility description"
                                     placeholder="Enter detailed description of this responsibility"
