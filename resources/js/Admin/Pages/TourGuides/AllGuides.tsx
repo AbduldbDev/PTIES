@@ -2,12 +2,12 @@ import ComponentCard from '@AdminUtils/components/common/ComponentCard';
 import PageBreadcrumb from '@AdminUtils/components/common/PageBreadCrumb';
 import { AppWrapper, PageMeta } from '@AdminUtils/components/common/PageMeta';
 import { TableControls } from '@AdminUtils/components/tables/TableControls';
-import { useTableManagement } from '@AdminUtils/hooks/useTableManagement';
 import DeleteConfirm from '@AdminUtils/components/ui/alert/DeleteConfirm';
 import { SortableColumn, Table, TableBody, TableCell, TableHeader, TableRow } from '@AdminUtils/components/ui/table';
 import Pagination from '@AdminUtils/components/ui/table/pagination';
 import SortIndicator from '@AdminUtils/components/ui/table/sort-indicator';
 import FlashMessage from '@AdminUtils/context/FlashMessage';
+import { useTableManagement } from '@AdminUtils/hooks/useTableManagement';
 
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 
@@ -175,12 +175,13 @@ export default function Home() {
                                                     <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-center text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                         <a
                                                             target="_blank"
-                                                            className="rounded-full bg-blue-800/50 px-3 py-1 text-black dark:text-gray-300"
+                                                            className="rounded-full bg-blue-800/50 px-3 py-1 whitespace-nowrap text-black dark:text-gray-300"
                                                             href={user.facebook}
                                                         >
                                                             View facebook
                                                         </a>
                                                     </TableCell>
+
                                                     <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                         <div className="col-span-1 flex justify-center">
                                                             <div className="flex w-full items-center justify-center gap-2">

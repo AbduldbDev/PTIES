@@ -106,7 +106,7 @@ export default function AllHotilines() {
                 <PageBreadcrumb pageTitle="Hotlines Management" />
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
-                    <ComponentCard title="All Hotliness">
+                    <ComponentCard title="All Hotlines">
                         <TableControls
                             searchTerm={searchTerm}
                             onSearchChange={handleSearch}

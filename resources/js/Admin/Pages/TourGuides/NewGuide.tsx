@@ -56,7 +56,7 @@ export default function GuideCreateForm() {
         }
         const contactRegex = /^(09|\+639)\d{9}$/;
         if (!contactRegex.test(form.data.contact)) {
-            form.setError('contact', 'Please enter a valid phone number');
+            form.setError('contact', 'Please enter a valid contact number');
             return;
         }
 
@@ -122,7 +122,7 @@ export default function GuideCreateForm() {
                                 value={form.data.contact}
                                 onChange={(e) => form.setData('contact', e.target.value)}
                                 error={form.errors.contact}
-                                errorMessage="Please enter contact number"
+                                errorMessage="Please enter valid contact number"
                                 resetSignal={resetSignal}
                             />
 

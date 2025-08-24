@@ -176,7 +176,7 @@ export default function AllTerminals() {
                                                     <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-center text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                         <a
                                                             target="_blank"
-                                                            className="rounded-full bg-green-800/50 px-3 py-1 text-black dark:text-gray-300"
+                                                            className="rounded-full bg-green-800/50 px-3 py-1 whitespace-nowrap text-black dark:text-gray-300"
                                                             href={`https://www.google.com/maps?q=${Terminal.lat},${Terminal.long}&z=15&t=m`}
                                                         >
                                                             View Maps
