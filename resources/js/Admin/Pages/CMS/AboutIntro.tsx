@@ -348,9 +348,7 @@ export default function HeroSectionEditForm() {
                                                         label="Description"
                                                         name="Description"
                                                         value={highlight.desc}
-                                                        onChange={(e) => setNewHighlight({ ...highlight, desc: e.target.value })}
-                                                        error={form.errors.highlights}
-                                                        errorMessage="Please enter responsibility description"
+                                                        onChange={(e) => updateHighlight(index, { ...highlight, desc: e.target.value })}
                                                         placeholder="Enter detailed description of this responsibility"
                                                     />
                                                 </div>
