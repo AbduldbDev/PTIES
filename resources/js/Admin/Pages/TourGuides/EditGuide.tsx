@@ -111,7 +111,7 @@ export default function EditGuide() {
                                 value={form.data.name}
                                 onChange={(e) => form.setData('name', e.target.value)}
                                 error={form.errors.name}
-                                errorMessage="Please enter guide fullname "
+                                errorMessage="Please enter guide ful lname "
                                 resetSignal={resetSignal}
                             />
                             <SelectField
