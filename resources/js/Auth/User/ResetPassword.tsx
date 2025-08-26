@@ -30,6 +30,7 @@ export default function ResetPassword() {
 
     const { flash, errors, email, token } = usePage<ResetPasswordPageProps>().props;
     const [touched, setTouched] = useState<Record<string, boolean>>({});
+    const [localErrors, setLocalErrors] = useState<Partial<Record<keyof FormData, string>>>({});
 
     const form = useForm<FormData>({
         email: email || '',
@@ -58,11 +59,19 @@ export default function ResetPassword() {
     const handleBlur = (field: keyof FormData) => {
         setTouched((prev) => ({ ...prev, [field]: true }));
         const error = validateField(field, form.data[field]);
-        form.setError(field, error ?? '');
+
+        setLocalErrors((prev) => ({ ...prev, [field]: error })); // store client error
+        form.clearErrors(field); // clear server error so it won’t override
     };
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
+
+        if (form.data.password !== form.data.password_confirmation) {
+            form.setError('password_confirmation', 'Passwords do not match');
+            return;
+        }
+
         form.post('/reset-password', {
             forceFormData: true,
             onSuccess: () => {
