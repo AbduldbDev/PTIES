@@ -45,10 +45,10 @@ export default function ResetPassword() {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return !emailRegex.test(value) ? 'Invalid email address' : '';
             case 'password':
-                if (!value) return 'Password is required';
+                if (!value) return 'New Password is required';
                 return value.length < 8 ? 'Password must be at least 8 characters' : '';
             case 'password_confirmation':
-                if (!value) return 'Confirm your password';
+                if (!value) return 'Confirm Your New password';
                 return value !== form.data.password ? 'Passwords do not match' : '';
             default:
                 return '';
@@ -126,7 +126,7 @@ export default function ResetPassword() {
                                 <FormPassword
                                     Icon="fas fa-lock text-gray/50"
                                     className="w-full rounded-lg border px-4 py-3 transition duration-150 outline-none focus:ring-1"
-                                    label="Password"
+                                    label="New Password"
                                     id="password"
                                     value={form.data.password}
                                     onChange={(e) => form.setData('password', e.target.value)}
@@ -140,7 +140,7 @@ export default function ResetPassword() {
                                 <FormPassword
                                     Icon="fas fa-lock text-gray/50"
                                     className="w-full rounded-lg border px-4 py-3 transition duration-150 outline-none focus:ring-1"
-                                    label="Confirm Password"
+                                    label="Confirm New Password"
                                     id="password_confirmation"
                                     value={form.data.password_confirmation}
                                     onChange={(e) => form.setData('password_confirmation', e.target.value)}
@@ -150,7 +150,7 @@ export default function ResetPassword() {
                                     placeholder="*********"
                                     required
                                 />
-                                
+
                                 {flash?.success && <div className="text-sm text-green-600">{flash.success}</div>}
                                 {flash?.error && <div className="text-sm text-red-600">{flash.error}</div>}
 
