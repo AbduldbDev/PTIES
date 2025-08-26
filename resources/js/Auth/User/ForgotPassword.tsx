@@ -115,7 +115,7 @@ export default function Login() {
                                         onBlur={() => handleBlur('email')}
                                         error={form.errors.email}
                                         touched={touched.email}
-                                        placeholder="Ex. Juan"
+                                        placeholder="Ex. Juan@gmail.com"
                                         required
                                     />
                                     {flash?.success && <div className="text-sm text-green-600">{flash.success}</div>}
@@ -125,7 +125,7 @@ export default function Login() {
                                     type="submit"
                                     className="w-full rounded-lg bg-primary py-3 font-medium text-white transition duration-150 hover:bg-primary/70"
                                 >
-                                    Sign in
+                                    Reset Password
                                 </button>
                             </form>
                         </div>

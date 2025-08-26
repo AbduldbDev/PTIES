@@ -46,7 +46,7 @@ export default function ResetPassword() {
                 return !emailRegex.test(value) ? 'Invalid email address' : '';
             case 'password':
                 if (!value) return 'Password is required';
-                return value.length < 6 ? 'Password must be at least 6 characters' : '';
+                return value.length < 8 ? 'Password must be at least 8 characters' : '';
             case 'password_confirmation':
                 if (!value) return 'Confirm your password';
                 return value !== form.data.password ? 'Passwords do not match' : '';
@@ -71,6 +71,7 @@ export default function ResetPassword() {
             },
         });
     };
+
     return (
         <>
             <Head title={title}>
@@ -119,7 +120,7 @@ export default function ResetPassword() {
                                     onBlur={() => handleBlur('email')}
                                     error={form.errors.email}
                                     touched={touched.email}
-                                    placeholder="Ex. Juan"
+                                    placeholder="Ex. Juan@gmail.com"
                                     readOnly
                                 />
                                 <FormPassword
@@ -156,7 +157,7 @@ export default function ResetPassword() {
                                     type="submit"
                                     className="w-full rounded-lg bg-primary py-3 font-medium text-white transition duration-150 hover:bg-primary/70"
                                 >
-                                    Sign in
+                                    Rest Password
                                 </button>
                             </form>
                         </div>
