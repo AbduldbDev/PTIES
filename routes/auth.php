@@ -47,17 +47,15 @@ use App\Http\Controllers\Auth\SocialiteController;
 //     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
 //         ->name('logout');
 //
+Route::get('/Login', [UserLoginController::class, 'showLoginForm'])->name('login');
+Route::post('/Login', [UserLoginController::class, 'login']);
+
+Route::get('/Signup', [UserSignUpController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
+Route::post('/Signup', [UserSignUpController::class, 'register'])->middleware('guest');
 
 Route::middleware('user.access:guest')->group(function () {
     Route::get('auth/google', [SocialiteController::class, 'redirectToGoogle']);
     Route::get('auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
-
-
-    Route::get('/Login', [UserLoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/Login', [UserLoginController::class, 'login']);
-
-    Route::get('/Signup', [UserSignUpController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
-    Route::post('/Signup', [UserSignUpController::class, 'register'])->middleware('guest');
 
     Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
