@@ -112,7 +112,7 @@ export default function GuideCreateForm() {
                             />
 
                             <FileInput
-                                label="Tour Guide Image"
+                                label="History Image"
                                 name="image"
                                 onChange={(e, isValid) => {
                                     if (isValid && e.target.files?.[0]) {
@@ -132,7 +132,7 @@ export default function GuideCreateForm() {
 
                         <ComponentCard title="History Description">
                             <Textarea
-                                label="Guide Description"
+                                label="History Description"
                                 name="description"
                                 value={form.data.description}
                                 onChange={(e) => form.setData('description', e.target.value)}
