@@ -38,10 +38,10 @@ class RegisterRequest extends FormRequest
             'email.unique'      => 'This email is already registered. Try logging in.',
             'password.required' => 'You must choose a password.',
             'password.confirmed' => 'Password confirmation does not match.',
-            'password.min'      => 'Your password must be at least :min characters.',
-            'password.numbers'  => 'Password must contain at least one number.',
-            'password.symbols'  => 'Password must contain at least one special character.',
-            'password.mixedCase' => 'Password must contain at least one uppercase and one lowercase letter.',
+            'password.min'      => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.numbers'  => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.symbols'  => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.mixedCase' => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
             'password.uncompromised' => 'This password has been exposed in a data breach. Please choose another.',
         ];
     }
