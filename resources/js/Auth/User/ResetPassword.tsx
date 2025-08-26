@@ -157,7 +157,7 @@ export default function ResetPassword() {
                                     type="submit"
                                     className="w-full rounded-lg bg-primary py-3 font-medium text-white transition duration-150 hover:bg-primary/70"
                                 >
-                                    Rest Password
+                                    Reset Password
                                 </button>
                             </form>
                         </div>
