@@ -47,7 +47,7 @@ export default function Signup() {
                 return !emailRegex.test(value) ? 'Invalid email address' : '';
             case 'password':
                 if (!value) return 'Password is required';
-                return value.length < 6 ? 'Password must be at least 6 characters' : '';
+                return value.length < 8 ? 'Password must be at least 8 characters' : '';
             case 'password_confirmation':
                 if (!value) return 'Confirm your password';
                 return value !== form.data.password ? 'Passwords do not match' : '';
