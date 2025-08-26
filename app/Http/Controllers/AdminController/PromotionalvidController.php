@@ -13,11 +13,10 @@ class PromotionalvidController extends Controller
     public function view()
     {
         $details = ContentPromotional::first();
-        return Inertia::render('Admin/Pages/Contents/PromotionalVid', [
+        return Inertia::render('Admin/Pages/CMS/PromotionalVid', [
             'details' => $details,
         ]);
     }
-
 
     public function update(Request $request)
     {

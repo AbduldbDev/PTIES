@@ -9,6 +9,7 @@ use App\Models\CMSBanner;
 use App\Models\ContentPromotional;
 use App\Models\CmsContent;
 use App\Models\PakilGuides;
+use App\Models\PakilHistory;
 use App\Models\PakilHotlines;
 use App\Models\PakilTerminals;
 
@@ -46,6 +47,8 @@ class PageController extends Controller
             ->orderBy('content_key')
             ->get();
 
+        $history = PakilHistory::get();
+
         $pageData = [];
         foreach ($contents as $content) {
             $pageData['sections'][$content->section_key][$content->content_key] =
@@ -56,7 +59,7 @@ class PageController extends Controller
         return Inertia::render('User/Pages/About', [
             'banner' => $banner,
             'content' => $pageData['sections'] ?? [],
-
+            'history' => $history,
         ]);
     }
 

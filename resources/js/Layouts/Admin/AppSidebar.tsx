@@ -79,6 +79,14 @@ const navItems: NavItem[] = [
                 path: '',
                 subItems: [{ name: 'About Pakil', path: '/Admin/cms/pakil-intro' }],
             },
+            {
+                name: 'Hisoty Sections',
+                path: '',
+                subItems: [
+                    { name: 'New History', path: '/Admin/cms/pakil-history/new' },
+                    { name: 'All History', path: '/Admin/cms/pakil-history/' },
+                ],
+            },
         ],
     },
     {

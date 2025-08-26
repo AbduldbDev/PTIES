@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('content_promvid', function (Blueprint $table) {
+        Schema::create('pakil_histories', function (Blueprint $table) {
             $table->id();
+            $table->string('date');
             $table->string('title');
-            $table->string('slogan');
             $table->text('description');
-            $table->json('highlights');
-            $table->string('thumbnail');
-            $table->string('video');
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('content_promvid');
+        Schema::dropIfExists('pakil_histories');
     }
 };

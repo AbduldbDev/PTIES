@@ -10,6 +10,9 @@ use App\Http\Controllers\AdminController\HotlinesController;
 use App\Http\Controllers\AdminController\PromotionalvidController;
 use App\Http\Controllers\AdminController\TerminalController;
 use App\Http\Controllers\AdminController\TourGuideController;
+use App\Http\Controllers\AdminController\CMScontroller;
+use App\Http\Controllers\AdminController\CMSUpdatecontroller;
+use App\Http\Controllers\AdminController\CMSHistoryController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
 
@@ -48,25 +51,34 @@ Route::middleware('admin.access:auth')->group(function () {
     });
 
     Route::prefix('/Admin/cms')->name('cms.')->group(function () {
-        Route::get('/hero-section', [HomeCMSController::class, 'HeroSection'])->name('HeroSection');
-        Route::get('/introduction-section', [HomeCMSController::class, 'IntroductionSection'])->name('IntroductionSection');
-        Route::get('/tourism-section', [HomeCMSController::class, 'TourismSection'])->name('TourismSection');
-        Route::get('/mission-vision', [HomeCMSController::class, 'MissionVision'])->name('MissionVision');
-        Route::get('/pakil-intro', [HomeCMSController::class, 'PakilIntro'])->name('PakilIntro');
+        Route::get('/hero-section', [CMScontroller::class, 'HeroSection'])->name('HeroSection');
+        Route::get('/introduction-section', [CMScontroller::class, 'IntroductionSection'])->name('IntroductionSection');
+        Route::get('/tourism-section', [CMScontroller::class, 'TourismSection'])->name('TourismSection');
+        Route::get('/mission-vision', [CMScontroller::class, 'MissionVision'])->name('MissionVision');
+        Route::get('/pakil-intro', [CMScontroller::class, 'PakilIntro'])->name('PakilIntro');
     });
 
     Route::prefix('/Admin/cms/update')->name('cms.update.')->group(function () {
-        Route::post('/hero-section', [HomeCMSController::class, 'updateHeroSection'])->name('HeroSection');
-        Route::post('/introduction-section', [HomeCMSController::class, 'updateIntroductionSection'])->name('IntroductionSection');
-        Route::post('/tourism-about-section', [HomeCMSController::class, 'UpdateTourismAboutSection'])->name('TourismSection');
-        Route::post('/mission-vision', [HomeCMSController::class, 'UpdateMissionVision'])->name('MissionVision');
-        Route::post('/pakil-intro', [HomeCMSController::class, 'UpdatePakilIntro'])->name('PakilIntro');
+        Route::post('/hero-section', [CMSUpdatecontroller::class, 'UpdateHeroSection'])->name('HeroSection');
+        Route::post('/introduction-section', [CMSUpdatecontroller::class, 'UpdateIntroductionSection'])->name('IntroductionSection');
+        Route::post('/tourism-about-section', [CMSUpdatecontroller::class, 'UpdateTourismAboutSection'])->name('TourismSection');
+        Route::post('/mission-vision', [CMSUpdatecontroller::class, 'UpdateMissionVision'])->name('MissionVision');
+        Route::post('/pakil-intro', [CMSUpdatecontroller::class, 'UpdatePakilIntro'])->name('PakilIntro');
     });
 
     Route::prefix('/Admin/cms/banner')->name('banners.')->group(function () {
         Route::get('/', [BannerController::class, 'index'])->name('index');
         Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('edit');
         Route::post('/update', [BannerController::class, 'update'])->name('update');
+    });
+
+    Route::prefix('/Admin/cms/pakil-history')->name('cms.history.')->group(function () {
+        Route::get('/', [CMSHistoryController::class, 'index'])->name('index');
+        Route::get('/new', [CMSHistoryController::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [CMSHistoryController::class, 'edit'])->name('edit');
+        Route::post('/create', [CMSHistoryController::class, 'create'])->name('create');
+        Route::post('/update/{id}', [CMSHistoryController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [CMSHistoryController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('/Admin/tour-guides')->name('tourguide.')->group(function () {

@@ -1,11 +1,14 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
+import HistoryCard from '@UserUtils/components/Cards/History';
 import Introductions from '@UserUtils/components/Sections/About/Introduction';
 import { CmsContent } from '@UserUtils/Types/cms';
 
 interface PageProps {
+    banner: PageBannerProps;
     content: CmsContent;
+    history: HistoryProps[];
     [key: string]: unknown;
 }
 
@@ -16,10 +19,15 @@ type PageBannerProps = {
     image: string;
 };
 
+type HistoryProps = {
+    date: string;
+    title: string;
+    description: string;
+    image: string;
+};
+
 export default function About() {
-    const { props } = usePage<PageProps>();
-    const { banner } = usePage<{ banner: PageBannerProps }>().props;
-    const { content } = props;
+    const { banner, content, history } = usePage<PageProps>().props;
 
     const title = 'Pakil Tourism | About';
     const description =
@@ -64,109 +72,29 @@ export default function About() {
                 </section>
             )}
 
-            <section className="py-20">
-                <div className="container mx-auto max-w-5xl px-6">
-                    <PageTitle
-                        title="The Past"
-                        subtitle="Rich History the  of Pakil"
-                        desc="Discover the fascinating journey of our pilgrimage town"
-                    ></PageTitle>
+            {history?.length > 0 && (
+                <section className="py-20">
+                    <div className="container mx-auto max-w-5xl px-6">
+                        <PageTitle title="The Past" subtitle="Rich History of Pakil" desc="Discover the fascinating journey of our pilgrimage town" />
 
-                    <div className="flex flex-col md:flex-row">
-                        <div className="flex justify-center md:w-1/6">
-                            <div className="relative hidden md:block">
-                                <div className="absolute left-1/2 h-full w-0.5 -translate-x-1/2 transform bg-primary/20"></div>
-                                <div className="absolute top-0 left-1/2 h-6 w-6 -translate-x-1/2 transform rounded-full border-4 border-white bg-primary shadow-md"></div>
-                                <div className="absolute bottom-0 left-1/2 h-6 w-6 -translate-x-1/2 transform rounded-full border-4 border-white bg-primary shadow-md"></div>
-                            </div>
-                        </div>
-
-                        <div className="md:w-5/6">
-                            <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                                <div className="md:flex">
-                                    <div className="bg-primary/5 p-6 md:w-1/3">
-                                        <h4 className="mb-2 text-xl font-bold text-primary">1588</h4>
-                                        <p className="font-medium text-gray-700">Franciscan Foundation</p>
-                                        <img src="/User/Images/church.jpg" alt="Old Church" className="mt-4 rounded-lg shadow-sm" />
-                                    </div>
-                                    <div className="p-6 md:w-2/3">
-                                        <div className="prose prose-lg text-gray-700">
-                                            <p>
-                                                Pakil was established as a visita (mission station) of Paete by Franciscan missionaries in 1588. The
-                                                town's original name was "Paquil," derived from the phrase "Pa-kin," meaning "to cut" in Tagalog,
-                                                referring to how early settlers cleared the land.
-                                            </p>
-                                            <p className="mt-4">
-                                                The Franciscans built the first chapel dedicated to San Pedro de Alcantara, which would later become
-                                                the center of religious life in the community. This period saw the conversion of local populations to
-                                                Christianity and the establishment of basic governance structures under Spanish rule.
-                                            </p>
-                                        </div>
-                                    </div>
+                        <div className="flex flex-col md:flex-row">
+                            <div className="flex justify-center md:w-1/6">
+                                <div className="relative hidden md:block">
+                                    <div className="absolute left-1/2 h-full w-0.5 -translate-x-1/2 transform bg-primary/20"></div>
+                                    <div className="absolute top-0 left-1/2 h-6 w-6 -translate-x-1/2 transform rounded-full border-4 border-white bg-primary shadow-md"></div>
+                                    <div className="absolute bottom-0 left-1/2 h-6 w-6 -translate-x-1/2 transform rounded-full border-4 border-white bg-primary shadow-md"></div>
                                 </div>
                             </div>
 
-                            <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                                <div className="flex-row-reverse md:flex">
-                                    <div className="bg-primary/5 p-6 md:w-1/3">
-                                        <h4 className="mb-2 text-xl font-bold text-primary">1676</h4>
-                                        <p className="font-medium text-gray-700">Independent Municipality</p>
-                                        <img src="/User/Images/church.jpg" alt="Town Plaza" className="mt-4 rounded-lg shadow-sm" />
-                                    </div>
-                                    <div className="p-6 md:w-2/3">
-                                        <div className="prose prose-lg text-gray-700">
-                                            <p>
-                                                After nearly a century as a visita, Pakil was officially established as an independent municipality in
-                                                1676. This marked the beginning of Pakil's distinct political and cultural identity separate from
-                                                Paete.
-                                            </p>
-                                            <p className="mt-4">
-                                                The 18th century saw the construction of more permanent structures, including the current San Pedro de
-                                                Alcantara Church (completed in 1767). The town's economy flourished through agriculture (particularly
-                                                rice and coconut cultivation) and the emerging woodcarving industry that would later become
-                                                world-renowned.
-                                            </p>
-                                            <p className="mt-4">
-                                                The famous Turumba devotion began in 1788 when fishermen discovered the image of Nuestra Señora de los
-                                                Dolores along the shores of Laguna de Bay after a storm, marking the start of Pakil's enduring Marian
-                                                tradition.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                                <div className="md:flex">
-                                    <div className="bg-primary/5 p-6 md:w-1/3">
-                                        <h4 className="mb-2 text-xl font-bold text-primary">1900s</h4>
-                                        <p className="font-medium text-gray-700">Modern Development</p>
-                                        <img src="/User/Images/church.jpg" alt="Modern Pakil" className="mt-4 rounded-lg shadow-sm" />
-                                    </div>
-                                    <div className="p-6 md:w-2/3">
-                                        <div className="prose prose-lg text-gray-700">
-                                            <p>
-                                                The American colonial period brought new infrastructure to Pakil, including roads and schools. The
-                                                20th century saw the town preserve its cultural heritage while adapting to modernization.
-                                            </p>
-                                            <p className="mt-4">
-                                                In 1952, Pakil was officially recognized as a pilgrimage site by the Catholic Church due to the
-                                                growing devotion to Our Lady of Turumba. The Turumba Festival was institutionalized as the longest
-                                                religious festival in the Philippines, spanning seven months to commemorate the Seven Sorrows of Mary.
-                                            </p>
-                                            <p className="mt-4">
-                                                Recent decades have focused on cultural preservation and tourism development. The municipal government
-                                                has restored historic structures, established heritage zones, and promoted Pakil's unique musical
-                                                tradition rooted in the works of Marcelo Adonay, the "Palestrina of the Philippines."
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div className="md:w-5/6">
+                                {history.map((item, index) => (
+                                    <HistoryCard key={item.date} history={item} className={index % 2 === 1 ? 'flex-row-reverse' : ''} />
+                                ))}
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
 
             <section className="py-20">
                 <div className="container mx-auto px-6">

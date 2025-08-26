@@ -11,18 +11,12 @@ import { useTableManagement } from '@AdminUtils/hooks/useTableManagement';
 
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 
-interface TerminalProps {
+type PakilHistoryProps = {
     id: number;
-    name: string;
-    sched: string;
-    sched_desc: string;
-    long: string;
-    lat: string;
-    routes: Routes[];
-}
-
-type Routes = {
-    name: string;
+    date: string;
+    title: string;
+    description: string;
+    image: string;
 };
 
 type PageProps = {
@@ -31,7 +25,7 @@ type PageProps = {
         error?: string;
     };
     errors?: Record<string, string | undefined>;
-    items: PaginatedResponse<TerminalProps>;
+    items: PaginatedResponse<PakilHistoryProps>;
 };
 
 interface PaginationLink {
@@ -53,7 +47,7 @@ interface PaginatedResponse<T> {
     } | null;
 }
 
-export default function AllTerminals() {
+export default function Home() {
     const { flash, errors, items } = usePage<PageProps>().props;
     const form = useForm();
 
@@ -65,35 +59,32 @@ export default function AllTerminals() {
         searchTerm,
         handleSearch,
         filteredItems: sortedItems,
-    } = useTableManagement<TerminalProps>({
+    } = useTableManagement<PakilHistoryProps>({
         data: items.data,
         initialSort: { key: 'created_at', direction: 'desc' },
         meta: items.meta || undefined,
         customSearchFilter: (item, searchTerm) => {
             const searchLower = searchTerm.toLowerCase();
             return (
-                item.name.toLowerCase().includes(searchLower) ||
-                item.sched.toLowerCase().includes(searchLower) ||
-                item.sched_desc.toLowerCase().includes(searchLower) ||
-                (item.routes && item.routes.some((route) => route.name.toLowerCase().includes(searchLower)))
+                item.date.toLowerCase().includes(searchLower) ||
+                item.title.toLowerCase().includes(searchLower) ||
+                item.description.toLowerCase().includes(searchLower)
             );
         },
     });
 
     const handleDelete = (id: number) => {
-        form.delete(`/Admin/terminal/delete/${id}`);
+        form.delete(`/Admin/cms/pakil-history/delete/${id}`);
     };
 
     const handleView = (id: any) => {
-        router.post(`/Admin/terminal/edit/${id}`);
+        router.get(`/Admin/cms/pakil-history/edit/${id}`);
     };
 
     const columns: SortableColumn[] = [
-        { key: 'name', label: 'Terminal', sortable: true },
-        { key: 'sched', label: 'Schedule', sortable: true },
-        { key: 'sched_desc', label: 'Schedule Description', sortable: false },
-        { key: 'routes', label: 'Routes', sortable: false },
-        { key: 'maps', label: 'Maps', sortable: false },
+        { key: 'date', label: 'Date', sortable: true },
+        { key: 'title', label: 'Title', sortable: true },
+        { key: 'description', label: 'Description', sortable: false },
         { key: 'action', label: 'Action', sortable: false, align: 'center' },
     ];
 
@@ -109,18 +100,17 @@ export default function AllTerminals() {
                 {errors?.error && <FlashMessage type="error" message={errors.error} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
-                <PageBreadcrumb pageTitle="Terminals Management" />
+                <PageBreadcrumb pageTitle="Pakil History Management" />
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
-                    <ComponentCard title="All Terminals">
+                    <ComponentCard title="All Pakil History">
                         <TableControls
                             searchTerm={searchTerm}
                             onSearchChange={handleSearch}
                             itemsPerPage={currentPerPage}
                             onItemsPerPageChange={(e) => handleItemsPerPageChange(e.target.value)}
-                            searchPlaceholder="Search terminals..."
+                            searchPlaceholder="Search pakil history..."
                         />
-
                         <div className="overflow-hidden rounded-xl bg-white dark:bg-white/[0.03]">
                             <div className="max-w-full overflow-x-auto">
                                 <Table>
@@ -151,48 +141,31 @@ export default function AllTerminals() {
 
                                     <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                                         {sortedItems.length > 0 ? (
-                                            sortedItems.map((Terminal) => (
-                                                <TableRow key={Terminal.id}>
+                                            sortedItems.map((history) => (
+                                                <TableRow key={history.id}>
                                                     <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {Terminal.name}
-                                                    </TableCell>
-                                                    <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {Terminal.sched}
+                                                        {history.date}
                                                     </TableCell>
                                                     <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {Terminal.sched_desc}
+                                                        {history.title}
                                                     </TableCell>
-                                                    <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                        {Terminal && Terminal.routes && Terminal.routes.length > 0 ? (
-                                                            <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                                                                {Terminal.routes.map((route, index) => (
-                                                                    <li key={index}>{route.name}</li>
-                                                                ))}
-                                                            </ul>
-                                                        ) : (
-                                                            <i>No routes available</i>
-                                                        )}
+                                                    <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
+                                                        {history.description.length > 100
+                                                            ? history.description.substring(0, 100) + '...'
+                                                            : history.description}
                                                     </TableCell>
-                                                    <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-center text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                        <a
-                                                            target="_blank"
-                                                            className="rounded-full bg-green-800/50 px-3 py-1 whitespace-nowrap text-black dark:text-gray-300"
-                                                            href={`https://www.google.com/maps?q=${Terminal.lat},${Terminal.long}&z=15&t=m`}
-                                                        >
-                                                            View Maps
-                                                        </a>
-                                                    </TableCell>
+
                                                     <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                         <div className="col-span-1 flex justify-center">
                                                             <div className="flex w-full items-center justify-center gap-2">
                                                                 <DeleteConfirm
-                                                                    onDeleteConfirmed={() => handleDelete(Terminal.id)}
-                                                                    message={`Are you sure you want to delete Terminal named "${Terminal.name}"?`}
+                                                                    onDeleteConfirmed={() => handleDelete(history.id)}
+                                                                    message={`Are you sure you want to delete pakil history named "${history.title}"?`}
                                                                 />
 
                                                                 <button
                                                                     aria-label="Edit-btn"
-                                                                    onClick={() => handleView(Terminal.id)}
+                                                                    onClick={() => handleView(history.id)}
                                                                     className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white/90"
                                                                 >
                                                                     <svg
@@ -222,7 +195,7 @@ export default function AllTerminals() {
                                                     colSpan={columns.length}
                                                     className="px-4 py-20 text-center text-gray-500 dark:text-gray-400"
                                                 >
-                                                    {searchTerm ? `No terminals found matching "${searchTerm}"` : 'No terminals available'}
+                                                    {searchTerm ? `No Tour Guides found matching "${searchTerm}"` : 'No Tour Guides available'}
                                                 </TableCell>
                                             </TableRow>
                                         )}
