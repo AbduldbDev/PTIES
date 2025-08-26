@@ -60,8 +60,8 @@ export default function ResetPassword() {
         setTouched((prev) => ({ ...prev, [field]: true }));
         const error = validateField(field, form.data[field]);
 
-        setLocalErrors((prev) => ({ ...prev, [field]: error })); // store client error
-        form.clearErrors(field); // clear server error so it won’t override
+        setLocalErrors((prev) => ({ ...prev, [field]: error }));
+        form.clearErrors(field);
     };
 
     const handleSubmit = (e: FormEvent) => {
