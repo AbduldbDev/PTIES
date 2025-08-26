@@ -43,7 +43,7 @@ export default function ResetPassword() {
             case 'email':
                 if (!value) return 'Email is required';
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return !emailRegex.test(value) ? 'Invalid email address' : '';
+                return !emailRegex.test(value) ? 'Invalid Email Address' : '';
             case 'password':
                 if (!value) return 'New Password is required';
                 return value.length < 8 ? 'Password must be at least 8 characters' : '';
