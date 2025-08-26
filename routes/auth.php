@@ -73,5 +73,5 @@ Route::middleware('user.access:guest')->group(function () {
 });
 
 Route::middleware('user.access:auth')->group(function () {
-    Route::post('/Logout', [UserLoginController::class, 'logout']);
+    Route::post('/logout', [UserLoginController::class, 'logout']);
 });

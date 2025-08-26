@@ -354,7 +354,7 @@ const Navbar = () => {
                                                 </div>
 
                                                 <div className="border-t py-1">
-                                                    <form method="POST" action="/Logout">
+                                                    <form method="POST" action="/logout">
                                                         <input type="hidden" name="_token" value={csrfToken ?? ''} />
                                                         <button
                                                             type="submit"

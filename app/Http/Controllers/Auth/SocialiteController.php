@@ -38,7 +38,7 @@ class SocialiteController extends Controller
 
             return redirect()->route('user.home');
         } catch (\Exception $e) {
-            return redirect('/login')->with('error', 'Failed to login using Google.');
+            return redirect('/Login')->with('error', 'Failed to login using Google.');
         }
     }
 }
