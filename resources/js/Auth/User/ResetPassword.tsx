@@ -150,6 +150,7 @@ export default function ResetPassword() {
                                     placeholder="*********"
                                     required
                                 />
+                                
                                 {flash?.success && <div className="text-sm text-green-600">{flash.success}</div>}
                                 {flash?.error && <div className="text-sm text-red-600">{flash.error}</div>}
 
