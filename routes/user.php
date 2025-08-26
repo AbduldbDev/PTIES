@@ -22,6 +22,6 @@ Route::get('/socialwall', [PageController::class, 'SocialWall'])->name('user.soc
 Route::get('/pakilguide', [PageController::class, 'PakilGuide'])->name('user.pakilguide');
 Route::get('/rewardshop', [PageController::class, 'RewardShop'])->name('user.rewardshop');
 Route::get('/profile', [PageController::class, 'Profile'])->name('user.profile');
-
+Route::get('/establishments', [PageController::class, 'Establishments'])->name('user.establishments');
 
 Route::middleware('guest')->group(function () {});

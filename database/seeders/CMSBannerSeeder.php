@@ -27,7 +27,10 @@ class CMSBannerSeeder extends Seeder
             'Key Officials',
             'About Tourism',
             'About Pakil',
+            'Pakil Establishments',
         ];
+
+
 
         foreach ($keys as $key) {
             CMSBanner::firstOrCreate(

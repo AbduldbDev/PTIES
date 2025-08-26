@@ -219,4 +219,16 @@ class PageController extends Controller
             'banner' => $banner,
         ]);
     }
+
+    public function Establishments()
+    {
+        $banner = CMSBanner::where('key', 'Pakil Establishments')->first();
+        $establishments = PakilEstablishments::inRandomOrder()->get();
+
+        return Inertia::render('User/Pages/Establishments', [
+            'banner' => $banner,
+            'establishments' => $establishments,
+
+        ]);
+    }
 }
