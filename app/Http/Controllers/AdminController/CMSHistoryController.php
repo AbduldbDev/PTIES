@@ -79,7 +79,7 @@ class CMSHistoryController extends Controller
                 'image' => $ImagePath,
             ]);
 
-            return redirect()->back()->with('success', 'History created succesfully');
+            return redirect()->route('cms.history.index')->with('success', 'History created successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error', $e->getMessage()]);
         }
