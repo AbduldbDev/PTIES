@@ -197,7 +197,6 @@ export default function GuideCreateForm() {
                                 error={form.errors.image}
                                 errorMessage={form.errors.image || 'File must be under 5MB'}
                                 resetSignal={resetSignal}
-                                required={true}
                             />
 
                             <button
