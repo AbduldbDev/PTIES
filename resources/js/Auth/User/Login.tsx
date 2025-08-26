@@ -74,8 +74,9 @@ export default function Login() {
     };
 
     const handleGoogleLogin = () => {
-        window.location.href = 'http://localhost:8000/auth/google';
+        window.location.href = `${window.location.origin}/auth/google`;
     };
+
     return (
         <>
             <Head title={title}>

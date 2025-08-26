@@ -47,11 +47,17 @@ class UserSignUpController extends Controller
                     ->uncompromised(),
             ],
         ], [
-            'password.min'         => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
-            'password.mixed_case'  => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
-            'password.letters'     => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
-            'password.numbers'     => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
-            'password.symbols'     => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'email.required'    => 'We need your email to create your account.',
+            'email.email'       => 'Please enter a valid email address.',
+            'email.unique'      => 'This email is already registered. Try logging in.',
+            'password.required' => 'You must choose a password.',
+            'password.confirmed' => 'Password confirmation does not match.',
+            'password.*'        => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.min'      => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.numbers'  => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.symbols'  => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.mixedCase' => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.uncompromised' => 'This password has been exposed in a data breach. Please choose another.',
         ]);
 
         if ($validator->fails()) {
