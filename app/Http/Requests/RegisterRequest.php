@@ -39,9 +39,9 @@ class RegisterRequest extends FormRequest
             'password.required' => 'You must choose a password.',
             'password.confirmed' => 'Password confirmation does not match.',
             'password.min'      => 'Your password must be at least :min characters.',
-            'password.mixedCase' => 'Password must contain at least one uppercase and one lowercase letter.',
             'password.numbers'  => 'Password must contain at least one number.',
             'password.symbols'  => 'Password must contain at least one special character.',
+            'password.mixedCase' => 'Password must contain at least one uppercase and one lowercase letter.',
             'password.uncompromised' => 'This password has been exposed in a data breach. Please choose another.',
         ];
     }
