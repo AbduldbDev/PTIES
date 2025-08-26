@@ -1,3 +1,4 @@
+import FileInput from '@/Admin/Utils/components/form/input/FileInput';
 import ComponentCard from '@AdminUtils/components/common/ComponentCard';
 import PageBreadcrumb from '@AdminUtils/components/common/PageBreadCrumb';
 import { AppWrapper, PageMeta } from '@AdminUtils/components/common/PageMeta';
@@ -8,26 +9,27 @@ import FlashMessage from '@AdminUtils/context/FlashMessage';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent, useEffect, useState } from 'react';
 
-type HotlineProps = {
+type EstablishmentProps = {
     id: number;
+    type: string;
     name: string;
-    category: string;
-    icon: string;
-    hotline: string;
-    contact: string;
     location: string;
+    contact: string;
+    facebook: string;
     long: string;
     lat: string;
+    image: string;
 };
+
 type FormData = {
+    type: string;
     name: string;
-    category: string;
-    icon: string;
-    hotline: string;
-    contact: string;
     location: string;
+    contact: string;
+    facebook: string;
     long: string;
     lat: string;
+    image: File | null;
 };
 
 type PageProps = {
@@ -39,21 +41,21 @@ type PageProps = {
         error?: string;
         [key: string]: string | undefined;
     };
-    item: HotlineProps;
+    item: EstablishmentProps;
 };
 
 export default function GuideCreateForm() {
     const { flash, errors, item } = usePage<PageProps>().props;
     const [resetSignal, setResetSignal] = useState(0);
     const form = useForm<FormData>({
+        type: item.type,
         name: item.name,
-        category: item.category,
-        icon: item.icon,
-        hotline: item.hotline,
-        contact: item.contact,
         location: item.location,
-        long: '',
-        lat: '',
+        contact: item.contact,
+        facebook: item.facebook,
+        long: item.long,
+        lat: item.lat,
+        image: null,
     });
 
     const [lat, setLat] = useState<number>(Number(item.lat));
@@ -70,7 +72,7 @@ export default function GuideCreateForm() {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
-        const requiredFields: (keyof FormData)[] = ['name', 'category', 'hotline', 'contact', 'location'];
+        const requiredFields: (keyof FormData)[] = ['type', 'name', 'location', 'contact', 'facebook'];
         const emptyFields = requiredFields.filter((field) => !form.data[field]);
 
         if (emptyFields.length > 0) {
@@ -80,15 +82,14 @@ export default function GuideCreateForm() {
             return;
         }
 
-        form.post(`/Admin/hotlines/update/${item.id}`, {
+        form.post(`/Admin/establishment/update/${item.id}`, {
             forceFormData: true,
             onSuccess: () => {
                 form.reset();
-                form.setData({
-                    ...form.data,
-                });
                 form.clearErrors();
                 setResetSignal(Date.now());
+                setLat(14.381009);
+                setLng(121.478769);
             },
         });
     };
@@ -106,7 +107,7 @@ export default function GuideCreateForm() {
                     title="Pakil Tourism Information and Engagement System"
                     description="Explore Pakil's tourism attractions, events, and engage with the local community through our interactive information platform."
                 />
-                <PageBreadcrumb pageTitle="Emergency Hotlines Management" />
+                <PageBreadcrumb pageTitle="Establishment Management" />
 
                 {flash?.success && <FlashMessage type="success" message={flash.success} />}
                 {errors?.error && <FlashMessage type="error" message={errors.error} />}
@@ -114,80 +115,83 @@ export default function GuideCreateForm() {
 
                 <form onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
-                        <ComponentCard title="Add New Hotline">
+                        <ComponentCard title="Edit Establishment">
+                            <SelectField
+                                label="Establishment Type"
+                                name="type"
+                                options={[
+                                    { value: 'food', label: 'Food' },
+                                    { value: 'accommodation', label: 'Accommodations' },
+                                ]}
+                                required={true}
+                                value={form.data.type}
+                                onChange={(e) => form.setData('type', e.target.value)}
+                                error={form.errors.type}
+                                errorMessage="Please select establishment type"
+                            />
+
                             <InputField
                                 type="text"
-                                label="Hotline Name"
+                                label="Establishment Name"
                                 name="name"
                                 required={true}
                                 value={form.data.name}
                                 onChange={(e) => form.setData('name', e.target.value)}
                                 error={form.errors.name}
-                                errorMessage="Please enter hotline name"
+                                errorMessage="Please enter establishment name"
                                 resetSignal={resetSignal}
                             />
-
-                            <SelectField
-                                label="Icon"
-                                name="icon"
-                                options={[
-                                    { value: 'fa-solid fa-suitcase-medical', label: 'Medical' },
-                                    { value: 'fa-solid fa-fire-extinguisher', label: 'Fire' },
-                                    { value: 'fa-solid fa-building-shield', label: 'Police' },
-                                    { value: 'fa-solid fa-building-column', label: 'General' },
-                                ]}
-                                required={true}
-                                value={form.data.icon}
-                                onChange={(e) => form.setData('icon', e.target.value)}
-                                error={form.errors.icon}
-                                errorMessage="Please select a valid icon"
-                            />
-
-                            <InputField
-                                type="text"
-                                label="Hotline Category"
-                                name="category"
-                                required={true}
-                                value={form.data.category}
-                                onChange={(e) => form.setData('category', e.target.value)}
-                                error={form.errors.category}
-                                errorMessage="Please enter hotline category"
-                                resetSignal={resetSignal}
-                            />
-                            <InputField
-                                type="text"
-                                label="Hotline Number"
-                                name="hotline_number"
-                                required={true}
-                                value={form.data.hotline}
-                                onChange={(e) => form.setData('hotline', e.target.value)}
-                                error={form.errors.hotline}
-                                errorMessage="Please enter hotline number"
-                                resetSignal={resetSignal}
-                            />
-
-                            <InputField
-                                type="text"
-                                label="Contact Number"
-                                name="hotline_number"
-                                required={true}
-                                value={form.data.contact}
-                                onChange={(e) => form.setData('contact', e.target.value)}
-                                error={form.errors.contact}
-                                errorMessage="Please enter contact number"
-                                resetSignal={resetSignal}
-                            />
-
                             <InputField
                                 type="text"
                                 label="Address"
-                                name="hotline_location"
+                                name="location"
                                 required={true}
                                 value={form.data.location}
                                 onChange={(e) => form.setData('location', e.target.value)}
                                 error={form.errors.location}
-                                errorMessage="Please enter location address"
+                                errorMessage="Please enter establishment address"
                                 resetSignal={resetSignal}
+                            />
+
+                            <InputField
+                                type="text"
+                                label="Contact"
+                                name="contact"
+                                required={true}
+                                value={form.data.contact}
+                                onChange={(e) => form.setData('contact', e.target.value)}
+                                error={form.errors.contact}
+                                errorMessage="Please enter establishment contact"
+                                resetSignal={resetSignal}
+                            />
+
+                            <InputField
+                                type="text"
+                                label="Facebook Link"
+                                name="facebook"
+                                required={true}
+                                value={form.data.facebook}
+                                onChange={(e) => form.setData('facebook', e.target.value)}
+                                error={form.errors.facebook}
+                                errorMessage="Please enter establishment facebook"
+                                resetSignal={resetSignal}
+                            />
+                            <FileInput
+                                label="Establishment Image"
+                                name="image"
+                                onChange={(e, isValid) => {
+                                    if (isValid && e.target.files?.[0]) {
+                                        form.setData('image', e.target.files[0]);
+                                        form.clearErrors('image');
+                                    } else if (!isValid) {
+                                        form.setError('image', 'File must be under 5MB');
+                                    }
+                                }}
+                                validation={(file) => (file ? file.size <= 5 * 1024 * 1024 : false)}
+                                error={form.errors.image}
+                                errorMessage={form.errors.image || 'File must be under 5MB'}
+                                resetSignal={resetSignal}
+                                required={true}
                             />
 
                             <button
@@ -197,10 +201,10 @@ export default function GuideCreateForm() {
                                     form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
                                 }`}
                             >
-                                {form.processing ? 'Processing...' : 'Update Emergency Hotline'}
+                                {form.processing ? 'Processing...' : 'Update Establishment'}
                             </button>
                         </ComponentCard>
-                        <ComponentCard title="Pin Hotline Location">
+                        <ComponentCard title="Pin Establishment Map">
                             <MapComponent initialLat={lat} initialLng={lng} onMarkerMove={handleMarkerMove} />
                             <InputField
                                 type="text"
@@ -210,7 +214,7 @@ export default function GuideCreateForm() {
                                 value={form.data.lat}
                                 onChange={(e) => form.setData('lat', e.target.value)}
                                 error={form.errors.lat}
-                                errorMessage="Please enter terminal latitude"
+                                errorMessage="Please enter Establishment latitude"
                                 resetSignal={resetSignal}
                                 readonly={true}
                             />
@@ -223,7 +227,7 @@ export default function GuideCreateForm() {
                                 value={form.data.long}
                                 onChange={(e) => form.setData('long', e.target.value)}
                                 error={form.errors.long}
-                                errorMessage="Please enter terminal longtitude "
+                                errorMessage="Please enter Establishment longtitude "
                                 resetSignal={resetSignal}
                                 readonly={true}
                             />

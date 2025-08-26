@@ -1,7 +1,7 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
-
+import Establishment from '@UserUtils/components/Cards/Establishment';
 type PageBannerProps = {
     title: string;
     subtitle: string;
@@ -9,8 +9,26 @@ type PageBannerProps = {
     image: string;
 };
 
+type EstablishmentProps = {
+    id: number;
+    type: string;
+    name: string;
+    location: string;
+    contact: string;
+    facebook: string;
+    long: string;
+    lat: string;
+    image: string;
+};
+
+interface PageProps {
+    banner: PageBannerProps;
+    food: EstablishmentProps[];
+    accommodation: EstablishmentProps[];
+    [key: string]: unknown;
+}
 export default function Guide() {
-    const { banner } = usePage<{ banner: PageBannerProps }>().props;
+    const { banner, food, accommodation } = usePage<PageProps>().props;
 
     const title = 'Pakil Tourism | About';
     const description =
@@ -137,149 +155,57 @@ export default function Guide() {
                 </div>
             </section>
 
-            <section>
-                <div className="container mx-auto max-w-7xl px-6">
-                    <div>
-                        <PageTitle title="Essentials" subtitle="Where to Stay" desc="Comfortable accommodations in Pakil"></PageTitle>
+            {accommodation?.length > 0 && (
+                <section>
+                    <div className="container mx-auto max-w-7xl px-6">
+                        <div>
+                            <PageTitle title="Essentials" subtitle="Where to Stay" desc="Comfortable accommodations in Pakil"></PageTitle>
 
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                                <div className="flex h-40 items-center justify-center bg-gray-100">
-                                    <img src="/User/Images/church.jpg" alt="" />
-                                </div>
-                                <div className="p-6">
-                                    <h4 className="text-dark mb-2 text-lg font-bold">Oliver Apartelle</h4>
-                                    <div className="mb-3 flex items-start text-sm text-gray-600">
-                                        <i className="fas fa-map-marker-alt mt-1 mr-2 text-primary"></i>
-                                        <span>123 Main Street, Poblacion, Pakil</span>
-                                    </div>
-                                    <div className="mb-4 flex items-center text-sm text-gray-600">
-                                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                                        <span>049-557-1534 / 0935-3086788</span>
-                                    </div>
-                                    <a href="#" className="inline-flex items-center text-primary hover:text-primary/80">
-                                        <i className="fab fa-facebook mr-2"></i> Visit Facebook Page
-                                    </a>
-                                </div>
+                            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                                {accommodation.map((item) => (
+                                    <Establishment key={item.id} details={item} />
+                                ))}
                             </div>
-
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                                <div className="flex h-40 items-center justify-center bg-gray-100">
-                                    <img src="/User/Images/church.jpg" alt="" />
-                                </div>
-                                <div className="p-6">
-                                    <h4 className="text-dark mb-2 text-lg font-bold">Leo 17 Inn</h4>
-                                    <div className="mb-3 flex items-start text-sm text-gray-600">
-                                        <i className="fas fa-map-marker-alt mt-1 mr-2 text-primary"></i>
-                                        <span>17 Rizal Street, Poblacion, Pakil</span>
-                                    </div>
-                                    <div className="mb-4 flex items-center text-sm text-gray-600">
-                                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                                        <span>0917-6507921</span>
-                                    </div>
-                                    <a href="#" className="inline-flex items-center text-primary hover:text-primary/80">
-                                        <i className="fab fa-facebook mr-2"></i> Visit Facebook Page
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                                <div className="flex h-40 items-center justify-center bg-gray-100">
-                                    <img src="/User/Images/church.jpg" alt="" />
-                                </div>
-                                <div className="p-6">
-                                    <h4 className="text-dark mb-2 text-lg font-bold">Villa Someros Resort</h4>
-                                    <div className="mb-3 flex items-start text-sm text-gray-600">
-                                        <i className="fas fa-map-marker-alt mt-1 mr-2 text-primary"></i>
-                                        <span>Lakeside Road, Pakil</span>
-                                    </div>
-                                    <div className="mb-4 flex items-center text-sm text-gray-600">
-                                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                                        <span>049-572-1558 / 0918-9048082</span>
-                                    </div>
-                                    <a href="#" className="inline-flex items-center text-primary hover:text-primary/80">
-                                        <i className="fab fa-facebook mr-2"></i> Visit Facebook Page
-                                    </a>
-                                </div>
+                            <div className="mt-10 text-center">
+                                <a
+                                    href="#"
+                                    className="inline-flex items-center rounded-full border border-primary px-6 py-3 font-medium text-primary transition duration-300 hover:bg-primary hover:text-white"
+                                >
+                                    <i className="fas fa-newspaper mr-2"></i> View More Establishments
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
 
-            <section className="py-10">
-                <div className="container mx-auto max-w-7xl px-6">
-                    <div>
-                        <PageTitle
-                            title="Essentials"
-                            subtitle="Where to Eat"
-                            desc="Local dining establishments offering authentic flavors"
-                        ></PageTitle>
+            {food?.length > 0 && (
+                <section className="py-6 md:py-10">
+                    <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+                        <div>
+                            <PageTitle
+                                title="Essentials"
+                                subtitle="Where to Eat"
+                                desc="Local dining establishments offering authentic flavors"
+                            ></PageTitle>
 
-                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                                <div className="flex h-40 items-center justify-center bg-gray-100">
-                                    <img src="/User/Images/church.jpg" alt="" />
-                                </div>
-                                <div className="p-6">
-                                    <h4 className="text-dark mb-2 text-lg font-bold">Vista's Art Space and Café</h4>
-                                    <div className="mb-3 flex items-start text-sm text-gray-600">
-                                        <i className="fas fa-map-marker-alt mt-1 mr-2 text-primary"></i>
-                                        <span>25 Tavera Street, Pakil</span>
-                                    </div>
-                                    <div className="mb-4 flex items-center text-sm text-gray-600">
-                                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                                        <span>0912-345-6789</span>
-                                    </div>
-                                    <a href="#" className="inline-flex items-center text-primary hover:text-primary/80">
-                                        <i className="fab fa-facebook mr-2"></i> Visit Facebook Page
-                                    </a>
-                                </div>
+                            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                                {food.map((item) => (
+                                    <Establishment key={item.id} details={item} />
+                                ))}
                             </div>
-
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                                <div className="flex h-40 items-center justify-center bg-gray-100">
-                                    <img src="/User/Images/church.jpg" alt="" />
-                                </div>
-                                <div className="p-6">
-                                    <h4 className="text-dark mb-2 text-lg font-bold">The Beatles Place</h4>
-                                    <div className="mb-3 flex items-start text-sm text-gray-600">
-                                        <i className="fas fa-map-marker-alt mt-1 mr-2 text-primary"></i>
-                                        <span>12 Burgos Street, Pakil</span>
-                                    </div>
-                                    <div className="mb-4 flex items-center text-sm text-gray-600">
-                                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                                        <span>0917-123-4567</span>
-                                    </div>
-                                    <a href="#" className="inline-flex items-center text-primary hover:text-primary/80">
-                                        <i className="fab fa-facebook mr-2"></i> Visit Facebook Page
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                                <div className="flex h-40 items-center justify-center bg-gray-100">
-                                    <img src="/User/Images/church.jpg" alt="" />
-                                </div>
-                                <div className="p-6">
-                                    <h4 className="text-dark mb-2 text-lg font-bold">Nida's Halo Halo</h4>
-                                    <div className="mb-3 flex items-start text-sm text-gray-600">
-                                        <i className="fas fa-map-marker-alt mt-1 mr-2 text-primary"></i>
-                                        <span>Near Town Plaza, Pakil</span>
-                                    </div>
-                                    <div className="mb-4 flex items-center text-sm text-gray-600">
-                                        <i className="fas fa-phone-alt mr-2 text-primary"></i>
-                                        <span>0922-987-6543</span>
-                                    </div>
-                                    <a href="#" className="inline-flex items-center text-primary hover:text-primary/80">
-                                        <i className="fab fa-facebook mr-2"></i> Visit Facebook Page
-                                    </a>
-                                </div>
+                            <div className="mt-10 text-center">
+                                <a
+                                    href="#"
+                                    className="inline-flex items-center rounded-full border border-primary px-6 py-3 font-medium text-primary transition duration-300 hover:bg-primary hover:text-white"
+                                >
+                                    <i className="fas fa-newspaper mr-2"></i> View More Establishments
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
         </>
     );
 }

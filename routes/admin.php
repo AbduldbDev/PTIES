@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminController\TourGuideController;
 use App\Http\Controllers\AdminController\CMScontroller;
 use App\Http\Controllers\AdminController\CMSUpdatecontroller;
 use App\Http\Controllers\AdminController\CMSHistoryController;
+use App\Http\Controllers\AdminController\EstablishmentController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
 
@@ -106,5 +107,14 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/create', [HotlinesController::class, 'create'])->name('create');
         Route::post('/update/{id}', [HotlinesController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [HotlinesController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('/Admin/establishment')->name('establishment.')->group(function () {
+        Route::get('/', [EstablishmentController::class, 'index'])->name('index');
+        Route::get('/new', [EstablishmentController::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [EstablishmentController::class, 'edit'])->name('edit');
+        Route::post('/create', [EstablishmentController::class, 'create'])->name('create');
+        Route::post('/update/{id}', [EstablishmentController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [EstablishmentController::class, 'delete'])->name('delete');
     });
 });

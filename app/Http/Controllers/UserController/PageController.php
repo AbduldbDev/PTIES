@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use App\Models\CMSBanner;
 use App\Models\ContentPromotional;
 use App\Models\CmsContent;
+use App\Models\PakilEstablishments;
 use App\Models\PakilGuides;
 use App\Models\PakilHistory;
 use App\Models\PakilHotlines;
@@ -15,6 +16,13 @@ use App\Models\PakilTerminals;
 
 class PageController extends Controller
 {
+    protected function parseContentValue($value)
+    {
+        $decoded = json_decode($value, true);
+        return (json_last_error() === JSON_ERROR_NONE) ? $decoded : $value;
+    }
+
+
     public function Home()
     {
         $contents = CmsContent::where('page_key', "home_page")
@@ -34,11 +42,6 @@ class PageController extends Controller
         ]);
     }
 
-    protected function parseContentValue($value)
-    {
-        $decoded = json_decode($value, true);
-        return (json_last_error() === JSON_ERROR_NONE) ? $decoded : $value;
-    }
 
     public function About()
     {
@@ -102,8 +105,22 @@ class PageController extends Controller
     public function Guide()
     {
         $banner = CMSBanner::where('key', 'Pakil Guide')->first();
+
+        $food = PakilEstablishments::where('type', 'food')
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+
+
+        $accommodation = PakilEstablishments::where('type', 'accommodation')
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+
         return Inertia::render('User/Pages/Guide', [
             'banner' => $banner,
+            'food' => $food,
+            'accommodation' => $accommodation,
         ]);
     }
 

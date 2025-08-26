@@ -118,6 +118,14 @@ const navItems: NavItem[] = [
             { name: 'All Hotlines', path: '/Admin/hotlines' },
         ],
     },
+    {
+        icon: <PageIcon />,
+        name: 'Establishment',
+        subItems: [
+            { name: 'Add Establishment', path: '/Admin/establishment/new' },
+            { name: 'All Establishment', path: '/Admin/establishment' },
+        ],
+    },
 ];
 
 const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
