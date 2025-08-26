@@ -55,6 +55,8 @@ import UserCircleIcon from './user-circle.svg?react';
 import UserIcon from './user-line.svg?react';
 import VideoIcon from './videos.svg?react';
 
+import GearIcon from './gear-solid-full.svg?react';
+
 export {
     AlertHexaIcon,
     AlertIcon,
@@ -90,6 +92,7 @@ export {
     EyeIcon,
     FileIcon,
     FolderIcon,
+    GearIcon,
     GridIcon,
     GroupIcon,
     HorizontaLDots,

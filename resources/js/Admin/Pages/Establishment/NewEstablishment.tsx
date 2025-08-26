@@ -68,6 +68,11 @@ export default function GuideCreateForm() {
             });
             return;
         }
+        const contactRegex = /^(09|\+639)\d{9}$/;
+        if (!contactRegex.test(form.data.contact)) {
+            form.setError('contact', 'Please enter a valid contact number');
+            return;
+        }
 
         form.post('/Admin/establishment/create', {
             forceFormData: true,
@@ -145,6 +150,7 @@ export default function GuideCreateForm() {
                                 label="Contact"
                                 name="contact"
                                 required={true}
+                                validation={/^[0-9]{10,15}$/}
                                 value={form.data.contact}
                                 onChange={(e) => form.setData('contact', e.target.value)}
                                 error={form.errors.contact}
