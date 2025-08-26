@@ -134,7 +134,7 @@ export default function GuideCreateForm() {
                                     { value: 'fa-solid fa-suitcase-medical', label: 'Medical' },
                                     { value: 'fa-solid fa-fire-extinguisher', label: 'Fire' },
                                     { value: 'fa-solid fa-building-shield', label: 'Police' },
-                                    { value: 'fa-solid fa-building-column', label: 'General' },
+                                    { value: 'fa-solid fa-building-columns', label: 'General' },
                                 ]}
                                 required={true}
                                 value={form.data.icon}
