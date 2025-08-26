@@ -71,9 +71,9 @@ const InputField = ({
             return errorMessage || 'Please enter a valid email address';
         }
 
-        if (type === 'password' && inputValue.length < 8) {
-            return errorMessage || 'Password must be at least 8 characters';
-        }
+        // if (type === 'password' && inputValue.length < 8) {
+        //     return errorMessage || 'Password must be at least 8 characters';
+        // }
 
         return '';
     };
