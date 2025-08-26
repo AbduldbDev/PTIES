@@ -29,13 +29,13 @@ class AdminLoginController extends Controller
 
             throw ValidationException::withMessages([
                 'email' => __('Invalid credentials provided.'),
+                'password' => __('Invalid credentials provided.'),
             ]);
         }
 
-        // Check if the authenticated user has the required user type
         $user = Auth::user();
         if (!$user || !in_array($user->user_type, ['admin', 'content_manager'])) {
-            Auth::logout(); // Log out the user if they don't have the right type
+            Auth::logout();
             RateLimiter::hit($this->throttleKey($request), $seconds = 60);
 
             throw ValidationException::withMessages([
@@ -44,9 +44,7 @@ class AdminLoginController extends Controller
         }
 
         RateLimiter::clear($this->throttleKey($request));
-
         $request->session()->regenerate();
-
         return redirect()->intended('/Admin');
     }
 
