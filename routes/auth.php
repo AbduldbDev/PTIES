@@ -52,6 +52,7 @@ Route::post('/Login', [UserLoginController::class, 'login']);
 
 Route::get('/Signup', [UserSignUpController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
 Route::post('/Signup', [UserSignUpController::class, 'register'])->middleware('guest');
+Route::post('/logout', [UserLoginController::class, 'logout']);
 
 Route::middleware('user.access:guest')->group(function () {
     Route::get('auth/google', [SocialiteController::class, 'redirectToGoogle']);
@@ -71,5 +72,5 @@ Route::middleware('user.access:guest')->group(function () {
 });
 
 Route::middleware('user.access:auth')->group(function () {
-    Route::post('/logout', [UserLoginController::class, 'logout']);
+    
 });
