@@ -115,7 +115,7 @@ export default function Login() {
                                         onBlur={() => handleBlur('email')}
                                         error={form.errors.email}
                                         touched={touched.email}
-                                        placeholder="Ex. Juan@gmail.com"
+                                        placeholder="Ex. juan@gmail.com"
                                         required
                                     />
                                     {flash?.success && <div className="text-sm text-green-600">{flash.success}</div>}
