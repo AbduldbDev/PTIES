@@ -50,7 +50,7 @@ export default function Signup() {
                 return value.length < 8 ? 'Password must be at least 8 characters' : '';
             case 'password_confirmation':
                 if (!value) return 'Confirm your password';
-                return value !== form.data.password ? 'Passwords do not match' : '';
+                return value !== form.data.password ? 'Password does not match' : '';
             default:
                 return '';
         }

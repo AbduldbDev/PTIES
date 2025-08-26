@@ -50,7 +50,7 @@ export default function ResetPassword() {
                 return value.length < 8 ? 'Password must be at least 8 characters' : '';
             case 'password_confirmation':
                 if (!value) return 'Confirm Your New password';
-                return value !== form.data.password ? 'Passwords do not match' : '';
+                return value !== form.data.password ? 'Password does not match' : '';
             default:
                 return '';
         }
@@ -68,7 +68,7 @@ export default function ResetPassword() {
         e.preventDefault();
 
         if (form.data.password !== form.data.password_confirmation) {
-            form.setError('password_confirmation', 'Passwords do not match');
+            form.setError('password_confirmation', 'Password does not match');
             return;
         }
 

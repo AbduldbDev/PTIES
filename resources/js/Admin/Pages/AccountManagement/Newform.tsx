@@ -80,7 +80,7 @@ export default function AccountCreateForm() {
         }
 
         if (form.data.password !== form.data.password_confirmation) {
-            form.setError('password_confirmation', 'Passwords do not match');
+            form.setError('password_confirmation', 'Password does not match');
             return;
         }
 
