@@ -76,9 +76,9 @@ export default function Banners() {
             <Head title="Admin | CMS" />
             <AppWrapper>
                 <PageMeta title="Banners Management" description="Manage your website banners" />
-                {flash?.success && <FlashMessage type="success" message={flash.success} />}
-                {errors?.error && <FlashMessage type="error" message={errors.error} />}
-                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
+                {flash?.success && <FlashMessage type="success" message={flash.success} key={Date.now()} />}
+                {errors?.error && <FlashMessage type="error" message={errors.error} key={Date.now()} />}
+                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}
 
                 <PageBreadcrumb pageTitle="Banners Management" />
 

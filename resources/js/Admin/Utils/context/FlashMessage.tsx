@@ -7,11 +7,12 @@ type FlashMessageProps = {
 };
 
 export default function FlashMessage({ type, message, key }: FlashMessageProps) {
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
     const [internalMessage, setInternalMessage] = useState(message);
     const [internalType, setInternalType] = useState(type);
 
     useEffect(() => {
+        // Reset visibility and update content when props change
         setVisible(true);
         setInternalMessage(message);
         setInternalType(type);
@@ -21,7 +22,7 @@ export default function FlashMessage({ type, message, key }: FlashMessageProps) 
         }, 5000);
 
         return () => clearTimeout(timer);
-    }, [message, type, key]);
+    }, [message, type, key]); // key prop ensures this runs when the component is recreated
 
     if (!visible) return null;
 

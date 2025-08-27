@@ -99,9 +99,9 @@ export default function AllHotilines() {
                     title="Pakil Tourism Information and Engagement System"
                     description="Explore Pakil's tourism attractions, events, and engage with the local community through our interactive information platform."
                 />
-                {flash?.success && <FlashMessage type="success" message={flash.success} />}
-                {errors?.error && <FlashMessage type="error" message={errors.error} />}
-                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
+                {flash?.success && <FlashMessage type="success" message={flash.success} key={Date.now()} />}
+                {errors?.error && <FlashMessage type="error" message={errors.error} key={Date.now()} />}
+                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}
 
                 <PageBreadcrumb pageTitle="Hotlines Management" />
 
