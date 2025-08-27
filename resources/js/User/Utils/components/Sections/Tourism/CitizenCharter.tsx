@@ -56,6 +56,14 @@ export default function CitizenCharter({ content }: Props) {
                 <div className="p-8 md:w-1/2">
                     {showPdf ? (
                         <div className="h-[70vh] w-full overflow-hidden rounded-lg border border-gray-300">
+                            <div className="flex justify-end border-b border-gray-300 bg-gray-100 p-2">
+                                <button
+                                    onClick={() => setShowPdf(false)}
+                                    className="flex items-center rounded-full bg-primary px-3 py-1 text-sm text-white hover:bg-primary/50 focus:outline-none"
+                                >
+                                    <i className="fas fa-times mr-1"></i> Close
+                                </button>
+                            </div>
                             <iframe
                                 src={
                                     content.pdf
@@ -66,9 +74,6 @@ export default function CitizenCharter({ content }: Props) {
                                 title="Pakil Citizen's Charter"
                                 style={{ backgroundColor: 'transparent' }}
                             ></iframe>
-                            <button onClick={() => setShowPdf(false)} className="mt-2 text-sm text-primary hover:underline">
-                                <i className="fas fa-times mr-1"></i> Close PDF Viewer
-                            </button>
                         </div>
                     ) : (
                         <div className="flex h-[70vh] items-center justify-center rounded-lg border-2 border-dashed border-gray-300">

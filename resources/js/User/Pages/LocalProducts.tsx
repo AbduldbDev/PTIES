@@ -1,5 +1,6 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
+import PageTitle from '@UserUtils/components/Banner/PageTitle';
 
 type PageBannerProps = {
     title: string;
@@ -32,7 +33,7 @@ export default function LocalProducts() {
             ) : (
                 <div className="h-[15vh]"></div>
             )}
-            <section className="bg-gradient-to-b from-white to-gray-50 py-16">
+            {/* <section className="bg-gradient-to-b from-white to-gray-50 py-16">
                 <div className="container mx-auto max-w-6xl px-4">
                     <div className="mb-16 text-center">
                         <div className="mb-4 inline-flex items-center">
@@ -175,6 +176,185 @@ export default function LocalProducts() {
                                 <div className="absolute -bottom-4 -left-4 rounded-xl border border-gray-100 bg-white p-3 shadow-lg">
                                     <div className="rounded-lg bg-secondary/10 p-2">
                                         <i className="fas fa-monument text-xl text-secondary"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> */}
+
+            <section className="py-16">
+                <div className="container mx-auto max-w-6xl px-4">
+                    <PageTitle
+                        title="Cultural Treasures"
+                        subtitle="Pakil's Living Traditions"
+                        desc="Celebrating the natural bounty and artistic heritage of our town."
+                    ></PageTitle>
+
+                    <div className="mb-10 rounded-xl border border-gray-100 bg-white p-6 shadow-lg">
+                        <div className="flex flex-col items-center gap-8 lg:flex-row">
+                            <div className="lg:w-2/5">
+                                <div className="group relative">
+                                    <div className="absolute -inset-2 rounded-xl bg-primary/20 blur-md transition duration-300 group-hover:blur-lg"></div>
+                                    <img
+                                        src="/User/Images/church.jpg"
+                                        alt="Juan Dela Cruz"
+                                        className="relative aspect-[3/4] h-auto w-full rounded-xl border-4 border-white object-cover shadow-xl"
+                                    />
+                                    <div className="absolute -right-4 -bottom-4 rounded-xl border border-gray-100 bg-white p-3 shadow-lg">
+                                        <div className="rounded-lg bg-primary/10 p-2">
+                                            <i className="fas fa-music text-xl text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mt-6 text-center">
+                                    <div className="inline-flex items-center space-x-4 text-sm text-gray-600">
+                                        <div>
+                                            <div className="font-semibold text-primary">Born</div>
+                                            <div>March 15, 1932</div>
+                                        </div>
+                                        <div className="h-6 w-px bg-gray-300"></div>
+                                        <div>
+                                            <div className="font-semibold text-primary">Died</div>
+                                            <div>June 22, 2008</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="lg:w-3/5">
+                                <div className="mb-4 flex items-center">
+                                    <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
+                                    <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Arts & Culture</h2>
+                                </div>
+                                <h3 className="text-dark mb-2 text-2xl font-bold md:text-3xl">Juan Dela Cruz</h3>
+                                <div className="prose prose-lg mb-6 text-gray-700">
+                                    <p>
+                                        <span className="font-semibold text-primary">National Artist for Music (2005)</span>- Renowned composer who
+                                        pioneered the fusion of traditional Filipino melodies with contemporary arrangements. His works celebrate
+                                        Pakil's cultural heritage.
+                                    </p>
+                                    <p className="mt-4">
+                                        Composed the iconic "Pakil Kundiman" and established the town's first music school. His compositions have been
+                                        performed internationally, bringing recognition to Philippine folk music.
+                                    </p>
+                                </div>
+
+                                <div className="mb-6 rounded-r-lg border-l-4 border-primary bg-primary/5 p-4">
+                                    <h4 className="mb-2 flex items-center font-bold text-primary">
+                                        <i className="fas fa-trophy mr-2"></i> Notable Achievements
+                                    </h4>
+                                    <ul className="space-y-2 text-gray-700">
+                                        <li className="flex items-start">
+                                            <i className="fas fa-award mt-1 mr-2 text-primary"></i>
+                                            <span>Order of National Artists recipient (2005)</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <i className="fas fa-globe-asia mt-1 mr-2 text-primary"></i>
+                                            <span>UNESCO Cultural Heritage Award (1998)</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <i className="fas fa-school mt-1 mr-2 text-primary"></i>
+                                            <span>Founded the Pakil Music Conservatory</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div className="flex items-start">
+                                    <div className="mr-4 rounded-lg bg-secondary/10 p-3">
+                                        <i className="fas fa-landmark text-secondary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-dark mb-1 font-bold">Lasting Legacy</h4>
+                                        <p className="text-gray-600">
+                                            The annual "Harana sa Pakil" music festival continues his tradition of preserving Filipino musical
+                                            heritage.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-lg">
+                        <div className="flex flex-col items-center gap-8 lg:flex-row">
+                            <div className="order-2 lg:order-1 lg:w-3/5">
+                                <div className="mb-4 flex items-center">
+                                    <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
+                                    <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Sports & Athletics</h2>
+                                </div>
+                                <h3 className="text-dark mb-2 text-2xl font-bold md:text-3xl">Pedro Reyes</h3>
+                                <div className="prose prose-lg mb-6 text-gray-700">
+                                    <p>
+                                        <span className="font-semibold text-primary">Olympic Silver Medalist (1984)</span>- Put Pakil on the global
+                                        sports map through his boxing achievements. Known for his lightning-fast footwork and technical precision.
+                                    </p>
+                                    <p className="mt-4">
+                                        After retiring from competition, he returned to Pakil to establish the Reyes Boxing Academy, training
+                                        underprivileged youth and producing several national champions.
+                                    </p>
+                                    <p className="mt-4">
+                                        After retiring from competition, he returned to Pakil to establish the Reyes Boxing Academy, training
+                                        underprivileged youth and producing several national champions.
+                                    </p>
+                                    <p className="mt-4">
+                                        After retiring from competition, he returned to Pakil to establish the Reyes Boxing Academy, training
+                                        underprivileged youth and producing several national champions.
+                                    </p>
+
+                                    <p className="mt-4">
+                                        After retiring from competition, he returned to Pakil to establish the Reyes Boxing Academy, training
+                                        underprivileged youth and producing several national champions.
+                                    </p>
+                                </div>
+
+                                <div className="mb-6 rounded-r-lg border-l-4 border-secondary bg-secondary/5 p-4">
+                                    <h4 className="mb-2 flex items-center font-bold text-secondary">
+                                        <i className="fas fa-medal mr-2"></i> Career Highlights
+                                    </h4>
+                                    <ul className="space-y-2 text-gray-700">
+                                        <li className="flex items-start">
+                                            <i className="fas fa-trophy mt-1 mr-2 text-secondary"></i>
+                                            <span>Olympic Silver Medal - Light Welterweight (1984)</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <i className="fas fa-flag mt-1 mr-2 text-secondary"></i>
+                                            <span>3-time SEA Games Gold Medalist</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <i className="fas fa-users mt-1 mr-2 text-secondary"></i>
+                                            <span>Mentored 12 national boxing champions</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div className="flex items-start">
+                                    <div className="mr-4 rounded-lg bg-primary/10 p-3">
+                                        <i className="fas fa-hands-helping text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-dark mb-1 font-bold">Community Impact</h4>
+                                        <p className="text-gray-600">
+                                            His academy has kept hundreds of youth engaged in sports and away from negative influences.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="order-1 lg:order-2 lg:w-2/5">
+                                <div className="group relative">
+                                    <div className="absolute -inset-2 rounded-xl bg-secondary/20 blur-md transition duration-300 group-hover:blur-lg"></div>
+                                    <img
+                                        src="/User/Images/church.jpg"
+                                        alt="Pedro Reyes"
+                                        className="relative aspect-[3/4] h-auto w-full rounded-xl border-4 border-white object-cover shadow-xl"
+                                    />
+                                    <div className="absolute -bottom-4 -left-4 rounded-xl border border-gray-100 bg-white p-3 shadow-lg">
+                                        <div className="rounded-lg bg-secondary/10 p-2">
+                                            <i className="fas fa-running text-xl text-secondary"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

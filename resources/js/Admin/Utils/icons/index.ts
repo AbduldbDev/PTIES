@@ -23,6 +23,7 @@ import CloseLineIcon from './close-line.svg?react';
 import CloseIcon from './close.svg?react';
 import CommenQuestion from './comments-question.svg?react';
 import CopyIcon from './copy.svg?react';
+import Crown from './crown.svg?react';
 import DocsIcon from './docs.svg?react';
 import DollarLineIcon from './dollar-line.svg?react';
 import DownloadIcon from './download.svg?react';
@@ -62,7 +63,9 @@ import UserCircleIcon from './user-circle.svg?react';
 import UserIcon from './user-line.svg?react';
 import UserTie from './user-tie.svg?react';
 import VideoIcon from './videos.svg?react';
+import UserCrown from './user-crown.svg?react';
 export {
+    UserCrown,
     AlertHexaIcon,
     AlertIcon,
     AngleDownIcon,
@@ -88,6 +91,7 @@ export {
     CloseLineIcon,
     CommenQuestion,
     CopyIcon,
+    Crown,
     DocsIcon,
     DollarLineIcon,
     DownloadIcon,

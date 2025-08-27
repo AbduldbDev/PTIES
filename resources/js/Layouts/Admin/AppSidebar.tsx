@@ -2,6 +2,7 @@ import { useSidebar } from '@AdminUtils/context/SidebarContext';
 import {
     ChevronDownIcon,
     CommenQuestion,
+    Crown,
     DocsIcon,
     GearIconThin,
     GridIcon,
@@ -10,6 +11,7 @@ import {
     MapDot,
     Shop,
     UserCircleIcon,
+    UserCrown,
     UserTie,
 } from '@AdminUtils/icons';
 import { Link, usePage } from '@inertiajs/react';
@@ -112,6 +114,25 @@ const otherNavItems: NavItem[] = [
         subItems: [
             { name: 'Add Establishment', path: '/Admin/establishment/new', requiredUserType: ['admin', 'content_manager'] },
             { name: 'All Establishment', path: '/Admin/establishment', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+
+    {
+        icon: <Crown />,
+        name: 'Local Products',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add New Products', path: '/Admin/', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Products', path: '/Admin/', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+    {
+        icon: <UserCrown />,
+        name: 'Local Personalities',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add New Personalities', path: '/Admin/', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Personalities', path: '/Admin/', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
     {
@@ -436,7 +457,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                     ref={(el) => {
                                         subMenuRefs.current[menuKey] = el;
                                     }}
-                                    className="overflow-hidden"
+                                    className="ml-5 overflow-hidden"
                                     style={{
                                         display: isOpen ? 'block' : 'none',
                                         height: isOpen ? 'auto' : '0px',
