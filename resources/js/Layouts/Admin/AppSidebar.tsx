@@ -26,7 +26,8 @@ export interface UserProfile {
 export interface AuthUser {
     email: string;
     image: string;
-    user_type: string;
+    user_type?: string;
+
     profile?: UserProfile;
 }
 
