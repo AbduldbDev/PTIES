@@ -60,7 +60,9 @@ import UserIcon from './user-line.svg?react';
 import UserTie from './user-tie.svg?react';
 import VideoIcon from './videos.svg?react';
 import Shop from './shop.svg?react';
+import Grid2 from './grid-2.svg?react';
 export {
+    Grid2,
     Shop,
     AlertHexaIcon,
     AlertIcon,

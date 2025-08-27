@@ -265,7 +265,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                             isActive(subItem.path) ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'
                                         } ${level > 1 ? 'pl-3' : 'pl-2'}`}
                                     >
-                                        <span>{subItem.name}</span>
+                                        <span className="truncate">{subItem.name}</span>
                                         {subItem.new && (
                                             <span
                                                 className={`ml-2 ${
@@ -295,11 +295,11 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                             ) : (
                                 <Link
                                     href={subItem.path}
-                                    className={`menu-dropdown-item block ${
+                                    className={`menu-dropdown-item flex items-center ${
                                         isActive(subItem.path) ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'
                                     } ${level > 1 ? 'pl-3' : 'pl-2'}`}
                                 >
-                                    {subItem.name}
+                                    <span className="truncate">{subItem.name}</span>
                                     {subItem.new && (
                                         <span
                                             className={`ml-auto ${
@@ -337,7 +337,9 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                 <span className={`menu-item-icon-size ${isOpen ? 'menu-item-icon-active' : 'menu-item-icon-inactive'}`}>
                                     {nav.icon}
                                 </span>
-                                {(isExpanded || isHovered || isMobileOpen) && <span className="menu-item-text">{nav.name}</span>}
+                                {(isExpanded || isHovered || isMobileOpen) && (
+                                    <span className="menu-item-text ml-3 flex-1 truncate text-left">{nav.name}</span>
+                                )}
                                 {(isExpanded || isHovered || isMobileOpen) && (
                                     <ChevronDownIcon
                                         className={`ml-auto h-5 w-5 transition-transform duration-200 ${isOpen ? 'text-brand-500 rotate-180' : ''}`}
@@ -348,14 +350,18 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                             nav.path && (
                                 <Link
                                     href={nav.path}
-                                    className={`menu-item group w-full ${isActive(nav.path) ? 'menu-item-active' : 'menu-item-inactive'}`}
+                                    className={`menu-item group w-full ${isActive(nav.path) ? 'menu-item-active' : 'menu-item-inactive'} ${
+                                        !isExpanded && !isHovered ? 'lg:justify-center' : 'lg:justify-start'
+                                    }`}
                                 >
                                     <span
                                         className={`menu-item-icon-size ${isActive(nav.path) ? 'menu-item-icon-active' : 'menu-item-icon-inactive'}`}
                                     >
                                         {nav.icon}
                                     </span>
-                                    {(isExpanded || isHovered || isMobileOpen) && <span className="menu-item-text">{nav.name}</span>}
+                                    {(isExpanded || isHovered || isMobileOpen) && (
+                                        <span className="menu-item-text ml-3 flex-1 truncate text-left">{nav.name}</span>
+                                    )}
                                 </Link>
                             )
                         )}
@@ -398,7 +404,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                 width={50}
                                 height={50}
                             />
-                            <div className="text-xl text-black dark:text-white">
+                            <div className="max-w-[150px] truncate text-xl text-black dark:text-white">
                                 {auth?.user?.profile?.last_name || 's'}, {auth?.user?.profile?.first_name || 's'}
                             </div>
                         </>
