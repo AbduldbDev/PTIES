@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\CmsContent;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class CMSUpdatecontroller extends Controller
@@ -304,6 +305,54 @@ class CMSUpdatecontroller extends Controller
         } catch (\Throwable $e) {
             return redirect()->back()
                 ->with('error', 'Something went wrong while updating the Pakil introduction section. Please try again later.');
+        }
+    }
+    public function CitizenCharter(Request $request)
+    {
+        $request->validate([
+            'description' => 'required|string',
+            'updated' => 'required|string',
+            'size' => 'required|string',
+            'pdf' => 'nullable|mimes:pdf|max:10240', // Reduced to 10MB max
+        ]);
+
+        try {
+            // Update text fields
+            $fields = ['description', 'size', 'updated'];
+            foreach ($fields as $field) {
+                CmsContent::updateOrCreate(
+                    [
+                        'page_key'    => 'about_page',
+                        'section_key' => 'citizen_charter',
+                        'content_key' => $field,
+                    ],
+                    [
+                        'content_value' => $request->$field,
+                    ]
+                );
+            }
+
+            // Handle PDF file upload
+            if ($request->hasFile('pdf')) {
+                $path = $request->file('pdf')->store('CMSDocs', 'public');
+
+                CmsContent::updateOrCreate(
+                    [
+                        'page_key'    => 'about_page',
+                        'section_key' => 'citizen_charter',
+                        'content_key' => 'pdf',
+                    ],
+                    [
+                        'content_value' => $path,
+                    ]
+                );
+            }
+
+            return redirect()->back()->with('success', 'Pakil citizen charter updated successfully!');
+        } catch (\Throwable $e) {
+            return redirect()->back()
+                ->withErrors(['error' => $e->getMessage()])
+                ->withInput();
         }
     }
 }

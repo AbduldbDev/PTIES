@@ -6,6 +6,7 @@ import DeparmentStructure from '@UserUtils/components/Sections/Tourism/Departmen
 import MissionVision from '@UserUtils/components/Sections/Tourism/MissionVision';
 import TourismAbout from '@UserUtils/components/Sections/Tourism/TourismAbout';
 import { CmsContent } from '@UserUtils/Types/cms';
+import { useEffect } from 'react';
 
 interface PageProps {
     content: CmsContent;
@@ -23,11 +24,23 @@ export default function TourismAboutPage() {
     const { props } = usePage<PageProps>();
     const { banner } = usePage<{ banner: PageBannerProps }>().props;
     const { content } = props;
+    const { url } = usePage();
 
     const title = 'Pakil Tourism | Tourism';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
+    useEffect(() => {
+        if (url.includes('#')) {
+            const hash = url.split('#')[1];
+            const element = document.getElementById(hash);
 
+            if (element) {
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+        }
+    }, [url]);
     return (
         <>
             <Head title={title}>
@@ -138,7 +151,21 @@ export default function TourismAboutPage() {
             )}
 
             <DeparmentStructure />
-            <CitizenCharter />
+            
+            {content.citizen_charter && (
+                <section id="citizen_charter" className="py-10">
+                    <div className="max-w-8xl container mx-auto px-6">
+                        <div>
+                            <PageTitle
+                                title="Governance"
+                                subtitle="Citizen's Charter"
+                                desc="Our commitment to transparent and efficient public service"
+                            />
+                            <CitizenCharter content={content.citizen_charter} />
+                        </div>
+                    </div>
+                </section>
+            )}
         </>
     );
 }

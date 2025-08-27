@@ -136,6 +136,7 @@ const otherNavItems: NavItem[] = [
                 subItems: [
                     { name: 'Tourism About', path: '/Admin/cms/tourism-section', requiredUserType: ['admin', 'content_manager'] },
                     { name: 'Mission & Vision', path: '/Admin/cms/mission-vision', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'Citizen Charter', path: '/Admin/cms/citizen-charter', requiredUserType: ['admin', 'content_manager'] },
                 ],
             },
             {

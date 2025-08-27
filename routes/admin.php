@@ -14,6 +14,7 @@ use App\Http\Controllers\AdminController\CMScontroller;
 use App\Http\Controllers\AdminController\CMSUpdatecontroller;
 use App\Http\Controllers\AdminController\CMSHistoryController;
 use App\Http\Controllers\AdminController\EstablishmentController;
+use App\Http\Controllers\AdminController\FAQsController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
 
@@ -49,7 +50,6 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
     });
 
-
     Route::prefix('/Admin/content/promotional-video')->name('promotional-video.')->group(function () {
         Route::get('/', [PromotionalvidController::class, 'view'])->name('edit');
         Route::post('/update', [PromotionalvidController::class, 'update'])->name('update');
@@ -61,7 +61,11 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::get('/tourism-section', [CMScontroller::class, 'TourismSection'])->name('TourismSection');
         Route::get('/mission-vision', [CMScontroller::class, 'MissionVision'])->name('MissionVision');
         Route::get('/pakil-intro', [CMScontroller::class, 'PakilIntro'])->name('PakilIntro');
+        Route::get('/citizen-charter', [CMScontroller::class, 'CitizenCharter'])->name('CitizenCharter');
     });
+
+
+
 
     Route::prefix('/Admin/cms/update')->name('cms.update.')->group(function () {
         Route::post('/hero-section', [CMSUpdatecontroller::class, 'UpdateHeroSection'])->name('HeroSection');
@@ -69,6 +73,7 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/tourism-about-section', [CMSUpdatecontroller::class, 'UpdateTourismAboutSection'])->name('TourismSection');
         Route::post('/mission-vision', [CMSUpdatecontroller::class, 'UpdateMissionVision'])->name('MissionVision');
         Route::post('/pakil-intro', [CMSUpdatecontroller::class, 'UpdatePakilIntro'])->name('PakilIntro');
+        Route::post('/citizen-charter', [CMSUpdatecontroller::class, 'CitizenCharter'])->name('CitizenCharter');
     });
 
     Route::prefix('/Admin/cms/banner')->name('banners.')->group(function () {
@@ -120,5 +125,14 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/create', [EstablishmentController::class, 'create'])->name('create');
         Route::post('/update/{id}', [EstablishmentController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [EstablishmentController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('/Admin/faqs')->name('establishment.')->group(function () {
+        Route::get('/', [FAQsController::class, 'index'])->name('index');
+        Route::get('/new', [FAQsController::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [FAQsController::class, 'edit'])->name('edit');
+        Route::post('/create', [FAQsController::class, 'create'])->name('create');
+        Route::post('/update/{id}', [FAQsController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [FAQsController::class, 'delete'])->name('delete');
     });
 });
