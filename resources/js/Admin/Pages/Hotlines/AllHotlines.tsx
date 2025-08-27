@@ -215,7 +215,7 @@ export default function AllHotilines() {
                                             <TableRow>
                                                 <TableCell
                                                     colSpan={columns.length}
-                                                    className="px-4 py-20 text-center text-gray-500 dark:text-gray-400"
+                                                    className="px-4 py-20 text-center text-gray-500 capitalize dark:text-gray-400"
                                                 >
                                                     {searchTerm ? `No hotlines found matching "${searchTerm}"` : 'No hotlines available'}
                                                 </TableCell>
