@@ -487,7 +487,16 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                         !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start'
                                     }`}
                                 >
-                                    {isExpanded || isHovered || isMobileOpen ? 'Admin Menu' : <HorizontaLDots className="size-6" />}
+                                    <span
+                                        className={`transition-opacity duration-300 ${isExpanded || isHovered || isMobileOpen ? 'opacity-100' : 'h-0 w-0 overflow-hidden opacity-0'}`}
+                                    >
+                                        Admin Menu
+                                    </span>
+                                    <span
+                                        className={`transition-opacity duration-300 ${!isExpanded && !isHovered && !isMobileOpen ? 'opacity-100' : 'h-0 w-0 overflow-hidden opacity-0'}`}
+                                    >
+                                        <HorizontaLDots className="size-6" />
+                                    </span>
                                 </h2>
                                 {renderMenuItems(mainNavItems, 'main')}
                             </div>
@@ -501,7 +510,16 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                         !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start'
                                     }`}
                                 >
-                                    {isExpanded || isHovered || isMobileOpen ? 'Content Manager' : <HorizontaLDots className="size-6" />}
+                                    <span
+                                        className={`transition-opacity duration-300 ${isExpanded || isHovered || isMobileOpen ? 'opacity-100' : 'h-0 w-0 overflow-hidden opacity-0'}`}
+                                    >
+                                        Content Manager
+                                    </span>
+                                    <span
+                                        className={`transition-opacity duration-300 ${!isExpanded && !isHovered && !isMobileOpen ? 'opacity-100' : 'h-0 w-0 overflow-hidden opacity-0'}`}
+                                    >
+                                        <HorizontaLDots className="size-6" />
+                                    </span>
                                 </h2>
                                 {renderMenuItems(otherNavItems, 'other')}
                             </div>

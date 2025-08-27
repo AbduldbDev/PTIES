@@ -36,13 +36,15 @@ export default function Home() {
                 <meta property="og:description" content={description} />
             </Head>
 
-            {content.hero && (
+            {content.hero ? (
                 <HeroSection
                     content={{
                         ...content.hero,
                         feature_img: content.hero.feature_img ? `/storage/${content.hero.feature_img}` : '/User/Images/church.jpg',
                     }}
                 />
+            ) : (
+                <div className="h-[15vh]"></div>
             )}
 
             <section id="explore" className="py-10">
