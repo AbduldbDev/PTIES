@@ -44,7 +44,7 @@ export default function ContactAndFAQ({ content }: Props) {
                                     {content.map((faq, index) => (
                                         <div key={index} className="border-b border-gray-200 pb-4">
                                             <button onClick={() => toggleFaq(index)} className="flex w-full items-center justify-between text-left">
-                                                <span className="text-dark font-medium">{faq.question}</span>
+                                                <span className="text-dark font-semibold">{faq.question}</span>
                                                 <i
                                                     className={`fas fa-chevron-down text-primary transition-transform duration-200 ${openFaqs[index] ? 'rotate-180' : ''}`}
                                                 ></i>
