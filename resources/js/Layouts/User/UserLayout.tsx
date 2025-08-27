@@ -1,4 +1,4 @@
-import AnimatedBackground from '@/User/Utils/components/Layout/Background';
+// import AnimatedBackground from '@/User/Utils/components/Layout/Background';
 import '@css/user.css'; // Import directly here
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { waitForAllAssets } from '@UserUtils/components/Layout/assetLoader';
@@ -34,9 +34,9 @@ export default function UserLayout({ children }: PropsWithChildren) {
         const checkAssets = async () => {
             try {
                 await waitForAllAssets();
-                if (typeof (AnimatedBackground as any).isLoaded === 'function') {
-                    await (AnimatedBackground as any).isLoaded();
-                }
+                // if (typeof (AnimatedBackground as any).isLoaded === 'function') {
+                //     await (AnimatedBackground as any).isLoaded();
+                // }
                 setAssetsLoaded(true);
                 loaderTimeout.current = setTimeout(() => {
                     setShowLoader(false);
@@ -72,7 +72,7 @@ export default function UserLayout({ children }: PropsWithChildren) {
                 }}
             >
                 <Navbar />
-                <AnimatedBackground />
+                {/* <AnimatedBackground /> */}
                 <main style={{ position: 'relative', zIndex: 2 }}>{children}</main>
                 <Footer />
                 <section className="floating-texture"></section>

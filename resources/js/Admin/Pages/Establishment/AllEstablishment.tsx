@@ -106,16 +106,16 @@ export default function Home() {
                 {errors?.error && <FlashMessage type="error" message={errors.error} key={Date.now()} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}
 
-                <PageBreadcrumb pageTitle="Establishment Management" />
+                <PageBreadcrumb pageTitle="Establishments Management" />
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
-                    <ComponentCard title="All Pakil Establishment">
+                    <ComponentCard title="All Pakil Establishments">
                         <TableControls
                             searchTerm={searchTerm}
                             onSearchChange={handleSearch}
                             itemsPerPage={currentPerPage}
                             onItemsPerPageChange={(e) => handleItemsPerPageChange(e.target.value)}
-                            searchPlaceholder="Search establishment..."
+                            searchPlaceholder="Search establishments..."
                         />
                         <div className="overflow-hidden rounded-xl bg-white dark:bg-white/[0.03]">
                             <div className="max-w-full overflow-x-auto">
@@ -211,7 +211,7 @@ export default function Home() {
                                                     colSpan={columns.length}
                                                     className="px-4 py-20 text-center text-gray-500 dark:text-gray-400"
                                                 >
-                                                    {searchTerm ? `No Tour Guides found matching "${searchTerm}"` : 'No Tour Guides available'}
+                                                    {searchTerm ? `No Establishments found matching "${searchTerm}"` : 'No Establishments available'}
                                                 </TableCell>
                                             </TableRow>
                                         )}

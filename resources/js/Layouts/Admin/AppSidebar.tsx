@@ -113,7 +113,7 @@ const otherNavItems: NavItem[] = [
         requiredUserType: ['admin', 'content_manager'],
         subItems: [
             { name: 'Add Establishment', path: '/Admin/establishment/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Establishment', path: '/Admin/establishment', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Establishments', path: '/Admin/establishment', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
 
