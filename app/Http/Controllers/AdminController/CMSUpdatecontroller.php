@@ -313,7 +313,7 @@ class CMSUpdatecontroller extends Controller
             'description' => 'required|string',
             'updated' => 'required|string',
             'size' => 'required|string',
-            'pdf' => 'nullable|mimes:pdf|max:10240', // Reduced to 10MB max
+            'pdf' => 'nullable|mimes:pdf|max:25600',
         ]);
 
         try {
