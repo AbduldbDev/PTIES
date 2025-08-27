@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController\PageController;
+use App\Http\Controllers\UserController\ContactusController;
+
 
 
 Route::middleware('auth')->group(function () {});
@@ -23,5 +25,11 @@ Route::get('/pakilguide', [PageController::class, 'PakilGuide'])->name('user.pak
 Route::get('/rewardshop', [PageController::class, 'RewardShop'])->name('user.rewardshop');
 Route::get('/profile', [PageController::class, 'Profile'])->name('user.profile');
 Route::get('/establishments', [PageController::class, 'Establishments'])->name('user.establishments');
+
+
+Route::get('/contact-confirmation', [ContactusController::class, 'confirmation'])->name('contact.confirmation');
+Route::post('/contactus/send', [ContactusController::class, 'send'])->name('contact.send');
+
+
 
 Route::middleware('guest')->group(function () {});

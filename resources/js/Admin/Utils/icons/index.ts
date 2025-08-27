@@ -30,15 +30,19 @@ import EyeCloseIcon from './eye-close.svg?react';
 import EyeIcon from './eye.svg?react';
 import FileIcon from './file.svg?react';
 import FolderIcon from './folder.svg?react';
+import GearIcon from './gear-solid-full.svg?react';
+import GearIconThin from './gear.svg?react';
 import GridIcon from './grid.svg?react';
 import GroupIcon from './group.svg?react';
 import HorizontaLDots from './horizontal-dots.svg?react';
+import HouseMedical from './house-medical.svg?react';
 import ErrorIcon from './info-error.svg?react';
 import ErrorHexaIcon from './info-hexa.svg?react';
 import InfoIcon from './info.svg?react';
 import ListIcon from './list.svg?react';
 import LockIcon from './lock.svg?react';
 import MailIcon from './mail-line.svg?react';
+import MapDot from './map-location-dot.svg?react';
 import MoreDotIcon from './moredot.svg?react';
 import PageIcon from './page.svg?react';
 import PaperPlaneIcon from './paper-plane.svg?react';
@@ -53,11 +57,11 @@ import TimeIcon from './time.svg?react';
 import TrashBinIcon from './trash.svg?react';
 import UserCircleIcon from './user-circle.svg?react';
 import UserIcon from './user-line.svg?react';
+import UserTie from './user-tie.svg?react';
 import VideoIcon from './videos.svg?react';
-
-import GearIcon from './gear-solid-full.svg?react';
-
+import Shop from './shop.svg?react';
 export {
+    Shop,
     AlertHexaIcon,
     AlertIcon,
     AngleDownIcon,
@@ -93,13 +97,16 @@ export {
     FileIcon,
     FolderIcon,
     GearIcon,
+    GearIconThin,
     GridIcon,
     GroupIcon,
     HorizontaLDots,
+    HouseMedical,
     InfoIcon,
     ListIcon,
     LockIcon,
     MailIcon,
+    MapDot,
     MoreDotIcon,
     PageIcon,
     PaperPlaneIcon,
@@ -114,5 +121,6 @@ export {
     TrashBinIcon,
     UserCircleIcon,
     UserIcon,
+    UserTie,
     VideoIcon,
 };

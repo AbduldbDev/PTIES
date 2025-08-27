@@ -1,5 +1,16 @@
 import { useSidebar } from '@AdminUtils/context/SidebarContext';
-import { ChevronDownIcon, DocsIcon, GearIcon, GridIcon, HorizontaLDots, PageIcon, UserCircleIcon } from '@AdminUtils/icons';
+import {
+    ChevronDownIcon,
+    DocsIcon,
+    GearIconThin,
+    GridIcon,
+    HorizontaLDots,
+    HouseMedical,
+    MapDot,
+    Shop,
+    UserCircleIcon,
+    UserTie,
+} from '@AdminUtils/icons';
 import { Link, usePage } from '@inertiajs/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -90,12 +101,12 @@ const navItems: NavItem[] = [
         ],
     },
     {
-        icon: <GearIcon />,
+        icon: <GearIconThin />,
         name: 'Website Settings',
         subItems: [{ name: 'Color Theme', path: '/Admin/theme/color' }],
     },
     {
-        icon: <PageIcon />,
+        icon: <UserTie />,
         name: 'Tour Guides',
         subItems: [
             { name: 'Add Tour Guide', path: '/Admin/tour-guides/new' },
@@ -103,7 +114,7 @@ const navItems: NavItem[] = [
         ],
     },
     {
-        icon: <PageIcon />,
+        icon: <MapDot />,
         name: 'Terminals',
         subItems: [
             { name: 'Add New Terminal', path: '/Admin/terminal/new' },
@@ -111,7 +122,7 @@ const navItems: NavItem[] = [
         ],
     },
     {
-        icon: <PageIcon />,
+        icon: <HouseMedical />,
         name: 'Emergency Hotlines',
         subItems: [
             { name: 'Add New Hotlines', path: '/Admin/hotlines/new' },
@@ -119,8 +130,8 @@ const navItems: NavItem[] = [
         ],
     },
     {
-        icon: <PageIcon />,
-        name: 'Establishment',
+        icon: <Shop />,
+        name: 'Establishments',
         subItems: [
             { name: 'Add Establishment', path: '/Admin/establishment/new' },
             { name: 'All Establishment', path: '/Admin/establishment' },

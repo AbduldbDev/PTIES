@@ -1,4 +1,5 @@
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
+import ContactForm from '@UserUtils/components/Cards/ContactForm';
 import { useState } from 'react';
 const ContactAndFAQ = () => {
     // State for FAQ accordion
@@ -47,121 +48,7 @@ const ContactAndFAQ = () => {
 
                 <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
                     {/* Contact Form */}
-                    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                        <div className="p-8">
-                            <div className="mb-6 flex items-center">
-                                <div className="mr-4 rounded-lg bg-primary/10 p-3">
-                                    <i className="fa-solid fa-envelope text-xl text-primary"></i>
-                                </div>
-                                <h4 className="text-dark text-xl font-bold">Send Us a Message</h4>
-                            </div>
-
-                            <form className="space-y-5">
-                                <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                                    <div>
-                                        <label htmlFor="name" className="mb-1 block text-sm font-medium text-gray-700">
-                                            Full Name
-                                        </label>
-                                        <div className="relative">
-                                            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                                <i className="fas fa-user text-gray-400"></i>
-                                            </div>
-                                            <input
-                                                type="text"
-                                                id="name"
-                                                className="block w-full rounded-lg border border-gray-300 py-3 pr-3 pl-10 focus:border-primary focus:ring-2 focus:ring-primary"
-                                                placeholder="Your name"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-700">
-                                            Email
-                                        </label>
-                                        <div className="relative">
-                                            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                                <i className="fas fa-envelope text-gray-400"></i>
-                                            </div>
-                                            <input
-                                                type="email"
-                                                id="email"
-                                                className="block w-full rounded-lg border border-gray-300 py-3 pr-3 pl-10 focus:border-primary focus:ring-2 focus:ring-primary"
-                                                placeholder="your@email.com"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label htmlFor="subject" className="mb-1 block text-sm font-medium text-gray-700">
-                                        Subject
-                                    </label>
-                                    <div className="relative">
-                                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                            <i className="fas fa-tag text-gray-400"></i>
-                                        </div>
-                                        <input
-                                            type="text"
-                                            id="subject"
-                                            className="block w-full rounded-lg border border-gray-300 py-3 pr-3 pl-10 focus:border-primary focus:ring-2 focus:ring-primary"
-                                            placeholder="What's this about?"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label htmlFor="message" className="mb-1 block text-sm font-medium text-gray-700">
-                                        Message
-                                    </label>
-                                    <div className="relative">
-                                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-start pt-3 pl-3">
-                                            <i className="fas fa-comment-dots text-gray-400"></i>
-                                        </div>
-                                        <textarea
-                                            id="message"
-                                            rows={4}
-                                            className="block w-full rounded-lg border border-gray-300 py-3 pr-3 pl-10 focus:border-primary focus:ring-2 focus:ring-primary"
-                                            placeholder="Your message..."
-                                        ></textarea>
-                                    </div>
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    className="flex w-full items-center justify-center rounded-full border border-transparent bg-primary px-6 py-3 text-white shadow-sm transition duration-300 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
-                                >
-                                    <i className="fas fa-paper-plane mr-2"></i> Send Message
-                                </button>
-                            </form>
-                        </div>
-
-                        <div className="border-t border-gray-200 bg-gray-50 px-8 py-6">
-                            <h5 className="mb-3 text-sm font-semibold tracking-wider text-gray-500 uppercase">Other Ways to Reach Us</h5>
-                            <div className="grid grid-cols-1 gap-4 pb-2 sm:grid-cols-2">
-                                <div className="flex items-center">
-                                    <div className="mr-3 rounded-lg bg-primary/10 p-2">
-                                        <i className="fas fa-phone-alt text-primary"></i>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs text-gray-500">Phone</p>
-                                        <p className="font-medium">(049) 456-7890</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center">
-                                    <div className="mr-3 rounded-lg bg-primary/10 p-2">
-                                        <i className="fas fa-map-marker-alt text-primary"></i>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs text-gray-500">Address</p>
-                                        <p className="font-medium">Municipal Hall, Pakil</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <ContactForm />
                     {/* FAQ Section */}
                     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
                         <div className="p-8">

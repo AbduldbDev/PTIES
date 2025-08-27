@@ -85,8 +85,8 @@ export default function ContactConfirmation() {
 
                             <p className="mt-6 text-xs text-gray-500">
                                 Need immediate assistance? Call us at
-                                <a href="tel:+63491234567" className="text-primary hover:underline">
-                                    (049) 123-4567
+                                <a href="tel:+63491234567" className="ml-1 text-primary hover:underline">
+                                    (049) 557–1884
                                 </a>
                             </p>
                         </div>
