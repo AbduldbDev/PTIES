@@ -9,28 +9,30 @@ use Illuminate\Support\Facades\Auth;
 
 class RouteAdminAccessMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next, $type): Response
     {
-        // For auth routes - must be logged in AND must be admin/content_manager
+        $allowedRoles = ['admin', 'content_manager'];
+
         if ($type === 'auth') {
             if (!Auth::check()) {
                 return redirect('/Admin/login');
             }
 
-            // Check user type for auth routes
-            if (!in_array(Auth::user()->user_type, ['admin', 'content_manager'])) {
+            if (!in_array(Auth::user()->user_type, $allowedRoles)) {
                 return redirect('/Admin/login');
             }
         }
 
-        // For guest routes - if already logged in as admin/content_manager, redirect to admin
-        if ($type === 'guest' && Auth::check() && in_array(Auth::user()->user_type, ['admin', 'content_manager'])) {
-            return redirect('/Admin');
+        if ($type === 'guest') {
+            if (Auth::check() && in_array(Auth::user()->user_type, $allowedRoles)) {
+                return redirect('/Admin');
+            }
+        }
+
+        if ($type === 'admin') {
+            if (!Auth::check() || Auth::user()->user_type !== 'admin') {
+                return redirect('/Admin');
+            }
         }
 
         return $next($request);

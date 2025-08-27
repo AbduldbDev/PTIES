@@ -23,6 +23,7 @@ export interface UserProfile {
 export interface AuthUser {
     email: string;
     image: string;
+    user_type: string;
     profile?: UserProfile;
 }
 
@@ -39,6 +40,7 @@ type SubMenuItem = {
     path: string;
     new?: boolean;
     subItems?: SubMenuItem[];
+    requiredUserType?: string[];
 };
 
 type NavItem = {
@@ -46,95 +48,111 @@ type NavItem = {
     icon: React.ReactNode;
     path?: string;
     subItems?: SubMenuItem[];
+    requiredUserType?: string[];
 };
 
-const navItems: NavItem[] = [
+const mainNavItems: NavItem[] = [
     {
         icon: <GridIcon />,
         name: 'Dashboard',
         path: '/Admin/',
+        requiredUserType: ['admin'],
     },
     {
         icon: <UserCircleIcon />,
         name: 'Account Management',
+        requiredUserType: ['admin'],
         subItems: [
-            { name: 'Add Account', path: '/Admin/accounts/new' },
-            { name: 'All Accounts', path: '/Admin/accounts' },
+            { name: 'Add Account', path: '/Admin/accounts/new', requiredUserType: ['admin'] },
+            { name: 'All Accounts', path: '/Admin/accounts', requiredUserType: ['admin'] },
         ],
     },
-    {
-        icon: <DocsIcon />,
-        name: 'Content Management',
-        subItems: [
-            { name: 'Page Banners', path: '/Admin/cms/banner' },
-            {
-                name: 'Home Sections',
-                path: '',
-                subItems: [
-                    { name: 'Banner ', path: '/Admin/cms/hero-section' },
-                    { name: 'Introduction ', path: '/Admin/cms/introduction-section' },
 
-                    { name: 'Promotional Vid', path: '/Admin/content/promotional-video' },
-                ],
-            },
-            {
-                name: 'About Sections',
-                path: '',
-                subItems: [
-                    { name: 'Tourism About', path: '/Admin/cms/tourism-section' },
-                    { name: 'Mission & Vision', path: '/Admin/cms/mission-vision' },
-                ],
-            },
-            {
-                name: 'Explore Sections',
-                path: '',
-                subItems: [{ name: 'About Pakil', path: '/Admin/cms/pakil-intro' }],
-            },
-            {
-                name: 'Hisoty Sections',
-                path: '',
-                subItems: [
-                    { name: 'New History', path: '/Admin/cms/pakil-history/new' },
-                    { name: 'All History', path: '/Admin/cms/pakil-history/' },
-                ],
-            },
-        ],
-    },
     {
         icon: <GearIconThin />,
         name: 'Website Settings',
-        subItems: [{ name: 'Color Theme', path: '/Admin/theme/color' }],
+        requiredUserType: ['admin'], // Only admin can access
+        subItems: [{ name: 'Color Theme', path: '/Admin/theme/color', requiredUserType: ['admin'] }],
+    },
+];
+
+const otherNavItems: NavItem[] = [
+    {
+        icon: <MapDot />,
+        name: 'Terminals',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add New Terminal', path: '/Admin/terminal/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Terminal', path: '/Admin/terminal', requiredUserType: ['admin', 'content_manager'] },
+        ],
     },
     {
         icon: <UserTie />,
         name: 'Tour Guides',
+        requiredUserType: ['admin', 'content_manager'],
         subItems: [
-            { name: 'Add Tour Guide', path: '/Admin/tour-guides/new' },
-            { name: 'All Tour Guide', path: '/Admin/tour-guides' },
-        ],
-    },
-    {
-        icon: <MapDot />,
-        name: 'Terminals',
-        subItems: [
-            { name: 'Add New Terminal', path: '/Admin/terminal/new' },
-            { name: 'All Terminal', path: '/Admin/terminal' },
-        ],
-    },
-    {
-        icon: <HouseMedical />,
-        name: 'Emergency Hotlines',
-        subItems: [
-            { name: 'Add New Hotlines', path: '/Admin/hotlines/new' },
-            { name: 'All Hotlines', path: '/Admin/hotlines' },
+            { name: 'Add Tour Guide', path: '/Admin/tour-guides/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Tour Guide', path: '/Admin/tour-guides', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
     {
         icon: <Shop />,
         name: 'Establishments',
+        requiredUserType: ['admin', 'content_manager'],
         subItems: [
-            { name: 'Add Establishment', path: '/Admin/establishment/new' },
-            { name: 'All Establishment', path: '/Admin/establishment' },
+            { name: 'Add Establishment', path: '/Admin/establishment/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Establishment', path: '/Admin/establishment', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+    {
+        icon: <HouseMedical />,
+        name: 'Emergency Hotlines',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add New Hotlines', path: '/Admin/hotlines/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Hotlines', path: '/Admin/hotlines', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+    {
+        icon: <DocsIcon />,
+        name: 'Content Management',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Page Banners', path: '/Admin/cms/banner', requiredUserType: ['admin', 'content_manager'] },
+            {
+                name: 'Home Sections',
+                path: '',
+                requiredUserType: ['admin', 'content_manager'],
+                subItems: [
+                    { name: 'Banner ', path: '/Admin/cms/hero-section', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'Introduction ', path: '/Admin/cms/introduction-section', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'Promotional Vid', path: '/Admin/content/promotional-video', requiredUserType: ['admin', 'content_manager'] },
+                ],
+            },
+            {
+                name: 'About Sections',
+                path: '',
+                requiredUserType: ['admin', 'content_manager'],
+                subItems: [
+                    { name: 'Tourism About', path: '/Admin/cms/tourism-section', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'Mission & Vision', path: '/Admin/cms/mission-vision', requiredUserType: ['admin', 'content_manager'] },
+                ],
+            },
+            {
+                name: 'Explore Sections',
+                path: '',
+                requiredUserType: ['admin', 'content_manager'],
+                subItems: [{ name: 'About Pakil', path: '/Admin/cms/pakil-intro', requiredUserType: ['admin', 'content_manager'] }],
+            },
+            {
+                name: 'Hisoty Sections',
+                path: '',
+                requiredUserType: ['admin', 'content_manager'],
+                subItems: [
+                    { name: 'New History', path: '/Admin/cms/pakil-history/new', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'All History', path: '/Admin/cms/pakil-history/', requiredUserType: ['admin', 'content_manager'] },
+                ],
+            },
         ],
     },
 ];
@@ -149,15 +167,27 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
 
     const isActive = useCallback((path: string) => url === path, [url]);
 
+    const hasAccess = useCallback(
+        (requiredUserType?: string[]) => {
+            if (!requiredUserType || requiredUserType.length === 0) return true;
+            if (!auth?.user?.user_type) return false;
+            return requiredUserType.includes(auth.user.user_type);
+        },
+        [auth],
+    );
+
     useEffect(() => {
         const newOpenSubmenus: Record<string, boolean> = {};
 
-        const checkItems = (items: SubMenuItem[] | undefined, parentKeys: string[]) => {
+        const checkItems = (items: SubMenuItem[] | undefined, parentKeys: string[], type: string) => {
             if (!items) return false;
 
             let foundActive = false;
 
             items.forEach((item, index) => {
+                // Skip items that user doesn't have access to
+                if (!hasAccess(item.requiredUserType)) return;
+
                 const currentKey = [...parentKeys, index.toString()].join('-');
 
                 if (isActive(item.path)) {
@@ -165,15 +195,15 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
 
                     parentKeys.forEach((key, i) => {
                         const partialKey = parentKeys.slice(0, i + 1).join('-');
-                        newOpenSubmenus[partialKey] = true;
+                        newOpenSubmenus[`${type}-${partialKey}`] = true;
                     });
                 }
 
                 if (item.subItems) {
-                    const childFound = checkItems(item.subItems, [...parentKeys, index.toString()]);
+                    const childFound = checkItems(item.subItems, [...parentKeys, index.toString()], type);
                     if (childFound) {
                         foundActive = true;
-                        newOpenSubmenus[currentKey] = true;
+                        newOpenSubmenus[`${type}-${currentKey}`] = true;
                     }
                 }
             });
@@ -181,14 +211,28 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
             return foundActive;
         };
 
-        navItems.forEach((nav, index) => {
+        // Check main nav items
+        mainNavItems.forEach((nav, index) => {
+            // Skip items that user doesn't have access to
+            if (!hasAccess(nav.requiredUserType)) return;
+
             if (nav.subItems) {
-                checkItems(nav.subItems, [`main-${index}`]);
+                checkItems(nav.subItems, [index.toString()], 'main');
+            }
+        });
+
+        // Check other nav items
+        otherNavItems.forEach((nav, index) => {
+            // Skip items that user doesn't have access to
+            if (!hasAccess(nav.requiredUserType)) return;
+
+            if (nav.subItems) {
+                checkItems(nav.subItems, [index.toString()], 'other');
             }
         });
 
         setOpenSubmenus(newOpenSubmenus);
-    }, [url, isActive]);
+    }, [url, isActive, hasAccess]);
 
     useEffect(() => {
         return () => {
@@ -248,9 +292,14 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
     };
 
     const renderSubItems = (items: SubMenuItem[], parentKey: string, level: number = 1) => {
+        // Filter items based on user access
+        const accessibleItems = items.filter((item) => hasAccess(item.requiredUserType));
+
+        if (accessibleItems.length === 0) return null;
+
         return (
             <ul className={`mt-1 ${level > 1 ? 'ml-3' : 'ml-8'} space-y-1`}>
-                {items.map((subItem, index) => {
+                {accessibleItems.map((subItem, index) => {
                     const currentKey = `${parentKey}-${index}`;
                     const hasSubItems = subItem.subItems && subItem.subItems.length > 0;
                     const isOpen = openSubmenus[currentKey];
@@ -318,72 +367,79 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
         );
     };
 
-    const renderMenuItems = (items: NavItem[], menuType: 'main' | 'others') => (
-        <ul className="flex flex-col gap-1">
-            {items.map((nav, index) => {
-                const menuKey = `${menuType}-${index}`;
-                const isOpen = openSubmenus[menuKey];
-                const hasSubItems = nav.subItems && nav.subItems.length > 0;
+    const renderMenuItems = (items: NavItem[], menuType: 'main' | 'other') => {
+        // Filter items based on user access
+        const accessibleItems = items.filter((item) => hasAccess(item.requiredUserType));
 
-                return (
-                    <li key={nav.name} className="relative">
-                        {hasSubItems ? (
-                            <button
-                                onClick={() => toggleSubmenu(menuKey)}
-                                className={`menu-item group w-full ${
-                                    isOpen ? 'menu-item-active' : 'menu-item-inactive'
-                                } cursor-pointer ${!isExpanded && !isHovered ? 'lg:justify-center' : 'lg:justify-start'}`}
-                            >
-                                <span className={`menu-item-icon-size ${isOpen ? 'menu-item-icon-active' : 'menu-item-icon-inactive'}`}>
-                                    {nav.icon}
-                                </span>
-                                {(isExpanded || isHovered || isMobileOpen) && (
-                                    <span className="menu-item-text ml-3 flex-1 truncate text-left">{nav.name}</span>
-                                )}
-                                {(isExpanded || isHovered || isMobileOpen) && (
-                                    <ChevronDownIcon
-                                        className={`ml-auto h-5 w-5 transition-transform duration-200 ${isOpen ? 'text-brand-500 rotate-180' : ''}`}
-                                    />
-                                )}
-                            </button>
-                        ) : (
-                            nav.path && (
-                                <Link
-                                    href={nav.path}
-                                    className={`menu-item group w-full ${isActive(nav.path) ? 'menu-item-active' : 'menu-item-inactive'} ${
-                                        !isExpanded && !isHovered ? 'lg:justify-center' : 'lg:justify-start'
-                                    }`}
+        if (accessibleItems.length === 0) return null;
+
+        return (
+            <ul className="flex flex-col gap-1">
+                {accessibleItems.map((nav, index) => {
+                    const menuKey = `${menuType}-${index}`;
+                    const isOpen = openSubmenus[menuKey];
+                    const hasSubItems = nav.subItems && nav.subItems.length > 0;
+
+                    return (
+                        <li key={nav.name} className="relative">
+                            {hasSubItems ? (
+                                <button
+                                    onClick={() => toggleSubmenu(menuKey)}
+                                    className={`menu-item group w-full ${
+                                        isOpen ? 'menu-item-active' : 'menu-item-inactive'
+                                    } cursor-pointer ${!isExpanded && !isHovered ? 'lg:justify-center' : 'lg:justify-start'}`}
                                 >
-                                    <span
-                                        className={`menu-item-icon-size ${isActive(nav.path) ? 'menu-item-icon-active' : 'menu-item-icon-inactive'}`}
-                                    >
+                                    <span className={`menu-item-icon-size ${isOpen ? 'menu-item-icon-active' : 'menu-item-icon-inactive'}`}>
                                         {nav.icon}
                                     </span>
                                     {(isExpanded || isHovered || isMobileOpen) && (
                                         <span className="menu-item-text ml-3 flex-1 truncate text-left">{nav.name}</span>
                                     )}
-                                </Link>
-                            )
-                        )}
-                        {hasSubItems && (isExpanded || isHovered || isMobileOpen) && (
-                            <div
-                                ref={(el) => {
-                                    subMenuRefs.current[menuKey] = el;
-                                }}
-                                className="overflow-hidden"
-                                style={{
-                                    display: isOpen ? 'block' : 'none',
-                                    height: isOpen ? 'auto' : '0px',
-                                }}
-                            >
-                                {renderSubItems(nav.subItems!, menuKey)}
-                            </div>
-                        )}
-                    </li>
-                );
-            })}
-        </ul>
-    );
+                                    {(isExpanded || isHovered || isMobileOpen) && (
+                                        <ChevronDownIcon
+                                            className={`ml-auto h-5 w-5 transition-transform duration-200 ${isOpen ? 'text-brand-500 rotate-180' : ''}`}
+                                        />
+                                    )}
+                                </button>
+                            ) : (
+                                nav.path && (
+                                    <Link
+                                        href={nav.path}
+                                        className={`menu-item group w-full ${isActive(nav.path) ? 'menu-item-active' : 'menu-item-inactive'} ${
+                                            !isExpanded && !isHovered ? 'lg:justify-center' : 'lg:justify-start'
+                                        }`}
+                                    >
+                                        <span
+                                            className={`menu-item-icon-size ${isActive(nav.path) ? 'menu-item-icon-active' : 'menu-item-icon-inactive'}`}
+                                        >
+                                            {nav.icon}
+                                        </span>
+                                        {(isExpanded || isHovered || isMobileOpen) && (
+                                            <span className="menu-item-text ml-3 flex-1 truncate text-left">{nav.name}</span>
+                                        )}
+                                    </Link>
+                                )
+                            )}
+                            {hasSubItems && (isExpanded || isHovered || isMobileOpen) && (
+                                <div
+                                    ref={(el) => {
+                                        subMenuRefs.current[menuKey] = el;
+                                    }}
+                                    className="overflow-hidden"
+                                    style={{
+                                        display: isOpen ? 'block' : 'none',
+                                        height: isOpen ? 'auto' : '0px',
+                                    }}
+                                >
+                                    {renderSubItems(nav.subItems!, menuKey)}
+                                </div>
+                            )}
+                        </li>
+                    );
+                })}
+            </ul>
+        );
+    };
 
     return (
         <aside
@@ -405,7 +461,8 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                 height={50}
                             />
                             <div className="max-w-[150px] truncate text-xl text-black dark:text-white">
-                                {auth?.user?.profile?.last_name || 's'}, {auth?.user?.profile?.first_name || 's'}
+                                {auth?.user?.profile?.last_name || 's'}, {auth?.user?.profile?.first_name || 'Unknown'}
+                                <div className="mt-1 text-xs text-gray-500 capitalize">{(auth?.user?.user_type || 'Unknown').replace(/_/g, ' ')}</div>
                             </div>
                         </>
                     ) : (
@@ -422,16 +479,33 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
             <div className="no-scrollbar flex flex-1 flex-col overflow-y-auto py-2 duration-300 ease-linear">
                 <nav className="mb-4">
                     <div className="flex flex-col gap-1">
-                        <div>
-                            <h2
-                                className={`mb-3 flex text-xs font-medium tracking-wider text-gray-500 uppercase ${
-                                    !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start'
-                                }`}
-                            >
-                                {isExpanded || isHovered || isMobileOpen ? 'Menu' : <HorizontaLDots className="size-6" />}
-                            </h2>
-                            {renderMenuItems(navItems, 'main')}
-                        </div>
+                        {/* Main Menu Section - Only show if user has access to at least one item */}
+                        {mainNavItems.some((item) => hasAccess(item.requiredUserType)) && (
+                            <div>
+                                <h2
+                                    className={`mb-3 flex text-xs font-medium tracking-wider text-gray-500 uppercase ${
+                                        !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start'
+                                    }`}
+                                >
+                                    {isExpanded || isHovered || isMobileOpen ? 'Admin Menu' : <HorizontaLDots className="size-6" />}
+                                </h2>
+                                {renderMenuItems(mainNavItems, 'main')}
+                            </div>
+                        )}
+
+                        {/* Other Items Section - Only show if user has access to at least one item */}
+                        {otherNavItems.some((item) => hasAccess(item.requiredUserType)) && (
+                            <div className="mt-6">
+                                <h2
+                                    className={`mb-3 flex text-xs font-medium tracking-wider text-gray-500 uppercase ${
+                                        !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start'
+                                    }`}
+                                >
+                                    {isExpanded || isHovered || isMobileOpen ? 'Content Manager' : <HorizontaLDots className="size-6" />}
+                                </h2>
+                                {renderMenuItems(otherNavItems, 'other')}
+                            </div>
+                        )}
                     </div>
                 </nav>
             </div>

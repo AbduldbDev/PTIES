@@ -25,13 +25,7 @@ Route::middleware('admin.access:guest')->group(function () {
     Route::post('/Admin/login', [AdminLoginController::class, 'login'])->name('admin.login');
 });
 
-Route::middleware('admin.access:auth')->group(function () {
-    Route::prefix('/Admin')->name('admin')->group(function () {
-        Route::get('/', [AccountManagementController::class, 'dashboard'])->name('dashboard');
-        Route::get('/profile', [AdminProfileController::class, 'profile'])->name('profile');
-        Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
-    });
-
+Route::middleware('admin.access:admin')->group(function () {
     Route::prefix('/Admin/accounts')->name('account.management.')->group(function () {
         Route::get('/', [AccountManagementController::class, 'index'])->name('index');
         Route::get('/new', [AccountManagementController::class, 'new'])->name('new');
@@ -45,6 +39,16 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::get('/', [WebsiteSettingsController::class, 'settings'])->name('index');
         Route::post('/update', [WebsiteSettingsController::class, 'updateSettings'])->name('update');
     });
+});
+
+
+Route::middleware('admin.access:auth')->group(function () {
+    Route::prefix('/Admin')->name('admin')->group(function () {
+        Route::get('/', [AccountManagementController::class, 'dashboard'])->name('dashboard');
+        Route::get('/profile', [AdminProfileController::class, 'profile'])->name('profile');
+        Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
+    });
+
 
     Route::prefix('/Admin/content/promotional-video')->name('promotional-video.')->group(function () {
         Route::get('/', [PromotionalvidController::class, 'view'])->name('edit');
