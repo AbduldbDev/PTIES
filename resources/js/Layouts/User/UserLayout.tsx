@@ -1,7 +1,7 @@
+import AnimatedBackground from '@/User/Utils/components/Layout/Background';
 import '@css/user.css'; // Import directly here
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { waitForAllAssets } from '@UserUtils/components/Layout/assetLoader';
-import AnimatedBackground from '@UserUtils/components/Layout/Background';
 import CookieConsentBanner from '@UserUtils/components/Layout/Cookies';
 import Loader from '@UserUtils/components/Layout/Loader';
 import useThemeColors from '@UserUtils/components/Layout/ThemeColor';

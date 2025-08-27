@@ -10,28 +10,36 @@ const AnimatedBackground = () => {
     ];
 
     useEffect(() => {
-        let startTime = null;
+        let currentScroll = 0;
+        let requestId;
 
-        const animate = (time) => {
-            if (!startTime) startTime = time;
-            const elapsed = (time - startTime) / 1000; // seconds
+        const handleScroll = () => {
+            const newScroll = window.pageYOffset;
+            const scrollDelta = newScroll - currentScroll;
+            currentScroll = newScroll;
 
             blobRefs.current.forEach((blob, index) => {
                 const initialPos = initialPositions[index];
 
-                // slow left-right motion
-                const xOffset = Math.sin(elapsed + index) * 200; // adjust amplitude
-                const yOffset = Math.cos(elapsed + index) * 30; // subtle up-down motion
+                const xOffset = Math.sin(newScroll / 100 + index * 0.5) * 340;
+                const yOffset = Math.cos(newScroll / 100 + index * 0.5) * 40;
 
+                const x = initialPos.x + xOffset;
+                const y = initialPos.y + yOffset;
                 if (!blob) return;
-                blob.style.transform = `translate(${initialPos.x + xOffset}px, ${initialPos.y + yOffset}px)`;
+
+                blob.style.transform = `translate(${x}px, ${y}px)`;
+                blob.style.transition = 'transform 1.4s ease-out';
             });
 
-            requestAnimationFrame(animate);
+            requestId = requestAnimationFrame(handleScroll);
         };
 
-        const requestId = requestAnimationFrame(animate);
-        return () => cancelAnimationFrame(requestId);
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(requestId);
+        };
     }, []);
 
     return (

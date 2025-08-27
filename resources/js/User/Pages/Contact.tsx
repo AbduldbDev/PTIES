@@ -69,13 +69,16 @@ export default function Contact() {
                 <meta property="og:description" content={description} />
             </Head>
 
-            <Banner
-                title={banner?.title}
-                subtitle={banner?.subtitle}
-                desc={banner?.desc}
-                imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/User/Images/ace.png'}
-            ></Banner>
-
+            {banner ? (
+                <Banner
+                    title={banner?.title}
+                    subtitle={banner?.subtitle}
+                    desc={banner?.desc}
+                    imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/User/Images/ace.png'}
+                ></Banner>
+            ) : (
+                <div className="h-[15vh]"></div>
+            )}
             <ContactUs />
 
             {hotlines && hotlines.length > 0 && (

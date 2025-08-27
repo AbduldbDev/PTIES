@@ -22,13 +22,16 @@ export default function Officials() {
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
             </Head>
-
-            <Banner
-                title={banner?.title}
-                subtitle={banner?.subtitle}
-                desc={banner?.desc}
-                imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
-            ></Banner>
+            {banner ? (
+                <Banner
+                    title={banner?.title}
+                    subtitle={banner?.subtitle}
+                    desc={banner?.desc}
+                    imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
+                ></Banner>
+            ) : (
+                <div className="h-[15vh]"></div>
+            )}
 
             <section className="py-20">
                 <div className="container mx-auto px-6">

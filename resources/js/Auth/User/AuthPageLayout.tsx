@@ -1,7 +1,7 @@
+import AnimatedBackground from '@/User/Utils/components/Layout/Background2';
 import '@css/user.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { waitForAllAssets } from '@UserUtils/components/Layout/assetLoader';
-import AnimatedBackground from '@UserUtils/components/Layout/Background';
 import Loader from '@UserUtils/components/Layout/Loader';
 import useThemeColors from '@UserUtils/components/Layout/ThemeColor';
 import { PropsWithChildren, useEffect, useRef, useState } from 'react';

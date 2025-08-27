@@ -36,13 +36,15 @@ export default function TourismAboutPage() {
                 <meta property="og:description" content={description} />
             </Head>
 
-            {banner && (
+            {banner ? (
                 <Banner
                     title={banner?.title}
                     subtitle={banner?.subtitle}
                     desc={banner?.desc}
                     imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
                 ></Banner>
+            ) : (
+                <div className="h-[15vh]"></div>
             )}
 
             {content.about && (
