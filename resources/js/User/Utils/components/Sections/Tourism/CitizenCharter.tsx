@@ -64,16 +64,32 @@ export default function CitizenCharter({ content }: Props) {
                                     <i className="fas fa-times mr-1"></i> Close
                                 </button>
                             </div>
-                            <iframe
-                                src={
-                                    content.pdf
-                                        ? `/storage/${content.pdf}#view=FitH&toolbar=0&navpanes=0&scrollbar=0`
-                                        : '/User/pakil.pdf#view=FitH&toolbar=0&navpanes=0&scrollbar=0'
-                                }
-                                className="h-full w-full border-0"
-                                title="Pakil Citizen's Charter"
-                                style={{ backgroundColor: 'transparent' }}
-                            ></iframe>
+
+                            {content.pdf ? (
+                                window.innerWidth < 768 ? (
+                                    // 📱 Mobile: redirect / open in new tab
+                                    <div className="flex h-full items-center justify-center p-4 text-center">
+                                        <a
+                                            href={`/storage/${content.pdf}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary/90"
+                                        >
+                                            <i className="fas fa-external-link-alt mr-2"></i> View PDF
+                                        </a>
+                                    </div>
+                                ) : (
+                                    // 💻 Desktop: show iframe inline
+                                    <iframe
+                                        src={`/storage/${content.pdf}#view=FitH&toolbar=0&navpanes=0&scrollbar=0`}
+                                        className="h-full w-full border-0"
+                                        title="Pakil Citizen's Charter"
+                                        style={{ backgroundColor: 'transparent' }}
+                                    ></iframe>
+                                )
+                            ) : (
+                                <p className="p-4 text-center text-gray-600">No PDF available</p>
+                            )}
                         </div>
                     ) : (
                         <div className="flex h-[70vh] items-center justify-center rounded-lg border-2 border-dashed border-gray-300">

@@ -36,7 +36,6 @@ export default function ContactForm() {
             case 'message':
                 if (!value) return 'Message is required';
                 return '';
-
             default:
                 return '';
         }
