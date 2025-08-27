@@ -29,4 +29,11 @@ export default defineConfig({
             '@UserUtils': path.resolve(__dirname, 'resources/js/User/Utils'),
         },
     },
+    // server: {
+    //     host: '0.0.0.0',
+    //     port: 5173,
+    //     hmr: {
+    //         host: 'YOUR_IP_ADDRESS',
+    //     },
+    // },
 });
