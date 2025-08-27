@@ -32,16 +32,20 @@ type HotlineProps = {
     long: string;
     lat: string;
 };
-
+type FAQsProps = {
+    question: string;
+    answer: string;
+};
 interface PageProps {
     banner: PageBannerProps;
     hotlines: HotlineProps[];
     guide: PakilGuideProps[];
+    faqs: FAQsProps[];
     [key: string]: unknown;
 }
 
 export default function Contact() {
-    const { banner, guide, hotlines } = usePage<PageProps>().props;
+    const { banner, guide, hotlines, faqs } = usePage<PageProps>().props;
 
     const title = 'Pakil Tourism | Contact Us';
     const description =
@@ -79,7 +83,8 @@ export default function Contact() {
             ) : (
                 <div className="h-[15vh]"></div>
             )}
-            <ContactUs />
+
+            <ContactUs content={faqs} />
 
             {hotlines && hotlines.length > 0 && (
                 <section id="hotlines" className="py-8">

@@ -127,7 +127,7 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::delete('/delete/{id}', [EstablishmentController::class, 'delete'])->name('delete');
     });
 
-    Route::prefix('/Admin/faqs')->name('establishment.')->group(function () {
+    Route::prefix('/Admin/faqs')->name('faqs.')->group(function () {
         Route::get('/', [FAQsController::class, 'index'])->name('index');
         Route::get('/new', [FAQsController::class, 'new'])->name('new');
         Route::get('/edit/{id}', [FAQsController::class, 'edit'])->name('edit');

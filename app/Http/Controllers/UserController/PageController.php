@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use App\Models\CMSBanner;
 use App\Models\ContentPromotional;
 use App\Models\CmsContent;
+use App\Models\FAQs;
 use App\Models\PakilEstablishments;
 use App\Models\PakilGuides;
 use App\Models\PakilHistory;
@@ -166,11 +167,13 @@ class PageController extends Controller
         $banner = CMSBanner::where('key', 'Contact Us')->first();
         $guide = PakilGuides::get();
         $hotlines = PakilHotlines::get();
+        $faqs = FAQs::get();
 
         return Inertia::render('User/Pages/Contact', [
             'banner' => $banner,
             'guide' => $guide,
             'hotlines' => $hotlines,
+            'faqs' => $faqs,
         ]);
     }
 

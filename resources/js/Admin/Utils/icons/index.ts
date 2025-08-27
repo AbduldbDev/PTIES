@@ -21,6 +21,7 @@ import ChevronLeftIcon from './chevron-left.svg?react';
 import ChevronUpIcon from './chevron-up.svg?react';
 import CloseLineIcon from './close-line.svg?react';
 import CloseIcon from './close.svg?react';
+import CommenQuestion from './comments-question.svg?react';
 import CopyIcon from './copy.svg?react';
 import DocsIcon from './docs.svg?react';
 import DollarLineIcon from './dollar-line.svg?react';
@@ -32,6 +33,7 @@ import FileIcon from './file.svg?react';
 import FolderIcon from './folder.svg?react';
 import GearIcon from './gear-solid-full.svg?react';
 import GearIconThin from './gear.svg?react';
+import Grid2 from './grid-2.svg?react';
 import GridIcon from './grid.svg?react';
 import GroupIcon from './group.svg?react';
 import HorizontaLDots from './horizontal-dots.svg?react';
@@ -51,6 +53,7 @@ import PieChartIcon from './pie-chart.svg?react';
 import PlugInIcon from './plug-in.svg?react';
 import PlusIcon from './plus.svg?react';
 import ShootingStarIcon from './shooting-star.svg?react';
+import Shop from './shop.svg?react';
 import TableIcon from './table.svg?react';
 import TaskIcon from './task-icon.svg?react';
 import TimeIcon from './time.svg?react';
@@ -59,11 +62,7 @@ import UserCircleIcon from './user-circle.svg?react';
 import UserIcon from './user-line.svg?react';
 import UserTie from './user-tie.svg?react';
 import VideoIcon from './videos.svg?react';
-import Shop from './shop.svg?react';
-import Grid2 from './grid-2.svg?react';
 export {
-    Grid2,
-    Shop,
     AlertHexaIcon,
     AlertIcon,
     AngleDownIcon,
@@ -87,6 +86,7 @@ export {
     ChevronUpIcon,
     CloseIcon,
     CloseLineIcon,
+    CommenQuestion,
     CopyIcon,
     DocsIcon,
     DollarLineIcon,
@@ -100,6 +100,7 @@ export {
     FolderIcon,
     GearIcon,
     GearIconThin,
+    Grid2,
     GridIcon,
     GroupIcon,
     HorizontaLDots,
@@ -117,6 +118,7 @@ export {
     PlugInIcon,
     PlusIcon,
     ShootingStarIcon,
+    Shop,
     TableIcon,
     TaskIcon,
     TimeIcon,

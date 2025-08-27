@@ -1,6 +1,7 @@
 import { useSidebar } from '@AdminUtils/context/SidebarContext';
 import {
     ChevronDownIcon,
+    CommenQuestion,
     DocsIcon,
     GearIconThin,
     GridIcon,
@@ -77,6 +78,15 @@ const mainNavItems: NavItem[] = [
 ];
 
 const otherNavItems: NavItem[] = [
+    {
+        icon: <CommenQuestion />,
+        name: 'FAQs',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add New FAQs', path: '/Admin/faqs/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All FAQs', path: '/Admin/faqs', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
     {
         icon: <MapDot />,
         name: 'Terminals',
