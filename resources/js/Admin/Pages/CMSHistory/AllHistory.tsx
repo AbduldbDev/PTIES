@@ -195,7 +195,7 @@ export default function Home() {
                                                     colSpan={columns.length}
                                                     className="px-4 py-20 text-center text-gray-500 dark:text-gray-400"
                                                 >
-                                                    {searchTerm ? `No Tour Guides found matching "${searchTerm}"` : 'No Tour Guides available'}
+                                                    {searchTerm ? `No pakil history found matching "${searchTerm}"` : 'No pakil history available'}
                                                 </TableCell>
                                             </TableRow>
                                         )}
