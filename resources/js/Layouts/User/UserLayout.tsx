@@ -16,6 +16,7 @@ export default function UserLayout({ children }: PropsWithChildren) {
     const [assetsLoaded, setAssetsLoaded] = useState(false);
     const [showLoader, setShowLoader] = useState(true);
     const loaderTimeout = useRef<NodeJS.Timeout | null>(null);
+
     useEffect(() => {
         Aos.init({
             duration: 800,
@@ -23,8 +24,6 @@ export default function UserLayout({ children }: PropsWithChildren) {
             mirror: false,
             offset: 500,
         });
-
-        // refresh animations if dynamic content loads later
         Aos.refresh();
     }, []);
 
@@ -40,7 +39,7 @@ export default function UserLayout({ children }: PropsWithChildren) {
                 setAssetsLoaded(true);
                 loaderTimeout.current = setTimeout(() => {
                     setShowLoader(false);
-                }, 100); // Reduced timeout
+                }, 100);
             } catch (error) {
                 console.error('Asset loading error:', error);
                 setAssetsLoaded(true);

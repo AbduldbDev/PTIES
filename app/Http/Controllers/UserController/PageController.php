@@ -148,6 +148,14 @@ class PageController extends Controller
         ]);
     }
 
+    public function LocalPersonalities()
+    {
+        $banner = CMSBanner::where('key', 'Local Products')->first();
+        return Inertia::render('User/Pages/LocalPersonalities', [
+            'banner' => $banner,
+        ]);
+    }
+
     public function Attractions()
     {
         $banner = CMSBanner::where('key', 'Attractions')->first();

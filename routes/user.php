@@ -15,6 +15,7 @@ Route::get('/biography', [PageController::class, 'OfficialBio'])->name('user.bio
 Route::get('/guide', [PageController::class, 'Guide'])->name('user.guide');
 Route::get('/terminals', [PageController::class, 'Terminals'])->name('user.terminals');
 Route::get('/localproducts', [PageController::class, 'LocalProducts'])->name('user.localproducts');
+Route::get('/localpersonalities', [PageController::class, 'LocalPersonalities'])->name('user.LocalPersonalities');
 Route::get('/attractions', [PageController::class, 'Attractions'])->name('user.attractions');
 Route::get('/attractiondetails', [PageController::class, 'AttractionDetails'])->name('user.attractiondetails');
 Route::get('/contact', [PageController::class, 'ContactUs'])->name('user.contact');

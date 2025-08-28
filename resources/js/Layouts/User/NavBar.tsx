@@ -72,7 +72,7 @@ const Navbar = () => {
         explore: [
             { label: 'About Pakil', href: '/about' },
             { label: 'Attractions', href: '/attractions' },
-            { label: 'Personalities', href: '#' },
+            { label: 'Personalities', href: '/localpersonalities' },
             { label: 'Local Products', href: '/localproducts' },
             { label: 'Terminals', href: '/terminals' },
             { label: 'Guide', href: '/guide' },

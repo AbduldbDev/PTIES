@@ -33,7 +33,7 @@ export default function LocalProducts() {
             ) : (
                 <div className="h-[15vh]"></div>
             )}
-            <section className="bg-gradient-to-b from-white to-gray-50 py-16">
+            {/* <section className="bg-gradient-to-b from-white to-gray-50 py-16">
                 <div className="container mx-auto max-w-6xl px-4">
                     <div className="mb-16 text-center">
                         <div className="mb-4 inline-flex items-center">
@@ -182,9 +182,9 @@ export default function LocalProducts() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
-            {/* <section className="py-16">
+            <section className="py-16">
                 <div className="container mx-auto max-w-6xl px-4">
                     <PageTitle
                         title="Cultural Treasures"
@@ -361,7 +361,7 @@ export default function LocalProducts() {
                         </div>
                     </div>
                 </div>
-            </section> */}
+            </section>
         </>
     );
 }
