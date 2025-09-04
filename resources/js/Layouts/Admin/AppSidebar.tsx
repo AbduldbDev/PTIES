@@ -132,8 +132,8 @@ const otherNavItems: NavItem[] = [
         name: 'Local Personalities',
         requiredUserType: ['admin', 'content_manager'],
         subItems: [
-            { name: 'Add New Personalities', path: '/Admin/', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Personalities', path: '/Admin/', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'Add New Personality', path: '/Admin/local-personalities/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Personalities', path: '/Admin/local-personalities', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
     {
@@ -145,6 +145,7 @@ const otherNavItems: NavItem[] = [
             { name: 'All Hotlines', path: '/Admin/hotlines', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
+
     {
         icon: <DocsIcon />,
         name: 'Content Management',

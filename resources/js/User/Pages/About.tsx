@@ -241,28 +241,28 @@ export default function About() {
                                 <div className="grid grid-cols-2 gap-2 p-4">
                                     <div className="h-32 overflow-hidden rounded-lg">
                                         <img
-                                            src="//User/Images/church.jpg"
+                                            src="/User/Images/church.jpg"
                                             alt="Turumba Festival"
                                             className="h-full w-full object-cover transition duration-300 hover:scale-110"
                                         />
                                     </div>
                                     <div className="h-32 overflow-hidden rounded-lg">
                                         <img
-                                            src="//User/Images/church.jpg"
+                                            src="/User/Images/church.jpg"
                                             alt="Turumba Festival"
                                             className="h-full w-full object-cover transition duration-300 hover:scale-110"
                                         />
                                     </div>
                                     <div className="h-32 overflow-hidden rounded-lg">
                                         <img
-                                            src="//User/Images/church.jpg"
+                                            src="/User/Images/church.jpg"
                                             alt="Turumba Festival"
                                             className="h-full w-full object-cover transition duration-300 hover:scale-110"
                                         />
                                     </div>
                                     <div className="h-32 overflow-hidden rounded-lg">
                                         <img
-                                            src="//User/Images/church.jpg"
+                                            src="/User/Images/church.jpg"
                                             alt="Turumba Festival"
                                             className="h-full w-full object-cover transition duration-300 hover:scale-110"
                                         />
@@ -308,7 +308,7 @@ export default function About() {
                     </div>
                 </div>
             </section>
-            
+
             <BrangayInfo barangays={barangays} barangayHighlights={barangayHighlights} />
         </>
     );

@@ -16,6 +16,7 @@ use App\Http\Controllers\AdminController\CMSUpdatecontroller;
 use App\Http\Controllers\AdminController\CMSHistoryController;
 use App\Http\Controllers\AdminController\EstablishmentController;
 use App\Http\Controllers\AdminController\FAQsController;
+use App\Http\Controllers\AdminController\LocalPersonalitiesController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
 
@@ -141,5 +142,14 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/create', [BarangayInfoController::class, 'create'])->name('create');
         Route::post('/update/{id}', [BarangayInfoController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [BarangayInfoController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('/Admin/local-personalities')->name('localpersonalities.')->group(function () {
+        Route::get('/', [LocalPersonalitiesController::class, 'index'])->name('index');
+        Route::get('/new', [LocalPersonalitiesController::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [LocalPersonalitiesController::class, 'edit'])->name('edit');
+        Route::post('/create', [LocalPersonalitiesController::class, 'create'])->name('create');
+        Route::post('/update/{id}', [LocalPersonalitiesController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [LocalPersonalitiesController::class, 'delete'])->name('delete');
     });
 });

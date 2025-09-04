@@ -38,7 +38,13 @@ createInertiaApp({
                     </StrictMode>
                 );
             } else if (name.startsWith('User/')) {
-                module.default.layout = (page) => <MainLayout>{page}</MainLayout>;
+                module.default.layout = (page) => (
+                    <StrictMode>
+                        <AppWrapper>
+                            <MainLayout>{page}</MainLayout>
+                        </AppWrapper>
+                    </StrictMode>
+                );
             } else if (name.startsWith('Auth/Admin/')) {
                 module.default.layout = (page) => (
                     <ThemeProvider>
