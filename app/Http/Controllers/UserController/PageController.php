@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\UserController;
 
 use App\Http\Controllers\Controller;
+use App\Models\BarangayInfo;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\CMSBanner;
@@ -59,11 +60,19 @@ class PageController extends Controller
                 $this->parseContentValue($content->content_value);
         }
 
+        $barangays = BarangayInfo::orderBy('index', 'asc')->get();
+        $barangayHighlights = BarangayInfo::whereNotNull('highlights')
+            ->orderBy('index', 'asc')
+            ->get();
+
+
         $banner = CMSBanner::where('key', 'About Pakil')->first();
         return Inertia::render('User/Pages/About', [
             'banner' => $banner,
             'content' => $pageData['sections'] ?? [],
             'history' => $history,
+            'barangays' => $barangays,
+            'barangayHighlights' => $barangayHighlights,
         ]);
     }
 

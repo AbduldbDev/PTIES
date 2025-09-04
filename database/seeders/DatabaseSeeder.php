@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CMSBannerSeeder::class);
         $this->call(AdminSeeder::class);
+        $this->call(BarangayInfoSeeder::class);
     }
 }

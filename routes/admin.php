@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController\AccountManagementController;
 use App\Http\Controllers\AdminController\AdminProfileController;
 use App\Http\Controllers\AdminController\WebsiteSettingsController;
 use App\Http\Controllers\AdminController\BannerController;
+use App\Http\Controllers\AdminController\BarangayInfoController;
 use App\Http\Controllers\AdminController\HomeCMSController;
 use App\Http\Controllers\AdminController\HotlinesController;
 use App\Http\Controllers\AdminController\PromotionalvidController;
@@ -63,9 +64,6 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::get('/pakil-intro', [CMScontroller::class, 'PakilIntro'])->name('PakilIntro');
         Route::get('/citizen-charter', [CMScontroller::class, 'CitizenCharter'])->name('CitizenCharter');
     });
-
-
-
 
     Route::prefix('/Admin/cms/update')->name('cms.update.')->group(function () {
         Route::post('/hero-section', [CMSUpdatecontroller::class, 'UpdateHeroSection'])->name('HeroSection');
@@ -134,5 +132,14 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/create', [FAQsController::class, 'create'])->name('create');
         Route::post('/update/{id}', [FAQsController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [FAQsController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('/Admin/barangay-info')->name('barangayinfo.')->group(function () {
+        Route::get('/', [BarangayInfoController::class, 'index'])->name('index');
+        Route::get('/new', [BarangayInfoController::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [BarangayInfoController::class, 'edit'])->name('edit');
+        Route::post('/create', [BarangayInfoController::class, 'create'])->name('create');
+        Route::post('/update/{id}', [BarangayInfoController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [BarangayInfoController::class, 'delete'])->name('delete');
     });
 });

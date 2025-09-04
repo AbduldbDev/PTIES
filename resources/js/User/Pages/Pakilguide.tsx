@@ -1,6 +1,6 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
-
+import PageTitle from '@UserUtils/components/Banner/PageTitle';
 type PageBannerProps = {
     title: string;
     subtitle: string;
@@ -33,14 +33,11 @@ export default function GamificationGuid() {
             )}
             <section className="py-12 md:py-20">
                 <div className="container mx-auto px-4 sm:px-6">
-                    <div className="mb-12 text-center">
-                        <span className="mb-3 inline-block rounded-full bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
-                            <i className="fas fa-map-marked-alt mr-1"></i> Tourism Trail
-                        </span>
-                        <h2 className="text-dark text-3xl font-bold md:text-4xl">
-                            Pakil <span className="text-primary">Rewards Journey</span>
-                        </h2>
-                    </div>
+                    <PageTitle
+                        title="Tourism Trail"
+                        subtitle="Pakil Rewards Journey"
+                        desc="Embark on an adventure across Pakil! Unlock points, collect rewards, and complete challenges as you explore attractions and discover the town’s culture in a fun, rewarding way."
+                    ></PageTitle>
 
                     <div className="relative mx-auto max-w-5xl">
                         <div className="absolute top-0 left-16 -z-10 hidden h-full w-0.5 bg-gradient-to-b from-primary via-secondary to-accent md:block"></div>
@@ -50,7 +47,7 @@ export default function GamificationGuid() {
                                 <div className="group relative">
                                     <div className="absolute -inset-2 rounded-xl bg-primary/20 opacity-75 blur transition duration-300 group-hover:opacity-100"></div>
                                     <img
-                                        src="/User/Images/church.jpg"
+                                        src="/User/Gamification/step1.png"
                                         alt="Tourist exploring church"
                                         className="relative h-auto w-full rounded-xl border-4 border-white shadow-lg"
                                     />
@@ -89,7 +86,7 @@ export default function GamificationGuid() {
                                 <div className="group relative">
                                     <div className="absolute -inset-2 rounded-xl bg-secondary/20 opacity-75 blur transition duration-300 group-hover:opacity-100"></div>
                                     <img
-                                        src="/User/Images/church.jpg"
+                                        src="/User/Gamification/step2.png"
                                         alt="Phone scanning QR code"
                                         className="relative h-auto w-full rounded-xl border-4 border-white shadow-lg"
                                     />
@@ -132,7 +129,7 @@ export default function GamificationGuid() {
                                 <div className="group relative">
                                     <div className="absolute -inset-2 rounded-xl bg-accent/20 opacity-75 blur transition duration-300 group-hover:opacity-100"></div>
                                     <img
-                                        src="/User/Images/church.jpg"
+                                        src="/User/Gamification/step3.png"
                                         alt="Phone showing points earned"
                                         className="relative h-auto w-full rounded-xl border-4 border-white shadow-lg"
                                     />
@@ -174,7 +171,7 @@ export default function GamificationGuid() {
                                 <div className="group relative">
                                     <div className="absolute -inset-2 rounded-xl bg-purple-100 opacity-75 blur transition duration-300 group-hover:opacity-100"></div>
                                     <img
-                                        src="/User/Images/church.jpg"
+                                        src="/User/Gamification/step4.png"
                                         alt="Browsing rewards on phone"
                                         className="relative h-auto w-full rounded-xl border-4 border-white shadow-lg"
                                     />
@@ -222,7 +219,7 @@ export default function GamificationGuid() {
                                 <div className="group relative">
                                     <div className="absolute -inset-2 rounded-xl bg-yellow-100 opacity-75 blur transition duration-300 group-hover:opacity-100"></div>
                                     <img
-                                        src="/User/Images/church.jpg"
+                                        src="/User/Gamification/step5.png"
                                         alt="Tourist receiving reward"
                                         className="relative h-auto w-full rounded-xl border-4 border-white shadow-lg"
                                     />

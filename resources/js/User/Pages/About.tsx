@@ -2,6 +2,7 @@ import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import HistoryCard from '@UserUtils/components/Cards/History';
+import BrangayInfo from '@UserUtils/components/Sections/About/BrangayInfo';
 import Introductions from '@UserUtils/components/Sections/About/Introduction';
 import { CmsContent } from '@UserUtils/Types/cms';
 
@@ -9,8 +10,18 @@ interface PageProps {
     banner: PageBannerProps;
     content: CmsContent;
     history: HistoryProps[];
+    barangays: BarangayProps[];
+    barangayHighlights: BarangayProps[];
     [key: string]: unknown;
 }
+type BarangayProps = {
+    id: number;
+    barangay: string;
+    captain: string;
+    highlights: string;
+    type: string;
+    index: string;
+};
 
 type PageBannerProps = {
     title: string;
@@ -27,7 +38,7 @@ type HistoryProps = {
 };
 
 export default function About() {
-    const { banner, content, history } = usePage<PageProps>().props;
+    const { banner, content, history, barangays, barangayHighlights } = usePage<PageProps>().props;
 
     const title = 'Pakil Tourism | About';
     const description =
@@ -297,287 +308,8 @@ export default function About() {
                     </div>
                 </div>
             </section>
-
-            <section className="py-20">
-                <div className="container mx-auto px-6">
-                    <PageTitle
-                        title="Geography"
-                        subtitle="Municipal Map & Barangays"
-                        desc="Discover the political subdivisions of Pakil and their leaders"
-                    ></PageTitle>
-
-                    <div className="mb-12 space-y-5 rounded-xl border border-gray-200 bg-white p-6 shadow-lg">
-                        <div className="w-full">
-                            <div className="aspect-w-16 aspect-h-9 flex items-center justify-center rounded-lg bg-gray-50">
-                                <img src="/User/SVG/pakil.svg" alt="Pakil Municipal Map" className="h-auto w-full object-contain p-4" />
-                            </div>
-                        </div>
-                        <div className="w-full">
-                            <div className="h-full rounded-xl border border-primary/20 bg-primary/5 p-4 shadow-sm md:p-6">
-                                <h4 className="mb-6 flex items-center text-xl font-bold">
-                                    <i className="fas fa-info-circle mr-3 text-primary"></i>
-                                    <span className="mr-1 text-primary">Municipal </span> Facts
-                                </h4>
-                                <div className="grid grid-cols-1 gap-6 p-0 md:p-6 lg:grid-cols-2">
-                                    <div className="mb-8">
-                                        <h5 className="text-dark mb-3 flex items-center font-semibold">
-                                            <i className="fas fa-route mr-2 text-secondary"></i> Distance From
-                                        </h5>
-                                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3">
-                                                <p className="text-sm text-gray-600">Sta. Cruz, Laguna</p>
-                                                <p className="font-bold text-primary">19km</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3">
-                                                <p className="text-sm text-gray-600">Manila via Laguna</p>
-                                                <p className="font-bold text-primary">114km</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3">
-                                                <p className="text-sm text-gray-600">Manila via Rizal</p>
-                                                <p className="font-bold text-primary">80km</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <h5 className="text-dark mb-3 flex items-center font-semibold">
-                                            <i className="fas fa-chart-bar mr-2 text-secondary"></i> Key Statistics
-                                        </h5>
-                                        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                                <p className="text-sm text-gray-600">Land Area</p>
-                                                <p className="font-bold text-primary">4,649.78 ha</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                                <p className="text-sm text-gray-600">Population (2016)</p>
-                                                <p className="font-bold text-primary">22,386</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                                <p className="text-sm text-gray-600">Population Growth</p>
-                                                <p className="font-bold text-primary">1.46%</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                                <p className="text-sm text-gray-600">Literacy Rate</p>
-                                                <p className="font-bold text-primary">93%</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                                <p className="text-sm text-gray-600">Employment Rate</p>
-                                                <p className="font-bold text-primary">93%</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                                <p className="text-sm text-gray-600">Languages</p>
-                                                <p className="font-bold text-primary">Filipino, English</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Decorative Element */}
-                                <div className="mt-6 border-t border-gray-100 pt-4 text-center">
-                                    <span className="inline-flex items-center text-xs text-gray-400">
-                                        <i className="fas fa-info-circle mr-1 text-primary/70"></i>
-                                        Last updated: August 2025
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                        {/* East Side Barangays */}
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                            <div className="border-b border-primary/20 bg-primary/10 p-5">
-                                <h4 className="flex items-center text-xl font-bold text-primary">
-                                    <i className="fas fa-sun mr-3"></i> Silangan (East) Barangays
-                                </h4>
-                            </div>
-                            <div className="p-6">
-                                <div className="overflow-x-auto">
-                                    <table className="min-w-full divide-y divide-gray-200">
-                                        <thead className="bg-gray-50">
-                                            <tr>
-                                                <th
-                                                    scope="col"
-                                                    className="px-3 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
-                                                >
-                                                    No.
-                                                </th>
-                                                <th
-                                                    scope="col"
-                                                    className="px-3 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
-                                                >
-                                                    Barangay
-                                                </th>
-                                                <th
-                                                    scope="col"
-                                                    className="px-3 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
-                                                >
-                                                    Captain
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-gray-200 bg-white">
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">1</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Baño</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Juan Dela Cruz</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">2</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Burgos</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Maria Santos</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">3</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Gonzales</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Pedro Reyes</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">4</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Rizal</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Ana Martinez</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">5</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Taft</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Carlos Aquino</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">6</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Tavera</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Lourdes Fernandez</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">7</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Saray</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Ricardo Gutierrez</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* West Side Barangays */}
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                            <div className="border-b border-primary/20 bg-primary/10 p-5">
-                                <h4 className="flex items-center text-xl font-bold text-primary">
-                                    <i className="fas fa-moon mr-3"></i> Kanularan (West) Barangays
-                                </h4>
-                            </div>
-                            <div className="p-6">
-                                <div className="overflow-x-auto">
-                                    <table className="min-w-full divide-y divide-gray-200">
-                                        <thead className="bg-gray-50">
-                                            <tr>
-                                                <th
-                                                    scope="col"
-                                                    className="px-3 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
-                                                >
-                                                    No.
-                                                </th>
-                                                <th
-                                                    scope="col"
-                                                    className="px-3 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
-                                                >
-                                                    Barangay
-                                                </th>
-                                                <th
-                                                    scope="col"
-                                                    className="px-3 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
-                                                >
-                                                    Captain
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-gray-200 bg-white">
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">8</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Banilan</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Elena Torres</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">9</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Casa Real</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Antonio Cruz</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">10</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Casinsin</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Roberto Santiago</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">11</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Dorado</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Sofia Ramirez</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">12</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Kabulusan</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Felipe Mendoza</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">13</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Matikiw</td>
-                                                <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-700">Teresa Reyes</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="mt-12 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                        <div className="border-b border-primary/20 bg-primary/10 p-5">
-                            <h4 className="flex items-center text-xl font-bold text-primary">
-                                <i className="fas fa-star mr-3"></i> Barangay Highlights
-                            </h4>
-                        </div>
-                        <div className="grid grid-cols-1 gap-6 p-6 md:grid-cols-2 lg:grid-cols-3">
-                            <div className="border-l-4 border-primary pl-4">
-                                <h5 className="text-dark mb-2 font-bold">Baño</h5>
-                                <p className="mb-1 text-sm text-gray-700">Captain: Juan Dela Cruz</p>
-                                <p className="text-sm text-gray-700">Known for its scenic views of Laguna Lake and traditional fishing industry.</p>
-                            </div>
-                            <div className="border-l-4 border-primary pl-4">
-                                <h5 className="text-dark mb-2 font-bold">Burgos</h5>
-                                <p className="mb-1 text-sm text-gray-700">Captain: Maria Santos</p>
-                                <p className="text-sm text-gray-700">Home to several heritage homes and the municipal health center.</p>
-                            </div>
-                            <div className="border-l-4 border-primary pl-4">
-                                <h5 className="text-dark mb-2 font-bold">Banilan</h5>
-                                <p className="mb-1 text-sm text-gray-700">Captain: Elena Torres</p>
-                                <p className="text-sm text-gray-700">Gateway to Mount Ping-as with thriving agricultural activities.</p>
-                            </div>
-                            <div className="border-l-4 border-primary pl-4">
-                                <h5 className="text-dark mb-2 font-bold">Casa Real</h5>
-                                <p className="mb-1 text-sm text-gray-700">Captain: Antonio Cruz</p>
-                                <p className="text-sm text-gray-700">Location of the historic municipal hall and town plaza.</p>
-                            </div>
-                            <div className="border-l-4 border-primary pl-4">
-                                <h5 className="text-dark mb-2 font-bold">Dorado</h5>
-                                <p className="mb-1 text-sm text-gray-700">Captain: Sofia Ramirez</p>
-                                <p className="text-sm text-gray-700">Famous for its goldsmiths and traditional jewelry making.</p>
-                            </div>
-                            <div className="border-l-4 border-primary pl-4">
-                                <h5 className="text-dark mb-2 font-bold">Kabulusan</h5>
-                                <p className="mb-1 text-sm text-gray-700">Captain: Felipe Mendoza</p>
-                                <p className="text-sm text-gray-700">Agricultural center with vast rice fields and fruit plantations.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="mt-12 text-center">
-                        <a
-                            href="#"
-                            className="inline-flex items-center rounded-full border border-transparent bg-primary px-6 py-3 text-white shadow-sm transition duration-300 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
-                        >
-                            <i className="fas fa-file-alt mr-2"></i> Download Complete Barangay Profiles
-                        </a>
-                    </div>
-                </div>
-            </section>
+            
+            <BrangayInfo barangays={barangays} barangayHighlights={barangayHighlights} />
         </>
     );
 }
