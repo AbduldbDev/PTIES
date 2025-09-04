@@ -10,14 +10,11 @@ import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent, useState } from 'react';
 
 type Personality = {
-    id: number;
     category: string;
     name: string;
     description: string;
     highlights_title: string;
-    highlights_content: Highlight[];
-    born?: string;
-    died?: string;
+    highlights_content: string;
     image: string;
     legacy: string;
 };
@@ -29,12 +26,10 @@ type FormData = {
     description: string;
     highlights_title: string;
     highlights_content: Highlight[];
-    born: string;
-    died: string;
     image: File | null;
-    legacy_title: string;
-    legacy_icon: string;
-    legacy_desc: string;
+    exp_title: string;
+    exp_icon: string;
+    exp_desc: string;
 };
 
 type Highlight = {
@@ -50,28 +45,23 @@ type PageProps = {
     personality?: Personality;
     errors?: Record<string, string>;
     csrf_token: string;
-    item: Personality;
 };
 
-export default function LocalPersonalitiesEditForm() {
-    const { flash, errors, csrf_token, item } = usePage<PageProps>().props;
+export default function HeroSectionEditForm() {
+    const { flash, errors, csrf_token } = usePage<PageProps>().props;
     const [resetSignal, setResetSignal] = useState(0);
-    const [category_icon, category_title] = item.category?.split('|') || ['', ''];
-    const [legacy_icon, legacy_title, legacy_desc] = item.legacy?.split('|') || ['', '', ''];
 
     const form = useForm<FormData>({
-        category: category_title,
-        category_icon: category_icon,
-        name: item.name || '',
-        description: item.description || '',
-        highlights_title: item.highlights_title || '',
-        highlights_content: item.highlights_content || [],
-        born: item.born || '',
-        died: item.died || '',
+        category: '',
+        category_icon: '',
+        name: '',
+        description: '',
+        highlights_title: '',
+        highlights_content: [],
         image: null,
-        legacy_title: legacy_title,
-        legacy_icon: legacy_icon,
-        legacy_desc: legacy_desc,
+        exp_title: '',
+        exp_icon: '',
+        exp_desc: '',
     });
 
     const handleSubmit = (e: FormEvent) => {
@@ -81,9 +71,10 @@ export default function LocalPersonalitiesEditForm() {
             'category_icon',
             'name',
             'description',
-            'legacy_title',
-            'legacy_icon',
-            'legacy_desc',
+            'image',
+            'exp_title',
+            'exp_icon',
+            'exp_desc',
             'highlights_content',
         ];
 
@@ -96,7 +87,7 @@ export default function LocalPersonalitiesEditForm() {
             return;
         }
 
-        form.post(`/Admin/local-personalities/update/${item.id}`, {
+        form.post(`/Admin/local-products/create`, {
             forceFormData: true,
             onSuccess: () => {
                 setResetSignal(Date.now());
@@ -138,17 +129,16 @@ export default function LocalPersonalitiesEditForm() {
             <Head title="Admin | CMS" />
             <AppWrapper>
                 <PageMeta title="Edit Introduction Section" description="Edit introduction section content" />
-                <PageBreadcrumb pageTitle="Local Personalities Management" />
+                <PageBreadcrumb pageTitle="Local Products Management" />
                 {flash?.success && <FlashMessage type="success" message={flash.success} key={Date.now()} />}
                 {errors?.error && <FlashMessage type="error" message={errors.error} key={Date.now()} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}
 
                 <form onSubmit={handleSubmit}>
                     <input type="hidden" name="_token" value={csrf_token} />
-
                     <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
                         <div>
-                            <ComponentCard className="" title="Local Personalities Content">
+                            <ComponentCard className="" title="Introduction Content">
                                 <div>
                                     <div className="flex items-center gap-2">
                                         <div className="flex-1">
@@ -200,28 +190,6 @@ export default function LocalPersonalitiesEditForm() {
                                         resetSignal={resetSignal}
                                     />
 
-                                    <InputField
-                                        type="text"
-                                        label="Born Date"
-                                        name="born"
-                                        required={true}
-                                        value={form.data.born}
-                                        onChange={(e) => form.setData('born', e.target.value)}
-                                        error={form.errors.born}
-                                        errorMessage="Please born date"
-                                        resetSignal={resetSignal}
-                                    />
-                                    <InputField
-                                        type="text"
-                                        label="Died Date"
-                                        name="died"
-                                        required={false}
-                                        value={form.data.died}
-                                        onChange={(e) => form.setData('died', e.target.value)}
-                                        error={form.errors.died}
-                                        errorMessage="Please enter died date"
-                                        resetSignal={resetSignal}
-                                    />
                                     <Textarea
                                         label="Description"
                                         name="description"
@@ -250,11 +218,11 @@ export default function LocalPersonalitiesEditForm() {
                                     <div className="flex-1">
                                         <InputField
                                             label="Legacy Title"
-                                            name="legacy_title"
-                                            value={form.data.legacy_title}
-                                            onChange={(e) => form.setData('legacy_title', e.target.value)}
+                                            name="exp_title"
+                                            value={form.data.exp_title}
+                                            onChange={(e) => form.setData('exp_title', e.target.value)}
                                             required={true}
-                                            error={form.errors.legacy_title}
+                                            error={form.errors.exp_title}
                                             errorMessage="Please enter highlight text"
                                         />
                                     </div>
@@ -277,9 +245,9 @@ export default function LocalPersonalitiesEditForm() {
                                                 { value: 'fa-solid  fa-paintbrush', label: 'Paint' },
                                             ]}
                                             required={true}
-                                            value={form.data.legacy_icon}
-                                            onChange={(e) => form.setData('legacy_icon', e.target.value)}
-                                            error={form.errors.legacy_icon}
+                                            value={form.data.exp_icon}
+                                            onChange={(e) => form.setData('exp_icon', e.target.value)}
+                                            error={form.errors.exp_icon}
                                             errorMessage="Please enter legacy icon"
                                         />
                                     </div>
@@ -287,12 +255,12 @@ export default function LocalPersonalitiesEditForm() {
                                 <div>
                                     <Textarea
                                         label="Legacy Desciption"
-                                        name="legacy_desc"
-                                        value={form.data.legacy_desc}
-                                        onChange={(e) => form.setData('legacy_desc', e.target.value)}
+                                        name="exp_desc"
+                                        value={form.data.exp_desc}
+                                        onChange={(e) => form.setData('exp_desc', e.target.value)}
                                         required={true}
                                         readonly={false}
-                                        error={form.errors.legacy_desc}
+                                        error={form.errors.exp_desc}
                                         errorMessage="Please enter personality description"
                                         rows={5}
                                     />
@@ -456,7 +424,7 @@ export default function LocalPersonalitiesEditForm() {
                             form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
                         }`}
                     >
-                        {form.processing ? 'Processing...' : 'Update Local Personalities'}
+                        {form.processing ? 'Processing...' : 'Add New Local Personalities'}
                     </button>
                 </form>
             </AppWrapper>

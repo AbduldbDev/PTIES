@@ -16,6 +16,7 @@ use App\Models\PakilHistory;
 use App\Models\PakilHotlines;
 use App\Models\PakilTerminals;
 use App\Models\LocalPersonalities;
+use App\Models\LocalProducts;
 
 class PageController extends Controller
 {
@@ -152,9 +153,11 @@ class PageController extends Controller
 
     public function LocalProducts()
     {
+        $products = LocalProducts::get();
         $banner = CMSBanner::where('key', 'Local Products')->first();
         return Inertia::render('User/Pages/LocalProducts', [
             'banner' => $banner,
+            'products' => $products,
         ]);
     }
 

@@ -135,7 +135,7 @@ export default function HeroSectionEditForm() {
             <Head title="Admin | CMS" />
             <AppWrapper>
                 <PageMeta title="Edit Introduction Section" description="Edit introduction section content" />
-                <PageBreadcrumb pageTitle="Content Management" />
+                <PageBreadcrumb pageTitle="Local Personalities Management" />
                 {flash?.success && <FlashMessage type="success" message={flash.success} key={Date.now()} />}
                 {errors?.error && <FlashMessage type="error" message={errors.error} key={Date.now()} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}

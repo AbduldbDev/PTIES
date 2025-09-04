@@ -123,8 +123,8 @@ const otherNavItems: NavItem[] = [
         name: 'Local Products',
         requiredUserType: ['admin', 'content_manager'],
         subItems: [
-            { name: 'Add New Products', path: '/Admin/', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Products', path: '/Admin/', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'Add New Products', path: '/Admin/local-products/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Products', path: '/Admin/local-products/', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
     {

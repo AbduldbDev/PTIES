@@ -10,11 +10,6 @@ type PageBannerProps = {
     image: string;
 };
 
-type Highlight = {
-    icon: string;
-    text: string;
-};
-
 type Personality = {
     category: string;
     name: string;
@@ -59,8 +54,8 @@ export default function LocalProducts() {
                 <div className="container mx-auto max-w-6xl px-4">
                     <PageTitle
                         title="Cultural Treasures"
-                        subtitle="Pakil's Living Traditions"
-                        desc="Celebrating the natural bounty and artistic heritage of our town."
+                        subtitle="Pakil’s Iconic Personalities"
+                        desc="Celebrating the artists, heroes and visionaries who shaped our town"
                     ></PageTitle>
                     <div className="relative">
                         <div className="absolute top-0 left-16 -z-10 hidden h-full w-0.5 bg-gradient-to-b from-primary via-secondary to-accent md:block"></div>
