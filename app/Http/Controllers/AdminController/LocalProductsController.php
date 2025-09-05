@@ -55,7 +55,7 @@ class LocalProductsController extends Controller
                 'image'             => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
                 'exp_title'      => 'required|string|max:255',
                 'exp_icon'       => 'required|string|max:255',
-                'exp_desc'       => 'required|string',
+                'exp_desc'       => 'required|string|max:255',
             ]);
             $category = ($validated['category_icon'] ?? '') . '|' . $validated['category'];
 

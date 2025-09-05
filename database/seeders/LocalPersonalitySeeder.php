@@ -12,7 +12,7 @@ class LocalPersonalitySeeder extends Seeder
     {
         $personalities = [
             [
-                'category' => 'fa-music|Cultural', // icon|label
+                'category' => 'fa-music|Cultural',
                 'name' => 'Lucio San Pedro',
                 'description' => 'Renowned composer and National Artist for Music.',
                 'highlights_title' => 'Musical Genius',
@@ -23,7 +23,7 @@ class LocalPersonalitySeeder extends Seeder
                 'born' => '1913',
                 'died' => '2002',
                 'image' => 'images/personalities/sanpedro.jpg',
-                'legacy' => 'fa-music|Musical Legacy|His music embodies Filipino values and traditions.' // icon|title|text
+                'legacy' => 'fa-music|Musical Legacy|His music embodies Filipino values and traditions.'
             ],
             [
                 'category' => 'fa-feather|Historical',

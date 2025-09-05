@@ -174,7 +174,7 @@ export default function HeroSectionEditForm() {
                                                 value={form.data.category_icon}
                                                 onChange={(e) => form.setData('category_icon', e.target.value)}
                                                 error={form.errors.category_icon}
-                                                errorMessage="Please select a valid gender"
+                                                errorMessage="Please select a icon"
                                             />
                                         </div>
                                     </div>
@@ -213,17 +213,17 @@ export default function HeroSectionEditForm() {
                             </ComponentCard>
                         </div>
                         <div>
-                            <ComponentCard className="" title="Legacy Content">
+                            <ComponentCard className="" title="Where to Experience">
                                 <div className="flex items-center gap-2">
                                     <div className="flex-1">
                                         <InputField
-                                            label="Legacy Title"
+                                            label="Where To Experience"
                                             name="exp_title"
                                             value={form.data.exp_title}
                                             onChange={(e) => form.setData('exp_title', e.target.value)}
                                             required={true}
                                             error={form.errors.exp_title}
-                                            errorMessage="Please enter highlight text"
+                                            errorMessage="Please enter title"
                                         />
                                     </div>
                                     <div className="w-35">
@@ -248,20 +248,20 @@ export default function HeroSectionEditForm() {
                                             value={form.data.exp_icon}
                                             onChange={(e) => form.setData('exp_icon', e.target.value)}
                                             error={form.errors.exp_icon}
-                                            errorMessage="Please enter legacy icon"
+                                            errorMessage="Please select icon"
                                         />
                                     </div>
                                 </div>
                                 <div>
                                     <Textarea
-                                        label="Legacy Desciption"
+                                        label="Experience Desciption"
                                         name="exp_desc"
                                         value={form.data.exp_desc}
                                         onChange={(e) => form.setData('exp_desc', e.target.value)}
                                         required={true}
                                         readonly={false}
                                         error={form.errors.exp_desc}
-                                        errorMessage="Please enter personality description"
+                                        errorMessage="Please enter experience description"
                                         rows={5}
                                     />
                                 </div>
@@ -313,7 +313,7 @@ export default function HeroSectionEditForm() {
                                                     value={newHighlight.icon}
                                                     onChange={(e) => setNewHighlight({ ...newHighlight, icon: e.target.value })}
                                                     error={form.errors.highlights_content}
-                                                    errorMessage="Please enter highlight text"
+                                                    errorMessage="Please select icon"
                                                 />
                                             </div>
                                             <button
