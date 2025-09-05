@@ -52,7 +52,7 @@ export default function MunicipalStats({ content }: Props) {
                                     <p className="font-bold text-primary">{content.area ?? 0}</p>
                                 </div>
                                 <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                    <p className="text-sm text-gray-600">Population (2016)</p>
+                                    <p className="text-sm text-gray-600">Population</p>
                                     <p className="font-bold text-primary">{content.population ?? 0}</p>
                                 </div>
                                 <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
