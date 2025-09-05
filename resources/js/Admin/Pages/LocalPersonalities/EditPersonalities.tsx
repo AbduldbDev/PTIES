@@ -345,7 +345,7 @@ export default function LocalPersonalitiesEditForm() {
                                                     value={newHighlight.icon}
                                                     onChange={(e) => setNewHighlight({ ...newHighlight, icon: e.target.value })}
                                                     error={form.errors.highlights_content}
-                                                    errorMessage="Please enter highlight text"
+                                                    errorMessage="Please select highlight icon"
                                                 />
                                             </div>
                                             <button

@@ -97,7 +97,7 @@ const Navbar = () => {
         <nav className="fixed top-0 right-0 left-0 z-50">
             {/* Top bar with date/time */}
             <div className="flex items-center justify-between bg-primary px-4 py-2 text-sm text-white sm:text-[11px]">
-                <div className="flex items-center space-x-4 text-[11px] sm:text-sm">
+                <div className="flex items-center space-x-2 text-[11px] sm:text-sm">
                     <span className="sm" id="current-date">
                         {currentDate}
                     </span>
@@ -123,7 +123,7 @@ const Navbar = () => {
                             </svg>
                         </div>
                     </div>
-                    <div className="hidden space-x-2 md:flex">
+                    <div className="flex space-x-2">
                         <a href="https://www.facebook.com/pakilturismo" className="hover:text-blue-500">
                             <i className="fab fa-facebook-f"></i>
                         </a>
