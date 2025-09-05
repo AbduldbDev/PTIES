@@ -45,7 +45,7 @@ export default function BarangayInfo({ barangays, barangayHighlights, content }:
                                 <img src="/User/SVG/pakil.svg" alt="Pakil Municipal Map" className="h-auto w-full object-contain p-4" />
                             </div>
                         </div>
-                        <MunicipalStatsCard content={content} />
+                        {content && <MunicipalStatsCard content={content} />}
                     </div>
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                         {/* East Side Barangays */}
