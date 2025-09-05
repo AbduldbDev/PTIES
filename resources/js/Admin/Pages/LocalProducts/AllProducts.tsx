@@ -176,7 +176,9 @@ export default function Home() {
                                                         </TableCell>
 
                                                         <TableCell className="text-theme-sm w-[600px] border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                            {products.description}
+                                                            {products.description.length > 200
+                                                                ? products.description.substring(0, 200) + '...'
+                                                                : products.description}
                                                         </TableCell>
 
                                                         <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
