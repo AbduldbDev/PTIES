@@ -183,7 +183,7 @@ const otherNavItems: NavItem[] = [
                 ],
             },
             {
-                name: 'Hisoty Sections',
+                name: 'History Sections',
                 path: '',
                 requiredUserType: ['admin', 'content_manager'],
                 subItems: [
