@@ -309,7 +309,7 @@ export default function About() {
                 </div>
             </section>
 
-            <BrangayInfo barangays={barangays} barangayHighlights={barangayHighlights} />
+            <BrangayInfo content={content.municipal_stats} barangays={barangays} barangayHighlights={barangayHighlights} />
         </>
     );
 }

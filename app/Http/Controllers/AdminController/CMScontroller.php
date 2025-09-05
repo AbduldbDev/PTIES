@@ -129,4 +129,23 @@ class CMScontroller extends Controller
             'content' => $pageData['sections'] ?? []
         ]);
     }
+
+    public function MunicipalStats()
+    {
+        $contents = CmsContent::where('page_key', "explore_pakil")
+            ->where('section_key', 'municipal_stats')
+            ->orderBy('content_key')
+            ->get();
+
+
+        $pageData = [];
+        foreach ($contents as $content) {
+            $pageData['sections'][$content->section_key][$content->content_key] =
+                $this->parseContentValue($content->content_value);
+        }
+
+        return Inertia::render('Admin/Pages/CMS/MunicipalStats', [
+            'content' => $pageData['sections'] ?? []
+        ]);
+    }
 }

@@ -260,7 +260,7 @@ export default function Home() {
 
                                 <div className="mb-8">
                                     <h5 className="text-dark mb-3 flex items-center font-semibold">
-                                        <i className="fas fa-vector-square mr-2 text-secondary"></i>
+                                        <i className="fas fa-project-diagram mr-2 text-secondary"></i>
                                         Political Subdivisions
                                     </h5>
                                     <p className="mb-2 text-gray-700">
@@ -297,7 +297,7 @@ export default function Home() {
                                     </div>
                                 </div>
 
-                                <div className="mb-8">
+                                <div>
                                     <h5 className="text-dark mb-3 flex items-center font-semibold">
                                         <i className="fas fa-route mr-2 text-secondary"></i> Distance From
                                     </h5>
@@ -313,38 +313,6 @@ export default function Home() {
                                         <div className="rounded-lg border border-gray-200 bg-white p-3">
                                             <p className="text-sm text-gray-600">Manila via Rizal</p>
                                             <p className="font-bold text-primary">80km</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h5 className="text-dark mb-3 flex items-center font-semibold">
-                                        <i className="fas fa-chart-bar mr-2 text-secondary"></i> Key Statistics
-                                    </h5>
-                                    <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-                                        <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                            <p className="text-sm text-gray-600">Land Area</p>
-                                            <p className="font-bold text-primary">4,649.78 ha</p>
-                                        </div>
-                                        <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                            <p className="text-sm text-gray-600">Population (2016)</p>
-                                            <p className="font-bold text-primary">22,386</p>
-                                        </div>
-                                        <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                            <p className="text-sm text-gray-600">Population Growth</p>
-                                            <p className="font-bold text-primary">1.46%</p>
-                                        </div>
-                                        <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                            <p className="text-sm text-gray-600">Literacy Rate</p>
-                                            <p className="font-bold text-primary">93%</p>
-                                        </div>
-                                        <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                            <p className="text-sm text-gray-600">Employment Rate</p>
-                                            <p className="font-bold text-primary">93%</p>
-                                        </div>
-                                        <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                            <p className="text-sm text-gray-600">Languages</p>
-                                            <p className="font-bold text-primary">Filipino, English</p>
                                         </div>
                                     </div>
                                 </div>

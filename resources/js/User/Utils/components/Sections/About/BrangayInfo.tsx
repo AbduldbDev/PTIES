@@ -1,5 +1,5 @@
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
-
+import MunicipalStatsCard from '@UserUtils/components/Cards/MunicipalStats';
 type BarangayProps = {
     id: number;
     barangay: string;
@@ -8,14 +8,24 @@ type BarangayProps = {
     type: string;
     index: string;
 };
+type MunicipalStats = {
+    area?: string;
+    population?: string;
+    growth?: string;
+    literacy_rate?: string;
+    employment_rate?: string;
+    languages?: string;
+    updated?: string;
+};
 
-interface PageProps {
+interface Props {
     barangays: BarangayProps[];
     barangayHighlights: BarangayProps[];
+    content: MunicipalStats;
     [key: string]: unknown;
 }
 
-export default function BarangayInfo({ barangays, barangayHighlights }: PageProps) {
+export default function BarangayInfo({ barangays, barangayHighlights, content }: Props) {
     const eastBarangays = barangays.filter((b) => b.type === 'east');
     const westBarangays = barangays.filter((b) => b.type === 'west');
 
@@ -35,77 +45,8 @@ export default function BarangayInfo({ barangays, barangayHighlights }: PageProp
                                 <img src="/User/SVG/pakil.svg" alt="Pakil Municipal Map" className="h-auto w-full object-contain p-4" />
                             </div>
                         </div>
-                        <div className="w-full">
-                            <div className="h-full rounded-xl border border-primary/20 bg-primary/5 p-4 shadow-sm md:p-6">
-                                <h4 className="mb-6 flex items-center text-xl font-bold">
-                                    <i className="fas fa-info-circle mr-3 text-primary"></i>
-                                    <span className="mr-1 text-primary">Municipal </span> Facts
-                                </h4>
-                                <div className="grid grid-cols-1 gap-6 p-0 md:p-6 lg:grid-cols-2">
-                                    <div className="mb-8">
-                                        <h5 className="text-dark mb-3 flex items-center font-semibold">
-                                            <i className="fas fa-route mr-2 text-secondary"></i> Distance From
-                                        </h5>
-                                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3">
-                                                <p className="text-sm text-gray-600">Sta. Cruz, Laguna</p>
-                                                <p className="font-bold text-primary">19km</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3">
-                                                <p className="text-sm text-gray-600">Manila via Laguna</p>
-                                                <p className="font-bold text-primary">114km</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3">
-                                                <p className="text-sm text-gray-600">Manila via Rizal</p>
-                                                <p className="font-bold text-primary">80km</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <h5 className="text-dark mb-3 flex items-center font-semibold">
-                                            <i className="fas fa-chart-bar mr-2 text-secondary"></i> Key Statistics
-                                        </h5>
-                                        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                                <p className="text-sm text-gray-600">Land Area</p>
-                                                <p className="font-bold text-primary">4,649.78 ha</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                                <p className="text-sm text-gray-600">Population (2016)</p>
-                                                <p className="font-bold text-primary">22,386</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                                <p className="text-sm text-gray-600">Population Growth</p>
-                                                <p className="font-bold text-primary">1.46%</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                                <p className="text-sm text-gray-600">Literacy Rate</p>
-                                                <p className="font-bold text-primary">93%</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                                <p className="text-sm text-gray-600">Employment Rate</p>
-                                                <p className="font-bold text-primary">93%</p>
-                                            </div>
-                                            <div className="rounded-lg border border-gray-200 bg-white p-3 text-center">
-                                                <p className="text-sm text-gray-600">Languages</p>
-                                                <p className="font-bold text-primary">Filipino, English</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Decorative Element */}
-                                <div className="mt-6 border-t border-gray-100 pt-4 text-center">
-                                    <span className="inline-flex items-center text-xs text-gray-400">
-                                        <i className="fas fa-info-circle mr-1 text-primary/70"></i>
-                                        Last updated: August 2025
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        <MunicipalStatsCard content={content} />
                     </div>
-
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                         {/* East Side Barangays */}
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">

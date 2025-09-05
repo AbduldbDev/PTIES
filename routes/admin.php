@@ -65,6 +65,7 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::get('/mission-vision', [CMScontroller::class, 'MissionVision'])->name('MissionVision');
         Route::get('/pakil-intro', [CMScontroller::class, 'PakilIntro'])->name('PakilIntro');
         Route::get('/citizen-charter', [CMScontroller::class, 'CitizenCharter'])->name('CitizenCharter');
+        Route::get('/municipal-statistics', [CMScontroller::class, 'MunicipalStats'])->name('MunicipalStats');
     });
 
     Route::prefix('/Admin/cms/update')->name('cms.update.')->group(function () {
@@ -74,6 +75,7 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/mission-vision', [CMSUpdatecontroller::class, 'UpdateMissionVision'])->name('MissionVision');
         Route::post('/pakil-intro', [CMSUpdatecontroller::class, 'UpdatePakilIntro'])->name('PakilIntro');
         Route::post('/citizen-charter', [CMSUpdatecontroller::class, 'CitizenCharter'])->name('CitizenCharter');
+        Route::post('/municipal-statistics', [CMSUpdatecontroller::class, 'UpdateMunicipalStats'])->name('UpdateMunicipalStats');
     });
 
     Route::prefix('/Admin/cms/banner')->name('banners.')->group(function () {

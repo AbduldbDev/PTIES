@@ -355,4 +355,40 @@ class CMSUpdatecontroller extends Controller
                 ->withInput();
         }
     }
+
+    public function UpdateMunicipalStats(Request $request)
+    {
+        $request->validate([
+            'area' => 'required|string',
+            'population' => 'required|string',
+            'growth' => 'required|string',
+            'literacy_rate' => 'required|string',
+            'employment_rate' => 'required|string',
+            'languages' => 'required|string',
+            'updated' => 'required|string',
+
+        ]);
+
+        try {
+
+            $fields = ['area', 'population', 'growth', 'literacy_rate', 'employment_rate', 'languages', 'updated'];
+            foreach ($fields as $field) {
+                CmsContent::updateOrCreate(
+                    [
+                        'page_key'    => 'explore_pakil',
+                        'section_key' => 'municipal_stats',
+                        'content_key' => $field,
+                    ],
+                    [
+                        'content_value' => $request->$field,
+                    ]
+                );
+            }
+
+            return redirect()->back()->with('success', 'Municipal statistics section updated successfully!');
+        } catch (\Throwable $e) {
+            return redirect()->back()
+                ->with('error', 'Something went wrong while updating the municipal statistics section. Please try again later.');
+        }
+    }
 }

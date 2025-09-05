@@ -178,7 +178,8 @@ const otherNavItems: NavItem[] = [
                 requiredUserType: ['admin', 'content_manager'],
                 subItems: [
                     { name: 'About Pakil', path: '/Admin/cms/pakil-intro', requiredUserType: ['admin', 'content_manager'] },
-                    { name: 'Barangay Information', path: '/Admin/barangay-info/', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'Barangay Information', path: '/Admin/barangay-info', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'Municipal Statistics', path: '/Admin/cms/municipal-statistics', requiredUserType: ['admin', 'content_manager'] },
                 ],
             },
             {
