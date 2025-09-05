@@ -186,7 +186,7 @@ export default function HeroSectionEditForm() {
                                                 value={form.data.category_icon}
                                                 onChange={(e) => form.setData('category_icon', e.target.value)}
                                                 error={form.errors.category_icon}
-                                                errorMessage="Please select a valid gender"
+                                                errorMessage="Please select icon"
                                             />
                                         </div>
                                     </div>
@@ -218,9 +218,9 @@ export default function HeroSectionEditForm() {
                                         label="Died Date"
                                         name="died"
                                         required={false}
-                                        value={form.data.name}
-                                        onChange={(e) => form.setData('name', e.target.value)}
-                                        error={form.errors.name}
+                                        value={form.data.died}
+                                        onChange={(e) => form.setData('died', e.target.value)}
+                                        error={form.errors.died}
                                         errorMessage="Please enter died date"
                                         resetSignal={resetSignal}
                                     />
@@ -257,7 +257,7 @@ export default function HeroSectionEditForm() {
                                             onChange={(e) => form.setData('legacy_title', e.target.value)}
                                             required={true}
                                             error={form.errors.legacy_title}
-                                            errorMessage="Please enter highlight text"
+                                            errorMessage="Please enter legacy title"
                                         />
                                     </div>
                                     <div className="w-35">
@@ -295,7 +295,7 @@ export default function HeroSectionEditForm() {
                                         required={true}
                                         readonly={false}
                                         error={form.errors.legacy_desc}
-                                        errorMessage="Please enter personality description"
+                                        errorMessage="Please enter legacy description"
                                         rows={5}
                                     />
                                 </div>
