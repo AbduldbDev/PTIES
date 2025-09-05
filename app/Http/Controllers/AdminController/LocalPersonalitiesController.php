@@ -104,7 +104,7 @@ class LocalPersonalitiesController extends Controller
                 'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
                 'legacy_title'      => 'required|string|max:255',
                 'legacy_icon'       => 'required|string|max:255',
-                'legacy_desc'       => 'required|string',
+                'legacy_desc'       => 'required|string|max:255',
             ]);
 
             $category = ($validated['category_icon'] ?? '') . '|' . $validated['category'];

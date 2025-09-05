@@ -51,10 +51,10 @@ class TourGuideController extends Controller
 
         try {
             $request->validate([
-                'name' => 'required',
-                'gender' => 'required',
+                'name' => 'required|max:255',
+                'gender' => 'required|max:255',
                 'description' => 'required',
-                'contact' => 'required',
+                'contact' => 'required|max:255',
                 'image' => 'required',
             ]);
 
@@ -99,10 +99,10 @@ class TourGuideController extends Controller
             }
 
             $request->validate([
-                'name' => 'required',
-                'gender' => 'required',
+                'name' => 'required|max:255',
+                'gender' => 'required|max:255',
                 'description' => 'required',
-                'contact' => 'required',
+                'contact' => 'required|max:255',
             ]);
 
             $ImagePath = $guide->image;

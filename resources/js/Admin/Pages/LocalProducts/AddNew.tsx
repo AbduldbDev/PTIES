@@ -198,7 +198,7 @@ export default function HeroSectionEditForm() {
                                         required={true}
                                         readonly={false}
                                         error={form.errors.description}
-                                        errorMessage="Please enter personality description"
+                                        errorMessage="Please enter product description"
                                         rows={20}
                                     />
                                     <FileInput
@@ -217,7 +217,7 @@ export default function HeroSectionEditForm() {
                                 <div className="flex items-center gap-2">
                                     <div className="flex-1">
                                         <InputField
-                                            label="Where To Experience"
+                                            label="Title"
                                             name="exp_title"
                                             value={form.data.exp_title}
                                             onChange={(e) => form.setData('exp_title', e.target.value)}

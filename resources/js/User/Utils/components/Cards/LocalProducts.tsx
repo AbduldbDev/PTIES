@@ -71,8 +71,9 @@ const PersonalityCard: React.FC<Props> = ({ personality, index }) => {
                         className={`mb-4 rounded-r-lg border-l-4 md:mb-6 ${isEvenIndex ? 'border-primary bg-primary/5' : 'border-secondary bg-secondary/5'} p-3 md:p-4`}
                     >
                         <h4 className={`mb-1 flex items-center font-bold md:mb-2 ${isEvenIndex ? 'text-primary' : 'text-secondary'}`}>
-                            <i className="fas fa-trophy mr-2 text-sm md:text-base"></i> {personality.highlights_title}
+                            <i className="fa-solid fa-location-dot mr-2 text-sm md:text-base"></i> {personality.highlights_title}
                         </h4>
+
                         <ul className="space-y-1.5 text-gray-700 md:space-y-2">
                             {highlights.map((h, idx) => {
                                 const iconClass = h.icon ? h.icon : 'fa-circle';

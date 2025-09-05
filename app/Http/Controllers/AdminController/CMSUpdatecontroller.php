@@ -16,7 +16,7 @@ class CMSUpdatecontroller extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'subtitle' => 'required|string|max:255',
-            'slogan' => 'required|string',
+            'slogan' => 'required|string|max:255',
             'feature_title' => 'required|string|max:255',
             'feature_img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:25600',
         ]);
@@ -66,7 +66,7 @@ class CMSUpdatecontroller extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'facts' => 'required|string',
+            'facts' => 'required|string|max:255',
             'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
             'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
             'image3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:25600',
@@ -213,8 +213,8 @@ class CMSUpdatecontroller extends Controller
     public function UpdateMissionVision(Request $request)
     {
         $request->validate([
-            'mission' => 'required|string',
-            'vision' => 'required|string',
+            'mission' => 'required|string|max:255',
+            'vision' => 'required|string|max:255',
 
         ]);
 
@@ -359,13 +359,13 @@ class CMSUpdatecontroller extends Controller
     public function UpdateMunicipalStats(Request $request)
     {
         $request->validate([
-            'area' => 'required|string',
-            'population' => 'required|string',
-            'growth' => 'required|string',
-            'literacy_rate' => 'required|string',
-            'employment_rate' => 'required|string',
-            'languages' => 'required|string',
-            'updated' => 'required|string',
+            'area' => 'required|string|max:255',
+            'population' => 'required|string|max:255',
+            'growth' => 'required|string|max:255',
+            'literacy_rate' => 'required|string|max:255',
+            'employment_rate' => 'required|string|max:255',
+            'languages' => 'required|string|max:255',
+            'updated' => 'required|string|max:255',
 
         ]);
 

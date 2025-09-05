@@ -178,7 +178,7 @@ export default function LocalPersonalitiesEditForm() {
                                                 value={form.data.category_icon}
                                                 onChange={(e) => form.setData('category_icon', e.target.value)}
                                                 error={form.errors.category_icon}
-                                                errorMessage="Please select a valid gender"
+                                                errorMessage="Please select icon"
                                             />
                                         </div>
                                     </div>
@@ -201,7 +201,7 @@ export default function LocalPersonalitiesEditForm() {
                                         required={true}
                                         readonly={false}
                                         error={form.errors.description}
-                                        errorMessage="Please enter personality description"
+                                        errorMessage="Please enter product description"
                                         rows={20}
                                     />
                                     <FileInput
@@ -216,17 +216,17 @@ export default function LocalPersonalitiesEditForm() {
                             </ComponentCard>
                         </div>
                         <div>
-                            <ComponentCard className="" title="Legacy Content">
+                            <ComponentCard className="" title="Where to Experience">
                                 <div className="flex items-center gap-2">
                                     <div className="flex-1">
                                         <InputField
-                                            label="Legacy Title"
+                                            label="Title"
                                             name="exp_title"
                                             value={form.data.exp_title}
                                             onChange={(e) => form.setData('exp_title', e.target.value)}
                                             required={true}
                                             error={form.errors.exp_title}
-                                            errorMessage="Please enter highlight text"
+                                            errorMessage="Please enter title"
                                         />
                                     </div>
                                     <div className="w-35">
@@ -251,7 +251,7 @@ export default function LocalPersonalitiesEditForm() {
                                             value={form.data.exp_icon}
                                             onChange={(e) => form.setData('exp_icon', e.target.value)}
                                             error={form.errors.exp_icon}
-                                            errorMessage="Please enter legacy icon"
+                                            errorMessage="Please enter icon"
                                         />
                                     </div>
                                 </div>
@@ -264,7 +264,7 @@ export default function LocalPersonalitiesEditForm() {
                                         required={true}
                                         readonly={false}
                                         error={form.errors.exp_desc}
-                                        errorMessage="Please enter personality description"
+                                        errorMessage="Please enter description"
                                         rows={5}
                                     />
                                 </div>
