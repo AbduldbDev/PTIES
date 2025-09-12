@@ -1,4 +1,4 @@
-type HisotryProps = {
+type HistoryProps = {
     date: string;
     title: string;
     description: string;
@@ -6,7 +6,7 @@ type HisotryProps = {
 };
 
 interface Props {
-    history: HisotryProps;
+    history: HistoryProps;
     className?: string;
 }
 

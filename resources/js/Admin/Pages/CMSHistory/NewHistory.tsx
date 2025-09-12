@@ -77,7 +77,7 @@ export default function GuideCreateForm() {
                 {/* Rest of your form */}
                 <form onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
-                        <ComponentCard title="Hisotry Details">
+                        <ComponentCard title="History Details">
                             <InputField
                                 type="text"
                                 label="Title"
