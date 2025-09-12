@@ -81,7 +81,8 @@ export default function GuideCreateForm() {
             });
             return;
         }
-        const contactRegex = /^(09|\+639)\d{9}$/;
+        
+        const contactRegex = /^(?:((09|\+639)\d{9})|((\+63|0)\d{1,2}[- ]?\d{7}))$/;
         if (!contactRegex.test(form.data.contact)) {
             form.setError('contact', 'Please enter a valid contact number');
             return;
