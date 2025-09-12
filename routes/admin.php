@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminController\EstablishmentController;
 use App\Http\Controllers\AdminController\FAQsController;
 use App\Http\Controllers\AdminController\LocalPersonalitiesController;
 use App\Http\Controllers\AdminController\LocalProductsController;
+use App\Http\Controllers\UserController\SocialWallController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
 
@@ -163,5 +164,11 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/create', [LocalProductsController::class, 'create'])->name('create');
         Route::post('/update/{id}', [LocalProductsController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [LocalProductsController::class, 'delete'])->name('delete');
+    });
+
+      Route::prefix('/Admin/sociall-wall')->name('socailwall.')->group(function () {
+        Route::get('/', [SocialWallController::class, 'index'])->name('index');
+        Route::post('/update/{id}', [SocialWallController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [SocialWallController::class, 'delete'])->name('delete');
     });
 });
