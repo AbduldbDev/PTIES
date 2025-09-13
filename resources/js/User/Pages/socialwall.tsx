@@ -1,5 +1,6 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
+import SocialWallPost from '@UserUtils/components/Cards/SocialWallPost';
 
 type PageBannerProps = {
     title: string;
@@ -75,163 +76,31 @@ export default function SocialWall() {
                         </div>
 
                         <div className="mt-6 text-center">
-                            <button className="mx-auto flex items-center rounded-full bg-primary px-6 py-3 font-medium text-white transition duration-300 hover:bg-primary/90">
+                            <button
+                                onClick={() => (window.location.href = '/socialwall/upload')}
+                                className="mx-auto flex items-center rounded-full bg-primary px-6 py-3 font-medium text-white transition duration-300 hover:bg-primary/90"
+                            >
                                 <i className="fas fa-plus mr-2"></i> Share Your Experience
                             </button>
                         </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-                        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
-                            <div className="p-4">
-                                <p className="mb-3 line-clamp-2 text-xs text-gray-700">
-                                    "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
-                                </p>
-                                <div className="flex items-center justify-between border-t border-gray-100 pt-2">
-                                    <div className="flex items-center">
-                                        <img src="/Images/ceo.png" className="mr-1 h-6 w-6 rounded-full" />
-                                        <span className="text-xs font-medium">@traveler</span>
-                                    </div>
-                                    <button className="text-xs text-gray-400 hover:text-red-500">
-                                        <i className="far fa-heart"></i> 64
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
-                            <div className="p-4">
-                                <p className="mb-3 line-clamp-2 text-xs text-gray-700">
-                                    "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
-                                </p>
-                                <div className="flex items-center justify-between border-t border-gray-100 pt-2">
-                                    <div className="flex items-center">
-                                        <img src="/Images/ceo.png" className="mr-1 h-6 w-6 rounded-full" />
-                                        <span className="text-xs font-medium">@traveler</span>
-                                    </div>
-                                    <button className="text-xs text-gray-400 hover:text-red-500">
-                                        <i className="far fa-heart"></i> 64
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
-                            <div className="p-4">
-                                <p className="mb-3 line-clamp-2 text-xs text-gray-700">
-                                    "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
-                                </p>
-                                <div className="flex items-center justify-between border-t border-gray-100 pt-2">
-                                    <div className="flex items-center">
-                                        <img src="/Images/ceo.png" className="mr-1 h-6 w-6 rounded-full" />
-                                        <span className="text-xs font-medium">@traveler</span>
-                                    </div>
-                                    <button className="text-xs text-gray-400 hover:text-red-500">
-                                        <i className="far fa-heart"></i> 64
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
-                            <div className="p-4">
-                                <p className="mb-3 line-clamp-2 text-xs text-gray-700">
-                                    "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
-                                </p>
-                                <div className="flex items-center justify-between border-t border-gray-100 pt-2">
-                                    <div className="flex items-center">
-                                        <img src="/Images/ceo.png" className="mr-1 h-6 w-6 rounded-full" />
-                                        <span className="text-xs font-medium">@traveler</span>
-                                    </div>
-                                    <button className="text-xs text-gray-400 hover:text-red-500">
-                                        <i className="far fa-heart"></i> 64
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
-                            <div className="p-4">
-                                <p className="mb-3 line-clamp-2 text-xs text-gray-700">
-                                    "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
-                                </p>
-                                <div className="flex items-center justify-between border-t border-gray-100 pt-2">
-                                    <div className="flex items-center">
-                                        <img src="/Images/ceo.png" className="mr-1 h-6 w-6 rounded-full" />
-                                        <span className="text-xs font-medium">@traveler</span>
-                                    </div>
-                                    <button className="text-xs text-gray-400 hover:text-red-500">
-                                        <i className="far fa-heart"></i> 64
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
-                            <div className="p-4">
-                                <p className="mb-3 line-clamp-2 text-xs text-gray-700">
-                                    "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
-                                </p>
-                                <div className="flex items-center justify-between border-t border-gray-100 pt-2">
-                                    <div className="flex items-center">
-                                        <img src="/Images/ceo.png" className="mr-1 h-6 w-6 rounded-full" />
-                                        <span className="text-xs font-medium">@traveler</span>
-                                    </div>
-                                    <button className="text-xs text-gray-400 hover:text-red-500">
-                                        <i className="far fa-heart"></i> 64
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
-                            <div className="p-4">
-                                <p className="mb-3 line-clamp-2 text-xs text-gray-700">
-                                    "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
-                                </p>
-                                <div className="flex items-center justify-between border-t border-gray-100 pt-2">
-                                    <div className="flex items-center">
-                                        <img src="/Images/ceo.png" className="mr-1 h-6 w-6 rounded-full" />
-                                        <span className="text-xs font-medium">@traveler</span>
-                                    </div>
-                                    <button className="text-xs text-gray-400 hover:text-red-500">
-                                        <i className="far fa-heart"></i> 64
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-                            <img src="/User/Images/church.jpg" alt="Pakil Sunset" className="h-40 w-full object-cover" />
-                            <div className="p-4">
-                                <p className="mb-3 line-clamp-2 text-xs text-gray-700">
-                                    "Sunsets by Laguna Lake are magical. Perfect end to a day in Pakil."
-                                </p>
-                                <div className="flex items-center justify-between border-t border-gray-100 pt-2">
-                                    <div className="flex items-center">
-                                        <img src="/Images/ceo.png" className="mr-1 h-6 w-6 rounded-full" />
-                                        <span className="text-xs font-medium">@traveler</span>
-                                    </div>
-                                    <button className="text-xs text-gray-400 hover:text-red-500">
-                                        <i className="far fa-heart"></i> 64
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <SocialWallPost />
+                        <SocialWallPost />
+                        <SocialWallPost />
+                        <SocialWallPost />
+                        <SocialWallPost />
+                        <SocialWallPost />
+                        <SocialWallPost />
+                        <SocialWallPost />
                     </div>
 
-                    <div className="mt-8 text-center">
+                    {/* <div className="mt-8 text-center">
                         <button className="inline-flex items-center rounded-full border border-primary px-5 py-2 text-sm font-medium text-primary transition duration-300 hover:bg-primary hover:text-white">
                             <i className="fas fa-arrow-down mr-2"></i> Load More
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         </>

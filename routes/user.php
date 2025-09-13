@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController\PageController;
 use App\Http\Controllers\UserController\ContactusController;
-
-
+use App\Http\Controllers\UserController\SocialWallController;
 
 Route::middleware('auth')->group(function () {});
 Route::get('/', [PageController::class, 'Home'])->name('user.home');
@@ -22,10 +22,15 @@ Route::get('/contact', [PageController::class, 'ContactUs'])->name('user.contact
 Route::get('/events', [PageController::class, 'Events'])->name('user.events');
 Route::get('/eventsingle', [PageController::class, 'EventsSingle'])->name('user.EventsSingle');
 Route::get('/socialwall', [PageController::class, 'SocialWall'])->name('user.socialwall');
+Route::get('/socialwall/upload', [PageController::class, 'SocialWallUpload'])->name('user.SocialWallUpload');
 Route::get('/pakilguide', [PageController::class, 'PakilGuide'])->name('user.pakilguide');
 Route::get('/rewardshop', [PageController::class, 'RewardShop'])->name('user.rewardshop');
 Route::get('/profile', [PageController::class, 'Profile'])->name('user.profile');
 Route::get('/establishments', [PageController::class, 'Establishments'])->name('user.establishments');
+
+
+
+Route::post('/socialwall/uploads', [SocialWallController::class, 'upload'])->name('user.upload');
 
 
 Route::get('/contact-confirmation', [ContactusController::class, 'confirmation'])->name('contact.confirmation');

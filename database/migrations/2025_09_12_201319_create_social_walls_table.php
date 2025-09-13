@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('social_wall', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->integer('post_id');
+            $table->string('post_id');
             $table->string('caption');
             $table->string('image');
             $table->integer('likes')->default(0);
+            $table->boolean('is_approved')->default(0);
             $table->timestamps();
         });
     }

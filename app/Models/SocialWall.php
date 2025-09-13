@@ -13,5 +13,11 @@ class SocialWall extends Model
         'caption',
         'image',
         'like',
+        'is_approved'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

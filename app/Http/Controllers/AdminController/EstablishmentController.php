@@ -58,7 +58,7 @@ class EstablishmentController extends Controller
                 'name' => 'required|string|max:255',
                 'location' => 'required|string|max:255',
                 'contact' => 'required|string|max:255',
-                'facebook' => 'required|string|max:255',
+                'facebook' => 'nullable|string|max:255',
                 'long' => 'required|string|max:255',
                 'lat' => 'required|string|max:255',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:25600',
@@ -101,7 +101,7 @@ class EstablishmentController extends Controller
                 'name' => 'required|string|max:255',
                 'location' => 'required|string|max:255',
                 'contact' => 'required|string|max:255',
-                'facebook' => 'required|string|max:255',
+                'facebook' => 'nullable|string|max:255',
                 'long' => 'required|string|max:255',
                 'lat' => 'required|string|max:255',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:25600',
@@ -111,7 +111,7 @@ class EstablishmentController extends Controller
 
             if ($request->hasFile('image')) {
                 $filename = uniqid() . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $ImagePath = $request->file('image')->storeAs('Tourestablishments', $filename, 'public');
+                $ImagePath = $request->file('image')->storeAs('Establishments', $filename, 'public');
 
                 if ($establishment->image) {
                     Storage::disk('public')->delete($establishment->image);

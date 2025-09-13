@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('location');
             $table->string('contact');
-            $table->string('facebook');
+            $table->string('facebook')->nullable();
             $table->string('long');
             $table->string('lat');
             $table->string('image')->nullable();

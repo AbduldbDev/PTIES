@@ -17,6 +17,7 @@ use App\Models\PakilHotlines;
 use App\Models\PakilTerminals;
 use App\Models\LocalPersonalities;
 use App\Models\LocalProducts;
+use App\Models\SocialWall;
 
 class PageController extends Controller
 {
@@ -218,10 +219,22 @@ class PageController extends Controller
     public function SocialWall()
     {
         $banner = CMSBanner::where('key', 'Social Wall')->first();
+        $items = SocialWall::get();
+
         return Inertia::render('User/Pages/socialwall', [
+            'banner' => $banner,
+            'items' => $items,
+        ]);
+    }
+
+    public function SocialWallUpload()
+    {
+        $banner = CMSBanner::where('key', 'Social Wall')->first();
+        return Inertia::render('User/Pages/UploadImage', [
             'banner' => $banner,
         ]);
     }
+
 
     public function PakilGuide()
     {
