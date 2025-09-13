@@ -1,15 +1,42 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
-import SocialWallPost from '@UserUtils/components/Cards/SocialWallPost';
-
+import FeaturedPost from '@UserUtils/components/Cards/FeaturedPost';
+import SocialWallCard from '@UserUtils/components/Cards/SocialWallPost';
+import PageTitle from '../Utils/components/Banner/PageTitle';
 type PageBannerProps = {
     title: string;
     subtitle: string;
     desc: string;
     image: string;
 };
+interface User {
+    id: number;
+    name: string;
+    email: string;
+    image?: string;
+}
+interface SocialWallPost {
+    id: number;
+    user_id: number;
+    caption: string;
+    image: string;
+    likes_count: number;
+    is_approved: boolean;
+    user: User;
+    has_liked?: boolean;
+    created_at: string;
+    updated_at: string;
+}
+
+interface PageProps {
+    banner: PageBannerProps;
+    items: SocialWallPost[];
+    topPost: SocialWallPost;
+    [key: string]: unknown;
+}
+
 export default function SocialWall() {
-    const { banner } = usePage<{ banner: PageBannerProps }>().props;
+    const { banner, items, topPost } = usePage<PageProps>().props;
 
     const title = 'Pakil Tourism | SocialWall';
     const description =
@@ -32,48 +59,13 @@ export default function SocialWall() {
             ) : (
                 <div className="h-[15vh]"></div>
             )}
-            <section className="py-16">
+
+            <section className="py-8 md:py-10 lg:py-12">
                 <div className="container mx-auto px-4">
-                    <div className="mb-8 text-center">
-                        <div className="mb-4 inline-flex items-center">
-                            <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                            <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Community</h2>
-                            <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
-                        </div>
-                        <h3 className="text-dark mb-2 text-3xl font-bold md:text-4xl">
-                            <span className="text-primary">Pakil</span> Social Wall
-                        </h3>
-                        <p className="mx-auto max-w-3xl text-lg text-gray-600">See what visitors are sharing about Pakil</p>
-                    </div>
+                    <PageTitle title="Community" subtitle="Pakil Social Wall" desc="See what visitors are sharing about Pakil"></PageTitle>
 
                     <div className="mx-auto mb-8 max-w-4xl">
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
-                            <div className="relative">
-                                <img src="/User/Images/church.jpg" alt="Featured Pakil Image" className="h-80 w-full object-cover md:h-96" />
-                                <div className="absolute top-4 right-4 rounded-full bg-white/90 p-2 shadow">
-                                    <i className="fas fa-crown text-xl text-secondary"></i>
-                                </div>
-                            </div>
-                            <div className="p-6">
-                                <p className="mb-4 text-lg text-gray-700 italic">
-                                    "The stunning San Pedro de Alcantara Church in golden hour. The centuries-old architecture never fails to take my
-                                    breath away!"
-                                </p>
-                                <div className="flex items-center justify-between border-t border-gray-100 pt-4">
-                                    <div className="flex items-center">
-                                        <img src="/Images/ceo.png" className="mr-3 h-10 w-10 rounded-full" />
-                                        <div>
-                                            <p className="text-dark font-medium">Juan Dela Cruz</p>
-                                            <p className="text-xs text-gray-500">Posted on May 15, 2023</p>
-                                        </div>
-                                    </div>
-                                    <button className="flex items-center text-red-500 hover:text-red-600">
-                                        <i className="fas fa-heart mr-1"></i>
-                                        <span className="font-medium">248</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        {topPost && <FeaturedPost post={topPost} />}
 
                         <div className="mt-6 text-center">
                             <button
@@ -85,15 +77,8 @@ export default function SocialWall() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-                        <SocialWallPost />
-                        <SocialWallPost />
-                        <SocialWallPost />
-                        <SocialWallPost />
-                        <SocialWallPost />
-                        <SocialWallPost />
-                        <SocialWallPost />
-                        <SocialWallPost />
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                        {items && items.map((items: SocialWallPost) => <SocialWallCard key={items.id} post={items} />)}
                     </div>
 
                     {/* <div className="mt-8 text-center">

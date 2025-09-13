@@ -64,8 +64,14 @@ import UserIcon from './user-line.svg?react';
 import UserTie from './user-tie.svg?react';
 import VideoIcon from './videos.svg?react';
 import UserCrown from './user-crown.svg?react';
+import ImagesSolid from './images-solid-full.svg?react';
+import ImageRegular from './images-regular-full.svg?react';
+
+
 export {
+    ImageRegular,
     UserCrown,
+    ImagesSolid,
     AlertHexaIcon,
     AlertIcon,
     AngleDownIcon,

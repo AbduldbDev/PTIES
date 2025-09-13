@@ -25,7 +25,7 @@ interface Props {
     post: SocialWallPost;
 }
 
-export default function SocialWallPost({ post }: Props) {
+export default function FeaturedPost({ post }: Props) {
     const { auth } = usePage().props as { auth?: { user?: { email: string } } };
 
     const [isLiked, setIsLiked] = useState(post.has_liked || false);
@@ -71,30 +71,46 @@ export default function SocialWallPost({ post }: Props) {
         } catch (err) {
             setIsLiked(prevLiked);
             setLikeCount(prevCount);
-            alert('Failed to update like. Please try again.');
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
-            <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
-                <img src={`/storage/${post.image}`} alt={post.caption || 'Social post'} className="absolute inset-0 h-full w-full object-cover" />
+        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md md:rounded-xl md:shadow-lg">
+            <div className="relative aspect-video w-full">
+                <img src={`/storage/${post.image}`} alt={post.caption} className="absolute inset-0 h-full w-full object-cover" />
+                <div className="absolute top-4 right-4 rounded-full bg-white/90 p-2 shadow">
+                    <i className="fas fa-crown text-xl text-secondary"></i>
+                </div>
             </div>
-            <div className="p-4">
-                <p className="mb-3 line-clamp-2 text-xs text-gray-700">"{post.caption}"</p>
-                <div className="flex items-center justify-between border-t border-gray-100 pt-2">
-                    <div className="flex items-center">
-                        <div className="mr-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-blue-100 p-0.5">
+
+            <div className="p-4 md:p-6">
+                <p className="mb-3 text-base text-gray-700 italic md:mb-4 md:text-lg">"{post.caption}"</p>
+
+                <div className="flex items-center justify-between border-t border-gray-100 pt-3 md:pt-4">
+                    <div className="flex items-center gap-2">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-blue-100 p-0.5">
                             <img
                                 src={post.user?.image ? `/storage/${post.user.image}` : '/images/user/User.png'}
-                                className="h-full w-full rounded-full"
+                                className="h-full w-full rounded-full object-cover"
                                 alt="User profile"
                             />
                         </div>
-                        <span className="text-xs font-medium text-gray-700">{post.user?.name || post.user?.email || 'Anonymous'}</span>
+
+                        <div>
+                            <p className="text-dark text-sm md:font-medium">{post.user.email}</p>
+                            <p className="text-xs text-gray-500">
+                                Posted on{' '}
+                                {new Date(post.created_at).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                })}
+                            </p>
+                        </div>
                     </div>
+
                     <button
                         onClick={handleLikeClick}
                         disabled={isLoading}

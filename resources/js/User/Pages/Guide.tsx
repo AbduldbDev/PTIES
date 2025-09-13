@@ -27,6 +27,7 @@ interface PageProps {
     accommodation: EstablishmentProps[];
     [key: string]: unknown;
 }
+
 export default function Guide() {
     const { banner, food, accommodation } = usePage<PageProps>().props;
 

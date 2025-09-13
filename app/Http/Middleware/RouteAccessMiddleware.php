@@ -19,13 +19,12 @@ class RouteAccessMiddleware
         // For auth routes - must be logged in AND must be regular user
         if ($type === 'auth') {
             if (!Auth::check()) {
-                return redirect('/Login');
+                return redirect()->guest('/Login');
             }
 
             // Only allow if user_type is exactly "user"
             if (Auth::user()->user_type !== "user") {
                 abort(403); // Forbidden access for non-user types
-                return redirect('/Login');
             }
         }
 

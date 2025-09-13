@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminController\EstablishmentController;
 use App\Http\Controllers\AdminController\FAQsController;
 use App\Http\Controllers\AdminController\LocalPersonalitiesController;
 use App\Http\Controllers\AdminController\LocalProductsController;
+use App\Http\Controllers\AdminController\PostController;
 use App\Http\Controllers\UserController\SocialWallController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
@@ -166,9 +167,12 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::delete('/delete/{id}', [LocalProductsController::class, 'delete'])->name('delete');
     });
 
-      Route::prefix('/Admin/sociall-wall')->name('socailwall.')->group(function () {
-        Route::get('/', [SocialWallController::class, 'index'])->name('index');
-        Route::post('/update/{id}', [SocialWallController::class, 'update'])->name('update');
-        Route::delete('/delete/{id}', [SocialWallController::class, 'delete'])->name('delete');
+    Route::prefix('/Admin/social-wall')->name('socailwall.')->group(function () {
+        Route::get('/pending', [PostController::class, 'pending'])->name('pending');
+        Route::get('/approved', [PostController::class, 'approved'])->name('approved');
+        Route::get('/rejected', [PostController::class, 'rejected'])->name('rejected');
+        Route::get('/view/{id}', [PostController::class, 'view'])->name('view');
+        Route::post('/approve/{id}', [PostController::class, 'approve'])->name('approve');
+        Route::post('/reject/{id}', [PostController::class, 'reject'])->name('reject');
     });
 });

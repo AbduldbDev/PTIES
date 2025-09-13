@@ -7,6 +7,7 @@ type PageBannerProps = {
     desc: string;
     image: string;
 };
+
 export default function GamificationGuid() {
     const { banner } = usePage<{ banner: PageBannerProps }>().props;
 
@@ -21,6 +22,7 @@ export default function GamificationGuid() {
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
             </Head>
+
             {banner ? (
                 <Banner
                     title={banner?.title}

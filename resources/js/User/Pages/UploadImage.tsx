@@ -15,14 +15,23 @@ type FormData = {
     caption: string;
     image: File | null;
 };
+type PageProps = {
+    flash?: {
+        success?: string;
+        error?: string;
+    };
+    errors?: {
+        error?: string;
+        [key: string]: string | undefined;
+    };
+};
 
 const SocialWallUpload = () => {
+    const { flash, errors } = usePage<PageProps>().props;
     const { banner } = usePage<{ banner: PageBannerProps }>().props;
-
     const title = 'Pakil Tourism | SocialWall';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
-
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [originalImageFile, setOriginalImageFile] = useState<File | null>(null);
     const [crop, setCrop] = useState<Crop>();
@@ -221,7 +230,6 @@ const SocialWallUpload = () => {
             forceFormData: true,
             onSuccess: () => {
                 form.reset();
-                alert('Your post has been submitted for review. Thank you for sharing!');
                 setIsSubmitting(false);
                 setSelectedImage(null);
                 setCroppedImageUrl(null);
@@ -251,6 +259,7 @@ const SocialWallUpload = () => {
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
             </Head>
+
             {banner ? (
                 <Banner
                     title={banner?.title}
@@ -273,10 +282,12 @@ const SocialWallUpload = () => {
                                         Upload your favorite moments from Pakil to be featured on our social wall
                                     </p>
 
-                                    {error && (
-                                        <div className="mb-4 flex items-start rounded-lg border border-red-100 bg-red-50 p-3 text-xs text-red-600 md:mb-6 md:p-4 md:text-sm">
-                                            <i className="fas fa-exclamation-circle mt-0.5 mr-2"></i>
-                                            <span>{error}</span>
+                                    {(error || errors?.error || flash?.error) && (
+                                        <div className="mb-4 flex items-center gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-xs text-red-700 shadow-sm md:mb-6 md:text-base">
+                                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-100">
+                                                <i className="fas fa-exclamation-circle text-red-600"></i>
+                                            </div>
+                                            <span className="flex-1 text-sm">{error || errors?.error || flash?.error}</span>
                                         </div>
                                     )}
 
@@ -314,7 +325,7 @@ const SocialWallUpload = () => {
                                         >
                                             <i className="fas fa-cloud-upload-alt mb-2 text-3xl text-gray-400 md:mb-3 md:text-4xl"></i>
                                             <p className="mb-1 text-xs text-gray-600 md:mb-2 md:text-sm">Click to browse or drag and drop</p>
-                                            <p className="text-xs text-gray-500">JPG, PNG, GIF (Max 25MB)</p>
+                                            <p className="text-xs text-gray-500">JPG, PNG, GIF, WEBP (Max 25MB)</p>
                                             <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageSelect} className="hidden" />
                                         </div>
                                     </div>

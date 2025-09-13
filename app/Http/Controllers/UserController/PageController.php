@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\UserController;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\BarangayInfo;
 use Illuminate\Http\Request;
@@ -219,11 +220,36 @@ class PageController extends Controller
     public function SocialWall()
     {
         $banner = CMSBanner::where('key', 'Social Wall')->first();
-        $items = SocialWall::get();
 
+
+        $items = SocialWall::with('user')->where('is_approved', 1)
+            ->withCount('likes')
+            ->with(['likes' => function ($q) {
+                $q->where('user_id', Auth::id());
+            }])
+            ->get()
+            ->map(function ($item) {
+                $item->has_liked = $item->likes->isNotEmpty();
+                unset($item->likes);
+                return $item;
+            });
+
+        $TopPost = SocialWall::with('user')->where('is_approved', 1)
+            ->withCount('likes')
+            ->with(['likes' => function ($q) {
+                $q->where('user_id', Auth::id());
+            }])
+            ->orderByDesc('likes_count')
+            ->first();
+
+        if ($TopPost) {
+            $TopPost->has_liked = $TopPost->likes->isNotEmpty();
+            unset($TopPost->likes);
+        }
         return Inertia::render('User/Pages/socialwall', [
             'banner' => $banner,
             'items' => $items,
+            'topPost' => $TopPost,
         ]);
     }
 

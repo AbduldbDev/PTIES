@@ -8,6 +8,7 @@ import {
     GridIcon,
     HorizontaLDots,
     HouseMedical,
+    ImageRegular,
     MapDot,
     Shop,
     UserCircleIcon,
@@ -145,6 +146,16 @@ const otherNavItems: NavItem[] = [
             { name: 'All Hotlines', path: '/Admin/hotlines', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
+    {
+        icon: <ImageRegular />,
+        name: 'Socail Wall Post',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Pending Posts', path: '/Admin/social-wall/pending', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'Approved Posts', path: '/Admin/social-wall/approved', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'Rejected Posts', path: '/Admin/social-wall/rejected', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
 
     {
         icon: <DocsIcon />,
@@ -223,7 +234,6 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
             let foundActive = false;
 
             items.forEach((item, index) => {
-                // Skip items that user doesn't have access to
                 if (!hasAccess(item.requiredUserType)) return;
 
                 const currentKey = [...parentKeys, index.toString()].join('-');

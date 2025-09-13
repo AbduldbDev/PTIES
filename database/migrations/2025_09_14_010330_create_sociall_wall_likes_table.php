@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('social_wall', function (Blueprint $table) {
+        Schema::create('sociall_wall_likes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('post_id');
-            $table->string('caption');
-            $table->string('image');
-            $table->boolean('is_approved')->default(0);
+            $table->foreignId('post_id')->constrained('social_wall')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('social_wall');
+        Schema::dropIfExists('sociall_wall_likes');
     }
 };
