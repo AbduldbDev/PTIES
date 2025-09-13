@@ -174,5 +174,6 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::get('/view/{id}', [PostController::class, 'view'])->name('view');
         Route::post('/approve/{id}', [PostController::class, 'approve'])->name('approve');
         Route::post('/reject/{id}', [PostController::class, 'reject'])->name('reject');
+        Route::delete('/delete/{id}', [PostController::class, 'delete'])->name('delete');
     });
 });

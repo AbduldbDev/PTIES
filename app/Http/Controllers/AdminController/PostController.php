@@ -120,4 +120,12 @@ class PostController extends Controller
 
         return redirect()->back()->with('success', 'Post Rejected successfully.');
     }
+
+    public function delete($id)
+    {
+        $post = SocialWall::findOrFail($id);
+        $post->delete();
+
+        return redirect()->route('socailwall.approved')->with('success', 'Post Deleted successfully.');
+    }
 }

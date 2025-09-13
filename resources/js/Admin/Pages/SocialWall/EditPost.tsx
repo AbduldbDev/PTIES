@@ -44,7 +44,6 @@ type PageProps = {
 export default function EditGuide() {
     const { flash, errors, item, csrf_token } = usePage<PageProps>().props;
     const [resetSignal, setResetSignal] = useState(0);
-
     const form = useForm();
 
     const handleApprove = (e: FormEvent) => {
@@ -68,6 +67,16 @@ export default function EditGuide() {
         });
     };
 
+    const handleDelete = (e: FormEvent) => {
+        e.preventDefault();
+        form.delete(`/Admin/social-wall/delete/${item.id}`, {
+            onError: (errors) => {
+                console.error(errors);
+                alert('Failed to delete post');
+            },
+        });
+    };
+
     return (
         <>
             <Head title="PTIES | Mabuhay!" />
@@ -83,7 +92,7 @@ export default function EditGuide() {
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
-                    <ComponentCard title="Pending Approval Posts">
+                    <ComponentCard title="Post Details">
                         <InputField type="text" label="Posted By" readonly name="name" required value={item.user.email} />
                         <InputField
                             type="text"
@@ -129,6 +138,18 @@ export default function EditGuide() {
                                     {form.processing ? 'Processing...' : 'Reject Post'}
                                 </button>
                             </div>
+                        )}
+                        {(item.is_approved === 1 || item.is_approved === 2) && (
+                            <button
+                                type="button"
+                                onClick={handleDelete}
+                                disabled={form.processing}
+                                className={`w-full rounded-lg px-4 py-2.5 text-sm font-medium text-white focus:ring-4 focus:outline-none ${
+                                    form.processing ? 'bg-red-400' : 'bg-red-600 hover:bg-red-700 focus:ring-red-300'
+                                }`}
+                            >
+                                {form.processing ? 'Processing...' : 'Delete Post'}
+                            </button>
                         )}
                     </ComponentCard>
                 </div>

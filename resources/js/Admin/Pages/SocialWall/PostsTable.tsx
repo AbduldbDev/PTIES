@@ -91,7 +91,7 @@ export default function Home() {
 
     const columns: SortableColumn[] = [
         { key: 'post_id', label: 'Post ID', sortable: true },
-        { key: 'user.email', label: 'Poseted By', sortable: true },
+        { key: 'user.email', label: 'Posted By', sortable: true },
         { key: 'caption', label: 'Contact', sortable: true },
         { key: 'action', label: 'Action', sortable: false, align: 'center' },
     ];
