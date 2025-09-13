@@ -32,14 +32,14 @@ export default function BarangayInfo({ barangays, barangayHighlights, content }:
     return (
         <>
             <section className="py-20">
-                <div className="container mx-auto px-6">
+                <div className="container mx-auto px-2 lg:px-6">
                     <PageTitle
                         title="Geography"
                         subtitle="Municipal Map & Barangays"
                         desc="Discover the political subdivisions of Pakil and their leaders"
                     ></PageTitle>
 
-                    <div className="mb-12 space-y-5 rounded-xl border border-gray-200 bg-white p-6 shadow-lg">
+                    <div className="mb-7 space-y-5 rounded-xl border border-gray-200 bg-white p-6 shadow-lg lg:mb-12">
                         <div className="w-full">
                             <div className="aspect-w-16 aspect-h-9 flex items-center justify-center rounded-lg bg-gray-50">
                                 <img src="/User/SVG/pakil.svg" alt="Pakil Municipal Map" className="h-auto w-full object-contain p-4" />
@@ -143,7 +143,7 @@ export default function BarangayInfo({ barangays, barangayHighlights, content }:
                         </div>
                     </div>
 
-                    <div className="mt-12 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
+                    <div className="mt-7 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md lg:mt-12">
                         <div className="border-b border-primary/20 bg-primary/10 p-5">
                             <h4 className="flex items-center text-xl font-bold text-primary">
                                 <i className="fas fa-star mr-3"></i> Barangay Highlights

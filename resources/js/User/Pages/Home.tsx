@@ -47,37 +47,39 @@ export default function Home() {
                 <div className="h-[15vh]"></div>
             )}
 
-            <section id="explore" className="py-10">
-                <div className="container mx-auto px-6">
+            <section id="explore" className="py-8 md:py-10 lg:py-12">
+                <div className="container mx-auto px-4 sm:px-5 md:px-6">
                     <PageTitle
                         title="Discover"
                         subtitle="Welcome to Pakil"
                         desc="A charming Laguna town where faith, heritage, and nature come together to create unforgettable experiences."
                     ></PageTitle>
 
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-                        <div className="rounded-xl border border-primary/20 bg-gray-50 p-6 transition-all hover:border-secondary/50">
-                            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
-                                <i className="fas fa-church text-2xl text-primary"></i>
+                    <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-3 md:gap-8">
+                        <div className="rounded-lg border border-primary/20 bg-gray-50 p-4 transition-all hover:border-secondary/50 sm:rounded-xl sm:p-5 md:p-6">
+                            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 sm:mb-4 sm:h-14 sm:w-14 sm:rounded-lg">
+                                <i className="fas fa-church text-xl text-primary sm:text-2xl"></i>
                             </div>
-                            <h3 className="mb-2 text-xl font-bold text-primary">Religious Heritage</h3>
-                            <p className="text-gray-600">Explore the historic San Pedro de Alcantara Church and other spiritual landmarks.</p>
+                            <h3 className="mb-2 text-lg font-bold text-primary sm:text-xl">Religious Heritage</h3>
+                            <p className="text-sm text-gray-600 sm:text-base">
+                                Explore the historic San Pedro de Alcantara Church and other spiritual landmarks.
+                            </p>
                         </div>
 
-                        <div className="rounded-xl border border-primary/20 bg-gray-50 p-6 transition-all hover:border-secondary/50">
-                            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
-                                <i className="fas fa-water text-2xl text-primary"></i>
+                        <div className="rounded-lg border border-primary/20 bg-gray-50 p-4 transition-all hover:border-secondary/50 sm:rounded-xl sm:p-5 md:p-6">
+                            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 sm:mb-4 sm:h-14 sm:w-14 sm:rounded-lg">
+                                <i className="fas fa-water text-xl text-primary sm:text-2xl"></i>
                             </div>
-                            <h3 className="mb-2 text-xl font-bold text-primary">Natural Wonders</h3>
-                            <p className="text-gray-600">Discover beautiful waterfalls and scenic landscapes around Pakil.</p>
+                            <h3 className="mb-2 text-lg font-bold text-primary sm:text-xl">Natural Wonders</h3>
+                            <p className="text-sm text-gray-600 sm:text-base">Discover beautiful waterfalls and scenic landscapes around Pakil.</p>
                         </div>
 
-                        <div className="rounded-xl border border-primary/20 bg-gray-50 p-6 transition-all hover:border-secondary/50">
-                            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
-                                <i className="fas fa-utensils text-2xl text-primary"></i>
+                        <div className="rounded-lg border border-primary/20 bg-gray-50 p-4 transition-all hover:border-secondary/50 sm:rounded-xl sm:p-5 md:p-6">
+                            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 sm:mb-4 sm:h-14 sm:w-14 sm:rounded-lg">
+                                <i className="fas fa-utensils text-xl text-primary sm:text-2xl"></i>
                             </div>
-                            <h3 className="mb-2 text-xl font-bold text-primary">Local Cuisine</h3>
-                            <p className="text-gray-600">Taste authentic Filipino dishes and local specialties.</p>
+                            <h3 className="mb-2 text-lg font-bold text-primary sm:text-xl">Local Cuisine</h3>
+                            <p className="text-sm text-gray-600 sm:text-base">Taste authentic Filipino dishes and local specialties.</p>
                         </div>
                     </div>
                 </div>
@@ -458,84 +460,86 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="py-20">
-                <div className="container mx-auto px-6">
-                    <div className="mx-auto max-w-4xl overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
+            <section className="py-12 md:py-16 lg:py-20">
+                <div className="container mx-auto px-4 sm:px-5 md:px-6">
+                    <div className="mx-auto max-w-4xl overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md md:rounded-xl md:shadow-lg">
                         <div className="md:flex">
-                            <div className="flex items-center justify-center bg-primary p-8 md:w-2/5">
+                            {/* Left Panel - Branding */}
+                            <div className="flex items-center justify-center bg-primary p-6 md:w-2/5 md:p-8">
                                 <div className="text-center">
-                                    <i className="fas fa-envelope-open-text mb-6 text-5xl text-white"></i>
-                                    <h3 className="mb-3 text-2xl font-bold text-white">Stay Updated</h3>
-                                    <p className="text-white/90">Get the latest Pakil news straight to your inbox</p>
+                                    <i className="fas fa-envelope-open-text mb-4 text-4xl text-white md:mb-5 md:text-5xl"></i>
+                                    <h3 className="mb-2 text-xl font-bold text-white md:mb-3 md:text-2xl">Stay Updated</h3>
+                                    <p className="text-sm text-white/90 md:text-base">Get the latest Pakil news straight to your inbox</p>
                                 </div>
                             </div>
 
-                            <div className="p-8 md:w-3/5 md:p-12">
+                            {/* Right Panel - Form */}
+                            <div className="p-6 md:w-3/5 md:p-8 lg:p-10">
                                 <div className="mb-2">
-                                    <div className="mb-3 h-1 w-8 rounded-full bg-secondary"></div>
-                                    <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Connect With Us</h2>
+                                    <div className="mb-2 h-1 w-6 rounded-full bg-secondary md:mb-3 md:w-8"></div>
+                                    <h2 className="text-xs font-semibold tracking-wide text-primary uppercase md:text-sm">Connect With Us</h2>
                                 </div>
-                                <h3 className="text-dark mb-6 text-2xl font-bold md:text-3xl">
+                                <h3 className="text-dark mb-4 text-xl font-bold md:mb-5 md:text-2xl lg:text-3xl">
                                     Subscribe to our <span className="text-primary">Newsletter</span>
                                 </h3>
 
-                                <form className="space-y-5">
+                                <form className="space-y-4 md:space-y-5">
                                     <div>
-                                        <label htmlFor="name" className="mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="name" className="mb-1 block text-xs font-medium text-gray-700 md:text-sm">
                                             Name
                                         </label>
                                         <div className="relative">
                                             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                                <i className="fas fa-user text-gray-400"></i>
+                                                <i className="fas fa-user text-xs text-gray-400 md:text-sm"></i>
                                             </div>
                                             <input
                                                 type="text"
                                                 id="name"
-                                                className="block w-full rounded-lg border border-gray-300 py-3 pr-3 pl-10 focus:border-primary focus:ring-2 focus:ring-primary"
+                                                className="block w-full rounded-md border border-gray-300 py-2.5 pr-3 pl-9 text-sm focus:border-primary focus:ring-2 focus:ring-primary md:rounded-lg md:py-3 md:pl-10 md:text-base"
                                                 placeholder="Your name"
                                             />
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="email" className="mb-1 block text-xs font-medium text-gray-700 md:text-sm">
                                             Email
                                         </label>
                                         <div className="relative">
                                             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                                <i className="fas fa-envelope text-gray-400"></i>
+                                                <i className="fas fa-envelope text-xs text-gray-400 md:text-sm"></i>
                                             </div>
                                             <input
                                                 type="email"
                                                 id="email"
-                                                className="block w-full rounded-lg border border-gray-300 py-3 pr-3 pl-10 focus:border-primary focus:ring-2 focus:ring-primary"
+                                                className="block w-full rounded-md border border-gray-300 py-2.5 pr-3 pl-9 text-sm focus:border-primary focus:ring-2 focus:ring-primary md:rounded-lg md:py-3 md:pl-10 md:text-base"
                                                 placeholder="your@email.com"
                                                 required
                                             />
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center">
+                                    <div className="flex items-start">
                                         <input
                                             id="terms"
                                             type="checkbox"
-                                            className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                                            className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
                                             required
                                         />
-                                        <label htmlFor="terms" className="ml-2 block text-sm text-gray-700">
+                                        <label htmlFor="terms" className="ml-2 block text-xs text-gray-700 md:text-sm">
                                             I agree to receive emails about Pakil news and events
                                         </label>
                                     </div>
 
                                     <button
                                         type="submit"
-                                        className="flex w-full items-center justify-center rounded-full border border-transparent bg-primary px-6 py-3 text-white shadow-sm transition duration-300 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+                                        className="flex w-full items-center justify-center rounded-full border border-transparent bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-sm transition duration-300 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none md:px-6 md:py-3 md:text-base"
                                     >
-                                        <i className="fas fa-paper-plane mr-2"></i> Subscribe Now
+                                        <i className="fas fa-paper-plane mr-1.5 text-xs md:mr-2 md:text-sm"></i> Subscribe Now
                                     </button>
                                 </form>
 
-                                <p className="mt-4 text-xs text-gray-500">We respect your privacy. Unsubscribe at any time.</p>
+                                <p className="mt-3 text-[10px] text-gray-500 md:mt-4 md:text-xs">We respect your privacy. Unsubscribe at any time.</p>
                             </div>
                         </div>
                     </div>

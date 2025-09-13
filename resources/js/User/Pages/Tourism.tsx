@@ -61,12 +61,12 @@ export default function TourismAboutPage() {
             )}
 
             {content.about && (
-                <section className="relative py-10">
+                <section className="relative py-8 md:py-10 lg:py-12">
                     <div className="absolute inset-0 -z-10">
                         <div className="absolute inset-0 bg-[url('/User/Images/church.jpg')] bg-cover bg-center opacity-5"></div>
                     </div>
 
-                    <div className="container mx-auto px-6">
+                    <div className="container mx-auto px-4 sm:px-5 md:px-6">
                         <PageTitle
                             title="Local Government"
                             subtitle="Tourism Department of Pakil, Laguna"
@@ -82,59 +82,61 @@ export default function TourismAboutPage() {
                             }}
                         />
 
-                        <div className="mt-16 rounded-xl border border-gray-200 bg-gradient-to-r from-primary/10 to-accent/10 p-8 backdrop-blur-sm">
+                        <div className="mt-10 rounded-lg border border-gray-200 bg-gradient-to-r from-primary/10 to-accent/10 p-5 backdrop-blur-sm md:mt-12 md:rounded-xl md:p-6 lg:mt-16 lg:p-8">
                             <div className="flex flex-col items-center md:flex-row">
-                                <div className="mb-6 md:mr-8 md:mb-0">
-                                    <i className="fas fa-leaf text-5xl text-primary"></i>
+                                <div className="mb-4 md:mr-6 md:mb-0 lg:mr-8">
+                                    <i className="fas fa-leaf text-3xl text-primary md:text-4xl lg:text-5xl"></i>
                                 </div>
                                 <div className="flex-1">
-                                    <h4 className="text-dark mb-3 text-2xl font-bold">Commitment to Sustainable Tourism</h4>
-                                    <p className="mb-4 text-gray-700">
+                                    <h4 className="text-dark mb-2 text-lg font-bold md:mb-3 md:text-xl lg:text-2xl">
+                                        Commitment to Sustainable Tourism
+                                    </h4>
+                                    <p className="mb-3 text-sm text-gray-700 md:mb-4 md:text-base">
                                         The Tourism Department actively promotes eco-friendly practices including waste management, responsible
                                         trekking, and heritage conservation. We monitor tourism impacts and support initiatives that reduce
                                         environmental footprint while protecting Pakil's biodiversity.
                                     </p>
-                                    <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                                    <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
                                         <div className="text-center">
-                                            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-white">
-                                                <i className="fas fa-recycle text-accent"></i>
+                                            <div className="mx-auto mb-1 flex h-10 w-10 items-center justify-center rounded-full bg-white md:mb-2 md:h-12 md:w-12">
+                                                <i className="fas fa-recycle text-xs text-accent md:text-sm"></i>
                                             </div>
-                                            <p className="text-sm font-medium">Eco-Tourism</p>
+                                            <p className="text-xs font-medium md:text-sm">Eco-Tourism</p>
                                         </div>
                                         <div className="text-center">
-                                            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-white">
-                                                <i className="fas fa-hands text-accent"></i>
+                                            <div className="mx-auto mb-1 flex h-10 w-10 items-center justify-center rounded-full bg-white md:mb-2 md:h-12 md:w-12">
+                                                <i className="fas fa-hands text-xs text-accent md:text-sm"></i>
                                             </div>
-                                            <p className="text-sm font-medium">Community Training</p>
+                                            <p className="text-xs font-medium md:text-sm">Community Training</p>
                                         </div>
                                         <div className="text-center">
-                                            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-white">
-                                                <i className="fas fa-monument text-accent"></i>
+                                            <div className="mx-auto mb-1 flex h-10 w-10 items-center justify-center rounded-full bg-white md:mb-2 md:h-12 md:w-12">
+                                                <i className="fas fa-monument text-xs text-accent md:text-sm"></i>
                                             </div>
-                                            <p className="text-sm font-medium">Heritage Protection</p>
+                                            <p className="text-xs font-medium md:text-sm">Heritage Protection</p>
                                         </div>
                                         <div className="text-center">
-                                            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-white">
-                                                <i className="fas fa-users text-accent"></i>
+                                            <div className="mx-auto mb-1 flex h-10 w-10 items-center justify-center rounded-full bg-white md:mb-2 md:h-12 md:w-12">
+                                                <i className="fas fa-users text-xs text-accent md:text-sm"></i>
                                             </div>
-                                            <p className="text-sm font-medium">Local Engagement</p>
+                                            <p className="text-xs font-medium md:text-sm">Local Engagement</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="mt-12 text-center">
-                            <h4 className="text-dark mb-3 text-xl font-bold">Want to collaborate or learn more?</h4>
-                            <p className="mx-auto mb-6 max-w-2xl text-gray-600">
+                        <div className="mt-8 text-center md:mt-10 lg:mt-12">
+                            <h4 className="text-dark mb-2 text-lg font-bold md:mb-3 md:text-xl">Want to collaborate or learn more?</h4>
+                            <p className="mx-auto mb-4 max-w-2xl text-xs text-gray-600 md:mb-5 md:text-sm">
                                 Contact the Pakil Tourism Department for partnerships, inquiries, or to share your ideas for sustainable tourism
                                 development.
                             </p>
                             <a
                                 href="/contact"
-                                className="inline-flex items-center rounded-full border border-transparent bg-primary px-6 py-3 text-white shadow-sm transition duration-300 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+                                className="inline-flex items-center rounded-full border border-transparent bg-primary px-4 py-2 text-xs font-medium text-white shadow-sm transition duration-300 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none md:px-5 md:py-2.5 md:text-sm lg:px-6 lg:py-3 lg:text-base"
                             >
-                                <i className="fas fa-envelope mr-2"></i> Contact Tourism Office
+                                <i className="fas fa-envelope mr-1.5 text-xs md:mr-2 md:text-sm"></i> Contact Tourism Office
                             </a>
                         </div>
                     </div>
@@ -151,7 +153,7 @@ export default function TourismAboutPage() {
             )}
 
             <DeparmentStructure />
-            
+
             {content.citizen_charter && (
                 <section id="citizen_charter" className="py-10">
                     <div className="max-w-8xl container mx-auto px-6">
