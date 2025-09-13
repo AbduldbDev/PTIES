@@ -10,12 +10,29 @@ use Inertia\Inertia;
 
 class BannerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $banners = CMSBanner::get();
+        $perPage = $request->input('per_page', 20);
+
+        if ($request->input('per_page') === 'all') {
+            $items = CMSBanner::latest()->get();
+
+            return Inertia::render('Admin/Pages/CMS/Banners', [
+                'items' => [
+                    'data' => $items,
+                    'links' => [],
+                    'meta' => null
+                ],
+            ]);
+        }
+
+        $items = CMSBanner::latest()->paginate($perPage);
+        if ($request->has('per_page')) {
+            $items->appends(['per_page' => $perPage]);
+        }
 
         return Inertia::render('Admin/Pages/CMS/Banners', [
-            'items' => $banners
+            'items' => $items,
         ]);
     }
 

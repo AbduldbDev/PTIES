@@ -165,7 +165,7 @@ class PageController extends Controller
     public function LocalPersonalities()
     {
         $personalities = LocalPersonalities::get();
-        $banner = CMSBanner::where('key', 'Local Products')->first();
+        $banner = CMSBanner::where('key', 'Local Personalities')->first();
 
         return Inertia::render('User/Pages/LocalPersonalities', [
             'banner' => $banner,
