@@ -33,6 +33,8 @@ class AdminSeeder extends Seeder
             'position' => "Administrator",
             'email'  =>  'admin@gmail.com',
             'date_employed' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
     }
 }

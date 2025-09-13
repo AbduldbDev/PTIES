@@ -10,7 +10,7 @@ const Banner: React.FC<BannerProps> = ({ title, subtitle, className = '', desc =
     const words = subtitle.split(' ');
 
     return (
-        <div className="full-width-banner relative h-64 overflow-hidden md:h-96">
+        <div className="relative h-64 overflow-hidden md:h-96">
             <img src={imageSrc} alt="City Skyline" className="h-full w-full object-cover object-center" />
             <div className="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-70"></div>
             <div className="absolute inset-0 flex items-end pb-8 md:pb-20">

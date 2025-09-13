@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\BarangayInfo;
+use Carbon\Carbon;
 
 class BarangayInfoSeeder extends Seeder
 {
@@ -20,6 +21,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => 'Known for its scenic views of Laguna Lake and traditional fishing industry.',
                 'type' => 'east',
                 'index' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'barangay' => 'Burgos',
@@ -27,6 +30,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => 'Home to several heritage homes and the municipal health center.',
                 'type' => 'east',
                 'index' => 2,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'barangay' => 'Gonzales',
@@ -34,6 +39,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => null,
                 'type' => 'east',
                 'index' => 3,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'barangay' => 'Rizal',
@@ -41,6 +48,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => null,
                 'type' => 'east',
                 'index' => 4,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'barangay' => 'Taft',
@@ -48,6 +57,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => null,
                 'type' => 'east',
                 'index' => 5,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'barangay' => 'Tavera',
@@ -55,6 +66,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => null,
                 'type' => 'east',
                 'index' => 6,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'barangay' => 'Saray',
@@ -62,6 +75,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => null,
                 'type' => 'east',
                 'index' => 7,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
 
             // west
@@ -71,6 +86,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => 'Gateway to Mount Ping-as with thriving agricultural activities.',
                 'type' => 'west',
                 'index' => 8,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'barangay' => 'Casa Real',
@@ -78,6 +95,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => 'Location of the historic municipal hall and town plaza.',
                 'type' => 'west',
                 'index' => 9,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'barangay' => 'Casinsin',
@@ -85,6 +104,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => null,
                 'type' => 'west',
                 'index' => 10,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'barangay' => 'Dorado',
@@ -92,6 +113,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => 'Famous for its goldsmiths and traditional jewelry making.',
                 'type' => 'west',
                 'index' => 11,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'barangay' => 'Kabulusan',
@@ -99,6 +122,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => 'Agricultural center with vast rice fields and fruit plantations.',
                 'type' => 'west',
                 'index' => 12,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'barangay' => 'Matikiw',
@@ -106,6 +131,8 @@ class BarangayInfoSeeder extends Seeder
                 'highlights' => null,
                 'type' => 'west',
                 'index' => 13,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
         ];
 

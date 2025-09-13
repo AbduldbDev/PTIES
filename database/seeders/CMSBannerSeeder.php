@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\CMSBanner;
+use Carbon\Carbon;
 
 class CMSBannerSeeder extends Seeder
 {
@@ -109,7 +110,10 @@ class CMSBannerSeeder extends Seeder
         foreach ($banners as $banner) {
             CMSBanner::updateOrCreate(
                 ['key' => $banner['key']],
-                $banner
+                array_merge($banner, [
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ])
             );
         }
     }
