@@ -424,7 +424,7 @@ export default function HeroSectionEditForm() {
                             form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
                         }`}
                     >
-                        {form.processing ? 'Processing...' : 'Add New Local Personalities'}
+                        {form.processing ? 'Processing...' : 'Add New Local Product'}
                     </button>
                 </form>
             </AppWrapper>

@@ -456,7 +456,7 @@ export default function LocalPersonalitiesEditForm() {
                             form.processing ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-300'
                         }`}
                     >
-                        {form.processing ? 'Processing...' : 'Update Local Personalities'}
+                        {form.processing ? 'Processing...' : 'Update Local Personality'}
                     </button>
                 </form>
             </AppWrapper>
