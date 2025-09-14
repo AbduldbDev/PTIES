@@ -22,10 +22,9 @@ use App\Http\Controllers\AdminController\PostController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
 
-Route::middleware('admin.access:guest')->group(function () {
-    Route::get('/Admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.homes');
-    Route::post('/Admin/login', [AdminLoginController::class, 'login'])->name('admin.login');
-});
+Route::middleware('admin.access:guest')->group(function () {});
+Route::get('/Admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.homes');
+Route::post('/Admin/login', [AdminLoginController::class, 'login'])->name('admin.login');
 
 Route::middleware('admin.access:admin')->group(function () {
     Route::prefix('/Admin/accounts')->name('account.management.')->group(function () {
