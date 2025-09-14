@@ -6,6 +6,7 @@ import { FormEvent, useState } from 'react';
 type FormData = {
     email: string;
     password: string;
+    remember: boolean;
 };
 type PageProps = {
     flash?: {
@@ -28,6 +29,7 @@ export default function Login() {
     const form = useForm<FormData>({
         email: '',
         password: '',
+        remember: false,
     });
 
     const validateField = (field: keyof FormData, value: string) => {
@@ -46,7 +48,7 @@ export default function Login() {
 
     const handleBlur = (field: keyof FormData) => {
         setTouched((prev) => ({ ...prev, [field]: true }));
-        const error = validateField(field, form.data[field]);
+        const error = validateField(field, typeof form.data[field] === 'string' ? form.data[field] : '');
         form.setError(field, error ?? '');
     };
 
@@ -55,6 +57,8 @@ export default function Login() {
 
         let hasError = false;
         (Object.keys(form.data) as (keyof FormData)[]).forEach((field) => {
+            if (field === 'remember') return;
+
             const error = validateField(field, form.data[field]);
             if (error) hasError = true;
             form.setError(field, error ?? '');
@@ -144,8 +148,10 @@ export default function Login() {
                                     <div className="flex items-center">
                                         <input
                                             id="remember-me"
-                                            name="remember-me"
+                                            name="remember"
                                             type="checkbox"
+                                            checked={form.data.remember}
+                                            onChange={(e) => form.setData('remember', e.target.checked)}
                                             className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                         />
                                         <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
@@ -164,8 +170,9 @@ export default function Login() {
                                 <button
                                     type="submit"
                                     className="w-full rounded-lg bg-primary py-3 font-medium text-white transition duration-150 hover:bg-primary/70"
+                                    disabled={form.processing}
                                 >
-                                    Sign in
+                                    {form.processing ? 'Processing...' : 'Sign In'}
                                 </button>
                             </form>
 

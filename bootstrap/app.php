@@ -10,6 +10,7 @@ use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 
 use App\Http\Middleware\RouteAccessMiddleware;
 use App\Http\Middleware\RouteAdminAccessMiddleware;
+use App\Http\Middleware\CheckVerified;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -24,6 +25,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'user.access' => RouteAccessMiddleware::class,
             'admin.access' => RouteAdminAccessMiddleware::class,
+            'verified' => CheckVerified::class,
         ]);
 
         $middleware->web(append: [

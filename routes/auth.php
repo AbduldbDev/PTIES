@@ -47,14 +47,18 @@ use App\Http\Controllers\Auth\SocialiteController;
 //     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
 //         ->name('logout');
 //
-Route::get('/Login', [UserLoginController::class, 'showLoginForm'])->name('login');
-Route::post('/Login', [UserLoginController::class, 'login']);
 
-Route::get('/Signup', [UserSignUpController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
-Route::post('/Signup', [UserSignUpController::class, 'register'])->middleware('guest');
+
 Route::post('/logout', [UserLoginController::class, 'logout']);
 
 Route::middleware('user.access:guest')->group(function () {
+    Route::get('/Login', [UserLoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/Login', [UserLoginController::class, 'login']);
+
+    Route::get('/Signup', [UserSignUpController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/Signup', [UserSignUpController::class, 'register']);
+
+
     Route::get('auth/google', [SocialiteController::class, 'redirectToGoogle']);
     Route::get('auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
 
@@ -69,8 +73,8 @@ Route::middleware('user.access:guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
-});
 
-Route::middleware('user.access:auth')->group(function () {
-    
+    Route::get('/verify-otp', [UserSignUpController::class, 'showOtpVerificationForm'])->name('otp.verify');
+    Route::post('/verify-otp', [UserSignUpController::class, 'verifyOtp']);
+    Route::post('/resend-otp', [UserSignUpController::class, 'resendOtp'])->name('otp.resend');
 });

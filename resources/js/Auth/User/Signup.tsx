@@ -196,8 +196,9 @@ export default function Signup() {
                             <button
                                 type="submit"
                                 className="mt-3 w-full rounded-lg bg-primary px-4 py-2 font-medium text-white transition duration-150 hover:bg-primary/90"
+                                disabled={form.processing}
                             >
-                                Sign up
+                                {form.processing ? 'Processing...' : 'Sign Up'}
                             </button>
                         </form>
 

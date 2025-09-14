@@ -2,7 +2,16 @@ import { usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
 const Navbar = () => {
-    const { auth } = usePage().props as { auth?: { user: { email: string } } };
+    const { auth } = usePage().props as {
+        auth?: {
+            user: {
+                email: string;
+                user_type: string;
+                avatar?: string;
+            };
+        };
+    };
+
     const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
     const [currentDate, setCurrentDate] = useState('');
     const [currentTime, setCurrentTime] = useState('');
@@ -287,7 +296,7 @@ const Navbar = () => {
 
                             {/* User section */}
                             <div className="ml-6 flex items-center space-x-3">
-                                {auth?.user ? (
+                                {auth?.user && auth.user.user_type === 'user' ? (
                                     <>
                                         <div className="dropdown relative">
                                             <div className="flex items-center space-x-2">
@@ -548,7 +557,7 @@ const Navbar = () => {
 
                         {/* Mobile user section */}
                         <div className="mt-2 space-y-2 border-t pt-2">
-                            {auth?.user ? (
+                            {auth?.user && auth.user.user_type === 'user' ? (
                                 <>
                                     <div className="flex items-center justify-between rounded-md px-4 py-2">
                                         <span className="max-1/3 font-medium">Hello, {auth.user.email.split('@')[0]} </span>

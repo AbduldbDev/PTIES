@@ -23,6 +23,7 @@ class ContactUsController extends Controller
 
         return redirect()->route('contact.confirmation');
     }
+
     public function confirmation()
     {
         return Inertia::render('User/Pages/ContactConfirmation');

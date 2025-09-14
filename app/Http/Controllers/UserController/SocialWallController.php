@@ -10,12 +10,19 @@ use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use App\Models\CMSBanner;
 
 class SocialWallController extends Controller
 {
+    public function new()
+    {
+        $banner = CMSBanner::where('key', 'Social Wall')->first();
+        return Inertia::render('User/Pages/UploadImage', [
+            'banner' => $banner,
+        ]);
+    }
 
-
-    public function upload(Request $request)
+    public function store(Request $request)
     {
         try {
             $validated = $request->validate([

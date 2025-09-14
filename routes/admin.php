@@ -19,12 +19,8 @@ use App\Http\Controllers\AdminController\FAQsController;
 use App\Http\Controllers\AdminController\LocalPersonalitiesController;
 use App\Http\Controllers\AdminController\LocalProductsController;
 use App\Http\Controllers\AdminController\PostController;
-use App\Http\Controllers\UserController\SocialWallController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
-
-
-
 
 Route::middleware('admin.access:guest')->group(function () {
     Route::get('/Admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.homes');

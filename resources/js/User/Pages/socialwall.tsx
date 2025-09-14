@@ -69,7 +69,7 @@ export default function SocialWall() {
 
                         <div className="mt-6 text-center">
                             <button
-                                onClick={() => (window.location.href = '/socialwall/upload')}
+                                onClick={() => (window.location.href = '/socialwall/new')}
                                 className="mx-auto flex items-center rounded-full bg-primary px-6 py-3 font-medium text-white transition duration-300 hover:bg-primary/90"
                             >
                                 <i className="fas fa-plus mr-2"></i> Share Your Experience

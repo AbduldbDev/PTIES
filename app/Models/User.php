@@ -22,7 +22,11 @@ class User extends Authenticatable
         'password',
         'google_id',
         'user_type',
-        'avatar'
+        'avatar',
+        'remember_token',
+        'otp',
+        'otp_expires_at',
+        'is_verified'
     ];
 
     /**

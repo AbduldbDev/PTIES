@@ -6,5 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class AccountUsers extends Model
 {
-    //
+    protected $table = 'account_customers';
+    protected $fillable = [
+        'user_id',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'phone',
+        'address',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

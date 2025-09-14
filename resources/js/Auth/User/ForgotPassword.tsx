@@ -124,8 +124,9 @@ export default function Login() {
                                 <button
                                     type="submit"
                                     className="w-full rounded-lg bg-primary py-3 font-medium text-white transition duration-150 hover:bg-primary/70"
+                                    disabled={form.processing}
                                 >
-                                    Reset Password
+                                    {form.processing ? 'Processing...' : 'Reset Password'}
                                 </button>
                             </form>
                         </div>

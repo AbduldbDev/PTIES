@@ -226,7 +226,7 @@ const SocialWallUpload = () => {
         setIsSubmitting(true);
         setError('');
 
-        form.post(`/socialwall/uploads`, {
+        form.post(`/socialwall/upload`, {
             forceFormData: true,
             onSuccess: () => {
                 form.reset();

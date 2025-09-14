@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
-
 
 class UserLoginController extends Controller
 {
@@ -24,8 +24,17 @@ class UserLoginController extends Controller
         $this->checkTooManyAttempts($request);
 
         $credentials = $request->only('email', 'password');
+        $remember = $request->boolean('remember');
+        $user = User::where('email', $request->email)->first();
 
-        if (!Auth::attempt($credentials, $request->boolean('remember'))) {
+        if ($user && !$user->is_verified) {
+            return redirect()->route('otp.verify')->with([
+                'email' => $request->email,
+                'message' => 'Please verify your email address before logging in.'
+            ]);
+        }
+
+        if (!Auth::attempt($credentials, $remember)) {
             RateLimiter::hit($this->throttleKey($request), $seconds = 60);
 
             throw ValidationException::withMessages([

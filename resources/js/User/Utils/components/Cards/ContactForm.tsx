@@ -55,7 +55,7 @@ export default function ContactForm() {
             return;
         }
 
-        form.post('/contactus/send', {
+        form.post('/contact-us/send', {
             forceFormData: true,
             onSuccess: () => {
                 form.reset();

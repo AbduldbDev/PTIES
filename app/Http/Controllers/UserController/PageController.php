@@ -253,14 +253,6 @@ class PageController extends Controller
         ]);
     }
 
-    public function SocialWallUpload()
-    {
-        $banner = CMSBanner::where('key', 'Social Wall')->first();
-        return Inertia::render('User/Pages/UploadImage', [
-            'banner' => $banner,
-        ]);
-    }
-
 
     public function PakilGuide()
     {
@@ -278,13 +270,6 @@ class PageController extends Controller
         ]);
     }
 
-    public function Profile()
-    {
-        $banner = CMSBanner::where('key', 'Profile Section')->first();
-        return Inertia::render('User/Pages/Profile', [
-            'banner' => $banner,
-        ]);
-    }
 
     public function Establishments()
     {

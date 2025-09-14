@@ -7,7 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterRequest;
+use App\Services\OtpService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -15,15 +15,19 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 
-
-
 class UserSignUpController extends Controller
 {
+    protected $otpService;
+
+    public function __construct(OtpService $otpService)
+    {
+        $this->otpService = $otpService;
+    }
+
     public function showRegistrationForm()
     {
         return Inertia::render('Auth/User/Signup');
     }
-
 
     public function register(Request $request)
     {
@@ -53,11 +57,6 @@ class UserSignUpController extends Controller
             'password.required' => 'You must choose a password.',
             'password.confirmed' => 'Password confirmation does not match.',
             'password.*'        => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
-            'password.min'      => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
-            'password.numbers'  => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
-            'password.symbols'  => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
-            'password.mixedCase' => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
-            'password.uncompromised' => 'This password has been exposed in a data breach. Please choose another.',
         ]);
 
         if ($validator->fails()) {
@@ -65,7 +64,6 @@ class UserSignUpController extends Controller
             foreach ($validator->errors()->messages() as $field => $messages) {
                 $errors[$field] = $messages[0];
             }
-
             return back()->withErrors($errors)->withInput();
         }
 
@@ -73,19 +71,85 @@ class UserSignUpController extends Controller
             $user = User::create([
                 'email' => strtolower($request->email),
                 'password' => Hash::make($request->password),
+                'is_verified' => false,
             ]);
+
+            $this->otpService->generateAndSendOtp($user);
+
+            $request->session()->put('otp_verification_user_id', $user->id);
+            $request->session()->put('otp_verification_email', $user->email);
+            RateLimiter::clear($this->throttleKey($request));
+            return redirect()->route('otp.verify')
+                ->with('success', 'Account created successfully! Please verify your email with the OTP sent to your inbox.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong, please try again.');
+        }
+    }
+
+    public function showOtpVerificationForm(Request $request)
+    {
+        if (!$request->session()->has('otp_verification_user_id')) {
+            return redirect()->route('register')->with('error', 'Please register first.');
+        }
+
+        $email = $request->session()->get('otp_verification_email');
+        return Inertia::render('Auth/User/VerifyOtp', [
+            'email' => $email
+        ]);
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        $request->validate([
+            'otp' => 'required|digits:6',
+        ]);
+
+        $userId = $request->session()->get('otp_verification_user_id');
+        $userEmail = $request->session()->get('otp_verification_email');
+
+        if (!$userId) {
+            return redirect()->route('register')->with('error', 'Session expired. Please register again.');
+        }
+        $user = User::find($userId);
+
+        if (!$user) {
+            return redirect()->route('register')->with('error', 'User not found. Please register again.');
+        }
+
+        if ($this->otpService->verifyOtp($user, $request->otp)) {
+            $request->session()->forget('otp_verification_user_id');
+            $request->session()->forget('otp_verification_email');
 
             Auth::login($user);
             $request->session()->regenerate();
 
-            RateLimiter::clear($this->throttleKey($request));
-
             return redirect()->route('user.home')
-                ->with('success', 'Account created successfully!');
-        } catch (\Exception $e) {
-
-            return redirect()->back()->with('error', 'Something went wrong, please try again.');
+                ->with('success', 'Email verified successfully! You are now logged in.');
         }
+        return back()->withErrors(['otp' => 'Invalid or expired OTP.']);
+    }
+
+    public function resendOtp(Request $request)
+    {
+
+        $userId = $request->session()->get('otp_verification_user_id');
+
+        if (!$userId) {
+            return redirect()->route('register')->with('error', 'Session expired. Please register again.');
+        }
+
+        $user = User::find($userId);
+        if (!$user) {
+            return redirect()->route('register')->with('error', 'User not found. Please register again.');
+        }
+
+        if (RateLimiter::tooManyAttempts('resend-otp:' . $user->id, 3)) {
+            return back()->withErrors(['otp' => 'Too many resend attempts. Please try again later.']);
+        }
+        RateLimiter::hit('resend-otp:' . $user->id, 60);
+
+        $this->otpService->resendOtp($user);
+        return back()->with('success', 'OTP has been resent to your email.');
     }
 
     protected function checkTooManyAttempts(Request $request)

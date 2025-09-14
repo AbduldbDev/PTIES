@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('user_type')->default('user');
             $table->string('avatar')->nullable();
             $table->rememberToken();
+            $table->string('otp')->nullable();
+            $table->timestamp('otp_expires_at')->nullable();
+            $table->boolean('is_verified')->default(false);
             $table->timestamps();
         });
 
