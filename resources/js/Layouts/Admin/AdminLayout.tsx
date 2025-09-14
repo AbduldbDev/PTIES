@@ -33,7 +33,7 @@ const LayoutContent: React.FC<LayoutContentProps> = ({ children, auth }) => {
     const { isExpanded, isHovered, isMobileOpen } = useSidebar();
 
     return (
-        <div className="bg-whit min-h-screen bg-white transition-all duration-300 ease-in-out xl:flex dark:bg-[#101828]">
+        <div className="min-h-screen bg-white transition-all duration-300 ease-in-out xl:flex dark:bg-[#d80226]">
             <div>
                 <AppSidebar auth={auth} />
                 <Backdrop />
