@@ -4,7 +4,7 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\CmsContent;
+use App\Models\CMSContent;
 use Inertia\Inertia;
 
 
@@ -18,7 +18,7 @@ class CMScontroller extends Controller
 
     public function HeroSection()
     {
-        $contents = CmsContent::where('page_key', "home_page")
+        $contents = CMSContent::where('page_key', "home_page")
             ->where('section_key', 'hero')
             ->orderBy('content_key')
             ->get();
@@ -37,7 +37,7 @@ class CMScontroller extends Controller
 
     public function IntroductionSection()
     {
-        $contents = CmsContent::where('page_key', "home_page")
+        $contents = CMSContent::where('page_key', "home_page")
             ->where('section_key', 'introduction_section')
             ->orderBy('content_key')
             ->get();
@@ -56,7 +56,7 @@ class CMScontroller extends Controller
 
     public function TourismSection()
     {
-        $contents = CmsContent::where('page_key', "about_page")
+        $contents = CMSContent::where('page_key', "about_page")
             ->where('section_key', 'about')
             ->orderBy('content_key')
             ->get();
@@ -75,7 +75,7 @@ class CMScontroller extends Controller
 
     public function MissionVision()
     {
-        $contents = CmsContent::where('page_key', "about_page")
+        $contents = CMSContent::where('page_key', "about_page")
             ->where('section_key', 'mission_vision')
             ->orderBy('content_key')
             ->get();
@@ -94,7 +94,7 @@ class CMScontroller extends Controller
 
     public function PakilIntro()
     {
-        $contents = CmsContent::where('page_key', "explore_pakil")
+        $contents = CMSContent::where('page_key', "explore_pakil")
             ->where('section_key', 'introduction')
             ->orderBy('content_key')
             ->get();
@@ -113,7 +113,7 @@ class CMScontroller extends Controller
 
     public function CitizenCharter()
     {
-        $contents = CmsContent::where('page_key', "about_page")
+        $contents = CMSContent::where('page_key', "about_page")
             ->where('section_key', 'citizen_charter')
             ->orderBy('content_key')
             ->get();
@@ -132,7 +132,7 @@ class CMScontroller extends Controller
 
     public function MunicipalStats()
     {
-        $contents = CmsContent::where('page_key', "explore_pakil")
+        $contents = CMSContent::where('page_key', "explore_pakil")
             ->where('section_key', 'municipal_stats')
             ->orderBy('content_key')
             ->get();
