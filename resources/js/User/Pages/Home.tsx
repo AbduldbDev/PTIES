@@ -3,10 +3,10 @@ import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import HeroSection from '@UserUtils/components/Sections/Home/Hero';
 import Introduction from '@UserUtils/components/Sections/Home/Introduction';
 import PromotionalVideo from '@UserUtils/components/Sections/Home/Promotion';
-import { CmsContent } from '@UserUtils/Types/cms';
+import { CMSContent } from '@UserUtils/Types/cms';
 
 interface PageProps {
-    content: CmsContent;
+    content: CMSContent;
     [key: string]: unknown;
 }
 

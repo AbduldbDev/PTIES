@@ -4,11 +4,11 @@ import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import HistoryCard from '@UserUtils/components/Cards/History';
 import BrangayInfo from '@UserUtils/components/Sections/About/BrangayInfo';
 import Introductions from '@UserUtils/components/Sections/About/Introduction';
-import { CmsContent } from '@UserUtils/Types/cms';
+import { CMSContent } from '@UserUtils/Types/cms';
 
 interface PageProps {
     banner: PageBannerProps;
-    content: CmsContent;
+    content: CMSContent;
     history: HistoryProps[];
     barangays: BarangayProps[];
     barangayHighlights: BarangayProps[];

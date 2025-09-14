@@ -5,11 +5,11 @@ import CitizenCharter from '@UserUtils/components/Sections/Tourism/CitizenCharte
 import DeparmentStructure from '@UserUtils/components/Sections/Tourism/DepartmentStructure';
 import MissionVision from '@UserUtils/components/Sections/Tourism/MissionVision';
 import TourismAbout from '@UserUtils/components/Sections/Tourism/TourismAbout';
-import { CmsContent } from '@UserUtils/Types/cms';
+import { CMSContent } from '@UserUtils/Types/cms';
 import { useEffect } from 'react';
 
 interface PageProps {
-    content: CmsContent;
+    content: CMSContent;
     [key: string]: unknown;
 }
 

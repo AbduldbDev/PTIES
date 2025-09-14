@@ -5,7 +5,7 @@ namespace App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\CmsContent;
+use App\Models\CMSContent;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
@@ -25,7 +25,7 @@ class CMSUpdatecontroller extends Controller
             $fields = ['title', 'subtitle', 'slogan', 'feature_title'];
 
             foreach ($fields as $field) {
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'home_page',
                         'section_key' => 'hero',
@@ -40,7 +40,7 @@ class CMSUpdatecontroller extends Controller
             if ($request->hasFile('feature_img')) {
                 $path = $request->file('feature_img')->store('CMSBanner', 'public');
 
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'home_page',
                         'section_key' => 'hero',
@@ -77,7 +77,7 @@ class CMSUpdatecontroller extends Controller
             $fields = ['title', 'description', 'facts'];
             Log::info('Files received:', $request->allFiles());
             foreach ($fields as $field) {
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'home_page',
                         'section_key' => 'introduction_section',
@@ -90,7 +90,7 @@ class CMSUpdatecontroller extends Controller
             }
 
             if ($request->has('highlights')) {
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'home_page',
                         'section_key' => 'introduction_section',
@@ -108,7 +108,7 @@ class CMSUpdatecontroller extends Controller
                 if ($request->hasFile($imageField)) {
                     $path = $request->file($imageField)->store('CMSBanner', 'public');
 
-                    CmsContent::updateOrCreate(
+                    CMSContent::updateOrCreate(
                         [
                             'page_key'    => 'home_page',
                             'section_key' => 'introduction_section',
@@ -144,7 +144,7 @@ class CMSUpdatecontroller extends Controller
 
             $fields = ['description', 'facts'];
             foreach ($fields as $field) {
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'about_page',
                         'section_key' => 'about',
@@ -157,7 +157,7 @@ class CMSUpdatecontroller extends Controller
             }
 
             if ($request->has('responsibilities')) {
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'about_page',
                         'section_key' => 'about',
@@ -170,7 +170,7 @@ class CMSUpdatecontroller extends Controller
             }
 
             if ($request->has('goals')) {
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'about_page',
                         'section_key' => 'about',
@@ -190,7 +190,7 @@ class CMSUpdatecontroller extends Controller
                 if ($request->hasFile($imageField)) {
                     $path = $request->file($imageField)->store('CMSBanner', 'public');
 
-                    CmsContent::updateOrCreate(
+                    CMSContent::updateOrCreate(
                         [
                             'page_key'    => 'about_page',
                             'section_key' => 'about',
@@ -222,7 +222,7 @@ class CMSUpdatecontroller extends Controller
 
             $fields = ['mission', 'vision'];
             foreach ($fields as $field) {
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'about_page',
                         'section_key' => 'mission_vision',
@@ -256,7 +256,7 @@ class CMSUpdatecontroller extends Controller
 
             $fields = ['description'];
             foreach ($fields as $field) {
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'explore_pakil',
                         'section_key' => 'introduction',
@@ -274,7 +274,7 @@ class CMSUpdatecontroller extends Controller
                 if ($request->hasFile($imageField)) {
                     $path = $request->file($imageField)->store('CMSBanner', 'public');
 
-                    CmsContent::updateOrCreate(
+                    CMSContent::updateOrCreate(
                         [
                             'page_key'    => 'explore_pakil',
                             'section_key' => 'introduction',
@@ -288,7 +288,7 @@ class CMSUpdatecontroller extends Controller
             }
 
             if ($request->has('highlights')) {
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'explore_pakil',
                         'section_key' => 'introduction',
@@ -320,7 +320,7 @@ class CMSUpdatecontroller extends Controller
             // Update text fields
             $fields = ['description', 'size', 'updated'];
             foreach ($fields as $field) {
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'about_page',
                         'section_key' => 'citizen_charter',
@@ -336,7 +336,7 @@ class CMSUpdatecontroller extends Controller
             if ($request->hasFile('pdf')) {
                 $path = $request->file('pdf')->store('CMSDocs', 'public');
 
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'about_page',
                         'section_key' => 'citizen_charter',
@@ -373,7 +373,7 @@ class CMSUpdatecontroller extends Controller
 
             $fields = ['area', 'population', 'growth', 'literacy_rate', 'employment_rate', 'languages', 'updated'];
             foreach ($fields as $field) {
-                CmsContent::updateOrCreate(
+                CMSContent::updateOrCreate(
                     [
                         'page_key'    => 'explore_pakil',
                         'section_key' => 'municipal_stats',

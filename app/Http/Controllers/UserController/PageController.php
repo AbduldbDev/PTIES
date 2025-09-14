@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\CMSBanner;
 use App\Models\ContentPromotional;
-use App\Models\CmsContent;
+use App\Models\CMSContent;
 use App\Models\FAQs;
 use App\Models\PakilEstablishments;
 use App\Models\PakilGuides;
@@ -31,7 +31,7 @@ class PageController extends Controller
 
     public function Home()
     {
-        $contents = CmsContent::where('page_key', "home_page")
+        $contents = CMSContent::where('page_key', "home_page")
             ->orderBy('section_key')
             ->orderBy('content_key')
             ->get();
@@ -51,7 +51,7 @@ class PageController extends Controller
 
     public function About()
     {
-        $contents = CmsContent::where('page_key', "explore_pakil")
+        $contents = CMSContent::where('page_key', "explore_pakil")
             ->orderBy('section_key')
             ->orderBy('content_key')
             ->get();
@@ -82,7 +82,7 @@ class PageController extends Controller
 
     public function AboutTourism()
     {
-        $contents = CmsContent::where('page_key', "about_page")
+        $contents = CMSContent::where('page_key', "about_page")
             ->orderBy('section_key')
             ->orderBy('content_key')
             ->get();
