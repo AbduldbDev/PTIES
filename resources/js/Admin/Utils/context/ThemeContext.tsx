@@ -13,45 +13,25 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [theme, setTheme] = useState<Theme>('light');
-    const [isMounted, setIsMounted] = useState(false);
+    const [theme, setTheme] = useState<Theme>(() => {
+        if (typeof window !== 'undefined') {
+            return (localStorage.getItem('theme') as Theme) || 'light';
+        }
+        return 'light';
+    });
 
-    // Initialize theme on mount
     useLayoutEffect(() => {
-        if (typeof window === 'undefined') return;
-
-        // Get stored theme only, ignore system preference
-        const storedTheme = localStorage.getItem('theme') as Theme | null;
-
-        // Use stored theme if available, otherwise default to 'light'
-        const initialTheme = storedTheme || 'light';
-        setTheme(initialTheme);
-        setIsMounted(true);
-    }, []);
-
-    // Apply theme to document
-    useLayoutEffect(() => {
-        if (!isMounted) return;
-
         if (theme === 'dark') {
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
         }
         localStorage.setItem('theme', theme);
-    }, [theme, isMounted]);
+    }, [theme]);
 
     const toggleTheme = () => {
-        setTheme((prevTheme) => {
-            const newTheme = prevTheme === 'light' ? 'dark' : 'light';
-            localStorage.setItem('theme', newTheme);
-            return newTheme;
-        });
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
     };
-
-    if (!isMounted) {
-        return null;
-    }
 
     return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };
