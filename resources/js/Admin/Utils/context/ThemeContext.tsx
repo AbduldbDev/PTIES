@@ -20,30 +20,13 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     useLayoutEffect(() => {
         if (typeof window === 'undefined') return;
 
-        // Get stored theme or system preference
+        // Get stored theme only, ignore system preference
         const storedTheme = localStorage.getItem('theme') as Theme | null;
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const systemTheme: Theme = systemPrefersDark ? 'dark' : 'light';
 
-        // Use stored theme if available, otherwise use system preference
-        const initialTheme = storedTheme || systemTheme;
+        // Use stored theme if available, otherwise default to 'light'
+        const initialTheme = storedTheme || 'light';
         setTheme(initialTheme);
         setIsMounted(true);
-
-        // Listen for system theme changes
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        const handleSystemThemeChange = (e: MediaQueryListEvent) => {
-            // Only update if no theme is stored in localStorage (user hasn't made a choice)
-            if (!localStorage.getItem('theme')) {
-                setTheme(e.matches ? 'dark' : 'light');
-            }
-        };
-
-        mediaQuery.addEventListener('change', handleSystemThemeChange);
-
-        return () => {
-            mediaQuery.removeEventListener('change', handleSystemThemeChange);
-        };
     }, []);
 
     // Apply theme to document
@@ -61,7 +44,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const toggleTheme = () => {
         setTheme((prevTheme) => {
             const newTheme = prevTheme === 'light' ? 'dark' : 'light';
-            // Store user's explicit choice
             localStorage.setItem('theme', newTheme);
             return newTheme;
         });
