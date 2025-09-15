@@ -10,6 +10,7 @@ use Inertia\Inertia;
 use App\Models\CMSBanner;
 use App\Models\ContentPromotional;
 use App\Models\CMSContent;
+use App\Models\Department;
 use App\Models\FAQs;
 use App\Models\PakilEstablishments;
 use App\Models\PakilGuides;
@@ -27,7 +28,6 @@ class PageController extends Controller
         $decoded = json_decode($value, true);
         return (json_last_error() === JSON_ERROR_NONE) ? $decoded : $value;
     }
-
 
     public function Home()
     {
@@ -93,10 +93,30 @@ class PageController extends Controller
                 $this->parseContentValue($content->content_value);
         }
 
+        $departments = Department::with(['members'])
+            ->whereNull('parent_id')
+            ->get();
+
+        function loadChildrenWithMembers($department)
+        {
+            $department->load(['children.members']);
+            if ($department->children) {
+                foreach ($department->children as $child) {
+                    loadChildrenWithMembers($child);
+                }
+            }
+            return $department;
+        }
+
+        foreach ($departments as $department) {
+            loadChildrenWithMembers($department);
+        }
+
         $banner = CMSBanner::where('key', 'About Tourism')->first();
         return Inertia::render('User/Pages/Tourism', [
             'banner' => $banner,
             'content' => $pageData['sections'] ?? [],
+            'departments' => $departments,
         ]);
     }
 

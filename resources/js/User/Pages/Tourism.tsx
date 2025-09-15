@@ -19,10 +19,33 @@ type PageBannerProps = {
     desc: string;
     image: string;
 };
+interface DepartmentMember {
+    id: number;
+    name: string;
+    position: string;
+    email?: string;
+    is_leader: boolean;
+    order_no: number;
+}
+
+interface Department {
+    id: number;
+    title: string;
+    subtitle: string;
+    description: string;
+    icon: string;
+    email?: string;
+    order_no: number;
+    type: string;
+    parent_id?: number;
+    members: DepartmentMember[];
+    children?: Department[];
+}
 
 export default function TourismAboutPage() {
     const { props } = usePage<PageProps>();
     const { banner } = usePage<{ banner: PageBannerProps }>().props;
+    const { departments } = usePage<{ departments: Department[] }>().props;
     const { content } = props;
     const { url } = usePage();
 
@@ -151,9 +174,7 @@ export default function TourismAboutPage() {
                     </div>
                 </section>
             )}
-
-            <DeparmentStructure />
-
+            {departments && <DeparmentStructure departments={departments} />}
             {content.citizen_charter && (
                 <section id="citizen_charter" className="py-10">
                     <div className="max-w-8xl container mx-auto px-6">

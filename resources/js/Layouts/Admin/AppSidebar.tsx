@@ -204,6 +204,32 @@ const otherNavItems: NavItem[] = [
             },
         ],
     },
+
+    {
+        icon: <DocsIcon />,
+        name: 'Deparment Structure',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            {
+                name: 'Departments',
+                path: '',
+                requiredUserType: ['admin', 'content_manager'],
+                subItems: [
+                    { name: 'New Department ', path: '/Admin/structure/department/new', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'All Departments ', path: '/Admin/structure/department', requiredUserType: ['admin', 'content_manager'] },
+                ],
+            },
+            {
+                name: 'Departments Members',
+                path: '',
+                requiredUserType: ['admin', 'content_manager'],
+                subItems: [
+                    { name: 'New Member', path: '/Admin/structure/members/new', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'All Memebers', path: '/Admin/structure/members', requiredUserType: ['admin', 'content_manager'] },
+                ],
+            },
+        ],
+    },
 ];
 
 const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {

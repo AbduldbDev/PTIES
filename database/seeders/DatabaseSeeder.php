@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PakilHotlinesSeeder::class);
         $this->call(PakilTerminalsSeeder::class);
         $this->call(PakilGuideSeeder::class);
+        $this->call(DepartmentSeeder::class);
     }
 }

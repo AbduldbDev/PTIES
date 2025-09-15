@@ -14,6 +14,8 @@ use App\Http\Controllers\AdminController\TourGuideController;
 use App\Http\Controllers\AdminController\CMScontroller;
 use App\Http\Controllers\AdminController\CMSUpdatecontroller;
 use App\Http\Controllers\AdminController\CMSHistoryController;
+use App\Http\Controllers\AdminController\DepartmentMemberController;
+use App\Http\Controllers\AdminController\DepartmentStructureController;
 use App\Http\Controllers\AdminController\EstablishmentController;
 use App\Http\Controllers\AdminController\FAQsController;
 use App\Http\Controllers\AdminController\LocalPersonalitiesController;
@@ -170,5 +172,23 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/approve/{id}', [PostController::class, 'approve'])->name('approve');
         Route::post('/reject/{id}', [PostController::class, 'reject'])->name('reject');
         Route::delete('/delete/{id}', [PostController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('/Admin/structure/department')->name('departments.')->group(function () {
+        Route::get('/', [DepartmentStructureController::class, 'index'])->name('index');
+        Route::get('/new', [DepartmentStructureController::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [DepartmentStructureController::class, 'edit'])->name('edit');
+        Route::post('/create', [DepartmentStructureController::class, 'create'])->name('create');
+        Route::post('/update/{id}', [DepartmentStructureController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [DepartmentStructureController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('/Admin/structure/members')->name('deptstructure.')->group(function () {
+        Route::get('/', [DepartmentMemberController::class, 'index'])->name('index');
+        Route::get('/new', [DepartmentMemberController::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [DepartmentMemberController::class, 'edit'])->name('edit');
+        Route::post('/create', [DepartmentMemberController::class, 'create'])->name('create');
+        Route::post('/update/{id}', [DepartmentMemberController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [DepartmentMemberController::class, 'delete'])->name('delete');
     });
 });
