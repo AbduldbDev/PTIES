@@ -168,7 +168,7 @@ export default function HeroSectionEditForm() {
                                     required={true}
                                     readonly={false}
                                     error={form.errors.description}
-                                    errorMessage="Please enter video description"
+                                    errorMessage="Please enter description"
                                     rows={20}
                                 />
 
@@ -220,7 +220,7 @@ export default function HeroSectionEditForm() {
                                                 name="new_highlight"
                                                 value={newHighlight.title}
                                                 onChange={(e) => setNewHighlight({ ...newHighlight, title: e.target.value })}
-                                                required={false}
+                                                required={true}
                                                 error={form.errors.highlights}
                                                 errorMessage="Please enter highlight text"
                                             />
@@ -268,6 +268,7 @@ export default function HeroSectionEditForm() {
                                         label="Description"
                                         name="Description"
                                         value={newHighlight.desc}
+                                        required={true}
                                         onChange={(e) => setNewHighlight({ ...newHighlight, desc: e.target.value })}
                                         error={form.errors.highlights}
                                         errorMessage="Please enter responsibility description"

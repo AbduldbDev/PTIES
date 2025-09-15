@@ -148,7 +148,7 @@ const otherNavItems: NavItem[] = [
     },
     {
         icon: <ImageRegular />,
-        name: 'Socail Wall Post',
+        name: 'Social Wall Post',
         requiredUserType: ['admin', 'content_manager'],
         subItems: [
             { name: 'Pending Posts', path: '/Admin/social-wall/pending', requiredUserType: ['admin', 'content_manager'] },
