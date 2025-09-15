@@ -209,7 +209,7 @@
                         |
                         <a href="mailto:info@pakil.gov.ph" style="color: #fff">info@pakil.gov.ph</a>
                     </p>
-                    <p>&copy; 2023 Municipality of Pakil. All rights reserved.</p>
+                    <p>&copy; {{ now()->year }} Municipality of Pakil. All rights reserved.</p>
                 </td>
             </tr>
         </table>

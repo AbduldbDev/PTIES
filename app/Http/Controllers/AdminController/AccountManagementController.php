@@ -145,12 +145,12 @@ class AccountManagementController extends Controller
                 if ($user->avatar) {
                     Storage::disk('public')->delete($user->avatar);
                 }
-
-                // Store new image
                 $profileImagePath = $request->file('profileImage')->store('EmployeAvatars', 'public');
                 $user->avatar = $profileImagePath;
-                $user->save();
             }
+
+            $user->user_type = $request->user_type;
+            $user->save();
 
             AccountEmployee::where("user_id",  $request->id)->update([
                 'first_name'  => $request->firstname,
