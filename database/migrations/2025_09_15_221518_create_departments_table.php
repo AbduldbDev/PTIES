@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('icon');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();
-            
-            $table->foreign('parent_id')->references('id')->on('departments');
+
+            $table->foreign('parent_id')
+                ->references('id')->on('departments')
+                ->onDelete('set null');
         });
     }
 

@@ -174,7 +174,18 @@ export default function TourismAboutPage() {
                     </div>
                 </section>
             )}
-            {departments && <DeparmentStructure departments={departments} />}
+
+            {departments && (
+                <section id="department_structure" className="py-12">
+                    <PageTitle
+                        title="Organization"
+                        subtitle="Department of Tourism Structure"
+                        desc="The organizational hierarchy and leadership of Pakil's Tourism Department"
+                    />
+                    <DeparmentStructure departments={departments} />
+                </section>
+            )}
+
             {content.citizen_charter && (
                 <section id="citizen_charter" className="py-10">
                     <div className="max-w-8xl container mx-auto px-6">

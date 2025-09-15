@@ -1,4 +1,3 @@
-import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import { useEffect, useState } from 'react';
 
 interface DepartmentMember {
@@ -144,7 +143,6 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
         return allDepartments.find((dept) => dept.id === parentId) || null;
     };
 
-    // Recursive function to render department tree for PC
     const renderDepartmentTreePC = (department: Department, level = 0) => {
         const leaders = department.members.filter((member) => member.is_leader);
         const regularMembers = department.members.filter((member) => !member.is_leader);
@@ -153,24 +151,27 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
 
         return (
             <div key={department.id} className="relative flex flex-col items-center">
-                {/* Vertical connector line from parent */}
-                {level > 0 && <div className="absolute -top-4 h-4 w-0.5 bg-primary/40"></div>}
-
-                {/* Department card */}
+                {/* Department card with fixed width */}
                 <div
-                    className={`official-card relative z-10 rounded-xl border border-gray-200 bg-white p-5 text-center shadow-md ${level > 0 ? 'mt-4' : ''}`}
+                    className={`official-card relative z-10 mt-5 rounded-xl border border-gray-200 bg-white p-5 text-center shadow-md transition-all hover:shadow-lg ${level > 0 ? 'mt-4' : ''}`}
+                    style={{ width: '320px' }}
                 >
+                    {/* Large Pin Icon on top-left */}
+                    <div className="absolute -top-4 -right-4 flex h-10 w-10 items-center justify-center rounded-full bg-secondary shadow-md">
+                        <i className="fas fa-thumbtack rotate-45 text-lg text-white"></i>
+                    </div>
                     <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
                         <i className={`fas ${department.icon} text-xl text-primary`}></i>
                     </div>
-                    <h4 className="font-bold text-primary">{department.title}</h4>
+
+                    <h4 className="mb-1 text-lg font-bold text-primary">{department.title}</h4>
                     <p className="mb-2 text-sm text-gray-600">{department.subtitle}</p>
                     <p className="mb-3 line-clamp-2 text-sm text-gray-700">{department.description}</p>
 
                     {/* Display parent department if exists */}
                     {parentDepartment && (
                         <div className="mb-3 border-t border-gray-200 pt-3">
-                            <p className="text-xs text-gray-500">
+                            <p className="flex items-center justify-center text-xs text-gray-500">
                                 <i className="fas fa-level-up-alt mr-1 rotate-90"></i>
                                 Part of {parentDepartment.title}
                             </p>
@@ -180,13 +181,20 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
                     {/* Display leaders if any */}
                     {leaders.length > 0 && (
                         <div className="mb-3 border-t border-gray-200 pt-3">
-                            <p className="mb-1 text-sm font-medium text-primary">{leaders.length === 1 ? 'Head:' : 'Heads:'}</p>
+                            <p className="mb-1 flex items-center justify-center text-sm font-medium text-primary">
+                                <i className="fas fa-crown mr-1 text-xs"></i>
+                                {leaders.length === 1 ? 'Head' : 'Heads'}
+                            </p>
                             <ul className="space-y-1 text-xs text-gray-700">
                                 {leaders
                                     .sort((a, b) => a.order_no - b.order_no)
                                     .map((member) => (
-                                        <li key={member.id}>
-                                            • {member.name} - {member.position}
+                                        <li key={member.id} className="flex items-center justify-between rounded px-1 py-0.5 hover:bg-gray-50">
+                                            <span className="flex items-center">
+                                                <span className="mr-2 h-2 w-2 rounded-full bg-primary/40"></span>
+                                                {member.name}
+                                            </span>
+                                            <span className="text-xs text-gray-500">{member.position}</span>
                                         </li>
                                     ))}
                             </ul>
@@ -196,13 +204,20 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
                     {/* Display regular team members if any */}
                     {regularMembers.length > 0 && (
                         <div className="border-t border-gray-200 pt-3">
-                            <p className="mb-1 text-sm font-medium text-primary">Team Members:</p>
+                            <p className="mb-1 flex items-center justify-center text-sm font-medium text-primary">
+                                <i className="fas fa-users mr-1 text-xs"></i>
+                                Team Members
+                            </p>
                             <ul className="space-y-1 text-xs text-gray-700">
                                 {regularMembers
                                     .sort((a, b) => a.order_no - b.order_no)
                                     .map((member) => (
-                                        <li key={member.id}>
-                                            • {member.name} - {member.position}
+                                        <li key={member.id} className="flex items-center justify-between rounded px-1 py-0.5 hover:bg-gray-50">
+                                            <span className="flex items-center">
+                                                <span className="mr-2 h-2 w-2 rounded-full bg-gray-300"></span>
+                                                {member.name}
+                                            </span>
+                                            <span className="text-xs text-gray-500">{member.position}</span>
                                         </li>
                                     ))}
                             </ul>
@@ -212,7 +227,7 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
                     {/* Show indicator if department has children */}
                     {hasChildren && (
                         <div className="mt-3 border-t border-gray-200 pt-3">
-                            <p className="text-xs text-gray-500">
+                            <p className="flex items-center justify-center text-xs font-medium text-primary">
                                 <i className="fas fa-sitemap mr-1"></i>
                                 {department.children!.length} sub-department{department.children!.length !== 1 ? 's' : ''}
                             </p>
@@ -220,15 +235,26 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
                     )}
                 </div>
 
-                {/* Children container */}
+                {/* Children container - Only for immediate children */}
                 {hasChildren && (
-                    <div className="relative mt-4 flex justify-center">
-                        {/* Vertical connector line to children */}
-                        <div className="absolute top-0 h-4 w-0.5 bg-primary/40"></div>
+                    <div className="relative mt-6 flex justify-center">
+                        {/* Main vertical connector from parent to horizontal line */}
+                        <div className="absolute -top-4 left-1/2 h-6 -translate-x-1/2 transform border-l border-dashed border-primary"></div>
 
-                        <div className="flex flex-wrap justify-center gap-6">
+                        {/* Horizontal connector line spanning all children (only if > 1 child) */}
+                        {department.children!.length > 1 && (
+                            <div className="absolute top-2 right-0 left-0 flex justify-center">
+                                <div className="h-0.5 w-full max-w-[calc(100%-3rem)] border-t border-dashed border-primary"></div>
+                            </div>
+                        )}
+
+                        {/* Children with individual vertical connectors */}
+                        <div className="relative mt-8 flex w-full flex-wrap justify-center gap-6">
                             {department.children!.map((child) => (
-                                <div key={child.id} className="relative">
+                                <div key={child.id} className="relative flex justify-center">
+                                    {/* Individual vertical connector */}
+                                    <div className="absolute -top-6 left-1/2 h-6 -translate-x-1/2 transform border-l border-dashed border-primary"></div>
+
                                     {renderDepartmentTreePC(child, level + 1)}
                                 </div>
                             ))}
@@ -240,38 +266,30 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
     };
 
     return (
-        <section id="department_structure" className="py-12">
-            <div>
-                <PageTitle
-                    title="Organization"
-                    subtitle="Department of Tourism Structure"
-                    desc="The organizational hierarchy and leadership of Pakil's Tourism Department"
-                />
+        <div>
+            {/* Mobile Accordion View with Hierarchy */}
+            <div className="space-y-4 lg:hidden">{departments.map((department) => renderDepartmentTreeMobile(department))}</div>
 
-                {/* Mobile Accordion View with Hierarchy */}
-                <div className="space-y-4 lg:hidden">{departments.map((department) => renderDepartmentTreeMobile(department))}</div>
-
-                {/* Desktop Tree View */}
-                <div className="hidden lg:block">
-                    <div className="flex justify-center">
-                        <div className="tree-container">
-                            {departments.map((department) => (
-                                <div key={department.id} className="relative">
-                                    {renderDepartmentTreePC(department, 0)}
-                                </div>
-                            ))}
-                        </div>
+            {/* Desktop Tree View */}
+            <div className="hidden lg:block">
+                <div className="flex justify-center">
+                    <div className="tree-container">
+                        {departments.map((department) => (
+                            <div key={department.id} className="relative">
+                                {renderDepartmentTreePC(department, 0)}
+                            </div>
+                        ))}
                     </div>
                 </div>
+            </div>
 
-                <div className="mt-12 text-center">
-                    <div className="inline-block max-w-2xl rounded-xl bg-primary/5 p-6">
-                        <h4 className="mb-2 text-lg font-bold text-primary">Need to contact a specific department?</h4>
-                        <p className="mb-4 text-gray-700">Reach out to our tourism office for inquiries and assistance</p>
-                        <a href="#" className="inline-flex items-center rounded-full bg-primary px-6 py-2 text-white transition hover:bg-primary/90">
-                            <i className="fas fa-envelope mr-2"></i> Contact Tourism Office
-                        </a>
-                    </div>
+            <div className="mt-12 text-center">
+                <div className="inline-block max-w-2xl rounded-xl bg-primary/5 p-6">
+                    <h4 className="mb-2 text-lg font-bold text-primary">Need to contact a specific department?</h4>
+                    <p className="mb-4 text-gray-700">Reach out to our tourism office for inquiries and assistance</p>
+                    <a href="#" className="inline-flex items-center rounded-full bg-primary px-6 py-2 text-white transition hover:bg-primary/90">
+                        <i className="fas fa-envelope mr-2"></i> Contact Tourism Office
+                    </a>
                 </div>
             </div>
 
@@ -288,7 +306,7 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
                     }
                 }
             `}</style>
-        </section>
+        </div>
     );
 };
 

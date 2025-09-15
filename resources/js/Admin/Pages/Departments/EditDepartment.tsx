@@ -61,7 +61,7 @@ export default function GuideCreateForm() {
             return;
         }
 
-        form.post('/Admin/structure/department/create', {
+        form.post(`/Admin/structure/department/update/${item.id}`, {
             forceFormData: true,
             onSuccess: () => {
                 form.reset();
