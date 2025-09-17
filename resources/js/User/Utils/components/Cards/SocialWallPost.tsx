@@ -2,10 +2,8 @@ import { usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
 interface User {
-    id: number;
-    name: string;
-    email: string;
-    image?: string;
+    avatar?: string;
+    first_name?: string;
 }
 
 interface SocialWallPost {
@@ -16,9 +14,9 @@ interface SocialWallPost {
     likes_count: number;
     is_approved: boolean;
     user: User;
+    profile: User;
     has_liked?: boolean;
     created_at: string;
-    updated_at: string;
 }
 
 interface Props {
@@ -88,12 +86,12 @@ export default function SocialWallPost({ post }: Props) {
                     <div className="flex items-center">
                         <div className="mr-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-blue-100 p-0.5">
                             <img
-                                src={post.user?.image ? `/storage/${post.user.image}` : '/images/user/User.png'}
+                                src={post.user?.avatar ? `${post.user.avatar}` : '/images/user/User.png'}
                                 className="h-full w-full rounded-full"
                                 alt="User profile"
                             />
                         </div>
-                        <span className="text-xs font-medium text-gray-700">{post.user?.name || post.user?.email || 'Anonymous'}</span>
+                        <span className="text-xs font-medium text-gray-700">{post.profile.first_name ?? 'Anonymous'}</span>
                     </div>
                     <button
                         onClick={handleLikeClick}

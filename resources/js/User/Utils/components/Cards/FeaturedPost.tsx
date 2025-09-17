@@ -2,10 +2,8 @@ import { usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
 interface User {
-    id: number;
-    name: string;
-    email: string;
-    image?: string;
+    avatar?: string;
+    first_name?: string;
 }
 
 interface SocialWallPost {
@@ -16,9 +14,9 @@ interface SocialWallPost {
     likes_count: number;
     is_approved: boolean;
     user: User;
+    profile: User;
     has_liked?: boolean;
     created_at: string;
-    updated_at: string;
 }
 
 interface Props {
@@ -92,14 +90,14 @@ export default function FeaturedPost({ post }: Props) {
                     <div className="flex items-center gap-2">
                         <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-blue-100 p-0.5">
                             <img
-                                src={post.user?.image ? `/storage/${post.user.image}` : '/images/user/User.png'}
+                                src={post.user?.avatar ? `${post.user.avatar}` : '/images/user/User.png'}
                                 className="h-full w-full rounded-full object-cover"
                                 alt="User profile"
                             />
                         </div>
 
                         <div>
-                            <p className="text-dark text-sm md:font-medium">{post.user.email}</p>
+                            <p className="text-dark text-sm md:font-medium">{post.profile.first_name ?? 'Anonymous'}</p>
                             <p className="text-xs text-gray-500">
                                 Posted on{' '}
                                 {new Date(post.created_at).toLocaleDateString('en-US', {

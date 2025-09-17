@@ -2,16 +2,6 @@ import { usePage } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 
 const Navbar = () => {
-    const { auth } = usePage().props as {
-        auth?: {
-            user: {
-                email: string;
-                user_type: string;
-                avatar?: string;
-            };
-        };
-    };
-
     const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
     const [currentDate, setCurrentDate] = useState('');
     const [currentTime, setCurrentTime] = useState('');
@@ -19,6 +9,17 @@ const Navbar = () => {
     const [mobileSubMenuOpen, setMobileSubMenuOpen] = useState<string | null>(null);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const { auth } = usePage().props as {
+        auth?: {
+            user: {
+                email: string;
+                user_type: string;
+                avatar?: string;
+                pakil_points: number;
+                profile: any;
+            };
+        };
+    };
 
     useEffect(() => {
         const updateDateTime = () => {
@@ -56,7 +57,7 @@ const Navbar = () => {
     const handleDropdownLeave = () => {
         dropdownTimeoutRef.current = setTimeout(() => {
             setActiveDropdown(null);
-        }, 300); // Increased delay to prevent accidental closing
+        }, 300);
     };
 
     const handleDropdownClick = (menu: string) => {
@@ -114,7 +115,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="fixed top-0 right-0 left-0 z-50">
+        <nav className="fixed top-0 right-0 left-0 z-40">
             {/* Top bar with date/time */}
             <div className="flex items-center justify-between bg-primary px-4 py-2 text-sm text-white sm:text-[11px]">
                 <div className="flex items-center space-x-2 text-[11px] sm:text-sm">
@@ -339,7 +340,8 @@ const Navbar = () => {
                                                                 "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23eab308'%3E%3Cpath d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-1.5a8.5 8.5 0 1 1 0-17 8.5 8.5 0 0 1 0 17zm-3.5-7v1h7v-1h-7z'/%3E%3C/svg%3E";
                                                         }}
                                                     />
-                                                    0 points
+                                                    {(auth?.user?.pakil_points ?? 0) === 0 ? 0 : (auth?.user?.pakil_points ?? 0).toLocaleString()}{' '}
+                                                    points
                                                 </div>
                                             </div>
 
@@ -349,7 +351,9 @@ const Navbar = () => {
                                                 onMouseLeave={handleDropdownLeave}
                                             >
                                                 <div className="border-b border-primary/10 px-4 py-3">
-                                                    <p className="text-md font-medium text-gray-900">Hello, {auth.user.email.split('@')[0]} </p>
+                                                    <p className="text-md font-medium text-gray-900">
+                                                        Hello, {auth?.user?.profile?.first_name?.split(' ')[0]}
+                                                    </p>
                                                     <p className="mt-2 flex items-center text-sm text-gray-500">
                                                         <img
                                                             src="/User/Layout/Pakilpoints.png"
@@ -360,7 +364,8 @@ const Navbar = () => {
                                                                     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23eab308'%3E%3Cpath d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-1.5a8.5 8.5 0 1 1 0-17 8.5 8.5 0 0 1 0 17zm-3.5-7v1h7v-1h-7z'/%3E%3C/svg%3E";
                                                             }}
                                                         />
-                                                        0 points
+                                                        {(auth?.user?.pakil_points ?? 0) === 0 ? 0 : (auth?.user?.pakil_points ?? 0).toLocaleString()}{' '}
+                                                        points
                                                     </p>
                                                 </div>
 
@@ -415,7 +420,7 @@ const Navbar = () => {
                 {/* Mobile menu */}
                 <div
                     id="mobile-menu"
-                    className={`lg:hidden ${mobileMenuOpen ? 'block' : 'hidden'} border-t bg-white transition-all duration-300 ease-in-out`}
+                    className={`lg:hidden ${mobileMenuOpen ? 'block' : 'hidden'} border-t border-primary/20 bg-white transition-all duration-300 ease-in-out`}
                 >
                     <div className="container max-h-[80vh] space-y-1 overflow-y-auto px-4 py-2">
                         <a href="/" className="block rounded-md px-4 py-3 text-primary hover:bg-primary/8">
@@ -571,11 +576,11 @@ const Navbar = () => {
                         </a>
 
                         {/* Mobile user section */}
-                        <div className="mt-2 space-y-2 border-t pt-2">
+                        <div className="mt-2 space-y-2 border-t border-primary/20 pt-2">
                             {auth?.user && auth.user.user_type === 'user' ? (
                                 <>
                                     <div className="flex items-center justify-between rounded-md px-4 py-2">
-                                        <span className="max-1/3 font-medium">Hello, {auth.user.email.split('@')[0]} </span>
+                                        <span className="max-1/3 font-medium">Hello, {auth?.user?.profile?.first_name?.split(' ')[0]} </span>
                                         <div className="flex items-center rounded-full bg-yellow-50 px-3 py-1 text-sm font-medium text-yellow-800">
                                             <img
                                                 src="/User/Layout/Pakilpoints.png"
@@ -586,7 +591,7 @@ const Navbar = () => {
                                                         "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23eab308'%3E%3Cpath d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-1.5a8.5 8.5 0 1 1 0-17 8.5 8.5 0 0 1 0 17zm-3.5-7v1h7v-1h-7z'/%3E%3C/svg%3E";
                                                 }}
                                             />
-                                            0 points
+                                            {(auth?.user?.pakil_points ?? 0) === 0 ? 0 : (auth?.user?.pakil_points ?? 0).toLocaleString()} points
                                         </div>
                                     </div>
                                     <a href="/profile" className="block rounded-md px-4 py-2 text-primary hover:bg-primary/8">

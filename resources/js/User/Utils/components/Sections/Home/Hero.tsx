@@ -15,7 +15,7 @@ interface Props {
 export default function HeroSection({ content }: Props) {
     return (
         <>
-            <section className="hero-clip-path relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-white pt-20 md:min-h-screen md:pt-0">
+            <section className="hero-clip-path relative flex min-h-[100vh] items-center justify-center overflow-hidden bg-white pt-20 md:min-h-screen md:pt-0">
                 <div className="absolute inset-0">
                     <div
                         className="absolute inset-0 bg-cover bg-center"
@@ -110,7 +110,7 @@ export default function HeroSection({ content }: Props) {
                     </div>
                 </div>
 
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 transform animate-bounce sm:bottom-6">
+                <div className="absolute bottom-5 left-1/2 -translate-x-1/2 transform animate-bounce sm:bottom-10">
                     <a href="#explore" className="flex h-10 w-6 flex-col items-center justify-end sm:h-12 sm:w-7 md:h-14 md:w-8">
                         <span className="mb-0.5 text-[10px] text-white sm:text-xs md:mb-1 md:text-sm">Scroll</span>
                         <div className="relative h-4 w-0.5 rounded-full bg-white/50 sm:h-5 sm:w-0.5 md:h-6 md:w-1">

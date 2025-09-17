@@ -268,7 +268,7 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
     return (
         <div>
             {/* Mobile Accordion View with Hierarchy */}
-            <div className="space-y-4 lg:hidden">{departments.map((department) => renderDepartmentTreeMobile(department))}</div>
+            <div className="space-y-4 px-2 lg:hidden">{departments.map((department) => renderDepartmentTreeMobile(department))}</div>
 
             {/* Desktop Tree View */}
             <div className="hidden lg:block">

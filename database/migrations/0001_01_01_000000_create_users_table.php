@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('otp')->nullable();
             $table->timestamp('otp_expires_at')->nullable();
             $table->boolean('is_verified')->default(false);
+            $table->integer('pakil_points')->default(0);
             $table->timestamps();
         });
 

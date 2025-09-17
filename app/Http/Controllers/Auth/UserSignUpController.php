@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AccountUsers;
 use App\Services\OtpService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -45,10 +46,11 @@ class UserSignUpController extends Controller
                 'required',
                 'confirmed',
                 Rules\Password::min(8)
+                    ->uncompromised()
                     ->mixedCase()
                     ->letters()
-                    ->numbers()
-                    ->uncompromised(),
+                    ->numbers(),
+
             ],
         ], [
             'email.required'    => 'We need your email to create your account.',
@@ -57,6 +59,7 @@ class UserSignUpController extends Controller
             'password.required' => 'You must choose a password.',
             'password.confirmed' => 'Password confirmation does not match.',
             'password.*'        => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
+            'password.uncompromised' => 'This password has been exposed in a data breach. Please choose another.',
         ]);
 
         if ($validator->fails()) {
@@ -73,6 +76,13 @@ class UserSignUpController extends Controller
                 'password' => Hash::make($request->password),
                 'is_verified' => false,
             ]);
+
+            AccountUsers::create([
+                'user_id' => $user->id,
+                'first_name' => $request->firstname,
+                'last_name' =>  $request->lastname,
+            ]);
+
 
             $this->otpService->generateAndSendOtp($user);
 

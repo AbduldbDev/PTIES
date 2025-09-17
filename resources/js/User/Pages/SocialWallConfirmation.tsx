@@ -72,7 +72,7 @@ const SocialWallConfirmation = ({
                                 <i className="fas fa-home mr-2"></i> Back to Home
                             </Link>
                             <Link
-                                href="/socialwall"
+                                href="/events/socialwall"
                                 className="flex flex-1 items-center justify-center rounded-full border border-primary bg-white px-4 py-3 text-center font-medium text-primary transition duration-300 hover:bg-primary/10"
                             >
                                 <i className="fas fa-images mr-2"></i> View Social Wall

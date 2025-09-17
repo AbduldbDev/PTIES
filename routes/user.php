@@ -18,7 +18,8 @@ Route::middleware('user.access:auth')->group(function () {
         Route::post('/like', [SocialWallController::class, 'toggleLike'])->name('toggleLike');
     });
 
-    Route::get('profile', [ProfileController::class, 'index'])->name('user.profile');
+    Route::get('profile', [ProfileController::class, 'index'])->name('user.profile.index');
+    Route::post('profile/update/{id}', [ProfileController::class, 'update'])->name('user.profile.update');
 });
 
 Route::prefix('/contact')->name('user.contact.')->group(function () {

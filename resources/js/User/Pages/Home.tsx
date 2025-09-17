@@ -16,6 +16,11 @@ type PromotionalVideoProps = {
     video: string;
     highlights: string[];
 };
+interface User {
+    avatar?: string;
+    first_name?: string;
+}
+
 interface SocialWallPost {
     id: number;
     user_id: number;
@@ -24,18 +29,10 @@ interface SocialWallPost {
     likes_count: number;
     is_approved: boolean;
     user: User;
+    profile: User;
     has_liked?: boolean;
     created_at: string;
-    updated_at: string;
 }
-
-interface User {
-    id: number;
-    name: string;
-    email: string;
-    image?: string;
-}
-
 interface PageProps {
     content: CMSContent;
     topPost: SocialWallPost;
@@ -118,7 +115,7 @@ export default function Home() {
                 />
             )}
 
-            <section className="bg-white py-20">
+            {/* <section className="bg-white py-20">
                 <div className="container mx-auto px-6">
                     <div className="mb-12 text-center">
                         <div className="mb-4 inline-flex items-center">
@@ -190,7 +187,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {content.introduction_section && (
                 <Introduction

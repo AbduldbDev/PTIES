@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\CMSBanner;
 use App\Models\SocialWall;
-
+use Illuminate\Support\Facades\Log;
 
 class EventsController extends Controller
 {
@@ -31,7 +31,10 @@ class EventsController extends Controller
         $banner = CMSBanner::where('key', 'Social Wall')->first();
 
 
-        $items = SocialWall::with('user')->where('is_approved', 1)
+        $items = SocialWall::with([
+            'user:id,avatar',
+            'profile:user_id,first_name'
+        ])->where('is_approved', 1)
             ->withCount('likes')
             ->with(['likes' => function ($q) {
                 $q->where('user_id', Auth::id());
@@ -43,7 +46,10 @@ class EventsController extends Controller
                 return $item;
             });
 
-        $TopPost = SocialWall::with('user')->where('is_approved', 1)
+        $TopPost = SocialWall::with([
+            'user:id,avatar',
+            'profile:user_id,first_name'
+        ])->where('is_approved', 1)
             ->withCount('likes')
             ->with(['likes' => function ($q) {
                 $q->where('user_id', Auth::id());
@@ -51,10 +57,16 @@ class EventsController extends Controller
             ->orderByDesc('likes_count')
             ->first();
 
+
+        Log::info('Top post:', (array) $TopPost->toArray());
+
+
+
         if ($TopPost) {
             $TopPost->has_liked = $TopPost->likes->isNotEmpty();
             unset($TopPost->likes);
         }
+
         return Inertia::render('User/Pages/socialwall', [
             'banner' => $banner,
             'items' => $items,

@@ -22,6 +22,12 @@ class SocialWall extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function profile()
+    {
+        return $this->hasOne(AccountUsers::class, 'user_id', 'user_id');
+    }
+
+
     public function likes()
     {
         return $this->hasMany(SociallWallLikes::class, 'post_id');

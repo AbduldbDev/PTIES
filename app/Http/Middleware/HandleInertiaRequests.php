@@ -44,11 +44,8 @@ class HandleInertiaRequests extends Middleware
                     'image' => $request->user()->avatar,
                     'user_type' => $request->user()->user_type,
                     'email' => $request->user()->email,
-                    'profile' => $request->user()->profile ? [
-                        'first_name' => $request->user()->profile->first_name,
-                        'middle_name' => $request->user()->profile->middle_name,
-                        'last_name' => $request->user()->profile->last_name,
-                    ] : null
+                    'pakil_points' => $request->user()->pakil_points,
+                    'profile' => $this->getUserProfileData($request->user())
                 ] : null,
             ],
 
@@ -70,6 +67,37 @@ class HandleInertiaRequests extends Middleware
                 ? $request->session()->get('errors')->getBag('default')->getMessages()
                 : (object) [],
         ]);
+    }
+    private function getUserProfileData($user)
+    {
+        if (!$user) {
+            return null;
+        }
+
+        switch ($user->user_type) {
+            case 'admin':
+            case 'employee':
+                $profile = $user->profile;
+                break;
+            case 'user':
+                $profile = $user->userProfile;
+                break;
+            case 'seller':
+                $profile = $user->sellerProfile;
+                break;
+            default:
+                $profile = null;
+        }
+
+        if (!$profile) {
+            return null;
+        }
+
+        return [
+            'first_name' => $profile->first_name ?? null,
+            'middle_name' => $profile->middle_name ?? null,
+            'last_name' => $profile->last_name ?? null,
+        ];
     }
 
     protected function filterRoutes(Request $request)
