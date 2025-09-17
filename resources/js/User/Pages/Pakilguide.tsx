@@ -270,7 +270,7 @@ export default function GamificationGuid() {
                                     <div className="h-1 w-8 rounded-full bg-primary"></div>
                                 </div>
                                 <a
-                                    href="#"
+                                    href="/explore/attractions"
                                     className="inline-flex items-center rounded-full bg-gradient-to-r from-primary to-primary/80 px-6 py-3 font-medium text-white shadow-lg transition duration-300 hover:shadow-xl"
                                 >
                                     <i className="fas fa-map-marker-alt mr-2"></i> Start Exploring Now

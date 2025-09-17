@@ -75,7 +75,6 @@ class CMSUpdatecontroller extends Controller
 
         try {
             $fields = ['title', 'description', 'facts'];
-            Log::info('Files received:', $request->allFiles());
             foreach ($fields as $field) {
                 CMSContent::updateOrCreate(
                     [

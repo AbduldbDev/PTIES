@@ -230,6 +230,16 @@ const otherNavItems: NavItem[] = [
             },
         ],
     },
+
+    {
+        icon: <DocsIcon />,
+        name: 'Key Officials',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'New Official', path: '/Admin/officials/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Officials', path: '/Admin/officials', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
 ];
 
 const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {

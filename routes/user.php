@@ -1,44 +1,57 @@
 <?php
 
-use App\Http\Controllers\Auth\SocialiteController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController\PageController;
-use App\Http\Controllers\UserController\ContactusController;
-use App\Http\Controllers\UserController\ProfileController;
-use App\Http\Controllers\UserController\SocialWallController;
+use App\Http\Controllers\UserController\{
+    PageController,
+    ContactusController,
+    ProfileController,
+    SocialWallController,
+    AboutUsController,
+    ExploreController,
+    EventsController
+};
 
 Route::middleware('user.access:auth')->group(function () {
-
     Route::prefix('/socialwall')->name('user.socialwall.')->group(function () {
         Route::get('/new', [SocialWallController::class, 'new'])->name('create');
         Route::post('/upload', [SocialWallController::class, 'store'])->name('store');
         Route::post('/like', [SocialWallController::class, 'toggleLike'])->name('toggleLike');
     });
 
-    Route::get('/profile', [ProfileController::class, 'index'])->name('user.profile');
+    Route::get('profile', [ProfileController::class, 'index'])->name('user.profile');
 });
 
-
-Route::prefix('/contact-us')->name('contact.')->group(function () {
+Route::prefix('/contact')->name('user.contact.')->group(function () {
+    Route::get('/', [ContactusController::class, 'ContactUs'])->name('index');
     Route::get('/confirmation', [ContactusController::class, 'confirmation'])->name('confirmation');
     Route::post('/send', [ContactusController::class, 'send'])->name('send');
 });
 
+Route::prefix('/about')->name('user.')->group(function () {
+    Route::get('/tourism', [AboutUsController::class, 'AboutTourism'])->name('tourism');
+    Route::get('/officials', [AboutUsController::class, 'KeyOfficials'])->name('officials');
+    Route::get('/biography', [AboutUsController::class, 'OfficialBio'])->name('biography');
+});
+
+Route::prefix('/explore')->name('user.')->group(function () {
+    Route::get('/about', [ExploreController::class, 'About'])->name('about');
+    Route::get('/local-products', [ExploreController::class, 'LocalProducts'])->name('localproducts');
+    Route::get('/local-personalities', [ExploreController::class, 'LocalPersonalities'])->name('localpersonalities');
+    Route::get('/attractions', [ExploreController::class, 'Attractions'])->name('attractions');
+    Route::get('/attraction-details', [ExploreController::class, 'AttractionDetails'])->name('attractiondetails');
+    Route::get('/guide', [ExploreController::class, 'Guide'])->name('guide');
+    Route::get('/terminals', [ExploreController::class, 'Terminals'])->name('terminals');
+
+    Route::get('/establishments', [ExploreController::class, 'Establishments'])->name('establishments');
+});
+
+Route::prefix('/events')->name('user.')->group(function () {
+    Route::get('/', [EventsController::class, 'Events'])->name('events');
+    Route::get('/single', [EventsController::class, 'EventsSingle'])->name('eventssingle');
+    Route::get('/socialwall', [EventsController::class, 'SocialWall'])->name('socialwall');
+});
+
+Route::get('/pakil-guide', [ExploreController::class, 'PakilGuide'])->name('pakilguide');
+Route::get('/reward-shop', [PageController::class, 'RewardShop'])->name('user.rewardshop');
+
 Route::get('/', [PageController::class, 'Home'])->name('user.home');
-Route::get('/about', [PageController::class, 'About'])->name('user.about');
-Route::get('/tourism', [PageController::class, 'AboutTourism'])->name('user.tourism');
-Route::get('/officials', [PageController::class, 'KeyOfficials'])->name('user.officials');
-Route::get('/biography', [PageController::class, 'OfficialBio'])->name('user.biography');
-Route::get('/guide', [PageController::class, 'Guide'])->name('user.guide');
-Route::get('/terminals', [PageController::class, 'Terminals'])->name('user.terminals');
-Route::get('/localproducts', [PageController::class, 'LocalProducts'])->name('user.localproducts');
-Route::get('/localpersonalities', [PageController::class, 'LocalPersonalities'])->name('user.LocalPersonalities');
-Route::get('/attractions', [PageController::class, 'Attractions'])->name('user.attractions');
-Route::get('/attractiondetails', [PageController::class, 'AttractionDetails'])->name('user.attractiondetails');
-Route::get('/contact', [PageController::class, 'ContactUs'])->name('user.contact');
-Route::get('/events', [PageController::class, 'Events'])->name('user.events');
-Route::get('/eventsingle', [PageController::class, 'EventsSingle'])->name('user.EventsSingle');
-Route::get('/socialwall', [PageController::class, 'SocialWall'])->name('user.socialwall');
-Route::get('/pakilguide', [PageController::class, 'PakilGuide'])->name('user.pakilguide');
-Route::get('/rewardshop', [PageController::class, 'RewardShop'])->name('user.rewardshop');
-Route::get('/establishments', [PageController::class, 'Establishments'])->name('user.establishments');

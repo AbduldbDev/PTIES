@@ -287,7 +287,10 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
                 <div className="inline-block max-w-2xl rounded-xl bg-primary/5 p-6">
                     <h4 className="mb-2 text-lg font-bold text-primary">Need to contact a specific department?</h4>
                     <p className="mb-4 text-gray-700">Reach out to our tourism office for inquiries and assistance</p>
-                    <a href="#" className="inline-flex items-center rounded-full bg-primary px-6 py-2 text-white transition hover:bg-primary/90">
+                    <a
+                        href="/contact"
+                        className="inline-flex items-center rounded-full bg-primary px-6 py-2 text-white transition hover:bg-primary/90"
+                    >
                         <i className="fas fa-envelope mr-2"></i> Contact Tourism Office
                     </a>
                 </div>

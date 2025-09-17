@@ -175,7 +175,7 @@ export default function TourismAboutPage() {
                 </section>
             )}
 
-            {departments && (
+            {departments.length > 0 && (
                 <section id="department_structure" className="py-12">
                     <PageTitle
                         title="Organization"

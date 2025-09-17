@@ -6,9 +6,16 @@ interface PageTitleProps {
 
 const PageTitle: React.FC<PageTitleProps> = ({ title = '', subtitle, desc = '' }) => {
     const words = subtitle.split(' ');
-    const middleIndex = Math.ceil(words.length / 2);
-    const firstHalf = words.slice(0, middleIndex).join(' ');
-    const secondHalf = words.slice(middleIndex).join(' ');
+    let splitIndex: number;
+
+    if (words.length % 2 === 0) {
+        splitIndex = words.length / 2;
+    } else {
+        splitIndex = Math.ceil(words.length / 3);
+    }
+
+    const firstHalf = words.slice(0, splitIndex).join(' ');
+    const secondHalf = words.slice(splitIndex).join(' ');
 
     return (
         <>

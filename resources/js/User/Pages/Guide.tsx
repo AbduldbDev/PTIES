@@ -188,7 +188,7 @@ export default function Guide() {
                             </div>
                             <div className="mt-10 text-center">
                                 <a
-                                    href="/establishments"
+                                    href="/explore/establishments"
                                     className="inline-flex items-center rounded-full border border-primary px-6 py-3 font-medium text-primary transition duration-300 hover:bg-primary hover:text-white"
                                 >
                                     <i className="fas fa-newspaper mr-2"></i> View More Establishments
@@ -216,7 +216,7 @@ export default function Guide() {
                             </div>
                             <div className="mt-10 text-center">
                                 <a
-                                    href="/establishments"
+                                    href="/explore/establishments"
                                     className="inline-flex items-center rounded-full border border-primary px-6 py-3 font-medium text-primary transition duration-300 hover:bg-primary hover:text-white"
                                 >
                                     <i className="fas fa-newspaper mr-2"></i> View More Establishments

@@ -27,9 +27,6 @@ export default function ContactForm() {
             case 'name':
                 if (!value) return 'Name is required';
                 return '';
-            case 'email':
-                if (!value) return 'Email is required';
-                return '';
             case 'subject':
                 if (!value) return 'Subject is required';
                 return '';

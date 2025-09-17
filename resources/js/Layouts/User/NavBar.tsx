@@ -72,19 +72,19 @@ const Navbar = () => {
 
     const dropdownItems = {
         about: [
-            { label: 'About Us', href: '/tourism#' },
-            { label: 'Mission & Vision', href: '/tourism#mission&vision' },
-            { label: 'Department Structure', href: '/tourism#department_structure' },
-            { label: 'Citizen Charter', href: '/tourism#citizen_charter' },
-            { label: 'Key Officials', href: '/officials' },
+            { label: 'About Us', href: '/about/tourism#' },
+            { label: 'Mission & Vision', href: '/about/tourism#mission&vision' },
+            { label: 'Department Structure', href: '/about/tourism#department_structure' },
+            { label: 'Citizen Charter', href: '/about/tourism#citizen_charter' },
+            { label: 'Key Officials', href: '/about/officials' },
         ],
         explore: [
-            { label: 'About Pakil', href: '/about' },
-            { label: 'Attractions', href: '/attractions' },
-            { label: 'Personalities', href: '/localpersonalities' },
-            { label: 'Local Products', href: '/localproducts' },
-            { label: 'Terminals', href: '/terminals' },
-            { label: 'Guide', href: '/guide' },
+            { label: 'About Pakil', href: '/explore/about' },
+            { label: 'Attractions', href: '/explore/attractions' },
+            { label: 'Personalities', href: '/explore/local-personalities' },
+            { label: 'Local Products', href: '/explore/local-products' },
+            { label: 'Terminals', href: '/explore/terminals' },
+            { label: 'Guide', href: '/explore/guide' },
         ],
         Contact: [
             { label: 'Contact Us', href: '/contact#' },
@@ -93,12 +93,11 @@ const Navbar = () => {
         ],
         events: [
             { label: 'Events', href: '/events' },
-            // { label: 'News', href: '#' },
-            { label: 'Social Wall', href: '/socialwall' },
+            { label: 'Social Wall', href: '/events/socialwall' },
         ],
         rewards: [
-            { label: 'Rewards', href: '/rewardshop' },
-            { label: 'Guide', href: '/pakilguide' },
+            { label: 'Rewards', href: '/reward-shop' },
+            { label: 'Guide', href: '/pakil-guide' },
         ],
     };
 

@@ -9,18 +9,6 @@ import FlashMessage from '@AdminUtils/context/FlashMessage';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { FormEvent, useState } from 'react';
 
-type Personality = {
-    category: string;
-    name: string;
-    description: string;
-    highlights_title: string;
-    highlights_content: string;
-    born?: string;
-    died?: string;
-    image: string;
-    legacy: string;
-};
-
 type FormData = {
     category: string;
     category_icon: string;
@@ -46,7 +34,6 @@ type PageProps = {
         success?: string;
         error?: string;
     };
-    personality?: Personality;
     errors?: Record<string, string>;
     csrf_token: string;
 };

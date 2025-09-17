@@ -20,6 +20,7 @@ use App\Http\Controllers\AdminController\EstablishmentController;
 use App\Http\Controllers\AdminController\FAQsController;
 use App\Http\Controllers\AdminController\LocalPersonalitiesController;
 use App\Http\Controllers\AdminController\LocalProductsController;
+use App\Http\Controllers\AdminController\OfficialsController;
 use App\Http\Controllers\AdminController\PostController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
@@ -190,5 +191,14 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/create', [DepartmentMemberController::class, 'create'])->name('create');
         Route::post('/update/{id}', [DepartmentMemberController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [DepartmentMemberController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('/Admin/officials')->name('officials.')->group(function () {
+        Route::get('/', [OfficialsController::class, 'index'])->name('index');
+        Route::get('/new', [OfficialsController::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [OfficialsController::class, 'edit'])->name('edit');
+        Route::post('/create', [OfficialsController::class, 'create'])->name('create');
+        Route::post('/update/{id}', [OfficialsController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [OfficialsController::class, 'delete'])->name('delete');
     });
 });
