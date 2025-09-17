@@ -30,7 +30,7 @@ Route::prefix('/contact')->name('user.contact.')->group(function () {
 Route::prefix('/about')->name('user.')->group(function () {
     Route::get('/tourism', [AboutUsController::class, 'AboutTourism'])->name('tourism');
     Route::get('/officials', [AboutUsController::class, 'KeyOfficials'])->name('officials');
-    Route::get('/biography', [AboutUsController::class, 'OfficialBio'])->name('biography');
+    Route::get('/biography/{id}', [AboutUsController::class, 'OfficialBio'])->name('biography');
 });
 
 Route::prefix('/explore')->name('user.')->group(function () {
@@ -41,7 +41,6 @@ Route::prefix('/explore')->name('user.')->group(function () {
     Route::get('/attraction-details', [ExploreController::class, 'AttractionDetails'])->name('attractiondetails');
     Route::get('/guide', [ExploreController::class, 'Guide'])->name('guide');
     Route::get('/terminals', [ExploreController::class, 'Terminals'])->name('terminals');
-
     Route::get('/establishments', [ExploreController::class, 'Establishments'])->name('establishments');
 });
 

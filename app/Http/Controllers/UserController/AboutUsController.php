@@ -75,14 +75,16 @@ class AboutUsController extends Controller
     }
 
 
-    public function OfficialBio()
+    public function OfficialBio($id)
     {
         $banner = CMSBanner::where('key', 'Key Officials')->first();
 
 
+        $official = Officials::findOrFail($id);
 
         return Inertia::render('User/Pages/Biography', [
             'banner' => $banner,
+            'item' => $official,
         ]);
     }
 

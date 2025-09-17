@@ -16,7 +16,7 @@ type Official = {
     position: string;
     term: string;
     image: string | null;
-    bio?: string;
+    biography?: string;
 };
 
 type OfficialsData = {
@@ -93,8 +93,20 @@ export default function Officials() {
                                                 <span>Term: {mayor.term}</span>
                                             </div>
                                         </div>
-                                        <button className="view-bio-btn mt-auto rounded-lg bg-primary px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/90">
-                                            View Full Bio
+                                        <button
+                                            className={`view-bio-btn mt-auto w-full rounded-lg py-2 text-sm font-medium transition-colors ${
+                                                mayor.biography
+                                                    ? 'bg-primary/10 text-primary hover:bg-primary/20'
+                                                    : 'cursor-not-allowed bg-gray-200 text-gray-400'
+                                            } `}
+                                            onClick={() => {
+                                                if (mayor.biography) {
+                                                    window.location.href = `/about/biography/${mayor.id}`;
+                                                }
+                                            }}
+                                            disabled={!mayor.biography}
+                                        >
+                                            {mayor.biography ? 'View Full Bio' : 'No Biography Available'}
                                         </button>
                                     </div>
                                 </div>
@@ -123,8 +135,20 @@ export default function Officials() {
                                                 <span>Term: {viceMayor.term}</span>
                                             </div>
                                         </div>
-                                        <button className="view-bio-btn mt-auto w-full rounded-lg bg-primary/10 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/20">
-                                            View Full Bio
+                                        <button
+                                            className={`view-bio-btn mt-auto w-full rounded-lg py-2 text-sm font-medium transition-colors ${
+                                                viceMayor.biography
+                                                    ? 'bg-primary/10 text-primary hover:bg-primary/20'
+                                                    : 'cursor-not-allowed bg-gray-200 text-gray-400'
+                                            } `}
+                                            onClick={() => {
+                                                if (viceMayor.biography) {
+                                                    window.location.href = `/about/biography/${viceMayor.id}`;
+                                                }
+                                            }}
+                                            disabled={!viceMayor.biography}
+                                        >
+                                            {viceMayor.biography ? 'View Full Bio' : 'No Biography Available'}
                                         </button>
                                     </div>
                                 </div>

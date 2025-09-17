@@ -4,7 +4,7 @@ type Official = {
     position: string;
     term: string;
     image: string | null;
-    bio?: string;
+    biography?: string;
 };
 interface Props {
     official: Official;
@@ -28,8 +28,18 @@ export default function Officials({ official }: Props) {
                         <span>Term: {official.term}</span>
                     </div>
                 </div>
-                <button className="view-bio-btn mt-auto w-full rounded-lg bg-primary/10 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/20">
-                    View Full Bio
+                <button
+                    className={`view-bio-btn mt-auto w-full rounded-lg py-2 text-sm font-medium transition-colors ${
+                        official.biography ? 'bg-primary/10 text-primary hover:bg-primary/20' : 'cursor-not-allowed bg-gray-200 text-gray-400'
+                    } `}
+                    onClick={() => {
+                        if (official.biography) {
+                            window.location.href = `/about/biography/${official.id}`;
+                        }
+                    }}
+                    disabled={!official.biography}
+                >
+                    {official.biography ? 'View Full Bio' : 'No Biography Available'}
                 </button>
             </div>
         </div>
