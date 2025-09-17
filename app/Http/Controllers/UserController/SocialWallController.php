@@ -49,13 +49,6 @@ class SocialWallController extends Controller
 
             return Inertia::render('User/Pages/SocialWallConfirmation');
         } catch (\Exception $e) {
-
-            Log::error('SocialWall upload failed', [
-                'user_id' => Auth::id(),
-                'error'   => $e->getMessage(),
-                'trace'   => $e->getTraceAsString(),
-                'request' => $request->all(),
-            ]);
             return redirect()->back()->withError(['error' => 'Something went wrong while uploading. Please try again.']);
         }
     }

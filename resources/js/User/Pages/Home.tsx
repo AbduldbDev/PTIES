@@ -1,14 +1,11 @@
 import { Head, usePage } from '@inertiajs/react';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
+import FeaturedPost from '@UserUtils/components/Cards/FeaturedPost';
+import NewsLetter from '@UserUtils/components/Cards/NewsLetter';
 import HeroSection from '@UserUtils/components/Sections/Home/Hero';
 import Introduction from '@UserUtils/components/Sections/Home/Introduction';
 import PromotionalVideo from '@UserUtils/components/Sections/Home/Promotion';
 import { CMSContent } from '@UserUtils/Types/cms';
-
-interface PageProps {
-    content: CMSContent;
-    [key: string]: unknown;
-}
 
 type PromotionalVideoProps = {
     id: string;
@@ -19,10 +16,35 @@ type PromotionalVideoProps = {
     video: string;
     highlights: string[];
 };
+interface SocialWallPost {
+    id: number;
+    user_id: number;
+    caption: string;
+    image: string;
+    likes_count: number;
+    is_approved: boolean;
+    user: User;
+    has_liked?: boolean;
+    created_at: string;
+    updated_at: string;
+}
+
+interface User {
+    id: number;
+    name: string;
+    email: string;
+    image?: string;
+}
+
+interface PageProps {
+    content: CMSContent;
+    topPost: SocialWallPost;
+    [key: string]: unknown;
+}
+
 export default function Home() {
-    const { props } = usePage<PageProps>();
+    const { content, props, topPost } = usePage<PageProps>().props;
     const { promvid } = usePage<{ promvid: PromotionalVideoProps }>().props;
-    const { content } = props;
 
     const title = 'Pakil Tourism | Home';
     const description =
@@ -324,61 +346,30 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="py-10" id="featured_posts">
-                <div className="container mx-auto px-6">
-                    <PageTitle title="Social Wall" subtitle="Featured Post" desc="A glimpse of Pakil through the eyes of our visitors"></PageTitle>
+            {topPost && (
+                <section className="py-10" id="featured_posts">
+                    <div className="container mx-auto px-6">
+                        <PageTitle
+                            title="Social Wall"
+                            subtitle="Featured Post"
+                            desc="A glimpse of Pakil through the eyes of our visitors"
+                        ></PageTitle>
 
-                    <div className="mx-auto max-w-2xl">
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg transition-all hover:shadow-xl">
-                            <div className="relative">
-                                <img
-                                    src="https://images.unsplash.com/photo-1582139329536-e7284fece509"
-                                    alt="Featured Pakil Image"
-                                    className="h-80 w-full object-cover"
-                                />
-                                <div className="absolute top-4 right-4 rounded-full bg-white/90 p-2 shadow">
-                                    <i className="fas fa-bookmark text-xl text-primary"></i>
-                                </div>
+                        <div className="mx-auto mb-8 max-w-4xl">
+                            <FeaturedPost post={topPost} />
+
+                            <div className="mt-6 text-center">
+                                <button
+                                    onClick={() => (window.location.href = '/socialwall/new')}
+                                    className="mx-auto flex items-center rounded-full bg-primary px-6 py-3 font-medium text-white transition duration-300 hover:bg-primary/90"
+                                >
+                                    <i className="fas fa-plus mr-2"></i> Share Your Experience
+                                </button>
                             </div>
-
-                            <div className="p-6">
-                                <p className="mb-4 text-gray-700 italic">
-                                    "The stunning San Pedro de Alcantara Church in golden hour. The centuries-old architecture never fails to take my
-                                    breath away! #Pakil #Laguna #Heritage"
-                                </p>
-
-                                <div className="flex items-center justify-between border-t border-gray-100 pt-4">
-                                    <div className="flex items-center">
-                                        <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                                            <i className="fas fa-user text-primary"></i>
-                                        </div>
-                                        <div>
-                                            <p className="text-dark font-medium">@travelingjuan</p>
-                                            <p className="text-xs text-gray-500">Posted on May 15, 2023</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-center">
-                                        <div className="flex items-center rounded-full bg-red-100 px-3 py-1 text-red-500">
-                                            <i className="fas fa-heart mr-2"></i>
-                                            <span className="font-medium">248</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="mt-8 text-center">
-                            <a
-                                href="#"
-                                className="inline-flex items-center rounded-full border border-primary bg-primary px-6 py-3 font-medium text-white transition duration-300 hover:bg-white hover:text-primary"
-                            >
-                                <i className="fas fa-images mr-2"></i> View More Social Posts
-                            </a>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
 
             <section className="bg-white py-10">
                 <div className="container mx-auto px-6">
@@ -460,91 +451,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="py-12 md:py-16 lg:py-20">
-                <div className="container mx-auto px-4 sm:px-5 md:px-6">
-                    <div className="mx-auto max-w-4xl overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md md:rounded-xl md:shadow-lg">
-                        <div className="md:flex">
-                            {/* Left Panel - Branding */}
-                            <div className="flex items-center justify-center bg-primary p-6 md:w-2/5 md:p-8">
-                                <div className="text-center">
-                                    <i className="fas fa-envelope-open-text mb-4 text-4xl text-white md:mb-5 md:text-5xl"></i>
-                                    <h3 className="mb-2 text-xl font-bold text-white md:mb-3 md:text-2xl">Stay Updated</h3>
-                                    <p className="text-sm text-white/90 md:text-base">Get the latest Pakil news straight to your inbox</p>
-                                </div>
-                            </div>
-
-                            {/* Right Panel - Form */}
-                            <div className="p-6 md:w-3/5 md:p-8 lg:p-10">
-                                <div className="mb-2">
-                                    <div className="mb-2 h-1 w-6 rounded-full bg-secondary md:mb-3 md:w-8"></div>
-                                    <h2 className="text-xs font-semibold tracking-wide text-primary uppercase md:text-sm">Connect With Us</h2>
-                                </div>
-                                <h3 className="text-dark mb-4 text-xl font-bold md:mb-5 md:text-2xl lg:text-3xl">
-                                    Subscribe to our <span className="text-primary">Newsletter</span>
-                                </h3>
-
-                                <form className="space-y-4 md:space-y-5">
-                                    <div>
-                                        <label htmlFor="name" className="mb-1 block text-xs font-medium text-gray-700 md:text-sm">
-                                            Name
-                                        </label>
-                                        <div className="relative">
-                                            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                                <i className="fas fa-user text-xs text-gray-400 md:text-sm"></i>
-                                            </div>
-                                            <input
-                                                type="text"
-                                                id="name"
-                                                className="block w-full rounded-md border border-gray-300 py-2.5 pr-3 pl-9 text-sm focus:border-primary focus:ring-2 focus:ring-primary md:rounded-lg md:py-3 md:pl-10 md:text-base"
-                                                placeholder="Your name"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="email" className="mb-1 block text-xs font-medium text-gray-700 md:text-sm">
-                                            Email
-                                        </label>
-                                        <div className="relative">
-                                            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                                <i className="fas fa-envelope text-xs text-gray-400 md:text-sm"></i>
-                                            </div>
-                                            <input
-                                                type="email"
-                                                id="email"
-                                                className="block w-full rounded-md border border-gray-300 py-2.5 pr-3 pl-9 text-sm focus:border-primary focus:ring-2 focus:ring-primary md:rounded-lg md:py-3 md:pl-10 md:text-base"
-                                                placeholder="your@email.com"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-start">
-                                        <input
-                                            id="terms"
-                                            type="checkbox"
-                                            className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                                            required
-                                        />
-                                        <label htmlFor="terms" className="ml-2 block text-xs text-gray-700 md:text-sm">
-                                            I agree to receive emails about Pakil news and events
-                                        </label>
-                                    </div>
-
-                                    <button
-                                        type="submit"
-                                        className="flex w-full items-center justify-center rounded-full border border-transparent bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-sm transition duration-300 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none md:px-6 md:py-3 md:text-base"
-                                    >
-                                        <i className="fas fa-paper-plane mr-1.5 text-xs md:mr-2 md:text-sm"></i> Subscribe Now
-                                    </button>
-                                </form>
-
-                                <p className="mt-3 text-[10px] text-gray-500 md:mt-4 md:text-xs">We respect your privacy. Unsubscribe at any time.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <NewsLetter />
         </>
     );
 }

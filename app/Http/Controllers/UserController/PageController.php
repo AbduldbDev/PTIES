@@ -43,9 +43,24 @@ class PageController extends Controller
                 $this->parseContentValue($content->content_value);
         }
         $promvid = ContentPromotional::first();
+
+        $TopPost = SocialWall::with('user')->where('is_approved', 1)
+            ->withCount('likes')
+            ->with(['likes' => function ($q) {
+                $q->where('user_id', Auth::id());
+            }])
+            ->orderByDesc('likes_count')
+            ->first();
+
+        if ($TopPost) {
+            $TopPost->has_liked = $TopPost->likes->isNotEmpty();
+            unset($TopPost->likes);
+        }
+        
         return Inertia::render('User/Pages/Home', [
             'content' => $pageData['sections'] ?? [],
             'promvid' => $promvid,
+            'topPost' =>  $TopPost,
         ]);
     }
 
