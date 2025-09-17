@@ -33,8 +33,8 @@ export default function FormInput({
     className = '',
     Icon = '',
 }: FormInputProps) {
-    const inputClass = `${className} pl-10  ${
-        required && error && touched ? 'border-red-500 focus:ring-red-500 focus:ring-primary' : 'focus:ring-primary'
+    const inputClass = `${className} border-primary/20 pl-10  ${
+        required && error && touched ? ' border-red-500 focus:ring-red-500 focus:ring-primary' : 'focus:ring-primary'
     } ${readOnly ? 'bg-gray-100 border-gray-200 border-primary' : ''} ${disabled ? 'bg-gray-200 cursor-not-allowed' : ''}`;
 
     return (

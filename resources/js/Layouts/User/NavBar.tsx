@@ -1,5 +1,5 @@
 import { usePage } from '@inertiajs/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Navbar = () => {
     const { auth } = usePage().props as {
@@ -17,15 +17,8 @@ const Navbar = () => {
     const [currentTime, setCurrentTime] = useState('');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [mobileSubMenuOpen, setMobileSubMenuOpen] = useState<string | null>(null);
-    const [dropdownOpen, setDropdownOpen] = useState({
-        home: false,
-        about: false,
-        Contact: false,
-        explore: false,
-        events: false,
-        UserIcon: false,
-        rewards: false,
-    });
+    const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
         const updateDateTime = () => {
@@ -52,6 +45,28 @@ const Navbar = () => {
         return () => clearInterval(interval);
     }, []);
 
+    const handleDropdownEnter = (menu: string) => {
+        if (dropdownTimeoutRef.current) {
+            clearTimeout(dropdownTimeoutRef.current);
+            dropdownTimeoutRef.current = null;
+        }
+        setActiveDropdown(menu);
+    };
+
+    const handleDropdownLeave = () => {
+        dropdownTimeoutRef.current = setTimeout(() => {
+            setActiveDropdown(null);
+        }, 300); // Increased delay to prevent accidental closing
+    };
+
+    const handleDropdownClick = (menu: string) => {
+        if (activeDropdown === menu) {
+            setActiveDropdown(null);
+        } else {
+            setActiveDropdown(menu);
+        }
+    };
+
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
         if (!mobileMenuOpen) {
@@ -61,13 +76,6 @@ const Navbar = () => {
 
     const toggleMobileSubMenu = (menu: string) => {
         setMobileSubMenuOpen(mobileSubMenuOpen === menu ? null : menu);
-    };
-
-    const toggleDropdown = (menu: keyof typeof dropdownOpen) => {
-        setDropdownOpen((prev) => ({
-            ...prev,
-            [menu]: !prev[menu],
-        }));
     };
 
     const dropdownItems = {
@@ -98,6 +106,10 @@ const Navbar = () => {
         rewards: [
             { label: 'Rewards', href: '/reward-shop' },
             { label: 'Guide', href: '/pakil-guide' },
+        ],
+        user: [
+            { label: 'Profile', href: '/profile', icon: 'fa-regular fa-user' },
+            { label: 'My Rewards', href: '#', icon: 'fa-solid fa-coins' },
         ],
     };
 
@@ -160,15 +172,16 @@ const Navbar = () => {
                                     <a
                                         href="#"
                                         className="nav-link group px-4 py-3 font-medium text-primary hover:text-primary/60"
-                                        onMouseEnter={() => toggleDropdown('about')}
-                                        onMouseLeave={() => toggleDropdown('about')}
+                                        onMouseEnter={() => handleDropdownEnter('about')}
+                                        onMouseLeave={handleDropdownLeave}
+                                        onClick={() => handleDropdownClick('about')}
                                     >
                                         About
                                     </a>
                                     <div
-                                        className={`ring-opacity-5 absolute top-9 left-0 z-10 w-56 origin-top-right rounded-md bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${dropdownOpen.about ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
-                                        onMouseEnter={() => toggleDropdown('about')}
-                                        onMouseLeave={() => toggleDropdown('about')}
+                                        className={`ring-opacity-5 absolute top-9 left-0 z-10 w-56 origin-top-right rounded-md bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${activeDropdown === 'about' ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
+                                        onMouseEnter={() => handleDropdownEnter('about')}
+                                        onMouseLeave={handleDropdownLeave}
                                     >
                                         {dropdownItems.about.map((item, index) => (
                                             <a
@@ -187,15 +200,16 @@ const Navbar = () => {
                                     <a
                                         href="#"
                                         className="nav-link group px-4 py-3 font-medium text-primary hover:text-primary/60"
-                                        onMouseEnter={() => toggleDropdown('explore')}
-                                        onMouseLeave={() => toggleDropdown('explore')}
+                                        onMouseEnter={() => handleDropdownEnter('explore')}
+                                        onMouseLeave={handleDropdownLeave}
+                                        onClick={() => handleDropdownClick('explore')}
                                     >
                                         Explore
                                     </a>
                                     <div
-                                        className={`ring-opacity-5 absolute top-9 left-0 z-10 w-56 origin-top-right rounded-lg bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${dropdownOpen.explore ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
-                                        onMouseEnter={() => toggleDropdown('explore')}
-                                        onMouseLeave={() => toggleDropdown('explore')}
+                                        className={`ring-opacity-5 absolute top-9 left-0 z-10 w-56 origin-top-right rounded-lg bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${activeDropdown === 'explore' ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
+                                        onMouseEnter={() => handleDropdownEnter('explore')}
+                                        onMouseLeave={handleDropdownLeave}
                                     >
                                         {dropdownItems.explore.map((item, index) => (
                                             <a
@@ -214,15 +228,16 @@ const Navbar = () => {
                                     <a
                                         href="#"
                                         className="nav-link group px-4 py-3 font-medium text-primary hover:text-primary/60"
-                                        onMouseEnter={() => toggleDropdown('Contact')}
-                                        onMouseLeave={() => toggleDropdown('Contact')}
+                                        onMouseEnter={() => handleDropdownEnter('Contact')}
+                                        onMouseLeave={handleDropdownLeave}
+                                        onClick={() => handleDropdownClick('Contact')}
                                     >
                                         Contact
                                     </a>
                                     <div
-                                        className={`ring-opacity-5 absolute top-9 left-0 z-10 w-56 origin-top-right rounded-lg bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${dropdownOpen.Contact ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
-                                        onMouseEnter={() => toggleDropdown('Contact')}
-                                        onMouseLeave={() => toggleDropdown('Contact')}
+                                        className={`ring-opacity-5 absolute top-9 left-0 z-10 w-56 origin-top-right rounded-lg bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${activeDropdown === 'Contact' ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
+                                        onMouseEnter={() => handleDropdownEnter('Contact')}
+                                        onMouseLeave={handleDropdownLeave}
                                     >
                                         {dropdownItems.Contact.map((item, index) => (
                                             <a
@@ -241,15 +256,16 @@ const Navbar = () => {
                                     <a
                                         href="#"
                                         className="nav-link group px-4 py-3 font-medium text-primary hover:text-primary/60"
-                                        onMouseEnter={() => toggleDropdown('events')}
-                                        onMouseLeave={() => toggleDropdown('events')}
+                                        onMouseEnter={() => handleDropdownEnter('events')}
+                                        onMouseLeave={handleDropdownLeave}
+                                        onClick={() => handleDropdownClick('events')}
                                     >
                                         Events
                                     </a>
                                     <div
-                                        className={`ring-opacity-5 absolute top-9 left-0 z-10 w-56 origin-top-right rounded-lg bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${dropdownOpen.events ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
-                                        onMouseEnter={() => toggleDropdown('events')}
-                                        onMouseLeave={() => toggleDropdown('events')}
+                                        className={`ring-opacity-5 absolute top-9 left-0 z-10 w-56 origin-top-right rounded-lg bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${activeDropdown === 'events' ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
+                                        onMouseEnter={() => handleDropdownEnter('events')}
+                                        onMouseLeave={handleDropdownLeave}
                                     >
                                         {dropdownItems.events.map((item, index) => (
                                             <a
@@ -263,19 +279,21 @@ const Navbar = () => {
                                     </div>
                                 </div>
 
+                                {/* Rewards Dropdown */}
                                 <div className="dropdown relative">
                                     <a
                                         href="#"
                                         className="nav-link group px-4 py-3 font-medium text-primary hover:text-primary/60"
-                                        onMouseEnter={() => toggleDropdown('rewards')}
-                                        onMouseLeave={() => toggleDropdown('rewards')}
+                                        onMouseEnter={() => handleDropdownEnter('rewards')}
+                                        onMouseLeave={handleDropdownLeave}
+                                        onClick={() => handleDropdownClick('rewards')}
                                     >
                                         Rewards
                                     </a>
                                     <div
-                                        className={`ring-opacity-5 absolute top-9 left-0 z-10 w-56 origin-top-right rounded-lg bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${dropdownOpen.rewards ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
-                                        onMouseEnter={() => toggleDropdown('rewards')}
-                                        onMouseLeave={() => toggleDropdown('rewards')}
+                                        className={`ring-opacity-5 absolute top-9 left-0 z-10 w-56 origin-top-right rounded-lg bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${activeDropdown === 'rewards' ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
+                                        onMouseEnter={() => handleDropdownEnter('rewards')}
+                                        onMouseLeave={handleDropdownLeave}
                                     >
                                         {dropdownItems.rewards.map((item, index) => (
                                             <a
@@ -288,6 +306,7 @@ const Navbar = () => {
                                         ))}
                                     </div>
                                 </div>
+
                                 <a href="#" className="nav-link px-4 py-3 font-medium text-primary hover:text-primary/60">
                                     Market
                                 </a>
@@ -302,8 +321,9 @@ const Navbar = () => {
                                                 <a
                                                     href="#"
                                                     className="nav-link group flex items-center px-4 py-3 font-medium text-primary hover:text-primary/60"
-                                                    onMouseEnter={() => toggleDropdown('UserIcon')}
-                                                    onMouseLeave={() => toggleDropdown('UserIcon')}
+                                                    onMouseEnter={() => handleDropdownEnter('user')}
+                                                    onMouseLeave={handleDropdownLeave}
+                                                    onClick={() => handleDropdownClick('user')}
                                                 >
                                                     <div className="relative">
                                                         <i className="fa-regular fa-user text-lg"></i>
@@ -324,11 +344,11 @@ const Navbar = () => {
                                             </div>
 
                                             <div
-                                                className={`ring-opacity-5 absolute right-0 z-10 w-56 origin-top-right rounded-lg bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${dropdownOpen.UserIcon ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
-                                                onMouseEnter={() => toggleDropdown('UserIcon')}
-                                                onMouseLeave={() => toggleDropdown('UserIcon')}
+                                                className={`ring-opacity-5 absolute right-0 z-10 w-56 origin-top-right rounded-lg bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${activeDropdown === 'user' ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
+                                                onMouseEnter={() => handleDropdownEnter('user')}
+                                                onMouseLeave={handleDropdownLeave}
                                             >
-                                                <div className="border-b px-4 py-3">
+                                                <div className="border-b border-primary/10 px-4 py-3">
                                                     <p className="text-md font-medium text-gray-900">Hello, {auth.user.email.split('@')[0]} </p>
                                                     <p className="mt-2 flex items-center text-sm text-gray-500">
                                                         <img
@@ -345,23 +365,19 @@ const Navbar = () => {
                                                 </div>
 
                                                 <div className="py-1">
-                                                    <a
-                                                        href="/profile"
-                                                        className="flex items-center rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                    >
-                                                        <i className="fa-regular fa-user mr-3 w-5 text-center"></i>
-                                                        Profile
-                                                    </a>
-                                                    <a
-                                                        href="#"
-                                                        className="flex items-center rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                    >
-                                                        <i className="fa-solid fa-coins mr-3 w-5 text-center"></i>
-                                                        My Rewards
-                                                    </a>
+                                                    {dropdownItems.user.map((item, index) => (
+                                                        <a
+                                                            key={index}
+                                                            href={item.href}
+                                                            className="flex items-center rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                        >
+                                                            <i className={`${item.icon} mr-3 w-5 text-center`}></i>
+                                                            {item.label}
+                                                        </a>
+                                                    ))}
                                                 </div>
 
-                                                <div className="border-t py-1">
+                                                <div className="border-t border-primary/10 py-1">
                                                     <form method="POST" action="/logout">
                                                         <input type="hidden" name="_token" value={csrfToken ?? ''} />
                                                         <button
@@ -600,18 +616,6 @@ const Navbar = () => {
                                 </>
                             )}
                         </div>
-
-                        {/* <div className="flex justify-center space-x-4 py-3">
-                            <a href="#" className="text-gray-600 hover:text-blue-500">
-                                <i className="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" className="text-gray-600 hover:text-blue-400">
-                                <i className="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" className="text-gray-600 hover:text-pink-500">
-                                <i className="fab fa-instagram"></i>
-                            </a>
-                        </div> */}
                     </div>
                 </div>
             </header>
