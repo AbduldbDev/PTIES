@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController\{
     PageController,
-    ContactusController,
+    ContactUsController,
     ProfileController,
     SocialWallController,
     AboutUsController,
@@ -23,9 +23,9 @@ Route::middleware('user.access:auth')->group(function () {
 });
 
 Route::prefix('/contact')->name('user.contact.')->group(function () {
-    Route::get('/', [ContactusController::class, 'ContactUs'])->name('index');
-    Route::get('/confirmation', [ContactusController::class, 'confirmation'])->name('confirmation');
-    Route::post('/send', [ContactusController::class, 'send'])->name('send');
+    Route::get('/', [ContactUsController::class, 'ContactUs'])->name('index');
+    Route::get('/confirmation', [ContactUsController::class, 'confirmation'])->name('confirmation');
+    Route::post('/send', [ContactUsController::class, 'send'])->name('send');
 });
 
 Route::prefix('/about')->name('user.')->group(function () {
