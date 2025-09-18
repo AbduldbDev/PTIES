@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\AccountUsers;
+
 use Laravel\Socialite\Facades\Socialite;
 
 
@@ -25,6 +27,11 @@ class SocialiteController extends Controller
             $user = User::where('email', $googleUser->getEmail())->first();
             $avatarUrl = $googleUser->getAvatar();
 
+            $nameParts = explode(' ', $googleUser->getName());
+            $firstName = $nameParts[0] ?? '';
+            $lastName = $nameParts[count($nameParts) - 1] ?? '';
+
+
             $user = User::updateOrCreate(
                 ['email' => $googleUser->getEmail()],
                 [
@@ -33,6 +40,16 @@ class SocialiteController extends Controller
                     'password' => bcrypt(Str::random(16)),
                 ]
             );
+
+            AccountUsers::updateOrCreate(
+                ['user_id' => $user->id,],
+                [
+                    'first_name' => $firstName,
+                    'last_name' => $lastName,
+                ]
+            );
+
+
 
             Auth::login($user);
             return redirect()->intended('/');
