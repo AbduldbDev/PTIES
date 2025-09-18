@@ -58,7 +58,7 @@ class EventsController extends Controller
             ->first();
 
 
-        Log::info('Top post:', (array) $TopPost->toArray());
+
 
 
 
