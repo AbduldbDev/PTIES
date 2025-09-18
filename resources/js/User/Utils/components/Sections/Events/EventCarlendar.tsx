@@ -6,10 +6,10 @@ import { useState } from 'react';
 
 const Calendar = () => {
     const [events, setEvents] = useState([
-        { title: 'Team Meeting', start: '2025-09-20T10:00:00', end: '2025-09-20T12:00:00', color: '#6366f1', textColor: '#fff' },
-        { title: 'Client Conference', start: '2025-09-22', end: '2025-09-25', color: '#10b981', textColor: '#fff' }, // 2-day event
-        { title: 'Project Deadline', start: '2025-09-22', end: '2025-09-25', textColor: '#fff' }, // single-day deadline
-        { title: 'Product Demo', start: '2025-09-22', end: '2025-09-25', color: '#8b5cf6', textColor: '#fff' },
+        { title: 'Birthday Ni Abdul', start: '2025-09-20T10:00:00', end: '2025-09-20T12:00:00', color: '#6366f1', textColor: '#fff' },
+        { title: 'Birthday Ni John justine', start: '2025-09-22', end: '2025-09-25', color: '#10b981', textColor: '#fff' }, // 2-day event
+        { title: 'Birthday Ni Ethan', start: '2025-09-22', end: '2025-09-25', textColor: '#fff' }, // single-day deadline
+        { title: 'Birthday Ni Marc Legaspi', start: '2025-09-22', end: '2025-09-25', color: '#8b5cf6', textColor: '#fff' },
     ]);
 
     return (
@@ -51,7 +51,7 @@ const Calendar = () => {
             </div>
 
             {/* Legend */}
-            <div className="mt-0 flex flex-wrap justify-center gap-4">
+            {/* <div className="mt-0 flex flex-wrap justify-center gap-4">
                 <div className="flex items-center">
                     <div className="mr-2 h-3 w-3 rounded-full bg-indigo-500"></div>
                     <span className="text-sm text-gray-600">Meetings</span>
@@ -68,7 +68,7 @@ const Calendar = () => {
                     <div className="mr-2 h-3 w-3 rounded-full bg-violet-500"></div>
                     <span className="text-sm text-gray-600">Demos</span>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };
