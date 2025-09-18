@@ -230,7 +230,7 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Fixed Footer */}
-                <div className="flex justify-end border-t bg-gray-50 p-4 md:p-3">
+                <div className="flex justify-end border-t border-primary/20 bg-gray-50 p-4 md:p-3">
                     {canClose ? (
                         <button
                             onClick={onClose}
