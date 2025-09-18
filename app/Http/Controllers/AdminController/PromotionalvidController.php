@@ -37,14 +37,14 @@ class PromotionalvidController extends Controller
                 if ($content->thumbnail && Storage::disk('public')->exists($content->thumbnail)) {
                     Storage::disk('public')->delete($content->thumbnail);
                 }
-                $imagePath = $request->file('thumbnail')->store('ContentImages', 'public');
+                $imagePath = $request->file('thumbnail')->store('PromotionalVideo', 'public');
             }
             $videoPath = $content->video;
             if ($request->hasFile('video')) {
                 if ($content->video && Storage::disk('public')->exists($content->video)) {
                     Storage::disk('public')->delete($content->video);
                 }
-                $videoPath = $request->file('video')->store('ContentVideos', 'public');
+                $videoPath = $request->file('video')->store('PromotionalVideo', 'public');
             }
 
             ContentPromotional::updateOrCreate(

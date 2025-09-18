@@ -127,7 +127,7 @@ class ExploreController extends Controller
 
     public function PakilGuide()
     {
-        $banner = CMSBanner::where('key', 'Rewards')->first();
+        $banner = CMSBanner::where('key', 'Rewards Guide')->first();
         return Inertia::render('User/Pages/Pakilguide', [
             'banner' => $banner,
         ]);

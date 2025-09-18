@@ -66,7 +66,7 @@ class LocalProductsController extends Controller
             $ImagePath = null;
             if ($request->hasFile('image')) {
                 $filename = uniqid() . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $ImagePath = $request->file('image')->storeAs('Products', $filename, 'public');
+                $ImagePath = $request->file('image')->storeAs('LocalProducts', $filename, 'public');
             }
 
             LocalProducts::create([
@@ -114,7 +114,7 @@ class LocalProductsController extends Controller
                 }
 
                 $filename = uniqid() . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $ImagePath = $request->file('image')->storeAs('Products', $filename, 'public');
+                $ImagePath = $request->file('image')->storeAs('LocalProducts', $filename, 'public');
             } else {
                 $ImagePath = $product->image;
             }

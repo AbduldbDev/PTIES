@@ -99,12 +99,13 @@ class CMSBannerSeeder extends Seeder
                 'image' => 'CMSBanner/Shp93kXeEgDW0jckSFKlQXnAZy2vf6qrlUPun1fb.jpg',
             ],
             [
-                'key' => 'About Pakil',
-                'title' => 'Welcome to Pakil',
-                'subtitle' => 'Where Fun Starts with Faith!',
-                'desc' => 'Learn more about the Pilgrimage Town of Laguna',
-                'image' => 'CMSBanner/Sy0X8vPUWIvK3q52qKGymk99pgdmZYL9E9bjeQMe.jpg',
+                'key' => 'Rewards Guide',
+                'title' => 'Earn and Enjoy Rewards!',
+                'subtitle' => 'Scan, Play, and Redeem!',
+                'desc' => 'Learn how to collect points, complete challenges, and redeem exciting rewards through our gamification system.',
+                'image' => 'CMSBanner/GamificationRewards.jpg',
             ],
+
         ];
 
         foreach ($banners as $banner) {

@@ -139,9 +139,7 @@ class AccountManagementController extends Controller
 
             $user = User::findOrFail($request->id);
 
-            // Handle profile image update
             if ($request->hasFile('profileImage')) {
-                // Delete old image if it exists
                 if ($user->avatar) {
                     Storage::disk('public')->delete($user->avatar);
                 }

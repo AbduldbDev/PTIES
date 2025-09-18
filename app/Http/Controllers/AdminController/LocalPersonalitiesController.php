@@ -68,7 +68,7 @@ class LocalPersonalitiesController extends Controller
             $ImagePath = null;
             if ($request->hasFile('image')) {
                 $filename = uniqid() . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $ImagePath = $request->file('image')->storeAs('Personalities', $filename, 'public');
+                $ImagePath = $request->file('image')->storeAs('LocalPersonalities', $filename, 'public');
             }
 
             LocalPersonalities::create([
@@ -120,7 +120,7 @@ class LocalPersonalitiesController extends Controller
                 }
 
                 $filename = uniqid() . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $ImagePath = $request->file('image')->storeAs('Personalities', $filename, 'public');
+                $ImagePath = $request->file('image')->storeAs('LocalPersonalities', $filename, 'public');
             } else {
                 $ImagePath = $personality->image;
             }

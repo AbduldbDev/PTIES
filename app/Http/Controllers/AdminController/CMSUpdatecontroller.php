@@ -38,7 +38,7 @@ class CMSUpdatecontroller extends Controller
             }
 
             if ($request->hasFile('feature_img')) {
-                $path = $request->file('feature_img')->store('CMSBanner', 'public');
+                $path = $request->file('feature_img')->store('CMSImages', 'public');
 
                 CMSContent::updateOrCreate(
                     [
@@ -105,7 +105,7 @@ class CMSUpdatecontroller extends Controller
 
             foreach ($imageFields as $imageField) {
                 if ($request->hasFile($imageField)) {
-                    $path = $request->file($imageField)->store('CMSBanner', 'public');
+                    $path = $request->file($imageField)->store('CMSImages', 'public');
 
                     CMSContent::updateOrCreate(
                         [
@@ -187,7 +187,7 @@ class CMSUpdatecontroller extends Controller
 
             foreach ($imageFields as $imageField) {
                 if ($request->hasFile($imageField)) {
-                    $path = $request->file($imageField)->store('CMSBanner', 'public');
+                    $path = $request->file($imageField)->store('CMSImages', 'public');
 
                     CMSContent::updateOrCreate(
                         [
@@ -271,7 +271,7 @@ class CMSUpdatecontroller extends Controller
 
             foreach ($imageFields as $imageField) {
                 if ($request->hasFile($imageField)) {
-                    $path = $request->file($imageField)->store('CMSBanner', 'public');
+                    $path = $request->file($imageField)->store('CMSImages', 'public');
 
                     CMSContent::updateOrCreate(
                         [

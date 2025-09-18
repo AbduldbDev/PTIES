@@ -39,7 +39,7 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
 
     return (
         <div className="bg-opacity-70 fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-md">
-            <div className="relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-lg bg-white shadow-xl">
+            <div className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-lg bg-white shadow-xl">
                 {/* Header */}
                 <div className="relative bg-primary p-4 text-center text-white md:p-3">
                     <h2 className="text-xl font-bold md:text-lg">Announcement</h2>
@@ -57,10 +57,12 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
                 {/* Introduction */}
                 <div className="p-5">
                     <div className="mb-3 text-center md:mb-2">
-                        <p className="text-base font-semibold text-primary">Mabuhay! Welcome to PTIES!</p>
+                        <p className="text-base font-semibold text-black">
+                            Mabuhay! Welcome to <span className="text-primary">PTIES</span>!
+                        </p>
                     </div>
                     <p className="mb-3 text-center text-sm text-gray-700 lg:text-start">
-                        The <span className="font-semibold text-primary">Pakil Tourist Information and Engagement System (PTIES)</span> is your
+                        The <span className="font-semibold text-primary">Pakil Tourism Information and Engagement System (PTIES)</span> is your
                         official companion in exploring the beauty, culture, and traditions of{' '}
                         <span className="font-semibold text-primary">Pakil, Laguna</span>.
                     </p>
@@ -190,6 +192,10 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
                             <li className="flex items-start">
                                 <i className="fas fa-shield-alt mt-1 mr-2 text-accent"></i>
                                 <span>Strict security measures are in place to prevent unauthorized access or misuse of data.</span>
+                            </li>
+                            <li className="flex items-start">
+                                <i className="fas fa-shield-alt mt-1 mr-2 text-accent"></i>
+                                <span>Inactive accounts will be removed after 5 years, unverified ones after 6 months.</span>
                             </li>
                             <li className="flex items-start">
                                 <i className="fas fa-info-circle mt-1 mr-2 text-accent"></i>
