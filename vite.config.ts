@@ -29,6 +29,9 @@ export default defineConfig({
             '@UserUtils': path.resolve(__dirname, 'resources/js/User/Utils'),
         },
     },
+    optimizeDeps: {
+        include: ['@fullcalendar/react', '@fullcalendar/core', '@fullcalendar/daygrid', '@fullcalendar/timegrid', '@fullcalendar/interaction'],
+    },
     // server: {
     //     host: '0.0.0.0',
     //     port: 5173,

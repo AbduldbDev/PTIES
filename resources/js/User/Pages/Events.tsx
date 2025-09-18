@@ -1,5 +1,7 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
+import PageTitle from '@UserUtils/components/Banner/PageTitle';
+import Calendar from '@UserUtils/components/Sections/Events/EventCarlendar';
 
 type PageBannerProps = {
     title: string;
@@ -33,39 +35,22 @@ export const Events = () => {
             ) : (
                 <div className="h-[15vh]"></div>
             )}
+
             <section className="py-16">
                 <div className="container mx-auto px-4">
-                    <div className="mb-12 text-center">
-                        <div className="mb-4 inline-flex items-center">
-                            <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                            <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Upcoming Events</h2>
-                            <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
-                        </div>
-                        <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
-                            <span className="text-primary">Pakil</span> Events Calendar
-                        </h3>
-                        <p className="mx-auto max-w-3xl text-lg text-gray-600">
-                            Discover upcoming festivals, cultural activities, and community gatherings in Pakil
-                        </p>
-                    </div>
+                    <PageTitle
+                        title="Upcoming Events"
+                        subtitle="Pakil Events Calendar"
+                        desc="Discover upcoming festivals, cultural activities, and community gatherings in Pakil"
+                    />
 
-                    <div className="h-[50vh] rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 p-8 text-center"></div>
+                    <Calendar />
                 </div>
             </section>
 
             <section className="py-10">
                 <div className="container mx-auto px-6">
-                    <div className="mb-16 text-center">
-                        <div className="mb-4 inline-flex items-center">
-                            <div className="mr-3 h-1 w-8 rounded-full bg-secondary"></div>
-                            <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Updates</h2>
-                            <div className="ml-3 h-1 w-8 rounded-full bg-secondary"></div>
-                        </div>
-                        <h3 className="text-dark mb-4 text-3xl font-bold md:text-4xl">
-                            <span className="text-primary">Events</span> & News
-                        </h3>
-                        <p className="mx-auto max-w-3xl text-lg text-gray-600">Stay updated with the latest happenings in Pakil</p>
-                    </div>
+                    <PageTitle title="Updates" subtitle="Events & News" desc="Stay updated with the latest happenings in Pakil" />
 
                     <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
