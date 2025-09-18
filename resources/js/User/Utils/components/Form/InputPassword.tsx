@@ -33,9 +33,9 @@ export default function FormPasswordInput({
 }: FormPasswordInputProps) {
     const [showPassword, setShowPassword] = useState(false);
 
-    const inputClass = `${className} border-primary/20 pl-10 ${
-        required && error && touched ? 'border-red-500 focus:ring-red-500 focus:ring-primary' : 'focus:ring-primary'
-    } ${readOnly ? 'bg-gray-100 border-gray-200' : ''} ${disabled ? 'bg-gray-200 cursor-not-allowed' : ''}`;
+    const inputClass = `w-full text-sm lg:text-base rounded-lg border px-3 py-2 sm:px-4 sm:py-3 transition duration-150 outline-none focus:ring-1 border-primary/20 pl-9 sm:pl-10 ${
+        required && error && touched ? 'border-red-500 focus:ring-red-500' : 'focus:ring-primary'
+    } ${readOnly ? 'bg-gray-100 border-gray-200' : ''} ${disabled ? 'bg-gray-200 cursor-not-allowed' : ''} ${className}`;
 
     return (
         <div className="relative">
@@ -52,7 +52,7 @@ export default function FormPasswordInput({
                     value={value}
                     onChange={onChange}
                     onBlur={onBlur}
-                    className={`${inputClass} pr-10`} // space for icon
+                    className={`${inputClass} pr-10`}
                     placeholder={placeholder}
                     required={required}
                     readOnly={readOnly}
@@ -62,10 +62,9 @@ export default function FormPasswordInput({
                     type="button"
                     onClick={() => setShowPassword((prev) => !prev)}
                     className="absolute inset-y-0 right-2 z-50 flex items-center text-gray-500 hover:text-gray-700 focus:outline-none"
-                    tabIndex={-1} // so it doesn't grab focus when tabbing
+                    tabIndex={-1} 
                 >
                     {showPassword ? (
-                        // 👁 Eye Open
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             <path
@@ -76,7 +75,6 @@ export default function FormPasswordInput({
                             />
                         </svg>
                     ) : (
-                        // 👁 Eye Closed
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path
                                 strokeLinecap="round"

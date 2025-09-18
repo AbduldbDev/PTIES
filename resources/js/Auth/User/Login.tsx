@@ -109,7 +109,7 @@ export default function Login() {
                         </div>
 
                         <div className="z-100 space-y-3 overflow-hidden rounded-xl bg-white p-8 shadow-md">
-                            <div className="mb-8 text-center">
+                            <div className="mb-3 text-center lg:mb-8">
                                 <h2 className="mb-2 text-2xl font-bold text-primary lg:text-3xl">Welcome Back!</h2>
                                 <p className="text-sm text-gray-600 lg:text-lg">
                                     Sign in to continue exploring attractions, joining events, and earning rewards.
@@ -118,7 +118,6 @@ export default function Login() {
                             <form className="space-y-4" onSubmit={handleSubmit}>
                                 <FormIconed
                                     Icon="fas fa-envelope"
-                                    className="w-full rounded-lg border px-4 py-3 transition duration-150 outline-none focus:ring-1"
                                     label="Email Address"
                                     id="email"
                                     value={form.data.email}
@@ -132,7 +131,6 @@ export default function Login() {
 
                                 <FormPassword
                                     Icon="fas fa-lock text-gray/50"
-                                    className="w-full rounded-lg border px-4 py-3 transition duration-150 outline-none focus:ring-1"
                                     label="Password"
                                     id="password"
                                     value={form.data.password}
@@ -154,25 +152,40 @@ export default function Login() {
                                             onChange={(e) => form.setData('remember', e.target.checked)}
                                             className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                         />
-                                        <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+                                        <label htmlFor="remember-me" className="ml-2 block text-xs text-gray-700 lg:text-sm">
                                             Remember me
                                         </label>
                                     </div>
 
-                                    <a href="/forgot-password" className="text-sm text-primary hover:text-primary/70">
+                                    <a href="/forgot-password" className="text-xs text-primary hover:text-primary/70 lg:text-sm">
                                         Forgot password?
                                     </a>
                                 </div>
 
-                                {flash?.success && <div className="text-green-600">{flash.success}</div>}
-                                {flash?.error && <div className="text-red-600">{flash.error}</div>}
+                                {flash?.success && <div className="mt-1 text-sm text-green-600">{flash.success}</div>}
+                                {flash?.error && <div className="mt-1 text-sm text-red-500">{flash.error}</div>}
 
                                 <button
                                     type="submit"
-                                    className="w-full rounded-lg bg-primary py-3 font-medium text-white transition duration-150 hover:bg-primary/70"
+                                    className="flex w-full items-center justify-center rounded-lg bg-primary px-3 py-2 text-sm font-medium text-white transition duration-150 hover:bg-primary/70 sm:px-4 sm:py-3 sm:text-base"
                                     disabled={form.processing}
                                 >
-                                    {form.processing ? 'Processing...' : 'Sign In'}
+                                    {form.processing ? (
+                                        <>
+                                            <svg
+                                                className="mr-2 h-5 w-5 animate-spin text-white"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                            </svg>
+                                            Processing...
+                                        </>
+                                    ) : (
+                                        'Sign In'
+                                    )}
                                 </button>
                             </form>
 
@@ -184,7 +197,7 @@ export default function Login() {
 
                             <button
                                 onClick={handleGoogleLogin}
-                                className="mb-6 flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-3 font-medium text-gray-700 transition duration-150 hover:bg-gray-50"
+                                className="mb-6 flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition duration-150 hover:bg-gray-50 sm:px-4 sm:py-3 sm:text-base"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                                     <path

@@ -111,7 +111,7 @@ export default function ResetPassword() {
                         <div className="z-100 space-y-3 overflow-hidden rounded-xl bg-white p-8 shadow-md">
                             <div className="mb-8 text-center">
                                 <h2 className="mb-2 text-2xl font-bold text-primary lg:text-3xl">Reset Your Password</h2>
-                                <p className="text-md text-gray-600 lg:text-lg">
+                                <p className="text-sm text-gray-600 lg:text-lg">
                                     Forgot your password? No worries! Just enter your email and we’ll help you set a new one so you can continue
                                     exploring attractions and earning Pakil points.
                                 </p>
@@ -134,7 +134,6 @@ export default function ResetPassword() {
                                 />
                                 <FormPassword
                                     Icon="fas fa-lock text-gray/50"
-                                    className="w-full rounded-lg border px-4 py-3 transition duration-150 outline-none focus:ring-1"
                                     label="New Password"
                                     id="password"
                                     value={form.data.password}
@@ -148,7 +147,6 @@ export default function ResetPassword() {
 
                                 <FormPassword
                                     Icon="fas fa-lock text-gray/50"
-                                    className="w-full rounded-lg border px-4 py-3 transition duration-150 outline-none focus:ring-1"
                                     label="Confirm New Password"
                                     id="password_confirmation"
                                     value={form.data.password_confirmation}
@@ -165,10 +163,25 @@ export default function ResetPassword() {
 
                                 <button
                                     type="submit"
-                                    className="w-full rounded-lg bg-primary py-3 font-medium text-white transition duration-150 hover:bg-primary/70"
+                                    className="flex w-full items-center justify-center rounded-lg bg-primary px-3 py-2 text-sm font-medium text-white transition duration-150 hover:bg-primary/70 sm:px-4 sm:py-3 sm:text-base"
                                     disabled={form.processing}
                                 >
-                                    {form.processing ? 'Processing...' : 'Reset Password'}
+                                    {form.processing ? (
+                                        <>
+                                            <svg
+                                                className="mr-2 h-5 w-5 animate-spin text-white"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                            </svg>
+                                            Processing...
+                                        </>
+                                    ) : (
+                                        'Reset Password'
+                                    )}
                                 </button>
                             </form>
                         </div>

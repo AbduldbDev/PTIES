@@ -55,24 +55,23 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Introduction */}
-                <div className="p-5">
+                <div className="px-5 py-2">
                     <div className="mb-3 text-center md:mb-2">
                         <p className="text-base font-semibold text-black">
                             Mabuhay! Welcome to <span className="text-primary">PTIES</span>!
                         </p>
                     </div>
-                    <p className="mb-3 text-center text-sm text-gray-700 lg:text-start">
+                    <p className="mb-3 text-center text-xs text-gray-700 lg:text-start lg:text-sm">
                         The <span className="font-semibold text-primary">Pakil Tourism Information and Engagement System (PTIES)</span> is your
                         official companion in exploring the beauty, culture, and traditions of{' '}
                         <span className="font-semibold text-primary">Pakil, Laguna</span>.
                     </p>
-                    <p className="mb-2 text-sm font-medium text-gray-800">With PTIES, you can:</p>
+                    <p className="mb-2 text-xs font-medium text-gray-800 lg:text-sm">With PTIES, you can:</p>
                 </div>
 
                 {/* Scrollable Content */}
-                <div className="mx-4 flex-1 overflow-y-auto border border-primary/10 p-5 md:mx-5" onScroll={handleContentScroll}>
-                    {/* Features */}
-                    <ul className="mb-6 space-y-4 text-sm text-gray-700 md:mb-4 lg:text-base">
+                <div className="mx-4 flex-1 overflow-y-auto border border-primary/10 py-2 md:mx-5" onScroll={handleContentScroll}>
+                    <ul className="mb-6 space-y-4 px-5 text-sm text-gray-700 md:mb-4 lg:text-base">
                         <li className="flex flex-col space-y-1 md:flex-row md:items-start md:space-y-0 md:space-x-3">
                             <i className="fas fa-globe-americas mt-2 text-sm text-primary"></i>
                             <div>
@@ -168,37 +167,37 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
                     {/* Privacy & Data Protection */}
                     <div className="mb-6 rounded-lg bg-primary/5 p-4 md:mb-4 md:p-3">
                         <h3 className="mb-2 text-sm font-bold text-primary lg:text-base">Privacy & Data Protection</h3>
-                        <p className="mb-3 text-gray-700 md:text-xs">
+                        <p className="mb-3 text-sm text-gray-700 lg:text-base">
                             At PTIES, we respect your privacy and comply with the Data Privacy Act of 2012 (Republic Act No. 10173). Your personal
                             information is collected, stored, and used responsibly to provide a safe and rewarding experience.
                         </p>
                         <ul className="space-y-2 text-sm text-gray-700 lg:text-base">
                             <li className="flex items-start">
-                                <i className="fas fa-check-circle mt-1 mr-2 text-accent"></i>
+                                <i className="fas fa-check-circle mt-1 mr-2 w-6 flex-shrink-0 text-accent"></i>
                                 <span>We only collect necessary information for registration, rewards, and system functionalities.</span>
                             </li>
                             <li className="flex items-start">
-                                <i className="fas fa-lock mt-1 mr-2 text-accent"></i>
+                                <i className="fas fa-lock mt-1 mr-2 w-6 flex-shrink-0 text-accent"></i>
                                 <span>Your data is protected with secure systems and strict access controls.</span>
                             </li>
                             <li className="flex items-start">
-                                <i className="fas fa-user-cog mt-1 mr-2 text-accent"></i>
+                                <i className="fas fa-user-cog mt-1 mr-2 w-6 flex-shrink-0 text-accent"></i>
                                 <span>You can access, correct, or request deletion of your personal information anytime.</span>
                             </li>
                             <li className="flex items-start">
-                                <i className="fas fa-file-contract mt-1 mr-2 text-accent"></i>
+                                <i className="fas fa-file-contract mt-1 mr-2 w-6 flex-shrink-0 text-accent"></i>
                                 <span>We only share information when legally required or with your explicit consent.</span>
                             </li>
                             <li className="flex items-start">
-                                <i className="fas fa-shield-alt mt-1 mr-2 text-accent"></i>
+                                <i className="fas fa-shield-alt mt-1 mr-2 w-6 flex-shrink-0 text-accent"></i>
                                 <span>Strict security measures are in place to prevent unauthorized access or misuse of data.</span>
                             </li>
                             <li className="flex items-start">
-                                <i className="fas fa-shield-alt mt-1 mr-2 text-accent"></i>
+                                <i className="fas fa-shield-alt mt-1 mr-2 w-6 flex-shrink-0 text-accent"></i>
                                 <span>Inactive accounts will be removed after 5 years, unverified ones after 6 months.</span>
                             </li>
                             <li className="flex items-start">
-                                <i className="fas fa-info-circle mt-1 mr-2 text-accent"></i>
+                                <i className="fas fa-info-circle mt-1 mr-2 w-6 flex-shrink-0 text-accent"></i>
                                 <span>
                                     For concerns, contact our Data Protection Officer at{' '}
                                     <span className="font-medium text-primary">pties.devteam@gmail.com</span>.
@@ -208,33 +207,35 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Reminder */}
-                    <div className="mb-6 rounded-lg border-l-4 border-yellow-400 bg-yellow-50 p-4 md:mb-4 md:p-3">
-                        <p className="flex items-start text-xs text-yellow-800 md:text-sm">
-                            <i className="fas fa-exclamation-triangle mt-0.5 mr-2"></i>
-                            <span>Reminder: Only official QR codes from the Pakil Tourist Office will give valid Pakil Points and rewards.</span>
+                    <div className="px-2">
+                        <div className="mb-6 rounded-lg border-l-4 border-yellow-400 bg-yellow-50 p-4 md:mb-4 md:p-3">
+                            <p className="flex items-start text-xs text-yellow-800 md:text-sm">
+                                <i className="fas fa-exclamation-triangle mt-0.5 mr-2"></i>
+                                <span>Reminder: Only official QR codes from the Pakil Tourist Office will give valid Pakil Points and rewards.</span>
+                            </p>
+                        </div>
+
+                        <p className="mb-6 text-xs text-gray-700 md:mb-4 md:text-sm">
+                            <i className="fas fa-check-circle mr-2 text-accent"></i>
+                            By continuing, you agree to our{' '}
+                            <a href="" className="font-semibold text-primary">
+                                Terms of Use
+                            </a>{' '}
+                            and{' '}
+                            <a href="" className="font-semibold text-primary">
+                                Privacy Policy
+                            </a>
+                            .
                         </p>
                     </div>
-
-                    <p className="mb-6 text-xs text-gray-700 md:mb-4 md:text-sm">
-                        <i className="fas fa-check-circle mr-2 text-accent"></i>
-                        By continuing, you agree to our{' '}
-                        <a href="" className="font-semibold text-primary">
-                            Terms of Use
-                        </a>{' '}
-                        and{' '}
-                        <a href="" className="font-semibold text-primary">
-                            Privacy Policy
-                        </a>
-                        .
-                    </p>
                 </div>
 
                 {/* Fixed Footer */}
-                <div className="flex justify-end border-t border-primary/20 bg-gray-50 p-4 md:p-3">
+                <div className="flex justify-end border-t border-primary/20 bg-gray-50 p-2 md:p-3">
                     {canClose ? (
                         <button
                             onClick={onClose}
-                            className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/70 md:px-3 md:py-1.5"
+                            className="rounded-full bg-primary px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-primary/70 md:px-3 md:py-1.5 lg:text-sm"
                         >
                             I Understand
                         </button>

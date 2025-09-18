@@ -49,7 +49,7 @@ use App\Http\Controllers\Auth\SocialiteController;
 //
 
 
-Route::post('/logout', [UserLoginController::class, 'logout']);
+Route::post('/Logout', [UserLoginController::class, 'logout']);
 
 Route::middleware('user.access:guest')->group(function () {
     Route::get('/Login', [UserLoginController::class, 'showLoginForm'])->name('login');

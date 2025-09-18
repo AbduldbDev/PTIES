@@ -103,8 +103,8 @@ export default function VerifyOtp() {
                     <img src="/User/Login/loginbg.jpg" alt="Login background" className="h-full w-full object-cover" />
                     <div className="absolute inset-0 z-50 bg-gradient-to-r from-primary to-transparent opacity-70"></div>
                     <div className="absolute bottom-10 left-10 z-51 text-white">
-                        <h2 className="mb-2 text-3xl font-bold">Welcome, Mabuhay!</h2>
-                        <p className="text-lg opacity-90">Verify your account to start earning pakil points!</p>
+                        <h2 className="mb-2 text-3xl font-bold">Verify Your Account</h2>
+                        <p className="text-lg opacity-90">Enter the OTP sent to your email or mobile to start earning pakil points!</p>
                     </div>
                 </div>
 
@@ -116,9 +116,8 @@ export default function VerifyOtp() {
                                 <img src="/User/Layout/Seal.png" alt="Seal" className="h-14 w-14" />
                             </div>
                         </div>
-
-                        {flash?.success && <div className="mb-4 rounded bg-green-100 p-3 text-green-700">{flash.success}</div>}
-                        {flash?.error && <div className="mb-4 rounded bg-red-100 p-3 text-red-700">{flash.error}</div>}
+                        {flash?.success && <div className="mb-4 rounded bg-green-100 p-3 text-sm text-green-700">{flash.success}</div>}
+                        {flash?.error && <div className="mb-4 rounded bg-red-100 p-3 text-sm text-red-700">{flash.error}</div>}
 
                         <form className="z-100 space-y-6 overflow-hidden rounded-xl bg-white p-8 shadow-md" onSubmit={handleSubmit}>
                             <div className="text-center">
@@ -184,6 +183,7 @@ export default function VerifyOtp() {
                                 </div>
                                 {errors?.otp && <p className="mt-2 text-center text-sm text-red-600">{errors.otp}</p>}
                             </div>
+
                             <div className="text-center">
                                 <p className="text-sm text-gray-600">
                                     Didn't receive the code?{' '}
@@ -197,12 +197,28 @@ export default function VerifyOtp() {
                                     </button>
                                 </p>
                             </div>
+
                             <button
                                 type="submit"
-                                className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+                                className="flex w-full items-center justify-center rounded-lg bg-primary px-3 py-2 text-sm font-medium text-white transition duration-150 hover:bg-primary/70 sm:px-4 sm:py-3 sm:text-base"
                                 disabled={form.processing}
                             >
-                                {form.processing ? 'Verifying...' : 'Verify Account'}
+                                {form.processing ? (
+                                    <>
+                                        <svg
+                                            className="mr-2 h-5 w-5 animate-spin text-white"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                        </svg>
+                                        Processing...
+                                    </>
+                                ) : (
+                                    'Verify Account'
+                                )}
                             </button>
                         </form>
                     </div>

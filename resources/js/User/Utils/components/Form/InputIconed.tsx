@@ -33,18 +33,18 @@ export default function FormInput({
     className = '',
     Icon = '',
 }: FormInputProps) {
-    const inputClass = `${className} border-primary/20 pl-10  ${
-        required && error && touched ? ' border-red-500 focus:ring-red-500 focus:ring-primary' : 'focus:ring-primary'
-    } ${readOnly ? 'bg-gray-100 border-gray-200 border-primary' : ''} ${disabled ? 'bg-gray-200 cursor-not-allowed' : ''}`;
+    const inputClass = `w-full rounded-lg border px-3 text-sm lg:text-base py-2 sm:px-4 sm:py-3 transition duration-150 outline-none focus:ring-1 border-primary/20 pl-9 sm:pl-10 ${
+        required && error && touched ? 'border-red-500 focus:ring-red-500' : 'focus:ring-primary'
+    } ${readOnly ? 'bg-gray-100 border-gray-200' : ''} ${disabled ? 'bg-gray-200 cursor-not-allowed' : ''} ${className}`;
 
     return (
         <div className="relative">
-            <label htmlFor={id} className="mb-1 block text-sm font-medium text-gray-700">
+            <label htmlFor={id} className="mb-1 block text-xs font-medium text-gray-700 sm:text-sm">
                 {label} {required && <span className="text-red-500">*</span>}
             </label>
             <div className="relative">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <i className={`${Icon} text-gray-500`}></i>
+                    <i className={`${Icon} text-sm text-gray-500 sm:text-base`}></i>
                 </div>
                 <input
                     type={type}
