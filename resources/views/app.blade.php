@@ -20,6 +20,7 @@
     @vite(['resources/js/app.tsx', "resources/js/{$page['component']}.tsx"])
     @inertiaHead
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body>
