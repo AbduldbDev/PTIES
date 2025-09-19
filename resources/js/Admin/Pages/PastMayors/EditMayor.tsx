@@ -118,7 +118,7 @@ export default function GuideCreateForm() {
 
                                 <InputField
                                     type="text"
-                                    label="Name"
+                                    label="Position"
                                     name="position"
                                     required={true}
                                     value={form.data.position}
@@ -137,7 +137,7 @@ export default function GuideCreateForm() {
                                     value={form.data.start_term}
                                     onChange={(e) => form.setData('start_term', e.target.value)}
                                     error={form.errors.start_term}
-                                    errorMessage="Please enter start term year"
+                                    errorMessage="Please enter the start term year."
                                     resetSignal={resetSignal}
                                 />
 
@@ -150,7 +150,7 @@ export default function GuideCreateForm() {
                                     value={form.data.end_term}
                                     onChange={(e) => form.setData('end_term', e.target.value)}
                                     error={form.errors.end_term}
-                                    errorMessage="Please enter end term year"
+                                    errorMessage="Please enter the end term year."
                                     resetSignal={resetSignal}
                                 />
 
