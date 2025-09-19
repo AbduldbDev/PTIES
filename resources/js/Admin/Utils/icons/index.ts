@@ -39,6 +39,8 @@ import GridIcon from './grid.svg?react';
 import GroupIcon from './group.svg?react';
 import HorizontaLDots from './horizontal-dots.svg?react';
 import HouseMedical from './house-medical.svg?react';
+import ImageRegular from './images-regular-full.svg?react';
+import ImagesSolid from './images-solid-full.svg?react';
 import ErrorIcon from './info-error.svg?react';
 import ErrorHexaIcon from './info-hexa.svg?react';
 import InfoIcon from './info.svg?react';
@@ -55,23 +57,20 @@ import PlugInIcon from './plug-in.svg?react';
 import PlusIcon from './plus.svg?react';
 import ShootingStarIcon from './shooting-star.svg?react';
 import Shop from './shop.svg?react';
+import SiteMap from './sitemap-light-full.svg?react';
 import TableIcon from './table.svg?react';
 import TaskIcon from './task-icon.svg?react';
 import TimeIcon from './time.svg?react';
 import TrashBinIcon from './trash.svg?react';
 import UserCircleIcon from './user-circle.svg?react';
+import UserCrown from './user-crown.svg?react';
 import UserIcon from './user-line.svg?react';
 import UserTie from './user-tie.svg?react';
 import VideoIcon from './videos.svg?react';
-import UserCrown from './user-crown.svg?react';
-import ImagesSolid from './images-solid-full.svg?react';
-import ImageRegular from './images-regular-full.svg?react';
-
+import UserGroup from './user-group-light-full.svg?react';
 
 export {
-    ImageRegular,
-    UserCrown,
-    ImagesSolid,
+    UserGroup,
     AlertHexaIcon,
     AlertIcon,
     AngleDownIcon,
@@ -115,6 +114,8 @@ export {
     GroupIcon,
     HorizontaLDots,
     HouseMedical,
+    ImageRegular,
+    ImagesSolid,
     InfoIcon,
     ListIcon,
     LockIcon,
@@ -129,11 +130,13 @@ export {
     PlusIcon,
     ShootingStarIcon,
     Shop,
+    SiteMap,
     TableIcon,
     TaskIcon,
     TimeIcon,
     TrashBinIcon,
     UserCircleIcon,
+    UserCrown,
     UserIcon,
     UserTie,
     VideoIcon,

@@ -11,8 +11,10 @@ import {
     ImageRegular,
     MapDot,
     Shop,
+    SiteMap,
     UserCircleIcon,
     UserCrown,
+    UserGroup,
     UserTie,
 } from '@AdminUtils/icons';
 import { Link, usePage } from '@inertiajs/react';
@@ -206,7 +208,7 @@ const otherNavItems: NavItem[] = [
     },
 
     {
-        icon: <DocsIcon />,
+        icon: <SiteMap />,
         name: 'Deparment Structure',
         requiredUserType: ['admin', 'content_manager'],
         subItems: [
@@ -232,7 +234,7 @@ const otherNavItems: NavItem[] = [
     },
 
     {
-        icon: <DocsIcon />,
+        icon: <UserGroup />,
         name: 'Key Officials',
         requiredUserType: ['admin', 'content_manager'],
         subItems: [
