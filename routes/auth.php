@@ -48,8 +48,9 @@ use App\Http\Controllers\Auth\SocialiteController;
 //         ->name('logout');
 //
 
-
-Route::post('/Logout', [UserLoginController::class, 'logout']);
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [UserLoginController::class, 'logout']);
+});
 
 Route::middleware('user.access:guest')->group(function () {
     Route::get('/Login', [UserLoginController::class, 'showLoginForm'])->name('login');

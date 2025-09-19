@@ -1,4 +1,4 @@
-import { usePage } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 
 const Navbar = () => {
@@ -384,16 +384,14 @@ const Navbar = () => {
                                                 </div>
 
                                                 <div className="border-t border-primary/10 py-1">
-                                                    <form method="POST" action="/logout">
-                                                        <input type="hidden" name="_token" value={csrfToken ?? ''} />
-                                                        <button
-                                                            type="submit"
-                                                            className="flex w-full items-center rounded-md px-4 py-2 text-start text-sm text-gray-700 hover:bg-gray-100"
-                                                        >
-                                                            <i className="fa-solid fa-arrow-right-from-bracket mr-3 w-5 text-center"></i>
-                                                            Logout
-                                                        </button>
-                                                    </form>
+                                                    <button
+                                                        onClick={() => router.post('/logout')}
+                                                        type="submit"
+                                                        className="flex w-full items-center rounded-md px-4 py-2 text-start text-sm text-gray-700 hover:bg-gray-100"
+                                                    >
+                                                        <i className="fa-solid fa-arrow-right-from-bracket mr-3 w-5 text-center"></i>
+                                                        Logout
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -601,15 +599,13 @@ const Navbar = () => {
                                     <a href="#" className="block rounded-md px-4 py-2 text-primary hover:bg-primary/8">
                                         <i className="fa-solid fa-coins mr-3"></i> My Rewards
                                     </a>
-                                    <form method="POST" action="/Logout">
-                                        <input type="hidden" name="_token" value={csrfToken ?? ''} />
-                                        <button
-                                            type="submit"
-                                            className="block w-full rounded-md px-4 py-2 text-start text-primary hover:bg-primary/8"
-                                        >
-                                            <i className="fa-solid fa-arrow-right-from-bracket mr-3"></i> Logout
-                                        </button>
-                                    </form>
+                                    <button
+                                        type="button"
+                                        onClick={() => router.post('/logout')}
+                                        className="block w-full rounded-md px-4 py-2 text-start text-primary hover:bg-primary/8"
+                                    >
+                                        <i className="fa-solid fa-arrow-right-from-bracket mr-3"></i> Logout
+                                    </button>
                                 </>
                             ) : (
                                 <>

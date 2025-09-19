@@ -23,7 +23,7 @@ interface PageProps {
 export default function PastMayors() {
     const { banner, items } = usePage<PageProps>().props;
 
-    const title = 'Pakil Tourism | Guide';
+    const title = 'Pakil Tourism | Past Mayors';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
 
