@@ -32,6 +32,7 @@ Route::prefix('/about')->name('user.')->group(function () {
     Route::get('/tourism', [AboutUsController::class, 'AboutTourism'])->name('tourism');
     Route::get('/officials', [AboutUsController::class, 'KeyOfficials'])->name('officials');
     Route::get('/biography/{id}', [AboutUsController::class, 'OfficialBio'])->name('biography');
+    Route::get('/past-mayor', [AboutUsController::class, 'PastMayors'])->name('PastMayors');
 });
 
 Route::prefix('/explore')->name('user.')->group(function () {

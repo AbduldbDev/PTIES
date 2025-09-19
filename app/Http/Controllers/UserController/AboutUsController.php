@@ -9,6 +9,7 @@ use App\Models\CMSBanner;
 use App\Models\Officials;
 use App\Models\CMSContent;
 use App\Models\Department;
+use App\Models\PastMayors;
 
 class AboutUsController extends Controller
 {
@@ -85,6 +86,19 @@ class AboutUsController extends Controller
         return Inertia::render('User/Pages/Biography', [
             'banner' => $banner,
             'item' => $official,
+        ]);
+    }
+
+    public function PastMayors()
+    {
+        $banner = CMSBanner::where('key', 'Past Mayor')->first();
+
+
+        $mayors = PastMayors::orderByRaw("CAST(SUBSTRING_INDEX(term, ' ', 1) AS UNSIGNED) ASC")->get();
+
+        return Inertia::render('User/Pages/PastMayors', [
+            'banner' => $banner,
+            'items' => $mayors,
         ]);
     }
 

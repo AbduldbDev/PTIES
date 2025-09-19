@@ -31,13 +31,69 @@ type LinkType = {
 const AppHeader: React.FC<AppHeaderProps> = ({ auth }) => {
     const [query, setQuery] = useState('');
     const [suggestions, setSuggestions] = useState<LinkType[]>([]);
-
     const links = [
-        { name: 'Test', url: '/dashboard' },
-        { name: 'Test', url: '/users' },
-        { name: 'Test', url: '/reports/sales' },
-        { name: 'Test', url: '/products' },
-        { name: 'Test', url: '/settings' },
+        // Main Nav
+        { name: 'Dashboard', url: '/Admin/' },
+        { name: 'Add Account', url: '/Admin/accounts/new' },
+        { name: 'All Accounts', url: '/Admin/accounts' },
+        { name: 'Color Theme', url: '/Admin/theme/color' },
+
+        // Other Nav
+        { name: 'Add New FAQs', url: '/Admin/faqs/new' },
+        { name: 'All FAQs', url: '/Admin/faqs' },
+
+        { name: 'Add New Terminal', url: '/Admin/terminal/new' },
+        { name: 'All Terminal', url: '/Admin/terminal' },
+
+        { name: 'Add Tour Guide', url: '/Admin/tour-guides/new' },
+        { name: 'All Tour Guide', url: '/Admin/tour-guides' },
+
+        { name: 'Add Establishment', url: '/Admin/establishment/new' },
+        { name: 'All Establishments', url: '/Admin/establishment' },
+
+        { name: 'Add New Products', url: '/Admin/local-products/new' },
+        { name: 'All Products', url: '/Admin/local-products/' },
+
+        { name: 'Add New Personality', url: '/Admin/local-personalities/new' },
+        { name: 'All Personalities', url: '/Admin/local-personalities' },
+
+        { name: 'Add New Hotlines', url: '/Admin/hotlines/new' },
+        { name: 'All Hotlines', url: '/Admin/hotlines' },
+
+        { name: 'Pending Posts', url: '/Admin/social-wall/pending' },
+        { name: 'Approved Posts', url: '/Admin/social-wall/approved' },
+        { name: 'Rejected Posts', url: '/Admin/social-wall/rejected' },
+
+        { name: 'Page Banners', url: '/Admin/cms/banner' },
+
+        // Home Sections
+        { name: 'Banner', url: '/Admin/cms/hero-section' },
+        { name: 'Introduction', url: '/Admin/cms/introduction-section' },
+        { name: 'Promotional Vid', url: '/Admin/content/promotional-video' },
+
+        // About Sections
+        { name: 'Tourism About', url: '/Admin/cms/tourism-section' },
+        { name: 'Mission & Vision', url: '/Admin/cms/mission-vision' },
+        { name: 'Citizen Charter', url: '/Admin/cms/citizen-charter' },
+
+        // Explore Sections
+        { name: 'About Pakil', url: '/Admin/cms/pakil-intro' },
+        { name: 'Barangay Information', url: '/Admin/barangay-info' },
+        { name: 'Municipal Statistics', url: '/Admin/cms/municipal-statistics' },
+
+        // History Sections
+        { name: 'New History', url: '/Admin/cms/pakil-history/new' },
+        { name: 'All History', url: '/Admin/cms/pakil-history/' },
+
+        // Department Structure
+        { name: 'New Department', url: '/Admin/structure/department/new' },
+        { name: 'All Departments', url: '/Admin/structure/department' },
+        { name: 'New Member', url: '/Admin/structure/members/new' },
+        { name: 'All Members', url: '/Admin/structure/members' },
+
+        // Key Officials
+        { name: 'New Official', url: '/Admin/officials/new' },
+        { name: 'All Officials', url: '/Admin/officials' },
     ];
 
     const handleChange = (e: { target: { value: any } }) => {
@@ -159,14 +215,14 @@ const AppHeader: React.FC<AppHeaderProps> = ({ auth }) => {
                                     className="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-200 bg-transparent py-2.5 pr-14 pl-12 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden xl:w-[430px] dark:border-gray-800 dark:bg-gray-900 dark:bg-white/[0.03] dark:text-white/90 dark:placeholder:text-white/30"
                                 />
                                 {suggestions.length > 0 && (
-                                    <ul className="absolute right-0 left-0 z-50 mt-2 rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-800 dark:bg-gray-900">
-                                        {suggestions.map((item, index) => (
+                                    <ul className="absolute right-0 left-0 z-50 mt-2 max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-xl dark:border-gray-800 dark:bg-gray-900">
+                                        {suggestions.slice(0, 5).map((item, index) => (
                                             <li key={index}>
                                                 <a
                                                     href={item.url}
-                                                    className="block px-4 py-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 transition-colors hover:bg-primary/10 hover:text-black dark:text-gray-200 dark:hover:bg-primary/20 dark:hover:text-white"
                                                 >
-                                                    {item.name}
+                                                    <span className="line-clamp-1">{item.name}</span>
                                                 </a>
                                             </li>
                                         ))}

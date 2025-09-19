@@ -170,7 +170,9 @@ export default function Home() {
                                                         {user.contact}
                                                     </TableCell>
                                                     <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                        {user.description}
+                                                        {user.description.length > 200
+                                                            ? user.description.substring(0, 200) + '...'
+                                                            : user.description}
                                                     </TableCell>
                                                     <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-center text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                         <a
@@ -220,7 +222,7 @@ export default function Home() {
                                             <TableRow>
                                                 <TableCell
                                                     colSpan={columns.length}
-                                                    className="capitalize px-4 py-20 text-center text-gray-500 dark:text-gray-400"
+                                                    className="px-4 py-20 text-center text-gray-500 capitalize dark:text-gray-400"
                                                 >
                                                     {searchTerm ? `No Tour Guides found matching "${searchTerm}"` : 'No Tour Guides available'}
                                                 </TableCell>

@@ -137,10 +137,10 @@ export default function Home() {
                                             sortedItems.map((faqs) => (
                                                 <TableRow key={faqs.id}>
                                                     <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {faqs.question}
+                                                        {faqs.question.length > 200 ? faqs.question.substring(0, 200) + '...' : faqs.question}
                                                     </TableCell>
                                                     <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {faqs.answer}
+                                                        {faqs.answer.length > 200 ? faqs.answer.substring(0, 200) + '...' : faqs.answer}
                                                     </TableCell>
 
                                                     <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">

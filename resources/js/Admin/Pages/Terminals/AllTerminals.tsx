@@ -85,7 +85,7 @@ export default function AllTerminals() {
     };
 
     const handleView = (id: any) => {
-        router.post(`/Admin/terminal/edit/${id}`);
+        router.get(`/Admin/terminal/edit/${id}`);
     };
 
     const columns: SortableColumn[] = [

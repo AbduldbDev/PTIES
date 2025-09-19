@@ -4,7 +4,6 @@ import FeaturedPost from '@UserUtils/components/Cards/FeaturedPost';
 import SocialWallCard from '@UserUtils/components/Cards/SocialWallPost';
 import PageTitle from '../Utils/components/Banner/PageTitle';
 
-
 type PageBannerProps = {
     title: string;
     subtitle: string;
@@ -12,11 +11,10 @@ type PageBannerProps = {
     image: string;
 };
 interface User {
-    id: number;
-    name: string;
-    email: string;
-    image?: string;
+    avatar?: string;
+    first_name?: string;
 }
+
 interface SocialWallPost {
     id: number;
     user_id: number;
@@ -25,9 +23,9 @@ interface SocialWallPost {
     likes_count: number;
     is_approved: boolean;
     user: User;
+    profile: User;
     has_liked?: boolean;
     created_at: string;
-    updated_at: string;
 }
 
 interface PageProps {
@@ -56,7 +54,7 @@ export default function SocialWall() {
                     title={banner?.title}
                     subtitle={banner?.subtitle}
                     desc={banner?.desc}
-                    imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
+                    imageSrc={banner?.image ? `${banner.image}` : '/User/Images/church.jpg'}
                 ></Banner>
             ) : (
                 <div className="h-[15vh]"></div>

@@ -50,7 +50,7 @@ export default function Terminals() {
                     title={banner?.title}
                     subtitle={banner?.subtitle}
                     desc={banner?.desc}
-                    imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
+                    imageSrc={banner?.image ? `${banner.image}` : '/User/Images/church.jpg'}
                 ></Banner>
             ) : (
                 <div className="h-[15vh]"></div>

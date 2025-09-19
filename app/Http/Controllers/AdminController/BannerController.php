@@ -62,14 +62,13 @@ class BannerController extends Controller
             $banner->desc = $request->desc;
 
             if ($request->hasFile('image')) {
-                if ($banner->image && Storage::disk('public')->exists($banner->image)) {
-                    Storage::disk('public')->delete($banner->image);
+                if ($banner->image && Storage::disk('public')->exists(str_replace('/storage/', '', $banner->image))) {
+                    Storage::disk('public')->delete(str_replace('/storage/', '', $banner->image));
                 }
 
                 $filename = uniqid() . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
                 $imagePath = $request->file('image')->storeAs('CMSBanner', $filename, 'public');
-
-                $banner->image = $imagePath;
+                $banner->image = '/storage/' . $imagePath;
             }
 
             $banner->save();

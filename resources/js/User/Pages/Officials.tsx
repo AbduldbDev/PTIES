@@ -53,7 +53,7 @@ export default function Officials() {
                     title={banner?.title}
                     subtitle={banner?.subtitle}
                     desc={banner?.desc}
-                    imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
+                    imageSrc={banner?.image ? `${banner.image}` : '/User/Images/church.jpg'}
                 />
             ) : (
                 <div className="h-[15vh]"></div>

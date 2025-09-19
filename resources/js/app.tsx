@@ -17,7 +17,23 @@ createInertiaApp({
         const path = `./${name}.tsx`;
 
         if (!(path in pages)) {
-            throw new Error(`Page not found: ${path}`);
+            const module = (await resolvePageComponent('./Error/NotFound.tsx', pages)) as {
+                default: ComponentType & { layout?: (page: JSX.Element) => JSX.Element };
+            };
+
+            return {
+                ...module,
+                default: {
+                    ...module.default,
+                    layout: (page: JSX.Element) => (
+                        <StrictMode>
+                            <AppWrapper>
+                                <MainLayout>{page}</MainLayout>
+                            </AppWrapper>
+                        </StrictMode>
+                    ),
+                },
+            };
         }
 
         const module = (await resolvePageComponent(path, pages)) as {

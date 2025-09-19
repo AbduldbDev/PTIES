@@ -86,6 +86,7 @@ const Navbar = () => {
             { label: 'Department Structure', href: '/about/tourism#department_structure' },
             { label: 'Citizen Charter', href: '/about/tourism#citizen_charter' },
             { label: 'Key Officials', href: '/about/officials' },
+            { label: 'Past Mayors', href: '/about/past-mayor' },
         ],
         explore: [
             { label: 'About Pakil', href: '/explore/about' },

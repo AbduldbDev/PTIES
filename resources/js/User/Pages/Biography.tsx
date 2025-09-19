@@ -54,7 +54,7 @@ export default function SingleOfficial() {
                 title={banner?.title}
                 subtitle={banner?.subtitle}
                 desc={banner?.desc}
-                imageSrc={banner?.image ? `/storage/${banner.image}` : '/User/Images/church.jpg'}
+                imageSrc={banner?.image ? `${banner.image}` : '/User/Images/church.jpg'}
             ></Banner>
 
             <section className="py-4 md:py-8">

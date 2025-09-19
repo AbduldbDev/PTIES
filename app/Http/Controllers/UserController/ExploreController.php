@@ -29,7 +29,8 @@ class ExploreController extends Controller
             ->orderBy('content_key')
             ->get();
 
-        $history = PakilHistory::get();
+        $history = PakilHistory::orderByRaw("CAST(SUBSTRING_INDEX(date, ' ', 1) AS UNSIGNED) ASC")->get();
+
 
         $pageData = [];
         foreach ($contents as $content) {
