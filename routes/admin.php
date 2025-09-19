@@ -21,6 +21,7 @@ use App\Http\Controllers\AdminController\FAQsController;
 use App\Http\Controllers\AdminController\LocalPersonalitiesController;
 use App\Http\Controllers\AdminController\LocalProductsController;
 use App\Http\Controllers\AdminController\OfficialsController;
+use App\Http\Controllers\AdminController\PastMayorController;
 use App\Http\Controllers\AdminController\PostController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use Inertia\Inertia;
@@ -200,5 +201,14 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/create', [OfficialsController::class, 'create'])->name('create');
         Route::post('/update/{id}', [OfficialsController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [OfficialsController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('/Admin/past-mayor')->name('pastmayor.')->group(function () {
+        Route::get('/', [PastMayorController::class, 'index'])->name('index');
+        Route::get('/new', [PastMayorController::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [PastMayorController::class, 'edit'])->name('edit');
+        Route::post('/create', [PastMayorController::class, 'create'])->name('create');
+        Route::post('/update/{id}', [PastMayorController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [PastMayorController::class, 'delete'])->name('delete');
     });
 });

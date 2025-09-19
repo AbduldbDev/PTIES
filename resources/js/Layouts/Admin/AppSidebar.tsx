@@ -242,6 +242,16 @@ const otherNavItems: NavItem[] = [
             { name: 'All Officials', path: '/Admin/officials', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
+
+    {
+        icon: <UserGroup />,
+        name: 'Past Mayors',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'New Mayor', path: '/Admin/past-mayor/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Mayors', path: '/Admin/past-mayor', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
 ];
 
 const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {

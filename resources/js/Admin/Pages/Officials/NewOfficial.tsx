@@ -169,7 +169,7 @@ export default function GuideCreateForm() {
                                 <InputField
                                     type="text"
                                     label="Term"
-                                    name="sched"
+                                    name="term"
                                     required={true}
                                     value={form.data.term}
                                     onChange={(e) => form.setData('term', e.target.value)}

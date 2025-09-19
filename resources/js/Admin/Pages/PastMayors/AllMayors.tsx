@@ -11,7 +11,7 @@ import { useTableManagement } from '@AdminUtils/hooks/useTableManagement';
 
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 
-type OfficialsProps = {
+type MayorProps = {
     id: number;
     name: string;
     position: string;
@@ -25,7 +25,7 @@ type PageProps = {
         error?: string;
     };
     errors?: Record<string, string | undefined>;
-    items: PaginatedResponse<OfficialsProps>;
+    items: PaginatedResponse<MayorProps>;
 };
 
 interface PaginationLink {
@@ -59,10 +59,10 @@ export default function Home() {
         searchTerm,
         handleSearch,
         filteredItems: sortedItems,
-    } = useTableManagement<OfficialsProps>({
+    } = useTableManagement<MayorProps>({
         data: items.data,
         meta: items.meta || undefined,
-        initialSort: { key: 'name', direction: 'desc' },
+        initialSort: { key: 'term', direction: 'desc' },
         customSearchFilter: (item, searchTerm) => {
             const searchLower = searchTerm.toLowerCase();
             return (
@@ -74,11 +74,11 @@ export default function Home() {
     });
 
     const handleDelete = (id: number) => {
-        form.delete(`/Admin/officials/delete/${id}`);
+        form.delete(`/Admin/past-mayor/delete/${id}`);
     };
 
     const handleView = (id: any) => {
-        router.get(`/Admin/officials/edit/${id}`);
+        router.get(`/Admin/past-mayor/edit/${id}`);
     };
 
     const columns: SortableColumn[] = [
@@ -100,17 +100,18 @@ export default function Home() {
                 {errors?.error && <FlashMessage type="error" message={errors.error} key={Date.now()} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}
 
-                <PageBreadcrumb pageTitle="Key Officials Management" />
+                <PageBreadcrumb pageTitle="Past Mayors Management" />
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
-                    <ComponentCard title="All Key Officials">
+                    <ComponentCard title="All Past Mayors">
                         <TableControls
                             searchTerm={searchTerm}
                             onSearchChange={handleSearch}
                             itemsPerPage={currentPerPage}
                             onItemsPerPageChange={(e) => handleItemsPerPageChange(e.target.value)}
-                            searchPlaceholder="Search officials..."
+                            searchPlaceholder="Search mayor..."
                         />
+
                         <div className="overflow-hidden rounded-xl bg-white dark:bg-white/[0.03]">
                             <div className="max-w-full overflow-x-auto">
                                 <Table>
@@ -172,7 +173,7 @@ export default function Home() {
                                                             <div className="flex w-full items-center justify-center gap-2">
                                                                 <DeleteConfirm
                                                                     onDeleteConfirmed={() => handleDelete(user.id)}
-                                                                    message={`Are you sure you want to delete Key Officials named ${user.name}?`}
+                                                                    message={`Are you sure you want to delete Past Mayors named ${user.name}?`}
                                                                 />
 
                                                                 <button
@@ -207,7 +208,7 @@ export default function Home() {
                                                     colSpan={columns.length}
                                                     className="px-4 py-20 text-center text-gray-500 capitalize dark:text-gray-400"
                                                 >
-                                                    {searchTerm ? `No Key Officials found matching "${searchTerm}"` : 'No Key Officials available'}
+                                                    {searchTerm ? `No Past Mayor found matching "${searchTerm}"` : 'No Past Mayor available'}
                                                 </TableCell>
                                             </TableRow>
                                         )}
