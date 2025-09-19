@@ -60,7 +60,7 @@ export default function NotificationDropdown() {
                 </div>
                 <ul className="custom-scrollbar flex h-auto flex-col overflow-y-auto">
                     {/* Example notification items */}
-                    {/* <li>
+                    <li>
                         <DropdownItem
                             onItemClick={closeDropdown}
                             className="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
@@ -309,7 +309,7 @@ export default function NotificationDropdown() {
                                 </span>
                             </span>
                         </DropdownItem>
-                    </li> */}
+                    </li>
                     {/* Add more items as needed */}
                 </ul>
                 <Link

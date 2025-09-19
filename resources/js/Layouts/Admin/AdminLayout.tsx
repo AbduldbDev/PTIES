@@ -1,11 +1,11 @@
 import { SidebarProvider, useSidebar } from '@AdminUtils/context/SidebarContext';
 import '@css/admin.css';
 import { usePage } from '@inertiajs/react';
+import useThemeColors from '@UserUtils/components/Layout/ThemeColor';
 import React, { PropsWithChildren } from 'react';
 import AppHeader from '../Admin/AppHeader';
 import AppSidebar from '../Admin/AppSidebar';
 import Backdrop from '../Admin/Backdrop';
-
 export interface UserProfile {
     first_name: string;
     middle_name?: string;
@@ -32,7 +32,7 @@ interface LayoutContentProps extends PropsWithChildren {
 
 const LayoutContent: React.FC<LayoutContentProps> = ({ children, auth }) => {
     const { isExpanded, isHovered, isMobileOpen } = useSidebar();
-
+    const themeColors = useThemeColors();
     return (
         <div className="min-h-screen bg-white transition-all duration-300 ease-in-out xl:flex dark:bg-[#101828]">
             <div>

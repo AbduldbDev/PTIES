@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 
 const messages = [
-    "Exploring Pakil's scenic spots...",
-    'Scanning QR codes for rewards...',
-    'Learning about local heritage...',
-    'Getting ready for a fun adventure...',
-    'Discovering hidden gems in Laguna...',
+    "Unlocking Pakil's hidden treasures...",
+    'Collecting points from local QR codes...',
+    'Discovering historic landmarks...',
+    'Planning your next adventure in Pakil...',
+    'Exploring scenic spots and secret gems...',
+    'Learning stories behind each landmark...',
+    'Earning rewards while touring Pakil...',
+    'Finding local experiences you’ll love...',
 ];
 
 interface LoaderProps {
@@ -56,11 +59,11 @@ export default function Loader({ onComplete }: LoaderProps) {
                 transition: 'opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 pointerEvents: isVisible ? 'auto' : 'none',
             }}
-            className="fixed inset-0 z-[99990] flex flex-col items-center justify-center bg-[#052675] backdrop-blur-lg"
+            className="fixed inset-0 z-[99990] flex flex-col items-center justify-center bg-primary backdrop-blur-lg"
         >
             <div className="relative mb-6 h-28 w-28">
                 <div
-                    className="absolute inset-0 animate-spin rounded-full border-4 border-transparent bg-gradient-to-r from-[#e09414] to-[#10b981]"
+                    className="absolute inset-0 animate-spin rounded-full border-4 border-transparent bg-gradient-to-r from-secondary to-accent"
                     style={{
                         background: 'conic-gradient(from 0deg, var(--tw-gradient-from), var(--tw-gradient-to), transparent)',
                         WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',

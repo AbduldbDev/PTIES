@@ -10,6 +10,7 @@ import { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { Footer } from './Footer';
 import Navbar from './NavBar';
 import PrivacyModal from './PrivacyModal';
+
 export default function UserLayout({ children }: PropsWithChildren) {
     const colorsLoaded = useThemeColors();
     const [assetsLoaded, setAssetsLoaded] = useState(false);

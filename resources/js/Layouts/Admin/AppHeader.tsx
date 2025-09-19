@@ -212,12 +212,12 @@ const AppHeader: React.FC<AppHeaderProps> = ({ auth }) => {
                                     value={query}
                                     onChange={handleChange}
                                     placeholder="Search or type command..."
-                                    className="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-200 bg-transparent py-2.5 pr-14 pl-12 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-hidden xl:w-[430px] dark:border-gray-800 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
+                                    className="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-200 bg-transparent py-2.5 pr-14 pl-12 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden xl:w-[430px] dark:border-gray-800 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                                 />
                                 {suggestions.length > 0 && (
                                     <ul className="absolute right-0 left-0 z-50 mt-2 max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-xl dark:border-gray-800 dark:bg-gray-900">
                                         {suggestions.slice(0, 5).map((item, index) => (
-                                            <li key={index}>
+                                            <li key={index} className={`${index !== 0 ? 'border-t border-gray-200 dark:border-gray-700' : ''}`}>
                                                 <a
                                                     href={item.url}
                                                     className="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 transition-colors hover:bg-primary/10 hover:text-black dark:text-gray-200 dark:hover:bg-primary/20 dark:hover:text-white"
@@ -240,9 +240,9 @@ const AppHeader: React.FC<AppHeaderProps> = ({ auth }) => {
                 <div
                     className={`${
                         isApplicationMenuOpen ? 'flex' : 'hidden'
-                    } shadow-theme-md w-full items-center justify-between gap-4 px-5 py-4 lg:flex lg:justify-end lg:px-0 lg:shadow-none`}
+                    } w-full items-center justify-between gap-4 px-5 py-4 shadow-theme-md lg:flex lg:justify-end lg:px-0 lg:shadow-none`}
                 >
-                    <div className="2xsm:gap-3 flex items-center gap-2">
+                    <div className="flex items-center gap-2 2xsm:gap-3">
                         {/* <!-- Dark Mode Toggler --> */}
                         <ThemeToggleButton />
                         {/* <!-- Dark Mode Toggler --> */}
