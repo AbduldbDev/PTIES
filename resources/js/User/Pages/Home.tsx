@@ -369,27 +369,29 @@ export default function Home() {
                     </div>
                 </section>
             )}
+            
+            {events.length > 0 && (
+                <section className="bg-white py-10">
+                    <div className="container mx-auto px-6">
+                        <PageTitle title="Updates" subtitle="Events & News" desc="Stay updated with the latest happenings in Pakil"></PageTitle>
 
-            <section className="bg-white py-10">
-                <div className="container mx-auto px-6">
-                    <PageTitle title="Updates" subtitle="Events & News" desc="Stay updated with the latest happenings in Pakil"></PageTitle>
+                        <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                            {events.map((event, index) => (
+                                <EventsCard key={index} events={event} />
+                            ))}
+                        </div>
 
-                    <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                        {events.map((event, index) => (
-                            <EventsCard key={index} events={event} />
-                        ))}
+                        <div className="text-center">
+                            <a
+                                href="/events"
+                                className="inline-flex items-center rounded-full border border-primary px-6 py-3 font-medium text-primary transition duration-300 hover:bg-primary hover:text-white"
+                            >
+                                <i className="fas fa-newspaper mr-2"></i> View All Events & News
+                            </a>
+                        </div>
                     </div>
-
-                    <div className="text-center">
-                        <a
-                            href="/events"
-                            className="inline-flex items-center rounded-full border border-primary px-6 py-3 font-medium text-primary transition duration-300 hover:bg-primary hover:text-white"
-                        >
-                            <i className="fas fa-newspaper mr-2"></i> View All Events & News
-                        </a>
-                    </div>
-                </div>
-            </section>
+                </section>
+            )}
 
             <NewsLetter />
         </>
