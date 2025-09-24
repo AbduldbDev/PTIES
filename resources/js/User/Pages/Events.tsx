@@ -1,6 +1,7 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
+import EventsCard from '@UserUtils/components/Cards/EventsCard';
 import Calendar from '@UserUtils/components/Sections/Events/EventCarlendar';
 
 type PageBannerProps = {
@@ -10,8 +11,35 @@ type PageBannerProps = {
     image: string;
 };
 
+type EventProps = {
+    id: number;
+    title: string;
+    description: string;
+    start_date: string;
+    end_date: string;
+    schedules: Schedule[];
+    admission: string;
+    attire: string;
+    contacts: string;
+    long: string;
+    lat: string;
+    image: File[];
+};
+
+type Schedule = {
+    title: string;
+    date_time: string;
+    desc: string;
+};
+
+interface PageProps {
+    banner: PageBannerProps;
+    items: EventProps[];
+    [key: string]: unknown;
+}
+
 export const Events = () => {
-    const { banner } = usePage<{ banner: PageBannerProps }>().props;
+    const { banner, items } = usePage<PageProps>().props;
 
     const title = 'Pakil Tourism | Events';
     const description =
@@ -44,7 +72,7 @@ export const Events = () => {
                         desc="Discover upcoming festivals, cultural activities, and community gatherings in Pakil"
                     />
 
-                    <Calendar />
+                    <Calendar events={items} />
                 </div>
             </section>
 
@@ -53,138 +81,16 @@ export const Events = () => {
                     <PageTitle title="Updates" subtitle="Events & News" desc="Stay updated with the latest happenings in Pakil" />
 
                     <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                            <div className="relative">
-                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
-                            </div>
-                            <div className="p-6">
-                                <div className="mb-3 flex items-center text-sm text-gray-500">
-                                    <i className="far fa-calendar-alt mr-2 text-primary"></i>
-                                    <span>June 15 - July 30, 2069</span>
-                                </div>
-                                <h4 className="text-dark mb-3 text-xl font-bold">Birthday Ni John Justine</h4>
-                                <p className="mb-5 line-clamp-3 text-gray-600">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda tempore praesentium nesciunt numquam
-                                    beatae alias reprehenderit, labore modi optio quasi fugit obcaecati culpa perspiciatis, maiores ipsum nemo
-                                    perferendis maxime.
-                                </p>
-                                <a href="#" className="flex items-center font-medium text-primary hover:text-primary/80">
-                                    Read More <i className="fas fa-arrow-right ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                            <div className="relative">
-                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
-                            </div>
-                            <div className="p-6">
-                                <div className="mb-3 flex items-center text-sm text-gray-500">
-                                    <i className="far fa-calendar-alt mr-2 text-primary"></i>
-                                    <span>June 15 - July 30, 2069</span>
-                                </div>
-                                <h4 className="text-dark mb-3 text-xl font-bold">Birthday Ni John Justine</h4>
-                                <p className="mb-5 line-clamp-3 text-gray-600">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda tempore praesentium nesciunt numquam
-                                    beatae alias reprehenderit, labore modi optio quasi fugit obcaecati culpa perspiciatis, maiores ipsum nemo
-                                    perferendis maxime.
-                                </p>
-                                <a href="#" className="flex items-center font-medium text-primary hover:text-primary/80">
-                                    Read More <i className="fas fa-arrow-right ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                            <div className="relative">
-                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
-                            </div>
-                            <div className="p-6">
-                                <div className="mb-3 flex items-center text-sm text-gray-500">
-                                    <i className="far fa-calendar-alt mr-2 text-primary"></i>
-                                    <span>June 15 - July 30, 2069</span>
-                                </div>
-                                <h4 className="text-dark mb-3 text-xl font-bold">Birthday Ni John Justine</h4>
-                                <p className="mb-5 line-clamp-3 text-gray-600">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda tempore praesentium nesciunt numquam
-                                    beatae alias reprehenderit, labore modi optio quasi fugit obcaecati culpa perspiciatis, maiores ipsum nemo
-                                    perferendis maxime.
-                                </p>
-                                <a href="#" className="flex items-center font-medium text-primary hover:text-primary/80">
-                                    Read More <i className="fas fa-arrow-right ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                            <div className="relative">
-                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
-                            </div>
-                            <div className="p-6">
-                                <div className="mb-3 flex items-center text-sm text-gray-500">
-                                    <i className="far fa-calendar-alt mr-2 text-primary"></i>
-                                    <span>June 15 - July 30, 2069</span>
-                                </div>
-                                <h4 className="text-dark mb-3 text-xl font-bold">Birthday Ni John Justine</h4>
-                                <p className="mb-5 line-clamp-3 text-gray-600">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda tempore praesentium nesciunt numquam
-                                    beatae alias reprehenderit, labore modi optio quasi fugit obcaecati culpa perspiciatis, maiores ipsum nemo
-                                    perferendis maxime.
-                                </p>
-                                <a href="#" className="flex items-center font-medium text-primary hover:text-primary/80">
-                                    Read More <i className="fas fa-arrow-right ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                            <div className="relative">
-                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
-                            </div>
-                            <div className="p-6">
-                                <div className="mb-3 flex items-center text-sm text-gray-500">
-                                    <i className="far fa-calendar-alt mr-2 text-primary"></i>
-                                    <span>June 15 - July 30, 2069</span>
-                                </div>
-                                <h4 className="text-dark mb-3 text-xl font-bold">Birthday Ni John Justine</h4>
-                                <p className="mb-5 line-clamp-3 text-gray-600">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda tempore praesentium nesciunt numquam
-                                    beatae alias reprehenderit, labore modi optio quasi fugit obcaecati culpa perspiciatis, maiores ipsum nemo
-                                    perferendis maxime.
-                                </p>
-                                <a href="#" className="flex items-center font-medium text-primary hover:text-primary/80">
-                                    Read More <i className="fas fa-arrow-right ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                            <div className="relative">
-                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
-                            </div>
-                            <div className="p-6">
-                                <div className="mb-3 flex items-center text-sm text-gray-500">
-                                    <i className="far fa-calendar-alt mr-2 text-primary"></i>
-                                    <span>June 15 - July 30, 2069</span>
-                                </div>
-                                <h4 className="text-dark mb-3 text-xl font-bold">Birthday Ni John Justine</h4>
-                                <p className="mb-5 line-clamp-3 text-gray-600">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda tempore praesentium nesciunt numquam
-                                    beatae alias reprehenderit, labore modi optio quasi fugit obcaecati culpa perspiciatis, maiores ipsum nemo
-                                    perferendis maxime.
-                                </p>
-                                <a href="#" className="flex items-center font-medium text-primary hover:text-primary/80">
-                                    Read More <i className="fas fa-arrow-right ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
+                        {items.map((event, index) => (
+                            <EventsCard key={index} events={event} />
+                        ))}
                     </div>
 
-                    <div className="mt-8 text-center">
+                    {/* <div className="mt-8 text-center">
                         <button className="inline-flex items-center rounded-full border border-primary px-5 py-2 font-medium text-primary transition duration-300 hover:bg-primary hover:text-white">
                             <i className="fas fa-arrow-down mr-2"></i> Load More
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         </>

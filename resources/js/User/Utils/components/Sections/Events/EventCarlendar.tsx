@@ -4,13 +4,57 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { useState } from 'react';
 
-const Calendar = () => {
-    const [events, setEvents] = useState([
-        { title: 'Birthday Ni Abdul', start: '2025-09-20T10:00:00', end: '2025-09-20T12:00:00', color: '#6366f1', textColor: '#fff' },
-        { title: 'Birthday Ni John justine', start: '2025-09-22', end: '2025-09-25', color: '#10b981', textColor: '#fff' }, // 2-day event
-        { title: 'Birthday Ni Ethan', start: '2025-09-22', end: '2025-09-25', textColor: '#fff' }, // single-day deadline
-        { title: 'Birthday Ni Marc Legaspi', start: '2025-09-22', end: '2025-09-25', color: '#8b5cf6', textColor: '#fff' },
-    ]);
+type EventProps = {
+    id: number;
+    title: string;
+    description: string;
+    start_date: string;
+    end_date: string;
+    schedules: Schedule[];
+    admission: string;
+    attire: string;
+    contacts: string;
+    long: string;
+    lat: string;
+    image: File[];
+};
+
+type Schedule = {
+    title: string;
+    date_time: string;
+    desc: string;
+};
+interface CalendarProps {
+    events: EventProps[];
+}
+
+const Calendar = ({ events }: CalendarProps) => {
+    const [selectedEvent, setSelectedEvent] = useState<any | null>(null);
+
+    const handleEventClick = (info: any) => {
+        setSelectedEvent({
+            title: info.event.title,
+            start: info.event.start,
+            end: info.event.end,
+            location: info.event.extendedProps.location,
+            description: info.event.extendedProps.description,
+        });
+    };
+
+    const closeModal = () => setSelectedEvent(null);
+    const mappedEvents = events.map((event) => ({
+        id: event.id.toString(),
+        title: event.title,
+        start: event.start_date,
+        end: event.end_date,
+        color: 'var(--primary)',
+        textColor: '#fff',
+        extendedProps: {
+            description: event.description,
+            location: `${event.lat},${event.long}`,
+            event_id: `${event.id}`,
+        },
+    }));
 
     return (
         <div className="max-w-8xl mx-auto w-full rounded-xl bg-white p-6 shadow-lg">
@@ -20,15 +64,14 @@ const Calendar = () => {
                 <FullCalendar
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
-                    events={events}
+                    events={mappedEvents}
                     headerToolbar={{
                         left: 'prev,next today',
                         center: 'title',
                         right: 'dayGridMonth,timeGridWeek,timeGridDay',
                     }}
-                    themeSystem="standard"
                     height="auto"
-                    editable={true}
+                    editable={false}
                     selectable={true}
                     dayMaxEvents={true}
                     eventDisplay="block"
@@ -38,37 +81,54 @@ const Calendar = () => {
                         hour12: true,
                     }}
                     windowResizeDelay={100}
-                    dayHeaderClassNames="bg-indigo-50 font-semibold text-gray-700 py-2"
-                    dayCellClassNames="hover:bg-gray-50 transition-colors"
-                    eventClassNames="rounded-lg shadow-sm border-0 cursor-pointer"
-                    buttonText={{
-                        today: 'Today',
-                        month: 'Month',
-                        week: 'Week',
-                        day: 'Day',
-                    }}
+                    eventClick={handleEventClick}
                 />
             </div>
 
-            {/* Legend */}
-            {/* <div className="mt-0 flex flex-wrap justify-center gap-4">
-                <div className="flex items-center">
-                    <div className="mr-2 h-3 w-3 rounded-full bg-indigo-500"></div>
-                    <span className="text-sm text-gray-600">Meetings</span>
+            {selectedEvent && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+                    <div className="w-full max-w-md scale-100 transform rounded-lg border border-gray-100 bg-white p-6 shadow-xl transition-all duration-200 hover:scale-[1.02]">
+                        {/* Header */}
+                        <div className="mb-4 flex items-start justify-between">
+                            <h2 className="pr-4 text-xl font-bold text-gray-900">{selectedEvent.title}</h2>
+                            <button onClick={closeModal} className="rounded-full p-2 transition-colors duration-150 hover:bg-gray-100">
+                                <i className="fas fa-times text-gray-500 hover:text-gray-700"></i>
+                            </button>
+                        </div>
+
+                        {/* Date & Time */}
+                        <div className="mb-4 flex items-center rounded-lg border border-blue-100 bg-blue-50 p-3">
+                            <i className="fas fa-calendar-day mr-3 text-lg text-primary"></i>
+                            <div className="text-sm">
+                                <span className="font-semibold text-primary">
+                                    {new Date(selectedEvent.start).toLocaleDateString('en-US', {
+                                        month: 'long',
+                                        day: 'numeric',
+                                        year: 'numeric',
+                                    })}
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Description */}
+                        <div className="mb-6">
+                            <p className="rounded-lg border border-gray-200 bg-gray-50 p-2 leading-relaxed text-gray-700">
+                                {selectedEvent.description}
+                            </p>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex justify-end space-x-3">
+                            <button
+                                onClick={closeModal}
+                                className="transform rounded-full bg-primary px-10 py-2 font-medium text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5  hover:shadow-xl"
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div className="flex items-center">
-                    <div className="mr-2 h-3 w-3 rounded-full bg-emerald-500"></div>
-                    <span className="text-sm text-gray-600">Conferences</span>
-                </div>
-                <div className="flex items-center">
-                    <div className="mr-2 h-3 w-3 rounded-full bg-amber-500"></div>
-                    <span className="text-sm text-gray-600">Deadlines</span>
-                </div>
-                <div className="flex items-center">
-                    <div className="mr-2 h-3 w-3 rounded-full bg-violet-500"></div>
-                    <span className="text-sm text-gray-600">Demos</span>
-                </div>
-            </div> */}
+            )}
         </div>
     );
 };

@@ -48,7 +48,7 @@ Route::prefix('/explore')->name('user.')->group(function () {
 
 Route::prefix('/events')->name('user.')->group(function () {
     Route::get('/', [EventsController::class, 'Events'])->name('events');
-    Route::get('/single', [EventsController::class, 'EventsSingle'])->name('eventssingle');
+    Route::get('/details/{id}', [EventsController::class, 'EventsSingle'])->name('eventssingle');
     Route::get('/socialwall', [EventsController::class, 'SocialWall'])->name('socialwall');
 });
 

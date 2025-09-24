@@ -17,6 +17,7 @@ use App\Http\Controllers\AdminController\CMSHistoryController;
 use App\Http\Controllers\AdminController\DepartmentMemberController;
 use App\Http\Controllers\AdminController\DepartmentStructureController;
 use App\Http\Controllers\AdminController\EstablishmentController;
+use App\Http\Controllers\AdminController\EventsManagementController;
 use App\Http\Controllers\AdminController\FAQsController;
 use App\Http\Controllers\AdminController\LocalPersonalitiesController;
 use App\Http\Controllers\AdminController\LocalProductsController;
@@ -210,5 +211,14 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/create', [PastMayorController::class, 'create'])->name('create');
         Route::post('/update/{id}', [PastMayorController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [PastMayorController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('/Admin/events')->name('events.')->group(function () {
+        Route::get('/', [EventsManagementController::class, 'index'])->name('index');
+        Route::get('/new', [EventsManagementController::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [EventsManagementController::class, 'edit'])->name('edit');
+        Route::post('/create', [EventsManagementController::class, 'create'])->name('create');
+        Route::post('/update/{id}', [EventsManagementController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [EventsManagementController::class, 'delete'])->name('delete');
     });
 });

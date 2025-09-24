@@ -1,5 +1,6 @@
 import { Head, usePage } from '@inertiajs/react';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
+import EventsCard from '@UserUtils/components/Cards/EventsCard';
 import FeaturedPost from '@UserUtils/components/Cards/FeaturedPost';
 import NewsLetter from '@UserUtils/components/Cards/NewsLetter';
 import HeroSection from '@UserUtils/components/Sections/Home/Hero';
@@ -33,14 +34,36 @@ interface SocialWallPost {
     has_liked?: boolean;
     created_at: string;
 }
+type EventProps = {
+    id: number;
+    title: string;
+    description: string;
+    start_date: string;
+    end_date: string;
+    schedules: Schedule[];
+    admission: string;
+    attire: string;
+    contacts: string;
+    long: string;
+    lat: string;
+    image: File[];
+};
+
+type Schedule = {
+    title: string;
+    date_time: string;
+    desc: string;
+};
+
 interface PageProps {
     content: CMSContent;
     topPost: SocialWallPost;
+    events: EventProps[];
     [key: string]: unknown;
 }
 
 export default function Home() {
-    const { content, props, topPost } = usePage<PageProps>().props;
+    const { content, props, topPost, events } = usePage<PageProps>().props;
     const { promvid } = usePage<{ promvid: PromotionalVideoProps }>().props;
 
     const title = 'Pakil Tourism | Home';
@@ -352,73 +375,14 @@ export default function Home() {
                     <PageTitle title="Updates" subtitle="Events & News" desc="Stay updated with the latest happenings in Pakil"></PageTitle>
 
                     <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                            <div className="relative">
-                                <img src="/User/Images/church.jpg" alt="Turumba Festival" className="h-48 w-full object-cover" />
-                                <div className="absolute top-4 left-4 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">Event</div>
-                            </div>
-                            <div className="p-6">
-                                <div className="mb-3 flex items-center text-sm text-gray-500">
-                                    <i className="far fa-calendar-alt mr-2 text-primary"></i>
-                                    <span>June 15 - July 30, 2023</span>
-                                </div>
-                                <h4 className="text-dark mb-3 text-xl font-bold">Turumba Festival 2023</h4>
-                                <p className="mb-5 line-clamp-3 text-gray-600">
-                                    Join us for the longest religious festival in the Philippines celebrating Our Lady of Turumba. Seven months of
-                                    novenas, processions, and cultural performances.
-                                </p>
-                                <a href="#" className="flex items-center font-medium text-primary hover:text-primary/80">
-                                    Read More <i className="fas fa-arrow-right ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                            <div className="relative">
-                                <img src="/User/Images/church.jpg" alt="Church Restoration" className="h-48 w-full object-cover" />
-                                <div className="absolute top-4 left-4 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">News</div>
-                            </div>
-                            <div className="p-6">
-                                <div className="mb-3 flex items-center text-sm text-gray-500">
-                                    <i className="far fa-calendar-alt mr-2 text-primary"></i>
-                                    <span>May 28, 2023</span>
-                                </div>
-                                <h4 className="text-dark mb-3 text-xl font-bold">San Pedro Church Restoration Complete</h4>
-                                <p className="mb-5 line-clamp-3 text-gray-600">
-                                    The historic San Pedro de Alcantara Church has completed its 2-year restoration project, bringing back its
-                                    original 18th century glory while reinforcing its structure.
-                                </p>
-                                <a href="#" className="flex items-center font-medium text-primary hover:text-primary/80">
-                                    Read More <i className="fas fa-arrow-right ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
-                            <div className="relative">
-                                <img src="/User/Images/church.jpg" alt="Music Workshop" className="h-48 w-full object-cover" />
-                                <div className="absolute top-4 left-4 rounded-full bg-secondary px-3 py-1 text-xs font-bold text-white">Event</div>
-                            </div>
-                            <div className="p-6">
-                                <div className="mb-3 flex items-center text-sm text-gray-500">
-                                    <i className="far fa-calendar-alt mr-2 text-primary"></i>
-                                    <span>August 10-12, 2023</span>
-                                </div>
-                                <h4 className="text-dark mb-3 text-xl font-bold">Pakil Music Heritage Workshop</h4>
-                                <p className="mb-5 line-clamp-3 text-gray-600">
-                                    Celebrating Pakil's musical legacy with workshops on traditional church music and performances honoring Marcelo
-                                    Adonay, the Palestrina of the Philippines.
-                                </p>
-                                <a href="#" className="flex items-center font-medium text-primary hover:text-primary/80">
-                                    Read More <i className="fas fa-arrow-right ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
+                        {events.map((event, index) => (
+                            <EventsCard key={index} events={event} />
+                        ))}
                     </div>
 
                     <div className="text-center">
                         <a
-                            href="#"
+                            href="/events"
                             className="inline-flex items-center rounded-full border border-primary px-6 py-3 font-medium text-primary transition duration-300 hover:bg-primary hover:text-white"
                         >
                             <i className="fas fa-newspaper mr-2"></i> View All Events & News

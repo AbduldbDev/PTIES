@@ -252,6 +252,16 @@ const otherNavItems: NavItem[] = [
             { name: 'All Mayors', path: '/Admin/past-mayor', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
+
+    {
+        icon: <UserGroup />,
+        name: 'Pakil Events',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'New Event', path: '/Admin/events/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Events', path: '/Admin/events', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
 ];
 
 const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
@@ -421,7 +431,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                             </span>
                                         )}
                                         <ChevronDownIcon
-                                            className={`ml-2 h-4 w-4 transition-transform duration-200 ${isOpen ? 'text-brand-500 rotate-180' : ''}`}
+                                            className={`ml-2 h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180 text-brand-500' : ''}`}
                                         />
                                     </button>
                                     <div
@@ -481,7 +491,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                             {hasSubItems ? (
                                 <button
                                     onClick={() => toggleSubmenu(menuKey)}
-                                    className={`menu-item group w-full ${
+                                    className={`group menu-item w-full ${
                                         isOpen ? 'menu-item-active' : 'menu-item-inactive'
                                     } cursor-pointer ${!isExpanded && !isHovered ? 'lg:justify-center' : 'lg:justify-start'}`}
                                 >
@@ -493,7 +503,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                     )}
                                     {(isExpanded || isHovered || isMobileOpen) && (
                                         <ChevronDownIcon
-                                            className={`ml-auto h-5 w-5 transition-transform duration-200 ${isOpen ? 'text-brand-500 rotate-180' : ''}`}
+                                            className={`ml-auto h-5 w-5 transition-transform duration-200 ${isOpen ? 'rotate-180 text-brand-500' : ''}`}
                                         />
                                     )}
                                 </button>
@@ -501,7 +511,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                 nav.path && (
                                     <Link
                                         href={nav.path}
-                                        className={`menu-item group w-full ${isActive(nav.path) ? 'menu-item-active' : 'menu-item-inactive'} ${
+                                        className={`group menu-item w-full ${isActive(nav.path) ? 'menu-item-active' : 'menu-item-inactive'} ${
                                             !isExpanded && !isHovered ? 'lg:justify-center' : 'lg:justify-start'
                                         }`}
                                     >

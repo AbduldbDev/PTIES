@@ -4,22 +4,11 @@ namespace App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Models\BarangayInfo;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\CMSBanner;
 use App\Models\ContentPromotional;
 use App\Models\CMSContent;
-use App\Models\Department;
-use App\Models\FAQs;
-use App\Models\PakilEstablishments;
-use App\Models\PakilGuides;
-use App\Models\PakilHistory;
-use App\Models\PakilHotlines;
-use App\Models\PakilTerminals;
-use App\Models\LocalPersonalities;
-use App\Models\LocalProducts;
-use App\Models\Officials;
+use App\Models\Events;
 use App\Models\SocialWall;
 
 class PageController extends Controller
@@ -60,10 +49,12 @@ class PageController extends Controller
             unset($TopPost->likes);
         }
 
+        $events = Events::latest()->take(3)->get();
         return Inertia::render('User/Pages/Home', [
             'content' => $pageData['sections'] ?? [],
             'promvid' => $promvid,
             'topPost' =>  $TopPost,
+            'events' =>  $events,
         ]);
     }
 
