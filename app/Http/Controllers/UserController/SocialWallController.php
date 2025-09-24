@@ -47,10 +47,15 @@ class SocialWallController extends Controller
                 'caption' => $validated['caption'],
             ]);
 
-            return Inertia::render('User/Pages/SocialWallConfirmation');
+            return redirect()->route('user.socialwall.confirmation');
         } catch (\Exception $e) {
             return redirect()->back()->withError(['error' => 'Something went wrong while uploading. Please try again.']);
         }
+    }
+
+    public function confirmation()
+    {
+        return Inertia::render('User/Pages/SocialWallConfirmation');
     }
 
     public function toggleLike(Request $request)

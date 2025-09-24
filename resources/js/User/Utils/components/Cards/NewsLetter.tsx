@@ -1,4 +1,61 @@
+import { useForm } from '@inertiajs/react';
+import FormIconed from '@UserUtils/components/Form/InputIconed';
+import { FormEvent, useState } from 'react';
+
+type FormData = {
+    name: string;
+    email: string;
+};
+
 export default function NewsLetter() {
+    const [touched, setTouched] = useState<Record<string, boolean>>({});
+    const form = useForm<FormData>({
+        name: '',
+        email: '',
+    });
+
+    const validateField = (field: keyof FormData, value: string) => {
+        switch (field) {
+            case 'email':
+                if (!value) return 'Email is required';
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return !emailRegex.test(value) ? 'Invalid email address' : '';
+            case 'name':
+                if (!value) return 'Name is required';
+                return '';
+            default:
+                return '';
+        }
+    };
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+
+        const requiredFields: (keyof FormData)[] = ['name', 'email'];
+
+        const emptyFields = requiredFields.filter((field) => !form.data[field]);
+
+        if (emptyFields.length > 0) {
+            emptyFields.forEach((field) => {
+                form.setError(field, `This field is required`);
+            });
+            return;
+        }
+
+        form.post('/newsletter/subscribe', {
+            forceFormData: true,
+            onSuccess: () => {
+                form.reset();
+                form.clearErrors();
+            },
+        });
+    };
+    const handleBlur = (field: keyof FormData) => {
+        setTouched((prev) => ({ ...prev, [field]: true }));
+        const error = validateField(field, form.data[field]);
+        form.setError(field, error ?? '');
+    };
+
     return (
         <section className="py-12 md:py-16 lg:py-20">
             <div className="container mx-auto px-4 sm:px-5 md:px-6">
@@ -21,42 +78,34 @@ export default function NewsLetter() {
                                 Subscribe to our <span className="text-primary">Newsletter</span>
                             </h3>
 
-                            <form className="space-y-4 md:space-y-5">
-                                <div>
-                                    <label htmlFor="name" className="mb-1 block text-xs font-medium text-gray-700 md:text-sm">
-                                        Name
-                                    </label>
-                                    <div className="relative">
-                                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                            <i className="fas fa-user text-xs text-gray-400 md:text-sm"></i>
-                                        </div>
-                                        <input
-                                            type="text"
-                                            id="name"
-                                            className="block w-full rounded-md border border-gray-300 py-2.5 pr-3 pl-9 text-sm focus:border-primary focus:ring-2 focus:ring-primary md:rounded-lg md:py-3 md:pl-10 md:text-base"
-                                            placeholder="Your name"
-                                        />
-                                    </div>
-                                </div>
+                            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
+                                <FormIconed
+                                    Icon="fas fa-user"
+                                    className="w-full rounded-lg border px-4 py-3 transition duration-150 outline-none focus:ring-1"
+                                    label="Full Name"
+                                    id="name"
+                                    value={form.data.name}
+                                    onChange={(e) => form.setData('name', e.target.value)}
+                                    onBlur={() => handleBlur('name')}
+                                    error={form.errors.name}
+                                    touched={touched.name}
+                                    placeholder="Full Name"
+                                    required
+                                />
 
-                                <div>
-                                    <label htmlFor="email" className="mb-1 block text-xs font-medium text-gray-700 md:text-sm">
-                                        Email
-                                    </label>
-                                    <div className="relative">
-                                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                            <i className="fas fa-envelope text-xs text-gray-400 md:text-sm"></i>
-                                        </div>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            className="block w-full rounded-md border border-gray-300 py-2.5 pr-3 pl-9 text-sm focus:border-primary focus:ring-2 focus:ring-primary md:rounded-lg md:py-3 md:pl-10 md:text-base"
-                                            placeholder="your@email.com"
-                                            required
-                                        />
-                                    </div>
-                                </div>
-
+                                <FormIconed
+                                    Icon="fas fa-envelope"
+                                    className="w-full rounded-lg border px-4 py-3 transition duration-150 outline-none focus:ring-1"
+                                    label="Email Address"
+                                    id="email"
+                                    value={form.data.email}
+                                    onChange={(e) => form.setData('email', e.target.value)}
+                                    onBlur={() => handleBlur('email')}
+                                    error={form.errors.email}
+                                    touched={touched.email}
+                                    placeholder="Email"
+                                    required
+                                />
                                 <div className="flex items-start">
                                     <input
                                         id="terms"

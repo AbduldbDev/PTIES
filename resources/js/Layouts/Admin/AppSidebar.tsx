@@ -262,6 +262,12 @@ const otherNavItems: NavItem[] = [
             { name: 'All Events', path: '/Admin/events', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
+    {
+        icon: <UserGroup />,
+        name: 'Subscribed Users',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [{ name: 'All Subscribed', path: '/Admin/subscribed', requiredUserType: ['admin', 'content_manager'] }],
+    },
 ];
 
 const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {

@@ -17,10 +17,10 @@ const SocialWallConfirmation = ({
                                         className="checkmark-circle animate-circle"
                                         cx="26"
                                         cy="26"
-                                        r="25"
+                                        r="24"
                                         fill="none"
                                         stroke="#10b981"
-                                        strokeWidth="3"
+                                        strokeWidth="4"
                                     />
                                     <path
                                         className="checkmark-check animate-check"

@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController\{
     PageController,
@@ -8,12 +9,14 @@ use App\Http\Controllers\UserController\{
     SocialWallController,
     AboutUsController,
     ExploreController,
-    EventsController
+    EventsController,
+    NewsletterController
 };
 
 Route::middleware('user.access:auth')->group(function () {
     Route::prefix('/socialwall')->name('user.socialwall.')->group(function () {
         Route::get('/new', [SocialWallController::class, 'new'])->name('create');
+        Route::get('/confirmation', [SocialWallController::class, 'confirmation'])->name('confirmation');
         Route::post('/upload', [SocialWallController::class, 'store'])->name('store');
         Route::post('/like', [SocialWallController::class, 'toggleLike'])->name('toggleLike');
     });
@@ -55,4 +58,6 @@ Route::prefix('/events')->name('user.')->group(function () {
 Route::get('/pakil-guide', [ExploreController::class, 'PakilGuide'])->name('pakilguide');
 Route::get('/reward-shop', [PageController::class, 'RewardShop'])->name('user.rewardshop');
 
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+Route::get('/newsletter/confirmation', [NewsletterController::class, 'confirmation'])->name('newsletter.confirmation');
 Route::get('/', [PageController::class, 'Home'])->name('user.home');

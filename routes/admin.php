@@ -21,6 +21,7 @@ use App\Http\Controllers\AdminController\EventsManagementController;
 use App\Http\Controllers\AdminController\FAQsController;
 use App\Http\Controllers\AdminController\LocalPersonalitiesController;
 use App\Http\Controllers\AdminController\LocalProductsController;
+use App\Http\Controllers\AdminController\NewsLetterManagementController;
 use App\Http\Controllers\AdminController\OfficialsController;
 use App\Http\Controllers\AdminController\PastMayorController;
 use App\Http\Controllers\AdminController\PostController;
@@ -220,5 +221,9 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/create', [EventsManagementController::class, 'create'])->name('create');
         Route::post('/update/{id}', [EventsManagementController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [EventsManagementController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('/Admin/subscribed')->name('subscribed.')->group(function () {
+        Route::get('/', [NewsLetterManagementController::class, 'index'])->name('index');
     });
 });

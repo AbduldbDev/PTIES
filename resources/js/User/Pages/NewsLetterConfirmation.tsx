@@ -1,4 +1,4 @@
-export default function ContactConfirmation() {
+export default function NewsletterConfirmation() {
     return (
         <>
             <section className="mt-20 py-16">
@@ -41,31 +41,44 @@ export default function ContactConfirmation() {
                                 </div>
                             </div>
 
-                            <h2 className="mb-4 text-2xl font-bold text-primary md:text-3xl">Message Sent Successfully!</h2>
+                            <h2 className="mb-4 text-2xl font-bold text-primary md:text-3xl">Successfully Subscribed!</h2>
 
                             <p className="mb-6 text-gray-600">
-                                Thank you for contacting the Municipality of Pakil. We have received your message and will get back to you within
-                                24-48 hours.
+                                Thank you for subscribing to the Municipality of Pakil newsletter! You're now part of our community and will be the
+                                first to receive updates, news, and important announcements.
                             </p>
 
                             <div className="mb-6 rounded-lg bg-primary/5 p-4 text-left">
                                 <p className="mb-2 flex items-center text-sm font-medium text-primary">
-                                    <i className="fas fa-info-circle mr-2"></i> What happens next?
+                                    <i className="fas fa-envelope-open mr-2"></i> What to expect:
                                 </p>
                                 <ul className="space-y-1 text-xs text-gray-600">
                                     <li className="flex items-start">
                                         <i className="fas fa-check-circle mt-0.5 mr-2 text-secondary"></i>
-                                        <span>Your message is forwarded to the appropriate department</span>
+                                        <span>Welcome email with subscription confirmation</span>
                                     </li>
                                     <li className="flex items-start">
                                         <i className="fas fa-check-circle mt-0.5 mr-2 text-secondary"></i>
-                                        <span>You'll receive a confirmation email shortly</span>
+                                        <span>Monthly newsletters with community updates</span>
                                     </li>
                                     <li className="flex items-start">
                                         <i className="fas fa-check-circle mt-0.5 mr-2 text-secondary"></i>
-                                        <span>Our team will respond to your inquiry</span>
+                                        <span>Important announcements and events</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <i className="fas fa-check-circle mt-0.5 mr-2 text-secondary"></i>
+                                        <span>Exclusive content for subscribers only</span>
                                     </li>
                                 </ul>
+                            </div>
+
+                            <div className="mb-6 rounded-lg border border-blue-100 bg-blue-50 p-4 text-left">
+                                <p className="mb-2 flex items-center text-sm font-medium text-blue-600">
+                                    <i className="fas fa-lightbulb mr-2"></i> Pro tip:
+                                </p>
+                                <p className="text-xs text-blue-700">
+                                    Add <strong>ptiesteam@gmail.com</strong> to your contacts to ensure our emails don't end up in your spam folder.
+                                </p>
                             </div>
 
                             <div className="flex flex-col gap-3 sm:flex-row">
@@ -76,17 +89,17 @@ export default function ContactConfirmation() {
                                     <i className="fas fa-home mr-2"></i> Back to Home
                                 </a>
                                 <a
-                                    href="/contact"
+                                    href="/events"
                                     className="flex flex-1 items-center justify-center rounded-full border border-primary bg-white px-4 py-3 text-center font-medium text-primary transition duration-300 hover:bg-primary/10"
                                 >
-                                    <i className="fas fa-envelope mr-2"></i> Send Another
+                                    <i className="fas fa-newspaper mr-2"></i> Read Latest News
                                 </a>
                             </div>
 
                             <p className="mt-6 text-xs text-gray-500">
-                                Need immediate assistance? Call us at
-                                <a href="tel:+63491234567" className="ml-1 text-primary hover:underline">
-                                    (049) 557–1884
+                                Changed your mind? You can unsubscribe anytime using the link in our emails.
+                                <a href="/contact" className="ml-1 text-primary hover:underline">
+                                    Need help? Contact us
                                 </a>
                             </p>
                         </div>
