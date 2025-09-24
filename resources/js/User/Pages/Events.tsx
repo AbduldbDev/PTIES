@@ -75,24 +75,25 @@ export const Events = () => {
                     <Calendar events={items} />
                 </div>
             </section>
+            {items.length > 0 && (
+                <section className="py-10">
+                    <div className="container mx-auto px-6">
+                        <PageTitle title="Updates" subtitle="Events & News" desc="Stay updated with the latest happenings in Pakil" />
 
-            <section className="py-10">
-                <div className="container mx-auto px-6">
-                    <PageTitle title="Updates" subtitle="Events & News" desc="Stay updated with the latest happenings in Pakil" />
+                        <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                            {items.map((event, index) => (
+                                <EventsCard key={index} events={event} />
+                            ))}
+                        </div>
 
-                    <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                        {items.map((event, index) => (
-                            <EventsCard key={index} events={event} />
-                        ))}
-                    </div>
-
-                    {/* <div className="mt-8 text-center">
+                        {/* <div className="mt-8 text-center">
                         <button className="inline-flex items-center rounded-full border border-primary px-5 py-2 font-medium text-primary transition duration-300 hover:bg-primary hover:text-white">
                             <i className="fas fa-arrow-down mr-2"></i> Load More
                         </button>
                     </div> */}
-                </div>
-            </section>
+                    </div>
+                </section>
+            )}
         </>
     );
 };

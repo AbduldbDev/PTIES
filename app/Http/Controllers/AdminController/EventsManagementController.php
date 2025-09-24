@@ -62,7 +62,7 @@ class EventsManagementController extends Controller
                 foreach ($request->file('image') as $file) {
                     $filename = uniqid() . '_' . time() . '.' . $file->getClientOriginalExtension();
                     $path = $file->storeAs('Events', $filename, 'public');
-                    $imagePaths[] = '/storage/' . $path; 
+                    $imagePaths[] = '/storage/' . $path;
                 }
             }
 
@@ -80,10 +80,96 @@ class EventsManagementController extends Controller
                 'image' => json_encode($imagePaths),
             ]);
 
-            return redirect()->back()
+            return redirect()->route('events.index')
                 ->with('success', 'Event added successfully');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'Schedule' => 'nullable|array',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date|after_or_equal:start_date',
+                'admission' => 'nullable|string|max:255',
+                'attire' => 'nullable|string|max:255',
+                'contacts' => 'nullable|string|max:255',
+                'long' => 'nullable|numeric',
+                'lat' => 'nullable|numeric',
+                'image.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+            ]);
+
+            $event = Events::findOrFail($id);
+            $imagePaths = json_decode($event->image, true) ?? [];
+
+            if ($request->hasFile('image')) {
+                foreach ($imagePaths as $oldImage) {
+                    $oldPath = public_path($oldImage);
+                    if (file_exists($oldPath)) {
+                        unlink($oldPath);
+                    }
+                }
+                $imagePaths = [];
+
+                foreach ($request->file('image') as $file) {
+                    $filename = uniqid() . '_' . time() . '.' . $file->getClientOriginalExtension();
+                    $path = $file->storeAs('Events', $filename, 'public');
+                    $imagePaths[] = '/storage/' . $path;
+                }
+            }
+
+            $event->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'schedules' => json_encode($request->input('Schedule', [])),
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+                'admission' => $request->admission,
+                'attire' => $request->attire,
+                'contacts' => $request->contacts,
+                'long' => $request->long,
+                'lat' => $request->lat,
+                'image' => json_encode($imagePaths),
+            ]);
+
+            return redirect()->route('events.index')
+                ->with('success', 'Event updated successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+
+    public function edit($id)
+    {
+        $item = Events::findOrFail($id);
+        $item->schedules = $this->parseContentValue($item->schedules);
+
+        return Inertia::render('Admin/Pages/Events/EditEvent', [
+            'item' => $item,
+        ]);
+    }
+
+    public function delete($id)
+    {
+        try {
+            $Events = Events::findOrFail($id);
+            $Events->delete();
+
+            return redirect()->back()->with('success', 'Events deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    protected function parseContentValue($value)
+    {
+        $decoded = json_decode($value, true);
+        return (json_last_error() === JSON_ERROR_NONE) ? $decoded : $value;
     }
 }
