@@ -99,9 +99,9 @@ export default function AllHotilines() {
                     title="Pakil Tourism Information and Engagement System"
                     description="Explore Pakil's tourism attractions, events, and engage with the local community through our interactive information platform."
                 />
-                {flash?.success && <FlashMessage type="success" message={flash.success} key={Date.now()} />}
-                {errors?.error && <FlashMessage type="error" message={errors.error} key={Date.now()} />}
-                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}
+                {flash?.success && <FlashMessage type="success" message={flash.success} />}
+                {errors?.error && <FlashMessage type="error" message={errors.error} />}
+                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
                 <PageBreadcrumb pageTitle="Hotlines Management" />
 
@@ -122,7 +122,7 @@ export default function AllHotilines() {
                                             {columns.map((column) => (
                                                 <th
                                                     key={column.key}
-                                                    className={`text-theme-xs border border-gray-100 px-5 py-3 font-medium text-gray-500 dark:border-white/[0.05] dark:text-gray-400 ${
+                                                    className={`border border-gray-100 px-5 py-3 text-theme-xs font-medium text-gray-500 dark:border-white/[0.05] dark:text-gray-400 ${
                                                         column.align === 'center'
                                                             ? 'text-center'
                                                             : column.align === 'right'
@@ -146,15 +146,15 @@ export default function AllHotilines() {
                                         {sortedItems.length > 0 ? (
                                             sortedItems.map((Hotlines) => (
                                                 <TableRow key={Hotlines.id}>
-                                                    <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
+                                                    <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
                                                         <i className={`fas ${Hotlines.icon} mr-2`}></i>
                                                         {Hotlines.name}
                                                     </TableCell>
-                                                    <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
+                                                    <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
                                                         {Hotlines.category}
                                                     </TableCell>
 
-                                                    <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
+                                                    <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                         <ul className="space-y-2">
                                                             <li>
                                                                 <i className="fas fa-phone-alt mr-2"></i> {Hotlines.hotline}
@@ -168,7 +168,7 @@ export default function AllHotilines() {
                                                             </li>
                                                         </ul>
                                                     </TableCell>
-                                                    <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-center text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
+                                                    <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                         <a
                                                             target="_blank"
                                                             className="rounded-full bg-green-800/50 px-3 py-1 text-black dark:text-gray-300"
@@ -177,7 +177,7 @@ export default function AllHotilines() {
                                                             View Maps
                                                         </a>
                                                     </TableCell>
-                                                    <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
+                                                    <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                         <div className="col-span-1 flex justify-center">
                                                             <div className="flex w-full items-center justify-center gap-2">
                                                                 <DeleteConfirm

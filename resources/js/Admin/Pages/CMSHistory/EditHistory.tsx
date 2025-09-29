@@ -79,9 +79,9 @@ export default function GuideCreateForm() {
                 />
                 <PageBreadcrumb pageTitle="Pakil History Management" />
 
-                {flash?.success && <FlashMessage type="success" message={flash.success} key={Date.now()} />}
-                {errors?.error && <FlashMessage type="error" message={errors.error} key={Date.now()} />}
-                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}
+                {flash?.success && <FlashMessage type="success" message={flash.success} />}
+                {errors?.error && <FlashMessage type="error" message={errors.error} />}
+                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
                 {/* Rest of your form */}
                 <form onSubmit={handleSubmit}>

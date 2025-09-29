@@ -128,9 +128,9 @@ export default function HeroSectionEditForm() {
             <AppWrapper>
                 <PageMeta title="Edit Introduction Section" description="Edit introduction section content" />
                 <PageBreadcrumb pageTitle="Content Management" />
-                {flash?.success && <FlashMessage type="success" message={flash.success} key={Date.now()} />}
-                {errors?.error && <FlashMessage type="error" message={errors.error} key={Date.now()} />}
-                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}
+                {flash?.success && <FlashMessage type="success" message={flash.success} />}
+                {errors?.error && <FlashMessage type="error" message={errors.error} />}
+                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
                 <form onSubmit={handleSubmit}>
                     <input type="hidden" name="_token" value={csrf_token} />

@@ -67,7 +67,7 @@ class HotlinesController extends Controller
                 'lat' => $request->lat,
             ]);
 
-            return redirect()->back()->with('success', 'Hotline created successfully.');
+            return redirect()->route('hotlines.index')->with('success', 'Hotline created successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' =>  $e->getMessage()]);
         }
@@ -98,7 +98,7 @@ class HotlinesController extends Controller
             $guide = PakilHotlines::findOrFail($id);
             $guide->update($request->all());
 
-            return redirect()->back()->with('success', 'Hotline updated successfully.');
+            return redirect()->route('hotlines.index')->with('success', 'Hotline updated successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' =>  $e->getMessage()]);
         }

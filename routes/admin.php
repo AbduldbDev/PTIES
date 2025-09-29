@@ -150,7 +150,7 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::delete('/delete/{id}', [BarangayInfoController::class, 'delete'])->name('delete');
     });
 
-    Route::prefix('/Admin/local-personalities')->name('localproducts.')->group(function () {
+    Route::prefix('/Admin/local-personalities')->name('personalities.')->group(function () {
         Route::get('/', [LocalPersonalitiesController::class, 'index'])->name('index');
         Route::get('/new', [LocalPersonalitiesController::class, 'new'])->name('new');
         Route::get('/edit/{id}', [LocalPersonalitiesController::class, 'edit'])->name('edit');

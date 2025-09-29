@@ -89,9 +89,9 @@ export default function Home() {
                     title="Pakil Tourism Information and Engagement System"
                     description="Explore Pakil's tourism attractions, events, and engage with the local community through our interactive information platform."
                 />
-                {flash?.success && <FlashMessage type="success" message={flash.success} key={Date.now()} />}
-                {errors?.error && <FlashMessage type="error" message={errors.error} key={Date.now()} />}
-                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}
+                {flash?.success && <FlashMessage type="success" message={flash.success} />}
+                {errors?.error && <FlashMessage type="error" message={errors.error} />}
+                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
                 <PageBreadcrumb pageTitle="FAQs Management" />
 
@@ -112,7 +112,7 @@ export default function Home() {
                                             {columns.map((column) => (
                                                 <th
                                                     key={column.key}
-                                                    className={`text-theme-xs border border-gray-100 px-5 py-3 font-medium text-gray-500 dark:border-white/[0.05] dark:text-gray-400 ${
+                                                    className={`border border-gray-100 px-5 py-3 text-theme-xs font-medium text-gray-500 dark:border-white/[0.05] dark:text-gray-400 ${
                                                         column.align === 'center'
                                                             ? 'text-center'
                                                             : column.align === 'right'
@@ -136,14 +136,14 @@ export default function Home() {
                                         {sortedItems.length > 0 ? (
                                             sortedItems.map((faqs) => (
                                                 <TableRow key={faqs.id}>
-                                                    <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
+                                                    <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
                                                         {faqs.question.length > 200 ? faqs.question.substring(0, 200) + '...' : faqs.question}
                                                     </TableCell>
-                                                    <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
+                                                    <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
                                                         {faqs.answer.length > 200 ? faqs.answer.substring(0, 200) + '...' : faqs.answer}
                                                     </TableCell>
 
-                                                    <TableCell className="text-theme-sm border border-gray-100 px-4 py-3 text-start text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
+                                                    <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                         <div className="col-span-1 flex justify-center">
                                                             <div className="flex w-full items-center justify-center gap-2">
                                                                 <DeleteConfirm

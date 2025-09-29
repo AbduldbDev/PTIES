@@ -87,9 +87,9 @@ export default function EditGuide() {
                 />
                 <PageBreadcrumb pageTitle="Social Wall Management" />
 
-                {flash?.success && <FlashMessage type="success" message={flash.success} key={Date.now()} />}
-                {errors?.error && <FlashMessage type="error" message={errors.error} key={Date.now()} />}
-                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}
+                {flash?.success && <FlashMessage type="success" message={flash.success} />}
+                {errors?.error && <FlashMessage type="error" message={errors.error} />}
+                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
                     <ComponentCard title="Post Details">

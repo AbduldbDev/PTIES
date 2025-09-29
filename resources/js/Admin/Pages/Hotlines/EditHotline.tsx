@@ -108,9 +108,9 @@ export default function GuideCreateForm() {
                 />
                 <PageBreadcrumb pageTitle="Emergency Hotlines Management" />
 
-                {flash?.success && <FlashMessage type="success" message={flash.success} key={Date.now()} />}
-                {errors?.error && <FlashMessage type="error" message={errors.error} key={Date.now()} />}
-                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} key={Date.now()} />}
+                {flash?.success && <FlashMessage type="success" message={flash.success} />}
+                {errors?.error && <FlashMessage type="error" message={errors.error} />}
+                {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
                 <form onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 gap-10 xl:grid-cols-2">
