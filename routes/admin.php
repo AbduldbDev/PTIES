@@ -8,7 +8,7 @@ use App\Http\Controllers\AdminController\{
     AttractionsController,
     BannerController,
     BarangayInfoController,
-    CMSController,
+    CMScontroller,
     CMSHistoryController,
     CMSUpdateController,
     DepartmentMemberController,

@@ -29,7 +29,6 @@ type Props = {
 };
 
 export default function AttractionsCard({ item }: Props) {
-    
     const images: string[] = Array.isArray(item.images)
         ? item.images
         : (() => {
@@ -57,7 +56,9 @@ export default function AttractionsCard({ item }: Props) {
                     <i className="fas fa-map-marker-alt mr-1"></i>
                     {item.distance}
                 </span>
-                <span className="absolute top-3 left-3 rounded-full bg-primary px-2 py-1 text-xs text-white">{item.category}</span>
+                <span className="absolute top-3 left-3 rounded-full bg-secondary px-2 py-1 text-xs text-white">
+                    {item.category.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase())}
+                </span>
             </div>
             <div className="p-5">
                 <h3 className="text-dark mb-2 text-xl font-bold">{item.name}</h3>

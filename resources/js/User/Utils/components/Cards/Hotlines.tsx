@@ -59,7 +59,7 @@ export default function Hotlines({ hotlines }: Props) {
                     </div>
                 </div>
                 <a
-                    href={`https://www.google.com/maps?q=${hotlines.lat},${hotlines.long}&z=15&t=m`}
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${hotlines.lat},${hotlines.long}`}
                     className="mt-3 inline-block text-sm font-medium text-primary hover:underline"
                     target="_blank"
                 >

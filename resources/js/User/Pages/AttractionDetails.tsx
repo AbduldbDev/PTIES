@@ -80,8 +80,8 @@ export default function AttractionDetails() {
                                 <span className="mx-2 text-gray-400">/</span>
                             </li>
                             <li className="inline-flex items-center">
-                                <a href="/events" className="text-gray-500 hover:text-primary">
-                                    Events
+                                <a href="/explore/attractions" className="text-gray-500 hover:text-primary">
+                                    Attractions
                                 </a>
                                 <span className="mx-2 text-gray-400">/</span>
                             </li>
@@ -245,45 +245,33 @@ export default function AttractionDetails() {
                                     </h3>
                                     <ul className="space-y-3">
                                         {fun_facts.map((item, index) => (
-                                            <li className="flex justify-between">
-                                                <span>Entrance Fee</span>
-                                                <span className="font-medium">FREE</span>
+                                            <li key={index} className="flex justify-between">
+                                                <span>{item}</span>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
                             )}
 
-                            <div className="mb-6 rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm">
-                                <h3 className="mb-4 flex items-center text-lg font-bold text-primary">
-                                    <i className="fas fa-address-book mr-2"></i> Contact
-                                </h3>
-                                <ul className="space-y-3">
-                                    <li className="flex items-start">
-                                        <i className="fas fa-user-tie mt-1 mr-2 text-primary"></i>
-                                        <div>
-                                            <p className="font-medium">Fr. Juan Dela Cruz</p>
-                                            <p className="text-sm text-gray-600">Parish Priest</p>
-                                            <p className="text-sm">(049) 123-4567</p>
-                                        </div>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <i className="fas fa-user mt-1 mr-2 text-primary"></i>
-                                        <div>
-                                            <p className="font-medium">Ms. Maria Santos</p>
-                                            <p className="text-sm text-gray-600">Tour Coordinator</p>
-                                            <p className="text-sm">0917 123 4567</p>
-                                        </div>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <i className="fas fa-envelope mt-1 mr-2 text-primary"></i>
-                                        <div>
-                                            <p className="font-medium">Email</p>
-                                            <p className="text-sm">info@pakilchurch.com</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            {ContactArray.length > 0 && (
+                                <div className="mb-6 rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm">
+                                    <h3 className="mb-4 flex items-center text-lg font-bold text-primary">
+                                        <i className="fas fa-address-book mr-2"></i> Contact Persons
+                                    </h3>
+                                    <ul className="space-y-3">
+                                        {ContactArray.map((item, index) => (
+                                            <li key={index} className="flex items-start">
+                                                <i className="fas fa-user-tie mt-1 mr-2 text-primary"></i>
+                                                <div>
+                                                    <p className="font-medium">{item.name}</p>
+                                                    <p className="text-sm text-gray-600">{item.position}</p>
+                                                    <p className="text-sm">{item.name}</p>
+                                                </div>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
 
                             <div className="rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm">
                                 <h3 className="mb-4 flex items-center text-lg font-bold text-primary">
@@ -301,7 +289,9 @@ export default function AttractionDetails() {
                                     ></iframe>
                                 </div>
                                 <a
-                                    href="#"
+                                    href={`https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.long}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="mt-3 block w-full rounded-full border border-primary px-4 py-2 text-center font-medium text-primary transition hover:bg-primary hover:text-white"
                                 >
                                     <i className="fas fa-directions mr-2"></i> Get Directions

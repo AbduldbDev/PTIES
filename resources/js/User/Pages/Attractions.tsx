@@ -122,7 +122,7 @@ export default function Attractions() {
                         <div className="mb-8">
                             <div className="flex flex-col gap-4 md:flex-row">
                                 <SearchBar
-                                    placeholder="Search items by name, information, or category..."
+                                    placeholder="Search attractions by name, information, or category..."
                                     onSearch={setSearchTerm}
                                     value={searchTerm}
                                     className="max-w-2xl flex-1"
