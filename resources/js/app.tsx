@@ -6,9 +6,11 @@ import { ComponentType, JSX, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import '../css/app.css';
+
 import AdminAuthLayout from './Auth/Admin/AuthPageLayout';
 import UserAuthLayout from './Auth/User/AuthPageLayout';
 import AdminLayout from './Layouts/Admin/AdminLayout';
+import ErrorLayout from './Layouts/Errors/ErrorLayout';
 import MainLayout from './Layouts/User/UserLayout';
 
 createInertiaApp({
@@ -16,31 +18,26 @@ createInertiaApp({
         const pages = import.meta.glob('./**/*.tsx');
         const path = `./${name}.tsx`;
 
-        if (!(path in pages)) {
-            const module = (await resolvePageComponent('./Error/NotFound.tsx', pages)) as {
-                default: ComponentType & { layout?: (page: JSX.Element) => JSX.Element };
-            };
-
-            return {
-                ...module,
-                default: {
-                    ...module.default,
-                    layout: (page: JSX.Element) => (
-                        <StrictMode>
-                            <AppWrapper>
-                                <MainLayout>{page}</MainLayout>
-                            </AppWrapper>
-                        </StrictMode>
-                    ),
-                },
-            };
-        }
-
-        const module = (await resolvePageComponent(path, pages)) as {
-            default: ComponentType & {
-                layout?: (page: JSX.Element) => JSX.Element;
-            };
+        let module: {
+            default: ComponentType & { layout?: (page: JSX.Element) => JSX.Element };
         };
+
+        try {
+            if (!(path in pages)) {
+                throw new Error(`Page not found: ${name}`);
+            }
+            module = (await resolvePageComponent(path, pages)) as typeof module;
+        } catch {
+            module = (await resolvePageComponent('./Errors/Pages/ErrorPage.tsx', pages)) as typeof module;
+            module.default.layout = (page) => (
+                <StrictMode>
+                    <AppWrapper>
+                        <ErrorLayout>{page}</ErrorLayout>
+                    </AppWrapper>
+                </StrictMode>
+            );
+            return module;
+        }
 
         if (!module.default.layout) {
             if (name.startsWith('Admin/')) {
