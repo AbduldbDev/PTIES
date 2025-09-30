@@ -1,9 +1,66 @@
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
+import { JSX, useState } from 'react';
+
+type AttractionProps = {
+    id: number;
+    attraction_id: string;
+    name: string;
+    category: string;
+    operating_hours: string;
+    information: string;
+    history: string;
+    local_rules: string;
+    fun_facts: string;
+    fees: string;
+    distance: string;
+    points: number;
+    long: string;
+    lat: string;
+    images: string;
+    qr_path: string;
+    contact: Contact[];
+};
+
+type Contact = {
+    name: string;
+    position: string;
+    contact: string;
+};
+
+type PageProps = {
+    item: AttractionProps;
+};
+
 export default function AttractionDetails() {
+    const { item } = usePage<PageProps>().props;
     const title = 'Pakil Tourism | Attractions';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
+    const parseImages = (imageString: string): string[] => {
+        try {
+            const cleanedString = imageString.replace(/\\\//g, '/');
+            const images = JSON.parse(cleanedString);
 
+            if (Array.isArray(images)) {
+                return images.map((img) => `${img}`);
+            }
+            return [];
+        } catch (error) {
+            console.error('Error parsing images:', error);
+            return [];
+        }
+    };
+
+    const eventImages = parseImages(item.images);
+    const [selectedImage, setSelectedImage] = useState(eventImages[0] || '/placeholder-image.jpg');
+
+    const ContactArray = Array.isArray(item.contact) ? item.contact : [];
+    const OperatingHours = (item.operating_hours || '').split('\n').filter((p) => p.trim() !== '');
+    const information = (item.information || '').split('\n').filter((p) => p.trim() !== '');
+    const history = (item.information || '').split('\n').filter((p) => p.trim() !== '');
+    const rules = (item.local_rules || '').split('\n').filter((p) => p.trim() !== '');
+    const fun_facts = (item.fun_facts || '').split('\n').filter((p) => p.trim() !== '');
+    const fees = (item.fees || '').split('\n').filter((p) => p.trim() !== '');
     return (
         <>
             <Head title={title}>
@@ -11,207 +68,191 @@ export default function AttractionDetails() {
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
             </Head>
-
+            <div className="h-[12vh]"></div>
             <section className="py-6 sm:py-10">
                 <div className="container mx-auto px-4">
-                    <div className="-mx-4 mb-6 overflow-hidden rounded-xl shadow-lg sm:mx-0">
-                        <img
-                            src="/User/Images/church.jpg"
-                            alt="San Pedro de Alcantara Church"
-                            className="h-[50vh] w-full object-cover sm:h-72 md:h-[50vh]"
-                        />
-                    </div>
-
-                    <nav className="mb-3 flex" aria-label="Breadcrumb">
-                        <ol className="inline-flex items-center space-x-1 md:space-x-2">
+                    <nav className="mb-2 text-sm lg:mb-6">
+                        <ol className="flex flex-wrap items-center">
                             <li className="inline-flex items-center">
-                                <a href="#" className="inline-flex items-center text-sm font-medium text-gray-500 hover:text-[#052675]">
-                                    <svg
-                                        className="mr-2.5 h-3 w-3"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="currentColor"
-                                        viewBox="0 0 20 20"
-                                    >
-                                        <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                                    </svg>
+                                <a href="/" className="text-gray-500 hover:text-primary">
                                     Home
                                 </a>
+                                <span className="mx-2 text-gray-400">/</span>
                             </li>
-
-                            <li aria-current="page">
-                                <div className="flex items-center">
-                                    <svg
-                                        className="mx-1 h-3 w-3 text-gray-400"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 6 10"
-                                    >
-                                        <path
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="m1 9 4-4-4-4"
-                                        />
-                                    </svg>
-                                    <span className="ml-1 text-sm font-medium text-[#052675] md:ml-2">Tourist Attractions</span>
-                                </div>
+                            <li className="inline-flex items-center">
+                                <a href="/events" className="text-gray-500 hover:text-primary">
+                                    Events
+                                </a>
+                                <span className="mx-2 text-gray-400">/</span>
+                            </li>
+                            <li className="inline-flex items-center">
+                                <span className="text-gray-700">{item.name}</span>
                             </li>
                         </ol>
                     </nav>
+                    <div className="-mx-4 mb-4 overflow-hidden rounded-xl shadow-lg sm:mx-0">
+                        <img
+                            src={selectedImage}
+                            alt={item.name}
+                            className="aspect-video w-full object-cover"
+                            onError={(e) => {
+                                e.currentTarget.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30';
+                            }}
+                        />
+                        {eventImages.length > 1 && (
+                            <div className="flex space-x-2 overflow-x-auto pb-2">
+                                {eventImages.map((image, index) => (
+                                    <button
+                                        key={index}
+                                        className={`flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all hover:border-primary ${
+                                            selectedImage === image ? 'border-primary' : 'border-gray-200'
+                                        }`}
+                                        onClick={() => setSelectedImage(image)}
+                                    >
+                                        <img
+                                            src={image}
+                                            alt={`${item.name} ${index + 1}`}
+                                            className="h-20 w-32 object-cover sm:h-24 sm:w-36"
+                                            onError={(e) => {
+                                                e.currentTarget.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30';
+                                            }}
+                                        />
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
 
                     <div className="mb-6">
                         <div className="flex flex-col items-start justify-between space-y-2 sm:flex-row">
-                            <h1 className="text-2xl font-bold sm:text-3xl">San Pedro de Alcantara Church</h1>
+                            <h1 className="text-2xl font-bold sm:text-3xl">{item.name}</h1>
                             <div className="flex items-center rounded-full bg-secondary/10 px-3 py-1">
                                 <img src="/User/Layout/Pakilpoints.png" className="mr-1 h-[20px] w-[20px]" alt="" />
-                                <span className="text-dark font-medium">15 pts</span>
+                                <span className="text-dark font-medium">{item.points} pts</span>
                             </div>
                         </div>
+                        {OperatingHours.length > 0 && (
+                            <div className="mt-3 mb-6 rounded-lg border border-primary/10 bg-[#f2f4f8] p-4">
+                                <div className="flex">
+                                    <i className="fas fa-clock mt-1 mr-3 text-xl text-primary"></i>
+                                    <div>
+                                        <h3 className="text-dark mb-1 font-bold">Operating Hours</h3>
+                                        {OperatingHours.map((hours, index) => {
+                                            const timePattern = /\b\d{1,2}(?::\d{2})?\s?(?:AM|PM)\b/gi;
+                                            const parts: (string | JSX.Element)[] = [];
+                                            let lastIndex = 0;
 
-                        <div className="mt-3 mb-6 rounded-lg border border-primary/10 bg-[#f2f4f8] p-4">
-                            <div className="flex items-center">
-                                <i className="fas fa-clock mr-3 text-xl text-primary"></i>
-                                <div>
-                                    <h3 className="text-dark mb-1 font-bold">Operating Hours</h3>
-                                    <p className="text-gray-700">
-                                        Daily:
-                                        <span className="font-medium text-primary">6:00 AM - 7:00 PM</span>
-                                    </p>
+                                            for (const match of hours.matchAll(timePattern)) {
+                                                if (match.index! > lastIndex) {
+                                                    parts.push(hours.slice(lastIndex, match.index));
+                                                }
+                                                parts.push(
+                                                    <span key={match.index} className="font-medium text-primary">
+                                                        {match[0]}
+                                                    </span>,
+                                                );
+
+                                                lastIndex = match.index! + match[0].length;
+                                            }
+                                            if (lastIndex < hours.length) {
+                                                parts.push(hours.slice(lastIndex));
+                                            }
+
+                                            return (
+                                                <p key={index} className="text-gray-700">
+                                                    {parts}
+                                                </p>
+                                            );
+                                        })}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </div>
 
                     <div className="flex flex-col gap-6 lg:flex-row">
                         <div className="w-full lg:w-2/3">
-                            <div className="mb-8">
-                                <h2 className="mb-3 flex items-center text-xl font-bold text-primary sm:text-2xl">
-                                    <i className="fas fa-info-circle mr-2"></i> Information
-                                </h2>
+                            {information.length > 0 && (
+                                <div className="mb-8">
+                                    <h2 className="mb-3 flex items-center text-xl font-bold text-primary sm:text-2xl">
+                                        <i className="fas fa-info-circle mr-2"></i> Information
+                                    </h2>
 
-                                <div className="prose mt-3 mb-6 max-w-none rounded-lg border border-primary/10 bg-[#f2f4f8] p-4 text-gray-700">
-                                    <p className="mb-4">
-                                        The San Pedro de Alcantara Church is the spiritual heart of Pakil, Laguna. This magnificent Baroque-style
-                                        church was built in 1732 and has withstood earthquakes and typhoons throughout its nearly 300-year history.
-                                        The church enshrines the revered image of Nuestra Señora de los Dolores de Turumba, making it an important
-                                        pilgrimage site.
-                                    </p>
-                                    <p>
-                                        Visitors can admire the intricate facade featuring carved volcanic stone, the ornate retablo (altar piece),
-                                        and the beautifully preserved interior with its original wooden beams. The church complex also includes a
-                                        small museum showcasing religious artifacts and the history of the Turumba devotion.
-                                    </p>
+                                    <div className="prose mt-3 mb-6 max-w-none rounded-lg border border-primary/10 bg-[#f2f4f8] p-4 text-gray-700">
+                                        {information.map((item, index) => (
+                                            <p key={index} className="mb-4">
+                                                {item}
+                                            </p>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
-                            <div className="">
-                                <h2 className="mb-3 flex items-center text-xl font-bold text-primary sm:text-2xl">
-                                    <i className="fas fa-landmark mr-2"></i> History
-                                </h2>
-                                <div className="prose mt-3 mb-6 max-w-none rounded-lg border border-primary/10 bg-[#f2f4f8] p-4 text-gray-700">
-                                    <p className="mb-4">
-                                        The church's history dates back to 1586 when Franciscan missionaries established the first mission in Pakil.
-                                        The current stone structure was constructed between 1676-1732 under the supervision of Franciscan friars using
-                                        forced labor from the local population. The church was dedicated to Saint Peter of Alcántara, a Spanish
-                                        Franciscan mystic.
-                                    </p>
-                                    <p>
-                                        In 1788, fishermen discovered a painting of the sorrowful Virgin Mary floating on Laguna de Bay after a storm.
-                                        This image, now known as Our Lady of Turumba, became the focus of the longest religious festival in the
-                                        Philippines. The church was declared an Important Cultural Property by the National Museum in 2013.
-                                    </p>
+                            {history.length > 0 && (
+                                <div className="">
+                                    <h2 className="mb-3 flex items-center text-xl font-bold text-primary sm:text-2xl">
+                                        <i className="fas fa-landmark mr-2"></i> History
+                                    </h2>
+                                    <div className="prose mt-3 mb-6 max-w-none rounded-lg border border-primary/10 bg-[#f2f4f8] p-4 text-gray-700">
+                                        {history.map((item, index) => (
+                                            <p key={index} className="mb-4">
+                                                {item}
+                                            </p>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
-                            <div className="mb-8">
-                                <h2 className="mb-3 flex items-center text-xl font-bold text-primary sm:text-2xl">
-                                    <i className="fas fa-clipboard-list mr-2"></i> Local Rules & Regulations
-                                </h2>
-                                <div className="prose mt-3 mb-6 max-w-none rounded-lg border border-primary/10 bg-[#f2f4f8] p-4 text-gray-700">
-                                    <ul className="space-y-3 text-gray-700">
-                                        <li className="flex items-start">
-                                            <i className="fas fa-ban mt-1 mr-2 text-red-500"></i>
-                                            <span>No smoking within church premises</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <i className="fas fa-ban mt-1 mr-2 text-red-500"></i>
-                                            <span>Silence must be observed during services</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <i className="fas fa-ban mt-1 mr-2 text-red-500"></i>
-                                            <span>Flash photography prohibited</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <i className="fas fa-ban mt-1 mr-2 text-red-500"></i>
-                                            <span>Modest attire required (no shorts/sleeveless)</span>
-                                        </li>
-                                    </ul>
+                            {rules.length > 0 && (
+                                <div className="mb-8">
+                                    <h2 className="mb-3 flex items-center text-xl font-bold text-primary sm:text-2xl">
+                                        <i className="fas fa-clipboard-list mr-2"></i> Local Rules & Regulations
+                                    </h2>
+                                    <div className="prose mt-3 mb-6 max-w-none rounded-lg border border-primary/10 bg-[#f2f4f8] p-4 text-gray-700">
+                                        <ul className="space-y-3 text-gray-700">
+                                            {rules.map((item, index) => (
+                                                <li key={index} className="flex items-start">
+                                                    <i className="fas fa-ban mt-1 mr-2 text-red-500"></i>
+                                                    <span> {item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
-                            <div className="mb-8 rounded-xl border border-secondary/10 bg-[#fefaf3] p-6 md:p-8">
-                                <h2 className="mb-3 flex items-center text-xl font-bold text-primary sm:text-2xl">
-                                    <i className="fas fa-lightbulb mr-2"></i> Fun Facts
-                                </h2>
-                                <div className="prose max-w-none text-gray-700">
-                                    <p>
-                                        The church's bell tower leans slightly due to earthquake damage in the 19th century, earning it the nickname
-                                        "The Leaning Tower of Pakil." The seven-month Turumba Festival celebrated here holds the record as the longest
-                                        religious festival in the Philippines, with devotees performing a joyful dance called the "turumba" during
-                                        processions.
-                                    </p>
+                            {fun_facts.length > 0 && (
+                                <div className="mb-8 rounded-xl border border-secondary/10 bg-[#fefaf3] p-6 md:p-8">
+                                    <h2 className="mb-3 flex items-center text-xl font-bold text-primary sm:text-2xl">
+                                        <i className="fas fa-lightbulb mr-2"></i> Fun Facts
+                                    </h2>
+                                    <div className="prose max-w-none text-gray-700">
+                                        {fun_facts.map((item, index) => (
+                                            <p key={index} className="mb-4">
+                                                {item}
+                                            </p>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div className="mb-8">
-                                <h2 className="mb-3 text-xl font-bold text-primary sm:text-2xl">More Images</h2>
-                                <div className="-mx-4 flex overflow-x-auto px-4 pb-4 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <img
-                                        src="/User/Images/church.jpg"
-                                        className="mr-3 h-32 w-48 rounded-lg object-cover sm:mr-0 sm:h-40 sm:w-full"
-                                        alt="Church interior"
-                                    />
-                                    <img
-                                        src="/User/Images/church.jpg"
-                                        className="mr-3 h-32 w-48 rounded-lg object-cover sm:mr-0 sm:h-40 sm:w-full"
-                                        alt="Church facade"
-                                    />
-                                    <img
-                                        src="/User/Images/church.jpg"
-                                        className="h-32 w-48 rounded-lg object-cover sm:h-40 sm:w-full"
-                                        alt="Church courtyard"
-                                    />
-                                </div>
-                            </div>
+                            )}
                         </div>
 
                         <div className="w-full lg:w-1/3">
-                            <div className="mb-6 rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm">
-                                <h3 className="mb-4 flex items-center text-lg font-bold text-primary">
-                                    <i className="fas fa-tag mr-2"></i> Fees
-                                </h3>
-                                <ul className="space-y-3">
-                                    <li className="flex justify-between">
-                                        <span>Entrance Fee</span>
-                                        <span className="font-medium">FREE</span>
-                                    </li>
-                                    <li className="flex justify-between">
-                                        <span>Guided Tour (English)</span>
-                                        <span className="font-medium">₱200</span>
-                                    </li>
-                                    <li className="flex justify-between">
-                                        <span>Guided Tour (Filipino)</span>
-                                        <span className="font-medium">₱150</span>
-                                    </li>
-                                    <li className="flex justify-between">
-                                        <span>Museum Entrance</span>
-                                        <span className="font-medium">₱50</span>
-                                    </li>
-                                </ul>
-                            </div>
+                            {fees.length > 0 && (
+                                <div className="mb-6 rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm">
+                                    <h3 className="mb-4 flex items-center text-lg font-bold text-primary">
+                                        <i className="fas fa-tag mr-2"></i> Fees
+                                    </h3>
+                                    <ul className="space-y-3">
+                                        {fun_facts.map((item, index) => (
+                                            <li className="flex justify-between">
+                                                <span>Entrance Fee</span>
+                                                <span className="font-medium">FREE</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
 
                             <div className="mb-6 rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm">
                                 <h3 className="mb-4 flex items-center text-lg font-bold text-primary">
@@ -251,10 +292,12 @@ export default function AttractionDetails() {
                                 <p className="mb-3 text-gray-700">P. Burgos Street, Pakil, Laguna 4017 Philippines</p>
                                 <div className="h-48 overflow-hidden rounded-lg">
                                     <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3865.234512020209!2d121.4787223152636!3d14.38116498994245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d207f2d0a6a5%3A0x6a8949a3e804ae1a!2sSan%20Pedro%20de%20Alcantara%20Church!5e0!3m2!1sen!2sph!4v1623821488393!5m2!1sen!2sph"
+                                        src={`https://www.google.com/maps?q=${item.lat},${item.long}&hl=es;z=14&output=embed`}
                                         width="100%"
                                         height="100%"
                                         loading="lazy"
+                                        style={{ border: 0 }}
+                                        allowFullScreen
                                     ></iframe>
                                 </div>
                                 <a

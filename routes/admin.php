@@ -1,32 +1,33 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController\AccountManagementController;
-use App\Http\Controllers\AdminController\AdminProfileController;
-use App\Http\Controllers\AdminController\WebsiteSettingsController;
-use App\Http\Controllers\AdminController\BannerController;
-use App\Http\Controllers\AdminController\BarangayInfoController;
-use App\Http\Controllers\AdminController\HomeCMSController;
-use App\Http\Controllers\AdminController\HotlinesController;
-use App\Http\Controllers\AdminController\PromotionalvidController;
-use App\Http\Controllers\AdminController\TerminalController;
-use App\Http\Controllers\AdminController\TourGuideController;
-use App\Http\Controllers\AdminController\CMScontroller;
-use App\Http\Controllers\AdminController\CMSUpdatecontroller;
-use App\Http\Controllers\AdminController\CMSHistoryController;
-use App\Http\Controllers\AdminController\DepartmentMemberController;
-use App\Http\Controllers\AdminController\DepartmentStructureController;
-use App\Http\Controllers\AdminController\EstablishmentController;
-use App\Http\Controllers\AdminController\EventsManagementController;
-use App\Http\Controllers\AdminController\FAQsController;
-use App\Http\Controllers\AdminController\LocalPersonalitiesController;
-use App\Http\Controllers\AdminController\LocalProductsController;
-use App\Http\Controllers\AdminController\NewsLetterManagementController;
-use App\Http\Controllers\AdminController\OfficialsController;
-use App\Http\Controllers\AdminController\PastMayorController;
-use App\Http\Controllers\AdminController\PostController;
 use App\Http\Controllers\Auth\AdminLoginController;
-use Inertia\Inertia;
+use App\Http\Controllers\AdminController\{
+    AccountManagementController,
+    AdminProfileController,
+    AttractionsController,
+    BannerController,
+    BarangayInfoController,
+    CMSController,
+    CMSHistoryController,
+    CMSUpdateController,
+    DepartmentMemberController,
+    DepartmentStructureController,
+    EstablishmentController,
+    EventsManagementController,
+    FAQsController,
+    HotlinesController,
+    LocalPersonalitiesController,
+    LocalProductsController,
+    NewsLetterManagementController,
+    OfficialsController,
+    PastMayorController,
+    PostController,
+    PromotionalVidController,
+    TerminalController,
+    TourGuideController,
+    WebsiteSettingsController
+};
 
 Route::middleware('admin.access:guest')->group(function () {});
 Route::get('/Admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.homes');
@@ -225,5 +226,14 @@ Route::middleware('admin.access:auth')->group(function () {
 
     Route::prefix('/Admin/subscribed')->name('subscribed.')->group(function () {
         Route::get('/', [NewsLetterManagementController::class, 'index'])->name('index');
+    });
+
+    Route::prefix('/Admin/attractions')->name('attractions.')->group(function () {
+        Route::get('/', [AttractionsController::class, 'index'])->name('index');
+        Route::get('/new', [AttractionsController::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [AttractionsController::class, 'edit'])->name('edit');
+        Route::post('/create', [AttractionsController::class, 'create'])->name('create');
+        Route::post('/update/{id}', [AttractionsController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [AttractionsController::class, 'delete'])->name('delete');
     });
 });

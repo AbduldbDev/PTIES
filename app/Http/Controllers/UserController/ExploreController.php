@@ -12,6 +12,8 @@ use App\Models\PakilHistory;
 use App\Models\PakilTerminals;
 use App\Models\LocalPersonalities;
 use App\Models\LocalProducts;
+use App\Models\Attractions;
+
 
 
 class ExploreController extends Controller
@@ -115,15 +117,29 @@ class ExploreController extends Controller
     public function Attractions()
     {
         $banner = CMSBanner::where('key', 'Attractions')->first();
+        $attractions = Attractions::inRandomOrder()->get();
+
         return Inertia::render('User/Pages/Attractions', [
             'banner' => $banner,
+            'items' => $attractions,
         ]);
     }
 
-    public function AttractionDetails()
+    public function AttractionDetails($id)
     {
+        $attraction = Attractions::where('attraction_id', $id)->first();
+        $attraction->contact = $this->parseContentValue($attraction->contact);
 
-        return Inertia::render('User/Pages/AttractionDetails');
+        if (!$attraction) {
+            return redirect()->route('user.attractions');
+        }
+
+        return Inertia::render(
+            'User/Pages/AttractionDetails',
+            [
+                'item' => $attraction,
+            ]
+        );
     }
 
     public function PakilGuide()

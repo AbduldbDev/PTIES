@@ -43,7 +43,7 @@ Route::prefix('/explore')->name('user.')->group(function () {
     Route::get('/local-products', [ExploreController::class, 'LocalProducts'])->name('localproducts');
     Route::get('/local-personalities', [ExploreController::class, 'LocalPersonalities'])->name('localpersonalities');
     Route::get('/attractions', [ExploreController::class, 'Attractions'])->name('attractions');
-    Route::get('/attraction-details', [ExploreController::class, 'AttractionDetails'])->name('attractiondetails');
+    Route::get('/attraction-details/{id}', [ExploreController::class, 'AttractionDetails'])->name('attractiondetails');
     Route::get('/guide', [ExploreController::class, 'Guide'])->name('guide');
     Route::get('/terminals', [ExploreController::class, 'Terminals'])->name('terminals');
     Route::get('/establishments', [ExploreController::class, 'Establishments'])->name('establishments');

@@ -8,6 +8,7 @@ class Attractions extends Model
 {
     protected $table = 'attractions';
     protected $fillable = [
+        'attraction_id',
         'name',
         'category',
         'operating_hours',
@@ -22,5 +23,6 @@ class Attractions extends Model
         'long',
         'lat',
         'points',
+        'qr_path',
     ];
 }

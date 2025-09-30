@@ -140,7 +140,7 @@ const MapComponent = ({ initialLat, initialLng, onMarkerMove }: MapComponentProp
         }
     }, [initialLat, initialLng]);
 
-    return <div ref={mapRef} style={{ height: '500px', width: '100%' }} className="rounded-lg border border-gray-300" />;
+    return <div ref={mapRef} style={{ height: '260px', width: '100%' }} className="rounded-lg border border-gray-300" />;
 };
 
 export default MapComponent;

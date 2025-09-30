@@ -334,7 +334,7 @@ export default function GuideCreateForm() {
                                                             label={`Schedule ${index + 1} Date & Time`}
                                                             name={`Schedule_${index}`}
                                                             value={Schedules.date_time}
-                                                            onChange={(e) => setnewSchedule({ ...newSchedule, date_time: e.target.value })}
+                                                            onChange={(e) => updateSchedule(index, { ...Schedules, date_time: e.target.value })}
                                                             required={true}
                                                             error={form.errors.Schedule}
                                                             errorMessage="Please enter schedule date & time"

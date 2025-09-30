@@ -36,6 +36,7 @@ type PageProps = {
 export const EventsSingle = () => {
     const { event } = usePage<PageProps>().props;
     const scheduleArray = Array.isArray(event.schedules) ? event.schedules : [];
+    
     const descriptions = (event.description || '').split('\n').filter((p) => p.trim() !== '');
     const admission = (event.admission || '').split('\n').filter((p) => p.trim() !== '');
     const attire = (event.attire || '').split('\n').filter((p) => p.trim() !== '');

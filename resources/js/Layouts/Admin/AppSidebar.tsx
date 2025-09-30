@@ -1,5 +1,6 @@
 import { useSidebar } from '@AdminUtils/context/SidebarContext';
 import {
+    CalenderIcon,
     ChevronDownIcon,
     CommenQuestion,
     Crown,
@@ -16,7 +17,6 @@ import {
     UserCrown,
     UserGroup,
     UserTie,
-    CalenderIcon
 } from '@AdminUtils/icons';
 import { Link, usePage } from '@inertiajs/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -268,6 +268,15 @@ const otherNavItems: NavItem[] = [
         name: 'Subscribed Users',
         requiredUserType: ['admin', 'content_manager'],
         subItems: [{ name: 'All Subscribed', path: '/Admin/subscribed', requiredUserType: ['admin', 'content_manager'] }],
+    },
+    {
+        icon: <UserGroup />,
+        name: 'Attractions',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'New Attractions', path: '/Admin/attractions/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Attractions', path: '/Admin/attractions', requiredUserType: ['admin', 'content_manager'] },
+        ],
     },
 ];
 

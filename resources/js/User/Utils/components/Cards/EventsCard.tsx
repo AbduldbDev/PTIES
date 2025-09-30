@@ -24,7 +24,6 @@ interface Props {
 }
 
 export default function EventsCard({ events }: Props) {
-  
     const images: string[] = Array.isArray(events.image)
         ? events.image
         : (() => {
@@ -37,7 +36,6 @@ export default function EventsCard({ events }: Props) {
 
     const firstImage = images.length > 0 ? `${images[0]}` : '/User/Images/church.jpg';
 
-    
     return (
         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
             <div className="relative">
@@ -65,7 +63,10 @@ export default function EventsCard({ events }: Props) {
                     </span>
                 </div>
                 <h4 className="text-dark mb-2 text-lg font-bold md:mb-3 md:text-xl">{events.title}</h4>
-                <p className="mb-4 line-clamp-3 text-sm text-gray-600 md:mb-5 md:text-base">{events.description}</p>
+                <p className="mb-4 line-clamp-3 text-sm text-gray-600 md:mb-5 md:text-base">
+                    {events.description}
+                    {events.description.length > 200 ? events.description.substring(0, 200) + '...' : events.description}
+                </p>
                 <a
                     href={`/events/details/${events.id}`}
                     className="flex items-center text-sm font-medium text-primary hover:text-primary/80 md:text-base"
