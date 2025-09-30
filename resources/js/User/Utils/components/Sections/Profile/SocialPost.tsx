@@ -6,7 +6,7 @@ interface SocialWallPost {
     caption: string;
     image: string;
     likes_count: number;
-    is_approved: boolean;
+    is_approved: number;
     created_at: string;
     updated_at: string;
 }
@@ -42,16 +42,24 @@ export default function SocialPost() {
 
                                             {!post.is_approved && (
                                                 <div className="absolute inset-0 flex items-center justify-center">
-                                                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-yellow-500/80">
+                                                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-yellow-500/80 lg:h-40 lg:w-40">
                                                         <span className="text-sm font-semibold text-white">Pending</span>
                                                     </div>
                                                 </div>
                                             )}
 
-                                            {post.is_approved && (
+                                            {post.is_approved === 1 && (
                                                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 opacity-0 transition duration-300 group-hover:opacity-100">
                                                     <i className="far fa-heart text-2xl text-white"></i>
                                                     <p className="text-center text-lg font-semibold text-white">{post.likes_count ?? 0}</p>
+                                                </div>
+                                            )}
+
+                                            {post.is_approved === 2 && (
+                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-red-500/50 lg:h-40 lg:w-40">
+                                                        <span className="text-sm font-semibold text-white">Rejected</span>
+                                                    </div>
                                                 </div>
                                             )}
 

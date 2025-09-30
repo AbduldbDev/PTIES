@@ -71,7 +71,7 @@ export default function Officials() {
                         {mayor && (
                             <div className="mb-10 flex justify-center">
                                 <div className="official-card flex w-full max-w-md flex-col overflow-hidden rounded-xl bg-white shadow-lg">
-                                    <div className="relative aspect-square bg-gray-200">
+                                    <div className="relative aspect-square w-full overflow-hidden rounded-lg">
                                         <img
                                             src={mayor.image ? `${mayor.image}` : '/images/user/User.png'}
                                             alt={mayor.name}
@@ -116,7 +116,7 @@ export default function Officials() {
                         {viceMayor && (
                             <div className="mb-12 flex justify-center">
                                 <div className="official-card flex w-full max-w-md flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-md">
-                                    <div className="relative aspect-square bg-gray-200">
+                                    <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-gray-200">
                                         <img
                                             src={viceMayor.image ? `${viceMayor.image}` : '/images/user/User.png'}
                                             alt={viceMayor.name}

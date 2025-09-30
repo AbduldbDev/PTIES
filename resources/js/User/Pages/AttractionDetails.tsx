@@ -99,29 +99,30 @@ export default function AttractionDetails() {
                                 e.currentTarget.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30';
                             }}
                         />
-                        {eventImages.length > 1 && (
-                            <div className="flex space-x-2 overflow-x-auto pb-2">
-                                {eventImages.map((image, index) => (
-                                    <button
-                                        key={index}
-                                        className={`flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all hover:border-primary ${
-                                            selectedImage === image ? 'border-primary' : 'border-gray-200'
-                                        }`}
-                                        onClick={() => setSelectedImage(image)}
-                                    >
-                                        <img
-                                            src={image}
-                                            alt={`${item.name} ${index + 1}`}
-                                            className="h-20 w-32 object-cover sm:h-24 sm:w-36"
-                                            onError={(e) => {
-                                                e.currentTarget.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30';
-                                            }}
-                                        />
-                                    </button>
-                                ))}
-                            </div>
-                        )}
                     </div>
+
+                    {eventImages.length > 1 && (
+                        <div className="flex space-x-2 overflow-x-auto pb-2">
+                            {eventImages.map((image, index) => (
+                                <button
+                                    key={index}
+                                    className={`flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all hover:border-primary ${
+                                        selectedImage === image ? 'border-primary' : 'border-gray-200'
+                                    }`}
+                                    onClick={() => setSelectedImage(image)}
+                                >
+                                    <img
+                                        src={image}
+                                        alt={`${item.name} ${index + 1}`}
+                                        className="h-20 w-32 object-cover sm:h-24 sm:w-36"
+                                        onError={(e) => {
+                                            e.currentTarget.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30';
+                                        }}
+                                    />
+                                </button>
+                            ))}
+                        </div>
+                    )}
 
                     <div className="mb-6">
                         <div className="flex flex-col items-start justify-between space-y-2 sm:flex-row">

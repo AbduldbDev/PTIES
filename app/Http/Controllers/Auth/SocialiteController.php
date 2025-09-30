@@ -38,6 +38,7 @@ class SocialiteController extends Controller
                     'google_id' => $googleUser->getId(),
                     'avatar' => $avatarUrl,
                     'password' => bcrypt(Str::random(16)),
+                    'is_verified' => true,
                 ]
             );
 
@@ -50,8 +51,7 @@ class SocialiteController extends Controller
             );
 
 
-
-            Auth::login($user);
+            Auth::login($user, true);
             return redirect()->intended('/');
         } catch (\Exception $e) {
             return redirect('/Login')->with('error', 'Failed to login using Google.');
