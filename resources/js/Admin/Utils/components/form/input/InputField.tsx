@@ -112,7 +112,7 @@ const InputField = ({
         if (isTouched && !error && value) {
             return 'border-success-300 focus:border-success-300 focus:ring-success-500/10 dark:border-success-700 dark:focus:border-success-800';
         }
-        return 'border-gray-300 focus:border-brand-300 focus:ring-brand-500/10 dark:border-gray-700 dark:focus:border-brand-800';
+        return ' border-gray-300 focus:border-brand-300 focus:ring-brand-500/10 dark:border-gray-700 dark:focus:border-brand-800';
     };
 
     return (
@@ -130,7 +130,7 @@ const InputField = ({
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder={placeholder}
-                    className={`dark:bg-dark-900 w-full rounded-lg border bg-transparent px-4 py-2.5 pr-10 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 ${getBorderClasses()}`}
+                    className={`dark:bg-dark-900 w-full rounded-lg border bg-transparent px-4 py-2.5 pr-10 text-sm text-gray-800 shadow-theme-xs transition-all duration-150 ease-in-out placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 ${getBorderClasses()}`}
                     aria-invalid={!!error || !!externalError}
                     aria-describedby={error || externalError ? `${name}-error` : undefined}
                     readOnly={readonly}

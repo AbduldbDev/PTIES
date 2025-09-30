@@ -87,7 +87,7 @@ const ColorInputField = ({
                         value={value}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className={`h-full w-full cursor-pointer rounded-lg border ${getBorderClasses()} appearance-none bg-transparent focus:ring-3 focus:outline-none`}
+                        className={`h-full w-full cursor-pointer rounded-lg border transition-all duration-150 ease-in-out ${getBorderClasses()} appearance-none bg-transparent focus:ring-3 focus:outline-none`}
                         aria-invalid={!!error || !!externalError}
                         aria-describedby={error || externalError ? `${name}-error` : undefined}
                     />
@@ -99,13 +99,13 @@ const ColorInputField = ({
                         onChange={handleChange}
                         onBlur={handleBlur}
                         placeholder="#FFFFFF"
-                        className={`shadow-theme-xs w-full rounded-lg border bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:ring-3 focus:outline-none dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 ${getBorderClasses()}`}
+                        className={`w-full rounded-lg border bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs transition-all duration-150 ease-in-out placeholder:text-gray-400 focus:ring-3 focus:outline-none dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 ${getBorderClasses()}`}
                         aria-invalid={!!error || !!externalError}
                     />
                 </div>
             </div>
             {(error || externalError) && (
-                <p id={`${name}-error`} className="text-theme-xs text-error-500 absolute z-10 mt-1 w-full">
+                <p id={`${name}-error`} className="absolute z-10 mt-1 w-full text-theme-xs text-error-500">
                     {externalError || error}
                 </p>
             )}

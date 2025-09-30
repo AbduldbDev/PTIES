@@ -34,13 +34,13 @@ const LayoutContent: React.FC<LayoutContentProps> = ({ children, auth }) => {
     const { isExpanded, isHovered, isMobileOpen } = useSidebar();
     const themeColors = useThemeColors();
     return (
-        <div className="min-h-screen bg-white transition-all duration-300 ease-in-out xl:flex dark:bg-[#101828]">
+        <div className="min-h-screen bg-white transition-all duration-150 ease-in-out xl:flex dark:bg-[#101828]">
             <div>
                 <AppSidebar auth={auth} />
                 <Backdrop />
             </div>
             <div
-                className={`flex-1 transition-all duration-300 ease-in-out ${
+                className={`flex-1 transition-all duration-150 ease-in-out ${
                     isExpanded || isHovered ? 'lg:ml-[290px]' : 'lg:ml-[90px]'
                 } ${isMobileOpen ? 'ml-0' : ''}`}
             >

@@ -16,6 +16,7 @@ import {
     UserCrown,
     UserGroup,
     UserTie,
+    CalenderIcon
 } from '@AdminUtils/icons';
 import { Link, usePage } from '@inertiajs/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -254,7 +255,7 @@ const otherNavItems: NavItem[] = [
     },
 
     {
-        icon: <UserGroup />,
+        icon: <CalenderIcon />,
         name: 'Pakil Events',
         requiredUserType: ['admin', 'content_manager'],
         subItems: [

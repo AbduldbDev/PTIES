@@ -103,7 +103,7 @@ const Select: React.FC<SelectProps> = ({
                     value={values}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`shadow-theme-xs h-10.4 w-full appearance-none rounded-lg border bg-transparent px-4 py-2.5 pr-11 text-sm placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 ${getBorderClasses()} ${
+                    className={`h-10.4 w-full appearance-none rounded-lg border bg-transparent px-4 py-2.5 pr-11 text-sm shadow-theme-xs transition-all duration-150 ease-in-out placeholder:text-gray-400 focus:ring-3 focus:outline-hidden dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 ${getBorderClasses()} ${
                         values ? 'text-gray-800 dark:text-white/90' : 'text-gray-400 dark:text-gray-400'
                     }`}
                     aria-invalid={!!error || !!externalError}
@@ -155,7 +155,7 @@ const Select: React.FC<SelectProps> = ({
                 )}
             </div>
             {(error || externalError) && (
-                <p id={`${name}-error`} className="text-theme-xs text-error-500 absolute z-10 mt-1 w-full">
+                <p id={`${name}-error`} className="absolute z-10 mt-1 w-full text-theme-xs text-error-500">
                     {externalError || error}
                 </p>
             )}
