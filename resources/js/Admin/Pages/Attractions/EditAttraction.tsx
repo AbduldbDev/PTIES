@@ -179,13 +179,13 @@ export default function GuideCreateForm() {
                         <ComponentCard title="Edit Attraction">
                             <InputField
                                 type="text"
-                                label="Attaction Name"
+                                label="Attraction Name"
                                 name="name"
                                 required={true}
                                 value={form.data.name}
                                 onChange={(e) => form.setData('name', e.target.value)}
                                 error={form.errors.name}
-                                errorMessage="Please enter attaction name"
+                                errorMessage="Please enter attraction name"
                                 resetSignal={resetSignal}
                             />
 
@@ -197,7 +197,7 @@ export default function GuideCreateForm() {
                                 value={form.data.points}
                                 onChange={(e) => form.setData('points', e.target.value)}
                                 error={form.errors.points}
-                                errorMessage="Please enter attaction points"
+                                errorMessage="Please enter attraction points"
                                 resetSignal={resetSignal}
                             />
 
@@ -209,7 +209,7 @@ export default function GuideCreateForm() {
                                 value={form.data.distance}
                                 onChange={(e) => form.setData('distance', e.target.value)}
                                 error={form.errors.distance}
-                                errorMessage="Please enter attaction distance"
+                                errorMessage="Please enter attraction distance"
                                 resetSignal={resetSignal}
                             />
 

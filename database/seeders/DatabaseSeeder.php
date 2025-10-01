@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartmentSeeder::class);
         $this->call(OfficialsSeeder::class);
         $this->call(PastMayorsSeeder::class);
+        $this->call(AttractionsSeeder::class);
     }
 }

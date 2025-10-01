@@ -98,7 +98,15 @@ class CMSBannerSeeder extends Seeder
                 'subtitle' => 'A Glimpse of Leadership Through the Years',
                 'desc' => 'Discover the leaders who shaped our municipality across generations.',
             ],
+            [
+                'key' => 'About Pakil',
+                'title' => 'The Story of Pakil',
+                'subtitle' => 'Heritage, Culture, and Community',
+                'desc' => 'Learn about Pakil’s rich history, traditions, and milestones that shaped its identity—from its cultural roots and historical leaders to the vibrant community it is today.',
+            ],
+
         ];
+
 
         foreach ($banners as $banner) {
             CMSBanner::updateOrCreate(
