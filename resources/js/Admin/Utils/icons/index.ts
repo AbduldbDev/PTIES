@@ -68,8 +68,10 @@ import UserIcon from './user-line.svg?react';
 import UserTie from './user-tie.svg?react';
 import VideoIcon from './videos.svg?react';
 import UserGroup from './user-group-light-full.svg?react';
+import FontAwesomeFlag from './font-awesome-regular-full.svg?react';
 
 export {
+    FontAwesomeFlag,
     UserGroup,
     AlertHexaIcon,
     AlertIcon,

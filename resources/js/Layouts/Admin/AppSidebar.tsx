@@ -5,6 +5,7 @@ import {
     CommenQuestion,
     Crown,
     DocsIcon,
+    FontAwesomeFlag,
     GearIconThin,
     GridIcon,
     HorizontaLDots,
@@ -113,6 +114,45 @@ const otherNavItems: NavItem[] = [
         ],
     },
     {
+        icon: <FontAwesomeFlag />,
+        name: 'Attractions',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'New Attractions', path: '/Admin/attractions/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Attractions', path: '/Admin/attractions', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+
+    {
+        icon: <UserGroup />,
+        name: 'Key Officials',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'New Official', path: '/Admin/officials/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Officials', path: '/Admin/officials', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+
+    {
+        icon: <UserGroup />,
+        name: 'Past Mayors',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'New Mayor', path: '/Admin/past-mayor/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Mayors', path: '/Admin/past-mayor', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+
+    {
+        icon: <CalenderIcon />,
+        name: 'Pakil Events',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'New Event', path: '/Admin/events/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Events', path: '/Admin/events', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+    {
         icon: <Shop />,
         name: 'Establishments',
         requiredUserType: ['admin', 'content_manager'],
@@ -121,7 +161,23 @@ const otherNavItems: NavItem[] = [
             { name: 'All Establishments', path: '/Admin/establishment', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
+    {
+        icon: <ImageRegular />,
+        name: 'Social Wall Post',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Pending Posts', path: '/Admin/social-wall/pending', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'Approved Posts', path: '/Admin/social-wall/approved', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'Rejected Posts', path: '/Admin/social-wall/rejected', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
 
+    {
+        icon: <UserGroup />,
+        name: 'Subscribed Users',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [{ name: 'All Subscribed', path: '/Admin/subscribed', requiredUserType: ['admin', 'content_manager'] }],
+    },
     {
         icon: <Crown />,
         name: 'Local Products',
@@ -147,16 +203,6 @@ const otherNavItems: NavItem[] = [
         subItems: [
             { name: 'Add New Hotlines', path: '/Admin/hotlines/new', requiredUserType: ['admin', 'content_manager'] },
             { name: 'All Hotlines', path: '/Admin/hotlines', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-    {
-        icon: <ImageRegular />,
-        name: 'Social Wall Post',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'Pending Posts', path: '/Admin/social-wall/pending', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'Approved Posts', path: '/Admin/social-wall/approved', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'Rejected Posts', path: '/Admin/social-wall/rejected', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
 
@@ -231,51 +277,6 @@ const otherNavItems: NavItem[] = [
                     { name: 'All Memebers', path: '/Admin/structure/members', requiredUserType: ['admin', 'content_manager'] },
                 ],
             },
-        ],
-    },
-
-    {
-        icon: <UserGroup />,
-        name: 'Key Officials',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'New Official', path: '/Admin/officials/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Officials', path: '/Admin/officials', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-
-    {
-        icon: <UserGroup />,
-        name: 'Past Mayors',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'New Mayor', path: '/Admin/past-mayor/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Mayors', path: '/Admin/past-mayor', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-
-    {
-        icon: <CalenderIcon />,
-        name: 'Pakil Events',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'New Event', path: '/Admin/events/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Events', path: '/Admin/events', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-    {
-        icon: <UserGroup />,
-        name: 'Subscribed Users',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [{ name: 'All Subscribed', path: '/Admin/subscribed', requiredUserType: ['admin', 'content_manager'] }],
-    },
-    {
-        icon: <UserGroup />,
-        name: 'Attractions',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'New Attractions', path: '/Admin/attractions/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Attractions', path: '/Admin/attractions', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
 ];
