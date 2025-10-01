@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\UserController;
 
+use App\Mail\NewsLetterConfirmation;
 use App\Http\Controllers\Controller;
-use App\Models\Newsletter;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use App\Models\Newsletter;
 use Inertia\Inertia;
 
 class NewsletterController extends Controller
@@ -16,10 +18,12 @@ class NewsletterController extends Controller
             'name'  => 'nullable|string|max:255',
         ]);
 
-        Newsletter::create([
+        $subscriber = Newsletter::create([
             'name'  => $request->name ?: 'Anonymous',
             'email' => $request->email,
         ]);
+
+        Mail::to($subscriber->email)->send(new NewsLetterConfirmation($subscriber));
 
         return redirect()->route('newsletter.confirmation');
     }

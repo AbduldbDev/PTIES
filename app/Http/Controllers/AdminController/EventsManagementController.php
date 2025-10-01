@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use App\Models\Events;
+use App\Jobs\SendNewEventNotification;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -66,7 +67,7 @@ class EventsManagementController extends Controller
                 }
             }
 
-            Events::create([
+            $event = Events::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'schedules' => json_encode($request->input('Schedule', [])),
@@ -79,6 +80,8 @@ class EventsManagementController extends Controller
                 'lat' => $request->lat,
                 'image' => json_encode($imagePaths),
             ]);
+
+            SendNewEventNotification::dispatch($event);
 
             return redirect()->route('events.index')
                 ->with('success', 'Event added successfully');
