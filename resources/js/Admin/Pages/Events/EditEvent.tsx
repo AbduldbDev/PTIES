@@ -242,7 +242,7 @@ export default function GuideCreateForm() {
                                                     name="sched_title"
                                                     value={newSchedule.title}
                                                     onChange={(e) => setnewSchedule({ ...newSchedule, title: e.target.value })}
-                                                    required={true}
+                                                    required={false}
                                                     error={form.errors.Schedule}
                                                     errorMessage="Please enter schedule title"
                                                 />
@@ -266,7 +266,7 @@ export default function GuideCreateForm() {
                                             name="sched_title"
                                             value={newSchedule.date_time}
                                             onChange={(e) => setnewSchedule({ ...newSchedule, date_time: e.target.value })}
-                                            required={true}
+                                            required={false}
                                             error={form.errors.Schedule}
                                             errorMessage="Please enter schedule date & time"
                                         />
@@ -275,7 +275,7 @@ export default function GuideCreateForm() {
                                             label="Description"
                                             name="Description"
                                             value={newSchedule.desc}
-                                            required={true}
+                                            required={false}
                                             onChange={(e) => setnewSchedule({ ...newSchedule, desc: e.target.value })}
                                             error={form.errors.Schedule}
                                             errorMessage="Please enter schedule description"

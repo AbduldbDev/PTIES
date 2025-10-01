@@ -229,7 +229,7 @@ export default function GuideCreateForm() {
                                                     name="new_Education"
                                                     value={newEducation.name}
                                                     onChange={(e) => setnewEducation({ ...newEducation, name: e.target.value })}
-                                                    required={true}
+                                                    required={false}
                                                     error={form.errors.education}
                                                     errorMessage="Please enter education name"
                                                 />
@@ -252,7 +252,7 @@ export default function GuideCreateForm() {
                                             label="Description"
                                             name="description"
                                             value={newEducation.desc}
-                                            required={true}
+                                            required={false}
                                             onChange={(e) => setnewEducation({ ...newEducation, desc: e.target.value })}
                                             error={form.errors.education}
                                             errorMessage="Please enter education details"
