@@ -305,21 +305,21 @@ export default function GuideCreateForm() {
                             />
                             <Textarea
                                 rows={10}
-                                label="Fun Facts "
-                                name="contacts"
-                                required={false}
-                                value={form.data.fun_facts}
-                                onChange={(e) => form.setData('fun_facts', e.target.value)}
-                                error={form.errors.fun_facts}
-                            />
-                            <Textarea
-                                rows={10}
                                 label="Local Rules"
                                 name="local_rules"
                                 required={false}
                                 value={form.data.local_rules}
                                 onChange={(e) => form.setData('local_rules', e.target.value)}
                                 error={form.errors.local_rules}
+                            />
+                            <Textarea
+                                rows={10}
+                                label="Fun Facts "
+                                name="contacts"
+                                required={false}
+                                value={form.data.fun_facts}
+                                onChange={(e) => form.setData('fun_facts', e.target.value)}
+                                error={form.errors.fun_facts}
                             />
                         </ComponentCard>
                     </div>
@@ -335,9 +335,9 @@ export default function GuideCreateForm() {
                                                 name="contact_title"
                                                 value={newContact.name}
                                                 onChange={(e) => setnewContact({ ...newContact, name: e.target.value })}
-                                                required={true}
+                                                required={false}
                                                 error={form.errors.Contact}
-                                                errorMessage="Please enter Contact title"
+                                                errorMessage="Please enter contact title"
                                             />
                                         </div>
                                         <button
@@ -359,7 +359,7 @@ export default function GuideCreateForm() {
                                         name="contact_label"
                                         value={newContact.position}
                                         onChange={(e) => setnewContact({ ...newContact, position: e.target.value })}
-                                        required={true}
+                                        required={false}
                                         error={form.errors.Contact}
                                         errorMessage="Please enter contact label"
                                     />
@@ -368,7 +368,7 @@ export default function GuideCreateForm() {
                                         label="Contact Number/Email"
                                         name="contact_number"
                                         value={newContact.contact}
-                                        required={true}
+                                        required={false}
                                         onChange={(e) => setnewContact({ ...newContact, contact: e.target.value })}
                                         error={form.errors.Contact}
                                         errorMessage="Please enter contact number/email"

@@ -90,42 +90,46 @@ export default function AttractionDetails() {
                             </li>
                         </ol>
                     </nav>
-                    <div className="-mx-4 mb-4 overflow-hidden rounded-xl shadow-lg sm:mx-0">
-                        <img
-                            src={selectedImage}
-                            alt={item.name}
-                            className="aspect-video w-full object-cover"
-                            onError={(e) => {
-                                e.currentTarget.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30';
-                            }}
-                        />
+                    <div className="-mx-1 mb-4 overflow-hidden rounded-xl shadow-lg sm:mx-0">
+                        <a href={selectedImage} target="_blank" rel="noopener noreferrer">
+                            <img
+                                src={selectedImage}
+                                alt={item.name}
+                                className="aspect-video w-full cursor-pointer object-cover"
+                                onError={(e) => {
+                                    e.currentTarget.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30';
+                                }}
+                            />
+                        </a>
                     </div>
 
                     {eventImages.length > 1 && (
-                        <div className="flex space-x-2 overflow-x-auto pb-2">
+                        <div className="-mx-1 flex w-full flex-wrap pb-2">
                             {eventImages.map((image, index) => (
                                 <button
                                     key={index}
-                                    className={`flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all hover:border-primary ${
+                                    className={`m-1 min-w-[100px] flex-1 overflow-hidden rounded-lg border-2 transition-all hover:border-primary ${
                                         selectedImage === image ? 'border-primary' : 'border-gray-200'
                                     }`}
                                     onClick={() => setSelectedImage(image)}
                                 >
-                                    <img
-                                        src={image}
-                                        alt={`${item.name} ${index + 1}`}
-                                        className="h-20 w-32 object-cover sm:h-24 sm:w-36"
-                                        onError={(e) => {
-                                            e.currentTarget.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30';
-                                        }}
-                                    />
+                                    <div className="aspect-video w-full">
+                                        <img
+                                            src={image}
+                                            alt={`${item.name} ${index + 1}`}
+                                            className="h-full w-full object-cover"
+                                            onError={(e) => {
+                                                e.currentTarget.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30';
+                                            }}
+                                        />
+                                    </div>
                                 </button>
                             ))}
                         </div>
                     )}
 
                     <div className="mb-6">
-                        <div className="flex flex-col items-start justify-between space-y-2 sm:flex-row">
+                        <div className="my-2 flex flex-col items-start justify-between space-y-2 sm:flex-row lg:my-5">
                             <h1 className="text-2xl font-bold sm:text-3xl">{item.name}</h1>
                             <div className="flex items-center rounded-full bg-secondary/10 px-3 py-1">
                                 <img src="/User/Layout/Pakilpoints.png" className="mr-1 h-[20px] w-[20px]" alt="" />
@@ -223,7 +227,7 @@ export default function AttractionDetails() {
                             )}
 
                             {fun_facts.length > 0 && (
-                                <div className="mb-8 rounded-xl border border-secondary/10 bg-[#fefaf3] p-6 md:p-8">
+                                <div className="rounded-xl border border-secondary/10 bg-[#fefaf3] p-6 md:p-8">
                                     <h2 className="mb-3 flex items-center text-xl font-bold text-primary sm:text-2xl">
                                         <i className="fas fa-lightbulb mr-2"></i> Fun Facts
                                     </h2>
@@ -245,7 +249,7 @@ export default function AttractionDetails() {
                                         <i className="fas fa-tag mr-2"></i> Fees
                                     </h3>
                                     <ul className="space-y-3">
-                                        {fun_facts.map((item, index) => (
+                                        {fees.map((item, index) => (
                                             <li key={index} className="flex justify-between">
                                                 <span>{item}</span>
                                             </li>
@@ -266,7 +270,7 @@ export default function AttractionDetails() {
                                                 <div>
                                                     <p className="font-medium">{item.name}</p>
                                                     <p className="text-sm text-gray-600">{item.position}</p>
-                                                    <p className="text-sm">{item.name}</p>
+                                                    <p className="text-sm">{item.contact}</p>
                                                 </div>
                                             </li>
                                         ))}
@@ -276,9 +280,9 @@ export default function AttractionDetails() {
 
                             <div className="rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm">
                                 <h3 className="mb-4 flex items-center text-lg font-bold text-primary">
-                                    <i className="fas fa-map-marker-alt mr-2"></i> Location
+                                    <i className="fas fa-map-marker-alt mr-2"></i> Pin Location
                                 </h3>
-                                <p className="mb-3 text-gray-700">P. Burgos Street, Pakil, Laguna 4017 Philippines</p>
+
                                 <div className="h-48 overflow-hidden rounded-lg">
                                     <iframe
                                         src={`https://www.google.com/maps?q=${item.lat},${item.long}&hl=es;z=14&output=embed`}

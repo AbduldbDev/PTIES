@@ -65,9 +65,9 @@ class AttractionsController extends Controller
                 'distance'        => 'nullable|string',
                 'long'            => 'required|numeric|between:-180,180',
                 'lat'             => 'required|numeric|between:-90,90',
-                'points'          => 'nullable|integer',
+                'points'          => 'required|integer',
                 'Contact'         => 'nullable|array',
-                'images.*'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+                'images.*'        => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
             ]);
 
             $imagesPaths = [];
@@ -138,9 +138,9 @@ class AttractionsController extends Controller
                 'distance'        => 'nullable|string',
                 'long'            => 'required|numeric|between:-180,180',
                 'lat'             => 'required|numeric|between:-90,90',
-                'points'          => 'nullable|integer',
+                'points'          => 'required|integer',
                 'Contact'         => 'nullable|array',
-                'images.*'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+                'images.*'        => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
             ]);
 
             $attraction = Attractions::findOrFail($id);

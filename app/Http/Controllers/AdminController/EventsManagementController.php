@@ -101,7 +101,7 @@ class EventsManagementController extends Controller
                 'contacts' => 'nullable|string|max:255',
                 'long' => 'nullable|numeric',
                 'lat' => 'nullable|numeric',
-                'image.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+                'image.*' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
             ]);
 
             $event = Events::findOrFail($id);

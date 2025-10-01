@@ -117,7 +117,9 @@ class ExploreController extends Controller
     public function Attractions()
     {
         $banner = CMSBanner::where('key', 'Attractions')->first();
-        $attractions = Attractions::inRandomOrder()->get();
+        // $attractions = Attractions::inRandomOrder()->get();
+
+        $attractions = Attractions::orderBy('name', 'asc')->get();
 
         return Inertia::render('User/Pages/Attractions', [
             'banner' => $banner,

@@ -18,10 +18,10 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->text('description');
-            $table->text('schedules');
-            $table->text('admission');
-            $table->text('attire');
-            $table->text('contacts');
+            $table->text('schedules')->nullable();
+            $table->text('admission')->nullable();
+            $table->text('attire')->nullable();
+            $table->text('contacts')->nullable();
             $table->string('long');
             $table->string('lat');
             $table->timestamps();
