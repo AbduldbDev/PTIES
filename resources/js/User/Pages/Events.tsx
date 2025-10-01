@@ -3,6 +3,7 @@ import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import EventsCard from '@UserUtils/components/Cards/EventsCard';
 import Calendar from '@UserUtils/components/Sections/Events/EventCarlendar';
+import EmptyState from '@UserUtils/components/Ui/EmptyState';
 
 type PageBannerProps = {
     title: string;
@@ -64,17 +65,24 @@ export const Events = () => {
                 <div className="h-[15vh]"></div>
             )}
 
-            <section className="py-16">
-                <div className="container mx-auto px-4">
+            {items.length > 0 ? (
+                <Calendar events={items} />
+            ) : (
+                <div className="py-16">
                     <PageTitle
-                        title="Upcoming Events"
-                        subtitle="Pakil Events Calendar"
-                        desc="Discover upcoming festivals, cultural activities, and community gatherings in Pakil"
+                        title="NO EVENTS AVAILABLE"
+                        subtitle="Currently No Events To Explore"
+                        desc="Please check back later for upcoming events and activities."
                     />
-
-                    <Calendar events={items} />
+                    <EmptyState
+                        title="No Events Yet"
+                        message="There are currently no events scheduled. Be the first to share or suggest an event!"
+                        actionText="Return Home"
+                        onAction={() => window.location.assign('/')}
+                    />
                 </div>
-            </section>
+            )}
+
             {items.length > 0 && (
                 <section className="py-10">
                     <div className="container mx-auto px-6">

@@ -100,6 +100,7 @@ export default function Attractions() {
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
             </Head>
+
             {banner ? (
                 <Banner
                     title={banner?.title}
@@ -110,15 +111,24 @@ export default function Attractions() {
             ) : (
                 <div className="h-[15vh]"></div>
             )}
-            {items.length > 0 && (
-                <section className="px-4 py-6">
-                    <div className="container mx-auto">
+
+            <section className="px-4 py-16">
+                <div className="container mx-auto">
+                    {items.length > 0 ? (
                         <PageTitle
                             title="EXPLORE"
                             subtitle="Explore Pakil's Attractions"
                             desc="Discover the cultural and natural wonders of our beautiful town"
                         />
+                    ) : (
+                        <PageTitle
+                            title="NO ATTRACTIONS AVAILABLE"
+                            subtitle="Currently No Attractions To Explore"
+                            desc="Please check back later for updates"
+                        />
+                    )}
 
+                    {items.length > 0 && (
                         <div className="mb-8">
                             <div className="flex flex-col gap-4 md:flex-row">
                                 <SearchBar
@@ -141,44 +151,35 @@ export default function Attractions() {
                                 />
                             )}
                         </div>
+                    )}
 
-                        {filteredData.length > 0 ? (
-                            <>
+                    {items.length > 0 ? (
+                        <>
+                            {filteredData.length > 0 ? (
                                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
                                     {filteredData.map((items, index) => (
                                         <AttractionsCard key={index} item={items} />
                                     ))}
                                 </div>
-                            </>
-                        ) : (
-                            <EmptyState
-                                title="No Attractions found"
-                                message="Try adjusting your search terms or filters."
-                                actionText="Clear All Filters"
-                                onAction={clearFilters}
-                            />
-                        )}
-
-                        {/* <div className="mt-10 flex justify-center">
-                            <nav className="flex items-center space-x-2">
-                                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600">
-                                    <i className="fas fa-chevron-left"></i>
-                                </button>
-                                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white">1</button>
-                                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
-                                    2
-                                </button>
-                                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
-                                    3
-                                </button>
-                                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600">
-                                    <i className="fas fa-chevron-right"></i>
-                                </button>
-                            </nav>
-                        </div> */}
-                    </div>
-                </section>
-            )}
+                            ) : (
+                                <EmptyState
+                                    title="No Attractions found"
+                                    message="Try adjusting your search terms or filters."
+                                    actionText="Clear All Filters"
+                                    onAction={clearFilters}
+                                />
+                            )}
+                        </>
+                    ) : (
+                        <EmptyState
+                            title="No Attractions Available"
+                            message="We're working on adding new attractions. Please check back soon."
+                            actionText="Return Home"
+                            onAction={() => (window.location.href = '/')}
+                        />
+                    )}
+                </div>
+            </section>
         </>
     );
 }

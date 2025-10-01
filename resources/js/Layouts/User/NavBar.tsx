@@ -117,7 +117,6 @@ const Navbar = () => {
 
     return (
         <nav className="fixed top-0 right-0 left-0 z-40">
-            {/* Top bar with date/time */}
             <div className="flex items-center justify-between bg-primary px-4 py-2 text-sm text-white sm:text-[11px]">
                 <div className="flex items-center space-x-2 text-[11px] sm:text-sm">
                     <span className="sm" id="current-date">
@@ -146,7 +145,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className="flex space-x-2">
-                        <a href="https://www.facebook.com/pakilturismo" className="hover:text-blue-500">
+                        <a href="https://www.facebook.com/pakilturismo" target="_blank" className="hover:text-blue-500">
                             <i className="fab fa-facebook-f"></i>
                         </a>
                     </div>
@@ -157,7 +156,7 @@ const Navbar = () => {
             <header className="bg-white/80 shadow-sm backdrop-blur-sm">
                 <div className="container mx-auto px-4">
                     <nav className="flex items-center justify-between py-2">
-                        <a href="#" className="flex items-center space-x-2">
+                        <a href="/" className="flex items-center space-x-2">
                             <img src="/User/Layout/Logo.png" alt="Logo" className="h-[55px] w-[55px]" />
                             <img src="/User/Layout/Seal.png" alt="Seal" className="h-[50px] w-[50px]" />
                         </a>

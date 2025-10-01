@@ -3,6 +3,7 @@ import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import Terminal from '@UserUtils/components/Cards/Terminal';
 import TerminalsMap from '@UserUtils/components/Cards/TerminalMaps';
+import EmptyState from '@UserUtils/components/Ui/EmptyState';
 
 type PageBannerProps = {
     title: string;
@@ -55,15 +56,43 @@ export default function Terminals() {
             ) : (
                 <div className="h-[15vh]"></div>
             )}
-            <section className="px-4 py-6">
+
+            <section className="px-4 py-16">
                 <div className="container mx-auto max-w-7xl">
-                    <PageTitle title="GUIDE" subtitle="Tricycle Terminals" desc="Find tricycle routes around Pakil" />
+                    {terminals.length > 0 ? (
+                        <>
+                            <PageTitle
+                                title="TRICYCLE GUIDE"
+                                subtitle="Tricycle Terminals in Pakil"
+                                desc="Explore routes and terminals to easily navigate around the town."
+                            />
 
-                    <TerminalsMap terminals={terminals} apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} />
+                            <TerminalsMap terminals={terminals} apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} />
+                        </>
+                    ) : (
+                        <PageTitle
+                            title="NO TERMINALS AVAILABLE"
+                            subtitle="Currently No Terminals To Explore"
+                            desc="Please check back later for updates"
+                        />
+                    )}
 
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                        {terminals && terminals.map((terminal: TerminalProps) => <Terminal key={terminal.id} terminal={terminal} />)}
+                    <div className="products-section">
+                        {terminals.length === 0 ? (
+                            <EmptyState
+                                title="No Terminals Available"
+                                message="We're working on adding new terminals. Please check back soon."
+                                actionText="Return Home"
+                                onAction={() => (window.location.href = '/')}
+                            />
+                        ) : (
+                            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                                {terminals && terminals.map((terminal: TerminalProps) => <Terminal key={terminal.id} terminal={terminal} />)}
+                            </div>
+                        )}
                     </div>
+
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2"></div>
                 </div>
             </section>
         </>

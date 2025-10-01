@@ -2,6 +2,7 @@ import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import PersonalityCard from '@UserUtils/components/Cards/LocalPersonalities';
+import EmptyState from '@UserUtils/components/Ui/EmptyState';
 
 type PageBannerProps = {
     title: string;
@@ -52,18 +53,36 @@ export default function LocalProducts() {
 
             <section className="py-16">
                 <div className="container mx-auto max-w-6xl px-4">
-                    <PageTitle
-                        title="Cultural Treasures"
-                        subtitle="Pakil’s Iconic Personalities"
-                        desc="Celebrating the artists, heroes and visionaries who shaped our town"
-                    ></PageTitle>
-                    <div className="relative">
-                        <div className="absolute top-0 left-16 -z-10 hidden h-full w-0.5 bg-gradient-to-b from-primary via-secondary to-accent md:block"></div>
+                    {personalities.length > 0 ? (
+                        <PageTitle
+                            title="Cultural Treasures"
+                            subtitle="Pakil’s Iconic Personalities"
+                            desc="Celebrating the artists, heroes and visionaries who shaped our town"
+                        ></PageTitle>
+                    ) : (
+                        <PageTitle
+                            title="NO PERSONALITIES AVAILABLE"
+                            subtitle="Currently No Personalities To Explore"
+                            desc="Please check back later for updates"
+                        />
+                    )}
 
-                        {personalities.map((p, index) => (
-                            <PersonalityCard key={p.name} personality={p} index={index} />
-                        ))}
-                    </div>
+                    {personalities.length === 0 ? (
+                        <EmptyState
+                            title="No Personalities Available"
+                            message="We're cCrrently Updating Our Catalog. Please check back soon."
+                            actionText="Return Home"
+                            onAction={() => window.location.assign('/')}
+                        />
+                    ) : (
+                        <div className="relative">
+                            <div className="absolute top-0 left-16 -z-10 hidden h-full w-0.5 bg-gradient-to-b from-primary via-secondary to-accent md:block"></div>
+
+                            {personalities.map((p, index) => (
+                                <PersonalityCard key={p.name} personality={p} index={index} />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </section>
         </>

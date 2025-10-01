@@ -24,8 +24,14 @@ interface Props {
 }
 
 export default function FeaturedPost({ post }: Props) {
-    const { auth } = usePage().props as { auth?: { user?: { email: string } } };
-
+    const { auth } = usePage().props as {
+        auth?: {
+            user?: {
+                email: string;
+                user_type: string;
+            };
+        };
+    };
     const [isLiked, setIsLiked] = useState(post.has_liked || false);
     const [likeCount, setLikeCount] = useState(post.likes_count || 0);
     const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +42,7 @@ export default function FeaturedPost({ post }: Props) {
     }, [post.has_liked, post.likes_count]);
 
     const handleLikeClick = async () => {
-        if (!auth?.user) {
+        if (!auth?.user || auth.user.user_type !== 'user') {
             window.location.href = '/Login';
             return;
         }

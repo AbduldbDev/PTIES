@@ -5,6 +5,7 @@ import CitizenCharter from '@UserUtils/components/Sections/Tourism/CitizenCharte
 import DeparmentStructure from '@UserUtils/components/Sections/Tourism/DepartmentStructure';
 import MissionVision from '@UserUtils/components/Sections/Tourism/MissionVision';
 import TourismAbout from '@UserUtils/components/Sections/Tourism/TourismAbout';
+import EmptyState from '@UserUtils/components/Ui/EmptyState';
 import { CMSContent } from '@UserUtils/Types/cms';
 import { useEffect } from 'react';
 
@@ -71,7 +72,6 @@ export default function TourismAboutPage() {
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
             </Head>
-
             {banner ? (
                 <Banner
                     title={banner?.title}
@@ -81,6 +81,21 @@ export default function TourismAboutPage() {
                 ></Banner>
             ) : (
                 <div className="h-[15vh]"></div>
+            )}
+            {!content.about && !content.mission_vision && departments.length <= 0 && !content.citizen_charter && (
+                <div className="py-16">
+                    <PageTitle
+                        title="NO INFORMATION AVAILABLE"
+                        subtitle="Currently No Information Provided"
+                        desc="Please check back soon for the latest updates."
+                    />
+                    <EmptyState
+                        title="No Tourism Information Available"
+                        message="We are currently updating our tourism content. Please check back soon for our updated information."
+                        actionText="Return Home"
+                        onAction={() => (window.location.href = '/')}
+                    />
+                </div>
             )}
 
             {content.about && (
@@ -165,7 +180,6 @@ export default function TourismAboutPage() {
                     </div>
                 </section>
             )}
-
             {content.mission_vision && (
                 <section id="mission&vision" className="py-0 md:py-16">
                     <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -174,7 +188,6 @@ export default function TourismAboutPage() {
                     </div>
                 </section>
             )}
-
             {departments.length > 0 && (
                 <section id="department_structure" className="py-12">
                     <PageTitle
@@ -185,7 +198,6 @@ export default function TourismAboutPage() {
                     <DeparmentStructure departments={departments} />
                 </section>
             )}
-
             {content.citizen_charter && (
                 <section id="citizen_charter" className="py-10">
                     <div className="max-w-8xl container mx-auto px-6">

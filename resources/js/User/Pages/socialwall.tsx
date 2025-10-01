@@ -2,6 +2,7 @@ import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
 import FeaturedPost from '@UserUtils/components/Cards/FeaturedPost';
 import SocialWallCard from '@UserUtils/components/Cards/SocialWallPost';
+import EmptyState from '@UserUtils/components/Ui/EmptyState';
 import PageTitle from '../Utils/components/Banner/PageTitle';
 
 type PageBannerProps = {
@@ -64,28 +65,39 @@ export default function SocialWall() {
                 <div className="container mx-auto px-4">
                     <PageTitle title="Community" subtitle="Pakil Social Wall" desc="See what visitors are sharing about Pakil"></PageTitle>
 
-                    <div className="mx-auto mb-8 max-w-4xl">
-                        {topPost && <FeaturedPost post={topPost} />}
+                    {items.length === 0 ? (
+                        <EmptyState
+                            title="No Posts Yet"
+                            message="There are no posts on the wall yet. You can be the first to share your experience!"
+                            actionText="Share Your Experience"
+                            onAction={() => (window.location.href = '/socialwall/new')}
+                        />
+                    ) : (
+                        <>
+                            <div className="mx-auto mb-8 max-w-4xl">
+                                {topPost && <FeaturedPost post={topPost} />}
 
-                        <div className="mt-6 text-center">
-                            <button
-                                onClick={() => (window.location.href = '/socialwall/new')}
-                                className="mx-auto flex items-center rounded-full bg-primary px-6 py-3 font-medium text-white transition duration-300 hover:bg-primary/90"
-                            >
-                                <i className="fas fa-plus mr-2"></i> Share Your Experience
-                            </button>
-                        </div>
-                    </div>
+                                <div className="mt-6 text-center">
+                                    <button
+                                        onClick={() => (window.location.href = '/socialwall/new')}
+                                        className="mx-auto flex items-center rounded-full bg-primary px-6 py-3 font-medium text-white transition duration-300 hover:bg-primary/90"
+                                    >
+                                        <i className="fas fa-plus mr-2"></i> Share Your Experience
+                                    </button>
+                                </div>
+                            </div>
 
-                    <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-                        {items && items.map((items: SocialWallPost) => <SocialWallCard key={items.id} post={items} />)}
-                    </div>
+                            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                                {items && items.map((items: SocialWallPost) => <SocialWallCard key={items.id} post={items} />)}
+                            </div>
 
-                    {/* <div className="mt-8 text-center">
+                            {/* <div className="mt-8 text-center">
                         <button className="inline-flex items-center rounded-full border border-primary px-5 py-2 text-sm font-medium text-primary transition duration-300 hover:bg-primary hover:text-white">
                             <i className="fas fa-arrow-down mr-2"></i> Load More
                         </button>
                     </div> */}
+                        </>
+                    )}
                 </div>
             </section>
         </>
