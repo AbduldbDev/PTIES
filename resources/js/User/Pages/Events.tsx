@@ -86,7 +86,7 @@ export const Events = () => {
             {items.length > 0 && (
                 <section className="py-10">
                     <div className="container mx-auto px-6">
-                        <PageTitle title="Updates" subtitle="Events & News" desc="Stay updated with the latest happenings in Pakil" />
+                        <PageTitle title="Events" subtitle="Upcoming Happenings" desc="Stay updated with the latest events in Pakil" />
 
                         <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                             {items.map((event, index) => (

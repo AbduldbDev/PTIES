@@ -36,7 +36,7 @@ type PageProps = {
 export const EventsSingle = () => {
     const { event } = usePage<PageProps>().props;
     const scheduleArray = Array.isArray(event.schedules) ? event.schedules : [];
-    
+
     const descriptions = (event.description || '').split('\n').filter((p) => p.trim() !== '');
     const admission = (event.admission || '').split('\n').filter((p) => p.trim() !== '');
     const attire = (event.attire || '').split('\n').filter((p) => p.trim() !== '');
@@ -109,23 +109,25 @@ export const EventsSingle = () => {
                         </div>
 
                         {eventImages.length > 1 && (
-                            <div className="flex space-x-2 overflow-x-auto pb-2">
+                            <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6">
                                 {eventImages.map((image, index) => (
                                     <button
                                         key={index}
-                                        className={`flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all hover:border-primary ${
+                                        className={`overflow-hidden rounded-lg border-2 transition-all hover:border-primary ${
                                             selectedImage === image ? 'border-primary' : 'border-gray-200'
                                         }`}
                                         onClick={() => setSelectedImage(image)}
                                     >
-                                        <img
-                                            src={image}
-                                            alt={`${event.title} ${index + 1}`}
-                                            className="h-20 w-32 object-cover sm:h-24 sm:w-36"
-                                            onError={(e) => {
-                                                e.currentTarget.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30';
-                                            }}
-                                        />
+                                        <div className="aspect-video w-full">
+                                            <img
+                                                src={image}
+                                                alt={`${event.title} ${index + 1}`}
+                                                className="h-full w-full object-cover"
+                                                onError={(e) => {
+                                                    e.currentTarget.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30';
+                                                }}
+                                            />
+                                        </div>
                                     </button>
                                 ))}
                             </div>
@@ -151,7 +153,7 @@ export const EventsSingle = () => {
                                 })()}
                             </span>
                         </div>
-                        <h1 className="mb-3 text-xl font-bold text-primary sm:text-2xl md:text-3xl">{event.title}</h1>
+                        <h1 className="mb-3 text-xl font-bold sm:text-2xl md:text-3xl">{event.title}</h1>
                     </div>
 
                     <div className="flex flex-col-reverse gap-6 md:flex-row">

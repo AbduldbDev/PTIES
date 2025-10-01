@@ -51,8 +51,8 @@ export default function AttractionDetails() {
         }
     };
 
-    const eventImages = parseImages(item.images);
-    const [selectedImage, setSelectedImage] = useState(eventImages[0] || '/placeholder-image.jpg');
+    const attractionImages = parseImages(item.images);
+    const [selectedImage, setSelectedImage] = useState(attractionImages[0] || '/placeholder-image.jpg');
 
     const ContactArray = Array.isArray(item.contact) ? item.contact : [];
     const OperatingHours = (item.operating_hours || '').split('\n').filter((p) => p.trim() !== '');
@@ -61,6 +61,7 @@ export default function AttractionDetails() {
     const rules = (item.local_rules || '').split('\n').filter((p) => p.trim() !== '');
     const fun_facts = (item.fun_facts || '').split('\n').filter((p) => p.trim() !== '');
     const fees = (item.fees || '').split('\n').filter((p) => p.trim() !== '');
+
     return (
         <>
             <Head title={title}>
@@ -70,7 +71,7 @@ export default function AttractionDetails() {
             </Head>
             <div className="h-[12vh]"></div>
             <section className="py-6 sm:py-10">
-                <div className="container mx-auto px-4">
+                <div className="mx-auto max-w-7xl px-4">
                     <nav className="mb-2 text-sm lg:mb-6">
                         <ol className="flex flex-wrap items-center">
                             <li className="inline-flex items-center">
@@ -86,10 +87,11 @@ export default function AttractionDetails() {
                                 <span className="mx-2 text-gray-400">/</span>
                             </li>
                             <li className="inline-flex items-center">
-                                <span className="text-gray-700">{item.name}</span>
+                                <span className="text-primary">{item.name}</span>
                             </li>
                         </ol>
                     </nav>
+
                     <div className="-mx-1 mb-4 overflow-hidden rounded-xl shadow-lg sm:mx-0">
                         <a href={selectedImage} target="_blank" rel="noopener noreferrer">
                             <img
@@ -103,12 +105,12 @@ export default function AttractionDetails() {
                         </a>
                     </div>
 
-                    {eventImages.length > 1 && (
-                        <div className="-mx-1 flex w-full flex-wrap pb-2">
-                            {eventImages.map((image, index) => (
+                    {attractionImages.length > 1 && (
+                        <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6">
+                            {attractionImages.map((image, index) => (
                                 <button
                                     key={index}
-                                    className={`m-1 min-w-[100px] flex-1 overflow-hidden rounded-lg border-2 transition-all hover:border-primary ${
+                                    className={`overflow-hidden rounded-lg border-2 transition-all hover:border-primary ${
                                         selectedImage === image ? 'border-primary' : 'border-gray-200'
                                     }`}
                                     onClick={() => setSelectedImage(image)}
@@ -131,11 +133,25 @@ export default function AttractionDetails() {
                     <div className="mb-6">
                         <div className="my-2 flex flex-col items-start justify-between space-y-2 sm:flex-row lg:my-5">
                             <h1 className="text-2xl font-bold sm:text-3xl">{item.name}</h1>
+                        </div>
+                        <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
+                            <div className="flex flex-wrap items-center gap-2">
+                                <span className="rounded-full bg-gradient-to-r from-secondary to-primary px-3 py-1 text-xs font-medium text-white shadow-sm">
+                                    {item.category.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase())}
+                                </span>
+
+                                <span className="flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                                    <i className="fas fa-map-marker-alt mr-1.5 text-xs"></i>
+                                    {item.distance}
+                                </span>
+                            </div>
+
                             <div className="flex items-center rounded-full bg-secondary/10 px-3 py-1">
-                                <img src="/User/Layout/Pakilpoints.png" className="mr-1 h-[20px] w-[20px]" alt="" />
+                                <img src="/User/Layout/Pakilpoints.png" className="mr-1 h-[20px] w-[20px]" alt="Pakil Points" />
                                 <span className="text-dark font-medium">{item.points} pts</span>
                             </div>
                         </div>
+
                         {OperatingHours.length > 0 && (
                             <div className="mt-3 mb-6 rounded-lg border border-primary/10 bg-[#f2f4f8] p-4">
                                 <div className="flex">
@@ -182,7 +198,6 @@ export default function AttractionDetails() {
                                     <h2 className="mb-3 flex items-center text-xl font-bold text-primary sm:text-2xl">
                                         <i className="fas fa-info-circle mr-2"></i> Information
                                     </h2>
-
                                     <div className="prose mt-3 mb-6 max-w-none rounded-lg border border-primary/10 bg-[#f2f4f8] p-4 text-gray-700">
                                         {information.map((item, index) => (
                                             <p key={index} className="mb-4">
@@ -194,7 +209,7 @@ export default function AttractionDetails() {
                             )}
 
                             {history.length > 0 && (
-                                <div className="">
+                                <div className="mb-8">
                                     <h2 className="mb-3 flex items-center text-xl font-bold text-primary sm:text-2xl">
                                         <i className="fas fa-landmark mr-2"></i> History
                                     </h2>
@@ -227,31 +242,35 @@ export default function AttractionDetails() {
                             )}
 
                             {fun_facts.length > 0 && (
-                                <div className="rounded-xl border border-secondary/10 bg-[#fefaf3] p-6 md:p-8">
+                                <div>
                                     <h2 className="mb-3 flex items-center text-xl font-bold text-primary sm:text-2xl">
                                         <i className="fas fa-lightbulb mr-2"></i> Fun Facts
                                     </h2>
-                                    <div className="prose max-w-none text-gray-700">
-                                        {fun_facts.map((item, index) => (
-                                            <p key={index} className="mb-4">
-                                                {item}
-                                            </p>
+                                    <div className="prose mt-3 mb-6 max-w-none rounded-lg border border-primary/10 bg-[#fefaf3] p-4 text-gray-700">
+                                        {fun_facts.map((fact, index) => (
+                                            <div key={index} className="mb-3 flex items-start">
+                                                <i className="fas fa-star mt-1 mr-3 text-lg text-yellow-500"></i>
+                                                <p className="text-gray-700">{fact}</p>
+                                            </div>
                                         ))}
                                     </div>
                                 </div>
                             )}
                         </div>
 
-                        <div className="w-full lg:w-1/3">
+                        <div className="-mt-5 w-full lg:mt-11 lg:w-1/3">
                             {fees.length > 0 && (
                                 <div className="mb-6 rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm">
                                     <h3 className="mb-4 flex items-center text-lg font-bold text-primary">
-                                        <i className="fas fa-tag mr-2"></i> Fees
+                                        <i className="fas fa-tag mr-2"></i> Fees & Pricing
                                     </h3>
                                     <ul className="space-y-3">
-                                        {fees.map((item, index) => (
-                                            <li key={index} className="flex justify-between">
-                                                <span>{item}</span>
+                                        {fees.map((fee, index) => (
+                                            <li key={index} className="flex items-start justify-between pl-2">
+                                                <div className="flex items-start">
+                                                    <i className="fas fa-receipt mt-1 mr-2 text-primary/90"></i>
+                                                    <span>{fee}</span>
+                                                </div>
                                             </li>
                                         ))}
                                     </ul>
@@ -260,12 +279,12 @@ export default function AttractionDetails() {
 
                             {ContactArray.length > 0 && (
                                 <div className="mb-6 rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm">
-                                    <h3 className="mb-4 flex items-center text-lg font-bold text-primary">
+                                    <h3 className="mb-4 flex items-center text-lg font-bold text-primary/90">
                                         <i className="fas fa-address-book mr-2"></i> Contact Persons
                                     </h3>
                                     <ul className="space-y-3">
                                         {ContactArray.map((item, index) => (
-                                            <li key={index} className="flex items-start">
+                                            <li key={index} className="flex items-start pl-1">
                                                 <i className="fas fa-user-tie mt-1 mr-2 text-primary"></i>
                                                 <div>
                                                     <p className="font-medium">{item.name}</p>
@@ -282,7 +301,6 @@ export default function AttractionDetails() {
                                 <h3 className="mb-4 flex items-center text-lg font-bold text-primary">
                                     <i className="fas fa-map-marker-alt mr-2"></i> Pin Location
                                 </h3>
-
                                 <div className="h-48 overflow-hidden rounded-lg">
                                     <iframe
                                         src={`https://www.google.com/maps?q=${item.lat},${item.long}&hl=es;z=14&output=embed`}
