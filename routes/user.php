@@ -10,7 +10,8 @@ use App\Http\Controllers\UserController\{
     AboutUsController,
     ExploreController,
     EventsController,
-    NewsletterController
+    NewsletterController,
+    UserGamificationController
 };
 
 Route::middleware('user.access:auth')->group(function () {
@@ -61,3 +62,5 @@ Route::get('/reward-shop', [PageController::class, 'RewardShop'])->name('user.re
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('/newsletter/confirmation', [NewsletterController::class, 'confirmation'])->name('newsletter.confirmation');
 Route::get('/', [PageController::class, 'Home'])->name('user.home');
+
+Route::get('/explore/scanner', [UserGamificationController::class, 'scanner'])->name('users.scanner');
