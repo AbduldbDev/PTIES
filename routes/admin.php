@@ -10,7 +10,7 @@ use App\Http\Controllers\AdminController\{
     BarangayInfoController,
     CMScontroller,
     CMSHistoryController,
-    CMSUpdateController,
+    CMSUpdatecontroller,
     DepartmentMemberController,
     DepartmentStructureController,
     EstablishmentController,
