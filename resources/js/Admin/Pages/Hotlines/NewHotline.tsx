@@ -67,6 +67,18 @@ export default function GuideCreateForm() {
             });
             return;
         }
+        
+        const contactRegex = /^(09|\+639)\d{9}$/;
+        if (!contactRegex.test(form.data.contact)) {
+            form.setError('contact', 'Please enter a valid phone number');
+            return;
+        }
+
+        const hotlineRegex = /^(0\d{2,4})[- ]?\d{5,7}$/;
+        if (!hotlineRegex.test(form.data.contact)) {
+            form.setError('hotline', 'Please enter a valid hotline number');
+            return;
+        }
 
         form.post('/Admin/hotlines/create', {
             forceFormData: true,
@@ -149,6 +161,7 @@ export default function GuideCreateForm() {
                                 error={form.errors.hotline}
                                 errorMessage="Please enter hotline number"
                                 resetSignal={resetSignal}
+                                validation={/^(0\d{2,4})[- ]?\d{5,7}$/}
                             />
 
                             <InputField
@@ -156,6 +169,7 @@ export default function GuideCreateForm() {
                                 label="Contact Number"
                                 name="hotline_number"
                                 required={true}
+                                validation={/^(09|\+639)\d{9}$/}
                                 value={form.data.contact}
                                 onChange={(e) => form.setData('contact', e.target.value)}
                                 error={form.errors.contact}

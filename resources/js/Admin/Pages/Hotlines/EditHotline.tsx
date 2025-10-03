@@ -80,6 +80,18 @@ export default function GuideCreateForm() {
             return;
         }
 
+        const contactRegex = /^(09|\+639)\d{9}$/;
+        if (!contactRegex.test(form.data.contact)) {
+            form.setError('contact', 'Please enter a valid phone number');
+            return;
+        }
+
+        const hotlineRegex = /^(0\d{2,4})[- ]?\d{5,7}$/;
+        if (!hotlineRegex.test(form.data.contact)) {
+            form.setError('hotline', 'Please enter a valid hotline number');
+            return;
+        }
+
         form.post(`/Admin/hotlines/update/${item.id}`, {
             forceFormData: true,
             onSuccess: () => {
@@ -126,7 +138,6 @@ export default function GuideCreateForm() {
                                 errorMessage="Please enter hotline name"
                                 resetSignal={resetSignal}
                             />
-
                             <SelectField
                                 label="Icon"
                                 name="icon"
@@ -142,7 +153,6 @@ export default function GuideCreateForm() {
                                 error={form.errors.icon}
                                 errorMessage="Please select a valid icon"
                             />
-
                             <InputField
                                 type="text"
                                 label="Hotline Category"
@@ -164,6 +174,7 @@ export default function GuideCreateForm() {
                                 error={form.errors.hotline}
                                 errorMessage="Please enter hotline number"
                                 resetSignal={resetSignal}
+                                validation={/^(0\d{2,4})[- ]?\d{5,7}$/}
                             />
 
                             <InputField
@@ -172,12 +183,12 @@ export default function GuideCreateForm() {
                                 name="hotline_number"
                                 required={true}
                                 value={form.data.contact}
+                                validation={/^(09|\+639)\d{9}$/}
                                 onChange={(e) => form.setData('contact', e.target.value)}
                                 error={form.errors.contact}
                                 errorMessage="Please enter contact number"
                                 resetSignal={resetSignal}
                             />
-
                             <InputField
                                 type="text"
                                 label="Address"
@@ -189,7 +200,6 @@ export default function GuideCreateForm() {
                                 errorMessage="Please enter location address"
                                 resetSignal={resetSignal}
                             />
-
                             <button
                                 type="submit"
                                 disabled={form.processing}
