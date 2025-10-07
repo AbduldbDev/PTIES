@@ -84,8 +84,8 @@ export default function GuideCreateForm() {
         images: [],
     });
 
-    const [lat, setLat] = useState<number>(14.381009);
-    const [lng, setLng] = useState<number>(121.478769);
+    const [lat, setLat] = useState<number>(Number(item.lat));
+    const [lng, setLng] = useState<number>(Number(item.long));
 
     useEffect(() => {
         form.setData({

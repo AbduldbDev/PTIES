@@ -24,7 +24,13 @@ Route::middleware('user.access:auth')->group(function () {
 
     Route::get('profile', [ProfileController::class, 'index'])->name('user.profile.index');
     Route::post('profile/update/{id}', [ProfileController::class, 'update'])->name('user.profile.update');
+
+    Route::post('/gamification/redeem', [UserGamificationController::class, 'redeem'])->name('gamification.redeem');
+    Route::get('/gamification/confirmation', [UserGamificationController::class, 'confirmation'])->name('gamification.confirmation');
+    Route::get('/gamification/rejected', [UserGamificationController::class, 'reject'])->name('gamification.reject');
 });
+
+Route::get('/gamification/{id}', [UserGamificationController::class, 'details'])->name('gamification.details');
 
 Route::prefix('/contact')->name('user.contact.')->group(function () {
     Route::get('/', [ContactUsController::class, 'ContactUs'])->name('index');
