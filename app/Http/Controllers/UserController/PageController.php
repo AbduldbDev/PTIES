@@ -10,6 +10,7 @@ use App\Models\ContentPromotional;
 use App\Models\CMSContent;
 use App\Models\Events;
 use App\Models\SocialWall;
+use App\Models\Rewards;
 
 class PageController extends Controller
 {
@@ -59,11 +60,5 @@ class PageController extends Controller
     }
 
 
-    public function RewardShop()
-    {
-        $banner = CMSBanner::where('key', 'Rewards')->first();
-        return Inertia::render('User/Pages/rewardshop', [
-            'banner' => $banner,
-        ]);
-    }
+   
 }

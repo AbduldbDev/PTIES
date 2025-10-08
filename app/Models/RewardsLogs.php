@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class RewardsLogs extends Model
+{
+    protected $table = 'rewards_logs';
+    protected $fillable = [
+        'reward_id',
+        'user_id',
+        'status',
+    ];
+}

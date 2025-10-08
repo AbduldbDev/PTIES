@@ -92,7 +92,6 @@ class UserGamificationController extends Controller
 
             return redirect()->route('gamification.confirmation')->with('success', 'Points redeemed successfully.');
         } catch (\Exception $e) {
-            Log::error('Redeem error', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }

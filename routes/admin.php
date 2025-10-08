@@ -24,6 +24,7 @@ use App\Http\Controllers\AdminController\{
     PastMayorController,
     PostController,
     PromotionalVidController,
+    RewardsManagementContoller,
     TerminalController,
     TourGuideController,
     WebsiteSettingsController
@@ -235,5 +236,14 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/create', [AttractionsController::class, 'create'])->name('create');
         Route::post('/update/{id}', [AttractionsController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [AttractionsController::class, 'delete'])->name('delete');
+    });
+
+      Route::prefix('/Admin/rewards')->name('rewards.')->group(function () {
+        Route::get('/', [RewardsManagementContoller::class, 'index'])->name('index');
+        Route::get('/new', [RewardsManagementContoller::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [RewardsManagementContoller::class, 'edit'])->name('edit');
+        Route::post('/create', [RewardsManagementContoller::class, 'create'])->name('create');
+        Route::post('/update/{id}', [RewardsManagementContoller::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [RewardsManagementContoller::class, 'delete'])->name('delete');
     });
 });

@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController\{
     ExploreController,
     EventsController,
     NewsletterController,
+    RewardsController,
     UserGamificationController
 };
 
@@ -28,8 +29,11 @@ Route::middleware('user.access:auth')->group(function () {
     Route::post('/gamification/redeem', [UserGamificationController::class, 'redeem'])->name('gamification.redeem');
     Route::get('/gamification/confirmation', [UserGamificationController::class, 'confirmation'])->name('gamification.confirmation');
     Route::get('/gamification/rejected', [UserGamificationController::class, 'reject'])->name('gamification.reject');
+    Route::post('/reward/redeem', [RewardsController::class, 'redeem'])->name('rewards.redeem');
 });
 
+
+Route::get('/reward-shop', [RewardsController::class, 'index'])->name('rewards.index');
 Route::get('/gamification/{id}', [UserGamificationController::class, 'details'])->name('gamification.details');
 
 Route::prefix('/contact')->name('user.contact.')->group(function () {
@@ -63,7 +67,6 @@ Route::prefix('/events')->name('user.')->group(function () {
 });
 
 Route::get('/pakil-guide', [ExploreController::class, 'PakilGuide'])->name('pakilguide');
-Route::get('/reward-shop', [PageController::class, 'RewardShop'])->name('user.rewardshop');
 
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('/newsletter/confirmation', [NewsletterController::class, 'confirmation'])->name('newsletter.confirmation');

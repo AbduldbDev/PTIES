@@ -278,7 +278,16 @@ const otherNavItems: NavItem[] = [
                 ],
             },
         ],
+    }, {
+        icon: <HouseMedical />,
+        name: 'Gamification Rewards',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add New Reward', path: '/Admin/rewards/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Rewards', path: '/Admin/rewards', requiredUserType: ['admin', 'content_manager'] },
+        ],
     },
+    
 ];
 
 const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {

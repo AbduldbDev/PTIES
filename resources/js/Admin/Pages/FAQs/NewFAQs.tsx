@@ -14,7 +14,7 @@ type FormData = {
 type PageProps = {
     flash?: {
         success?: string;
-        error?: string;
+        error?: string; 
     };
     errors?: {
         error?: string;

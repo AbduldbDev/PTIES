@@ -27,7 +27,7 @@ type PageProps = {
 export default function GamificationDetails() {
     const { item } = usePage<PageProps>().props;
     const [resetSignal, setResetSignal] = useState(0);
-    const [countdown, setCountdown] = useState(1);
+    const [countdown, setCountdown] = useState(15);
     const [isDisabled, setIsDisabled] = useState(true);
     const [coords, setCoords] = useState<{ lat?: number; lon?: number }>({});
 
@@ -84,7 +84,7 @@ export default function GamificationDetails() {
                     '2. Look for "Location" and set it to "Allow" for this website.\n' +
                     '3. Reload or reopen this page after granting permission.',
             );
-            return;
+            return; 
         }
 
         form.post('/gamification/redeem', {

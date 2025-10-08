@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
 
         AccountEmployee::create([
             'user_id'       => $admin->id,
-            'first_name'    => "Juan",
+            'first_name'    => "Allen",
             'middle_name'   => "D.",
             'last_name'     => "Dela Cruz",
             'gender'        => "male",
