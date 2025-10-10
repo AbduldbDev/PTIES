@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController\{
     RewardsController,
     UserGamificationController
 };
+use App\Http\Controllers\SellerController\SellerPageController;
 
 Route::middleware('user.access:auth')->group(function () {
     Route::prefix('/socialwall')->name('user.socialwall.')->group(function () {
@@ -73,3 +74,5 @@ Route::get('/newsletter/confirmation', [NewsletterController::class, 'confirmati
 Route::get('/', [PageController::class, 'Home'])->name('user.home');
 
 Route::get('/explore/scanner', [UserGamificationController::class, 'scanner'])->name('users.scanner');
+
+Route::get('/seller/terms', [SellerPageController::class, 'terms']);
