@@ -77,3 +77,4 @@ Route::get('/explore/scanner', [UserGamificationController::class, 'scanner'])->
 
 Route::get('/seller/terms', [SellerPageController::class, 'terms']);
 Route::get('/seller/registration', [SellerPageController::class, 'registration']);
+Route::get('/localmarket', [SellerPageController::class, 'localmarket']);

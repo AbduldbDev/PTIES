@@ -109,6 +109,10 @@ const Navbar = () => {
             { label: 'Rewards', href: '/reward-shop' },
             { label: 'Guide', href: '/pakil-guide' },
         ],
+             market: [
+            { label: 'Local Market', href: '/localmarket' },
+            { label: 'Become a Pakil Seller', href: '/seller/terms' },
+        ],
         user: [
             { label: 'Profile', href: '/profile', icon: 'fa-regular fa-user' },
             { label: 'My Rewards', href: '#', icon: 'fa-solid fa-coins' },
@@ -307,10 +311,33 @@ const Navbar = () => {
                                         ))}
                                     </div>
                                 </div>
-
-                                <a href="#" className="nav-link px-4 py-3 font-medium text-primary hover:text-primary/60">
-                                    Market
-                                </a>
+                                
+                                <div className="dropdown relative">
+                                    <a
+                                        href="#"
+                                        className="nav-link group px-4 py-3 font-medium text-primary hover:text-primary/60"
+                                        onMouseEnter={() => handleDropdownEnter('market')}
+                                        onMouseLeave={handleDropdownLeave}
+                                        onClick={() => handleDropdownClick('market')}
+                                    >
+                                        Market
+                                    </a>
+                                    <div
+                                        className={`ring-opacity-5 absolute top-9 left-0 z-10 w-56 origin-top-right rounded-lg bg-white p-2 shadow-lg ring-1 ring-primary/30 transition-all duration-200 ${activeDropdown === 'market' ? 'scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0'}`}
+                                        onMouseEnter={() => handleDropdownEnter('market')}
+                                        onMouseLeave={handleDropdownLeave}
+                                    >
+                                        {dropdownItems.market.map((item, index) => (
+                                            <a
+                                                key={index}
+                                                href={item.href}
+                                                className="block rounded-md px-4 py-2 text-primary transition-colors hover:bg-primary/10 hover:text-primary/90"
+                                            >
+                                                {item.label}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
 
                             {/* User section */}
@@ -569,9 +596,33 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <a href="#" className="block rounded-md px-4 py-3 text-primary hover:bg-primary/8">
-                            Market
-                        </a>
+                        <div>
+                            <button
+                                onClick={() => toggleMobileSubMenu('market')}
+                                className="flex w-full items-center justify-between rounded-md px-4 py-3 text-primary hover:bg-primary/8"
+                            >
+                                <span>Market</span>
+                                <svg
+                                    className={`h-4 w-4 transition-transform ${mobileSubMenuOpen === 'market' ? 'rotate-180' : ''}`}
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div
+                                className={`overflow-hidden rounded-md bg-primary/5 transition-all duration-300 ${mobileSubMenuOpen === 'market' ? 'max-h-96' : 'max-h-0'}`}
+                            >
+                                <div className="space-y-2 py-2">
+                                    {dropdownItems.market.map((item, index) => (
+                                        <a key={index} href={item.href} className="block rounded-md px-9 py-2 text-primary hover:bg-primary/30">
+                                            {item.label}
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
 
                         {/* Mobile user section */}
                         <div className="mt-2 space-y-2 border-t border-primary/20 pt-2">
