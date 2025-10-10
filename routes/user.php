@@ -76,3 +76,4 @@ Route::get('/', [PageController::class, 'Home'])->name('user.home');
 Route::get('/explore/scanner', [UserGamificationController::class, 'scanner'])->name('users.scanner');
 
 Route::get('/seller/terms', [SellerPageController::class, 'terms']);
+Route::get('/seller/registration', [SellerPageController::class, 'registration']);

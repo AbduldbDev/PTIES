@@ -13,4 +13,9 @@ class SellerPageController extends Controller
     {
         return Inertia::render('User/Pages/SellerTerms');
     }
+
+        public function registration()
+    {
+        return Inertia::render('User/Pages/SellerRegistration');
+    }
 }
