@@ -18,9 +18,14 @@ class SellerPageController extends Controller
     {
         return Inertia::render('User/Pages/SellerRegistration');
     }
-    
+
      public function localmarket()
     {
         return Inertia::render('User/Pages/LocalMarket');
+    }
+
+     public function productdetails()
+    {
+        return Inertia::render('User/Pages/ProductDetails');
     }
 }
