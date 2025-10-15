@@ -67,6 +67,7 @@
         "flubber": "^0.4.2",
         "framer-motion": "^12.23.12",
         "globals": "^15.14.0",
+        "html5-qrcode": "^2.3.8",
         "laravel-vite-plugin": "^2.0",
         "lucide-react": "^0.475.0",
         "react": "^19.0.0",
