@@ -225,7 +225,7 @@ export default function SellerTerms() {
                             </ul>
                             <p>
                                 <strong>5.6.</strong> Inactive accounts shall be permanently deleted after <strong>five (5) years</strong>, and
-                                unverified accounts shall be removed after <strong>six (6) months</strong>.
+                                unverified accounts shall be removed after <strong>one (1) week</strong>.
                             </p>
                             <div className="mt-4 border-l-4 border-primary bg-blue-50 p-4">
                                 <p className="font-semibold text-primary">For inquiries or data privacy concerns, you may contact the:</p>
@@ -372,7 +372,7 @@ export default function SellerTerms() {
                             </p>
                             <div className="flex flex-col justify-center gap-4 sm:flex-row">
                                 <a
-                                    href="#"
+                                    href="/seller/registration"
                                     className="rounded-full bg-primary px-6 py-3 text-sm font-medium text-white transition duration-300 hover:bg-primary/90 lg:text-base"
                                 >
                                     <i className="fas fa-file-signature mr-2" />

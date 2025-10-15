@@ -2,7 +2,7 @@ export default function RegistrationForm() {
     return (
         <>
             <main className="pt-28 pb-12 sm:pt-32 sm:pb-16">
-                <div className="container mx-auto px-3 sm:px-4">
+                <div className="mx-auto px-3 sm:px-4">
                     <div className="mb-8 text-center sm:mb-12">
                         <div className="mb-3 inline-flex items-center sm:mb-4">
                             <div className="mr-2 h-1 w-6 rounded-full bg-secondary sm:mr-3 sm:w-8" />
@@ -17,8 +17,8 @@ export default function RegistrationForm() {
                         </p>
                     </div>
 
-                    <div className="mx-auto mb-8 max-w-4xl px-2 sm:mb-12">
-                        <div className="flex items-center justify-between">
+                    <div className="mx-auto mb-8 max-w-4xl sm:mb-12">
+                        <div className="px- flex items-center justify-between px-3">
                             <div className="step-indicator active flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-white sm:h-10 sm:w-10 sm:text-base">
                                 1
                             </div>
@@ -43,7 +43,7 @@ export default function RegistrationForm() {
                         </div>
                     </div>
 
-                    <div className="mx-auto max-w-4xl overflow-hidden rounded-xl bg-white shadow-md">
+                    <div className="mx-auto max-w-7xl overflow-hidden rounded-xl bg-white shadow-md">
                         <form id="seller-registration-form" className="p-4 sm:p-6 md:p-8">
                             <div className="form-section mb-8 rounded-lg border border-gray-200 p-4 sm:mb-12 sm:p-6">
                                 <h2 className="mb-4 flex items-center text-lg font-bold text-primary sm:mb-6 sm:text-xl">
@@ -200,7 +200,7 @@ export default function RegistrationForm() {
                             <div className="form-section mb-8 rounded-lg border border-gray-200 p-4 sm:mb-12 sm:p-6">
                                 <h2 className="mb-4 flex items-center text-lg font-bold text-primary sm:mb-6 sm:text-xl">
                                     <i className="fas fa-box mr-2 text-sm sm:mr-3 sm:text-base" />
-                                    Product Information
+                                    Store Information
                                 </h2>
                                 <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6">
                                     <div>
@@ -307,7 +307,7 @@ export default function RegistrationForm() {
 
                                     <div>
                                         <label htmlFor="product-description" className="mb-1 block text-sm font-medium text-gray-700">
-                                            Product Description *
+                                            Store Description *
                                         </label>
                                         <textarea
                                             id="product-description"
@@ -341,7 +341,7 @@ export default function RegistrationForm() {
 
                                     <div>
                                         <label htmlFor="price-range" className="mb-1 block text-sm font-medium text-gray-700">
-                                            Price Range (Optional)
+                                            Price Ranges
                                         </label>
                                         <div className="flex space-x-2 sm:space-x-4">
                                             <div className="flex-1">
