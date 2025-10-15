@@ -4,7 +4,6 @@ import ComponentCard from '@AdminUtils/components/common/ComponentCard';
 import PageBreadcrumb from '@AdminUtils/components/common/PageBreadCrumb';
 import { AppWrapper, PageMeta } from '@AdminUtils/components/common/PageMeta';
 import DeleteConfirm from '@AdminUtils/components/ui/alert/DeleteConfirm';
-import Badge from '@AdminUtils/components/ui/badge/Badge';
 import { SortableColumn, Table, TableBody, TableCell, TableHeader, TableRow } from '@AdminUtils/components/ui/table';
 import SortIndicator from '@AdminUtils/components/ui/table/sort-indicator';
 import FlashMessage from '@AdminUtils/context/FlashMessage';
@@ -13,17 +12,11 @@ import { Head, router, useForm, usePage } from '@inertiajs/react';
 
 type UserItemProps = {
     id: number;
-    firstname: string;
-    middlename?: string;
-    lastname: string;
-    contact: string;
-    gender: string;
-    email: string;
+    first_name: string;
+    middle_name?: string;
+    last_name: string;
     phone: string;
-    country: string;
-    user_type: string;
-    avatar?: string;
-    profile: any;
+    user: any;
     created_at: string;
 };
 
@@ -79,16 +72,13 @@ export default function Home() {
         meta: items.meta || undefined,
         customSearchFilter: (item, searchTerm) => {
             const searchLower = searchTerm.toLowerCase();
-            const profile = item.profile ?? {};
 
-            const fullName = `${profile.last_name ?? ''}, ${profile.first_name ?? ''} ${profile.middle_name ?? ''}`.toLowerCase();
+            const fullName = `${item.last_name ?? ''}, ${item.first_name ?? ''} ${item.middle_name ?? ''}`.toLowerCase();
 
             return (
                 fullName.includes(searchLower) ||
-                (item.email ?? '').toLowerCase().includes(searchLower) ||
-                (profile.contact ?? '').toLowerCase().includes(searchLower) ||
-                (profile.gender ?? '').toLowerCase().includes(searchLower) ||
-                (item.user_type ?? '').toLowerCase().includes(searchLower)
+                (item.user.email ?? '').toLowerCase().includes(searchLower) ||
+                (item.phone ?? '').toLowerCase().includes(searchLower)
             );
         },
     });
@@ -112,9 +102,7 @@ export default function Home() {
         { key: 'profile.last_name', label: 'User', sortable: true },
         { key: 'email', label: 'Email', sortable: true },
         { key: 'profile.contact', label: 'Contact', sortable: false },
-        { key: 'profile.gender', label: 'Gender', sortable: true },
-        { key: 'user_type', label: 'Role', sortable: true, align: 'center' },
-        { key: 'created_at', label: 'Created', sortable: true, align: 'center' },
+        { key: 'created_at', label: 'Account Age', sortable: true },
         { key: 'action', label: 'Action', sortable: false, align: 'center' },
     ];
 
@@ -133,7 +121,7 @@ export default function Home() {
                 <PageBreadcrumb pageTitle="Account Management" />
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
-                    <ComponentCard title="All Employee Accounts">
+                    <ComponentCard title="All Tourists Accounts">
                         <TableControls
                             searchTerm={searchTerm}
                             onSearchChange={handleSearch}
@@ -180,71 +168,53 @@ export default function Home() {
                                                                 className="h-10 w-10 overflow-hidden rounded-full object-cover"
                                                                 width={40}
                                                                 height={40}
-                                                                src={user.avatar ? `/storage/${user.avatar}` : '/images/user/User.png'}
-                                                                alt={`${user.avatar} ${user.avatar}`}
+                                                                src={user.user.avatar ? `/storage/${user.user.avatar}` : '/images/user/User.png'}
+                                                                alt={`${user.user.avatar} ${user.user.avatar}`}
                                                             />
                                                             <div>
                                                                 <span className="font-medium text-gray-800 dark:text-white/90">
-                                                                    {user.profile.last_name}, {user.profile.first_name} {user.profile.middle_name}
+                                                                    {user.last_name}, {user.first_name} {user.middle_name}
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {user.email}
+                                                        {user.user.email}
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {user.profile.contact}
+                                                        {user.phone}
                                                     </TableCell>
-                                                    <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                        {user.profile.gender}
-                                                    </TableCell>
+
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        <Badge
-                                                            size="sm"
-                                                            color={
-                                                                user.user_type === 'admin'
-                                                                    ? 'success'
-                                                                    : user.user_type === 'content_manager'
-                                                                      ? 'warning'
-                                                                      : 'error'
-                                                            }
-                                                        >
-                                                            {user.user_type}
-                                                        </Badge>
-                                                    </TableCell>
-                                                    <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {new Date(user.created_at).toLocaleDateString()}
+                                                        {(() => {
+                                                            if (!user.created_at) return '';
+
+                                                            const createdAt = new Date(user.created_at);
+                                                            const now = new Date();
+
+                                                            const diffTime = Math.abs(now.getTime() - createdAt.getTime());
+                                                            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+                                                            const years = Math.floor(diffDays / 365);
+                                                            const months = Math.floor((diffDays % 365) / 30);
+                                                            const days = diffDays % 30;
+
+                                                            let result = '';
+
+                                                            if (years > 0) result += `${years} year${years > 1 ? 's' : ''} `;
+                                                            if (months > 0) result += `${months} month${months > 1 ? 's' : ''} `;
+                                                            if (days > 0 || result === '') result += `${days} day${days > 1 ? 's' : ''}`;
+
+                                                            return result.trim() + ' old';
+                                                        })()}
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                         <div className="col-span-1 flex justify-center">
                                                             <div className="flex w-full items-center justify-center gap-2">
                                                                 <DeleteConfirm
-                                                                    onDeleteConfirmed={() => handleDelete(user.id)}
-                                                                    message={`Are you sure you want to delete user ${user.profile.last_name} ${user.profile.first_name}?`}
+                                                                    onDeleteConfirmed={() => handleDelete(user.user.id)}
+                                                                    message={`Are you sure you want to delete user ${user.last_name} ${user.first_name}?`}
                                                                 />
-
-                                                                <button
-                                                                    aria-label="Edit-btn"
-                                                                    onClick={() => handleView(user.id)}
-                                                                    className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white/90"
-                                                                >
-                                                                    <svg
-                                                                        className="fill-current"
-                                                                        width="21"
-                                                                        height="21"
-                                                                        viewBox="0 0 21 21"
-                                                                        fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                    >
-                                                                        <path
-                                                                            fillRule="evenodd"
-                                                                            clipRule="evenodd"
-                                                                            d="M17.0911 3.53206C16.2124 2.65338 14.7878 2.65338 13.9091 3.53206L5.6074 11.8337C5.29899 12.1421 5.08687 12.5335 4.99684 12.9603L4.26177 16.445C4.20943 16.6931 4.286 16.9508 4.46529 17.1301C4.64458 17.3094 4.90232 17.3859 5.15042 17.3336L8.63507 16.5985C9.06184 16.5085 9.45324 16.2964 9.76165 15.988L18.0633 7.68631C18.942 6.80763 18.942 5.38301 18.0633 4.50433L17.0911 3.53206ZM14.9697 4.59272C15.2626 4.29982 15.7375 4.29982 16.0304 4.59272L17.0027 5.56499C17.2956 5.85788 17.2956 6.33276 17.0027 6.62565L16.1043 7.52402L14.0714 5.49109L14.9697 4.59272ZM13.0107 6.55175L6.66806 12.8944C6.56526 12.9972 6.49455 13.1277 6.46454 13.2699L5.96704 15.6283L8.32547 15.1308C8.46772 15.1008 8.59819 15.0301 8.70099 14.9273L15.0436 8.58468L13.0107 6.55175Z"
-                                                                            fill=""
-                                                                        />
-                                                                    </svg>
-                                                                </button>
                                                             </div>
                                                         </div>
                                                     </TableCell>
@@ -256,7 +226,7 @@ export default function Home() {
                                                     colSpan={columns.length}
                                                     className="px-4 py-20 text-center text-gray-500 dark:text-gray-400"
                                                 >
-                                                    {searchTerm ? `No users found matching "${searchTerm}"` : 'No users available'}
+                                                    {searchTerm ? `No Tourist found matching "${searchTerm}"` : 'No Tourists available'}
                                                 </TableCell>
                                             </TableRow>
                                         )}

@@ -27,7 +27,8 @@ use App\Http\Controllers\AdminController\{
     RewardsManagementContoller,
     TerminalController,
     TourGuideController,
-    WebsiteSettingsController
+    WebsiteSettingsController,
+    CustomerAccountController
 };
 
 Route::middleware('admin.access:guest')->group(function () {});
@@ -56,6 +57,11 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::get('/', [AccountManagementController::class, 'dashboard'])->name('dashboard');
         Route::get('/profile', [AdminProfileController::class, 'profile'])->name('profile');
         Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
+    });
+
+    Route::prefix('/Admin/accounts/customers')->name('customeraccount.management.')->group(function () {
+        Route::get('/', [CustomerAccountController::class, 'index'])->name('index');
+        Route::delete('/delete/{id}', [AccountManagementController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('/Admin/content/promotional-video')->name('promotional-video.')->group(function () {
@@ -238,7 +244,7 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::delete('/delete/{id}', [AttractionsController::class, 'delete'])->name('delete');
     });
 
-      Route::prefix('/Admin/rewards')->name('rewards.')->group(function () {
+    Route::prefix('/Admin/rewards')->name('rewards.')->group(function () {
         Route::get('/', [RewardsManagementContoller::class, 'index'])->name('index');
         Route::get('/new', [RewardsManagementContoller::class, 'new'])->name('new');
         Route::get('/edit/{id}', [RewardsManagementContoller::class, 'edit'])->name('edit');

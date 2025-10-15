@@ -80,12 +80,18 @@ const mainNavItems: NavItem[] = [
     {
         icon: <GearIconThin />,
         name: 'Website Settings',
-        requiredUserType: ['admin'], // Only admin can access
+        requiredUserType: ['admin'],
         subItems: [{ name: 'Color Theme', path: '/Admin/theme/color', requiredUserType: ['admin'] }],
     },
 ];
 
 const otherNavItems: NavItem[] = [
+    {
+        icon: <UserCircleIcon />,
+        name: 'Customer Account',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [{ name: 'All Customer Account', path: '/Admin/accounts/customers', requiredUserType: ['admin', 'content_manager'] }],
+    },
     {
         icon: <CommenQuestion />,
         name: 'FAQs',
@@ -278,7 +284,8 @@ const otherNavItems: NavItem[] = [
                 ],
             },
         ],
-    }, {
+    },
+    {
         icon: <HouseMedical />,
         name: 'Gamification Rewards',
         requiredUserType: ['admin', 'content_manager'],
@@ -287,7 +294,6 @@ const otherNavItems: NavItem[] = [
             { name: 'All Rewards', path: '/Admin/rewards', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
-    
 ];
 
 const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
