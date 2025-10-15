@@ -95,8 +95,34 @@ section {
         transform: translateY(0px);
     }
 }
+
+.section-number {
+    background: var(--primary);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+.image-preview {
+    transition: all 0.3s ease;
+}
+.image-preview:hover {
+    transform: scale(1.05);
+}
+
 @media (max-width: 768px) {
     .hero-clip-path {
         clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
+    .section-number {
+        width: 24px; /* a bit smaller circle */
+        height: 24px;
+        font-size: 12px;
     }
 }

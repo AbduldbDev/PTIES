@@ -83,7 +83,8 @@ class AttractionsController extends Controller
                 $AttractionId = 'PKL' . strtoupper(Str::random(5));
             } while (Attractions::where('attraction_id', $AttractionId)->exists());
 
-            $qrCode = new QrCode($AttractionId);
+            $url = config('app.url') . '/gamification/' . $AttractionId;
+            $qrCode = new QrCode($url);
             $writer = new PngWriter();
 
             $filename = $AttractionId . '_qrcode.png';

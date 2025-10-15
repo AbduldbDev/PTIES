@@ -50,27 +50,27 @@ export default function RegistrationForm() {
                                     <i className="fas fa-store mr-2 text-sm sm:mr-3 sm:text-base" />
                                     Seller Information
                                 </h2>
-                                <div className="mobile-grid-cols-1 mobile-gap-3 grid sm:gap-4 md:grid-cols-2 md:gap-6">
+                                <div className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 md:gap-6">
                                     <div className="md:col-span-2">
-                                        <label htmlFor="business-name" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="business-name" className="mb-1 block text-sm font-medium text-gray-700">
                                             Business Name *
                                         </label>
                                         <input
                                             type="text"
                                             id="business-name"
                                             name="business-name"
-                                            className="mobile-px-3 mobile-py-2 mobile-rounded-lg mobile-text-sm w-full border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
+                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
                                         />
                                     </div>
 
                                     <div>
-                                        <label htmlFor="barangay" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="barangay" className="mb-1 block text-sm font-medium text-gray-700">
                                             Barangay *
                                         </label>
                                         <select
                                             id="barangay"
                                             name="barangay"
-                                            className="mobile-px-3 mobile-py-2 mobile-rounded-lg mobile-text-sm w-full border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
+                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
                                         >
                                             <option value="">Select Barangay</option>
                                             <option value="Baño">Baño</option>
@@ -90,38 +90,38 @@ export default function RegistrationForm() {
                                     </div>
 
                                     <div>
-                                        <label htmlFor="location" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="location" className="mb-1 block text-sm font-medium text-gray-700">
                                             Specific Location *
                                         </label>
                                         <input
                                             type="text"
                                             id="location"
                                             name="location"
-                                            className="mobile-px-3 mobile-py-2 mobile-rounded-lg mobile-text-sm w-full border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
+                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
                                             placeholder="Street, Purok, or Landmark"
                                         />
                                     </div>
 
                                     <div className="md:col-span-2">
-                                        <label htmlFor="bio" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="bio" className="mb-1 block text-sm font-medium text-gray-700">
                                             Short Bio / About the Seller *
                                         </label>
                                         <textarea
                                             id="bio"
                                             name="bio"
                                             rows={3}
-                                            className="mobile-px-3 mobile-py-2 mobile-rounded-lg mobile-text-sm w-full border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
+                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
                                             placeholder="Brief description of your business (1-2 sentences)"
                                             defaultValue={''}
                                         />
                                     </div>
 
                                     <div className="md:col-span-2">
-                                        <label className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">Business Logo</label>
+                                        <label className="mb-1 block text-sm font-medium text-gray-700">Business Logo</label>
                                         <div className="flex w-full items-center justify-center">
                                             <label
                                                 htmlFor="logo"
-                                                className="mobile-rounded-lg flex h-24 w-full cursor-pointer flex-col items-center justify-center border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 sm:h-32 sm:rounded-lg"
+                                                className="flex h-24 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 sm:h-32 sm:rounded-lg"
                                             >
                                                 <div className="flex flex-col items-center justify-center pt-4 pb-5 sm:pt-5 sm:pb-6">
                                                     <i className="fas fa-cloud-upload-alt mb-1 text-xl text-gray-400 sm:mb-2 sm:text-2xl" />
@@ -146,52 +146,52 @@ export default function RegistrationForm() {
                                     <i className="fas fa-user mr-2 text-sm sm:mr-3 sm:text-base" />
                                     Contact Person
                                 </h2>
-                                <div className="mobile-grid-cols-1 mobile-gap-3 grid sm:gap-4 md:grid-cols-2 md:gap-6">
+                                <div className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 md:gap-6">
                                     <div>
-                                        <label htmlFor="owner-name" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="owner-name" className="mb-1 block text-sm font-medium text-gray-700">
                                             Owner Name *
                                         </label>
                                         <input
                                             type="text"
                                             id="owner-name"
                                             name="owner-name"
-                                            className="mobile-px-3 mobile-py-2 mobile-rounded-lg mobile-text-sm w-full border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
+                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
                                         />
                                     </div>
 
                                     <div>
-                                        <label htmlFor="owner-contact" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="owner-contact" className="mb-1 block text-sm font-medium text-gray-700">
                                             Contact Number *
                                         </label>
                                         <input
                                             type="tel"
                                             id="owner-contact"
                                             name="owner-contact"
-                                            className="mobile-px-3 mobile-py-2 mobile-rounded-lg mobile-text-sm w-full border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
+                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
                                         />
                                     </div>
 
                                     <div className="md:col-span-2">
-                                        <label htmlFor="owner-address" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="owner-address" className="mb-1 block text-sm font-medium text-gray-700">
                                             Owner Address *
                                         </label>
                                         <input
                                             type="text"
                                             id="owner-address"
                                             name="owner-address"
-                                            className="mobile-px-3 mobile-py-2 mobile-rounded-lg mobile-text-sm w-full border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
+                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
                                         />
                                     </div>
 
                                     <div className="md:col-span-2">
-                                        <label htmlFor="email" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-700">
                                             Email Address *
                                         </label>
                                         <input
                                             type="email"
                                             id="email"
                                             name="email"
-                                            className="mobile-px-3 mobile-py-2 mobile-rounded-lg mobile-text-sm w-full border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
+                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
                                         />
                                     </div>
                                 </div>
@@ -202,10 +202,10 @@ export default function RegistrationForm() {
                                     <i className="fas fa-box mr-2 text-sm sm:mr-3 sm:text-base" />
                                     Product Information
                                 </h2>
-                                <div className="mobile-grid-cols-1 mobile-gap-3 grid sm:gap-4 md:gap-6">
+                                <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6">
                                     <div>
-                                        <label className="mobile-text-sm mb-2 block text-sm font-medium text-gray-700">Products Category *</label>
-                                        <div className="mobile-gap-2 grid grid-cols-2 gap-1 sm:gap-3 md:grid-cols-4">
+                                        <label className="mb-2 block text-sm font-medium text-gray-700">Products Category *</label>
+                                        <div className="grid grid-cols-2 gap-1 gap-2 sm:gap-3 md:grid-cols-4">
                                             <div className="flex items-center">
                                                 <input
                                                     type="checkbox"
@@ -306,25 +306,25 @@ export default function RegistrationForm() {
                                     </div>
 
                                     <div>
-                                        <label htmlFor="product-description" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="product-description" className="mb-1 block text-sm font-medium text-gray-700">
                                             Product Description *
                                         </label>
                                         <textarea
                                             id="product-description"
                                             name="product-description"
                                             rows={4}
-                                            className="mobile-px-3 mobile-py-2 mobile-rounded-lg mobile-text-sm w-full border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
+                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
                                             placeholder="Describe your products, materials used, unique features, etc."
                                             defaultValue={''}
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">Sample Product Images *</label>
+                                        <label className="mb-1 block text-sm font-medium text-gray-700">Sample Product Images *</label>
                                         <div className="flex w-full items-center justify-center">
                                             <label
                                                 htmlFor="product-images"
-                                                className="mobile-rounded-lg flex h-24 w-full cursor-pointer flex-col items-center justify-center border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 sm:h-32 sm:rounded-lg"
+                                                className="flex h-24 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 sm:h-32 sm:rounded-lg"
                                             >
                                                 <div className="flex flex-col items-center justify-center pt-4 pb-5 sm:pt-5 sm:pb-6">
                                                     <i className="fas fa-images mb-1 text-xl text-gray-400 sm:mb-2 sm:text-2xl" />
@@ -336,11 +336,11 @@ export default function RegistrationForm() {
                                                 <input id="product-images" name="product-images" type="file" className="hidden" accept="image/*" />
                                             </label>
                                         </div>
-                                        <div id="image-previews" className="mobile-gap-2 mt-4 grid grid-cols-2 sm:gap-4 md:grid-cols-4" />
+                                        <div id="image-previews" className="mt-4 grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-4" />
                                     </div>
 
                                     <div>
-                                        <label htmlFor="price-range" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="price-range" className="mb-1 block text-sm font-medium text-gray-700">
                                             Price Range (Optional)
                                         </label>
                                         <div className="flex space-x-2 sm:space-x-4">
@@ -352,7 +352,7 @@ export default function RegistrationForm() {
                                                     type="number"
                                                     id="min-price"
                                                     name="min-price"
-                                                    className="mobile-px-3 mobile-py-2 mobile-rounded-lg mobile-text-sm w-full border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
+                                                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
                                                 />
                                             </div>
                                             <div className="flex-1">
@@ -363,15 +363,15 @@ export default function RegistrationForm() {
                                                     type="number"
                                                     id="max-price"
                                                     name="max-price"
-                                                    className="mobile-px-3 mobile-py-2 mobile-rounded-lg mobile-text-sm w-full border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
+                                                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
                                                 />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label className="mobile-text-sm mb-2 block text-sm font-medium text-gray-700">Availability *</label>
-                                        <div className="mobile-grid-cols-1 mobile-gap-2 grid gap-2 sm:gap-3 md:grid-cols-3">
+                                        <label className="mb-2 block text-sm font-medium text-gray-700">Availability *</label>
+                                        <div className="grid grid-cols-1 gap-2 sm:gap-3 md:grid-cols-3">
                                             <div className="flex items-center">
                                                 <input
                                                     type="radio"
@@ -418,9 +418,9 @@ export default function RegistrationForm() {
                                     <i className="fas fa-link mr-2 text-sm sm:mr-3 sm:text-base" />
                                     Contact &amp; Links
                                 </h2>
-                                <div className="mobile-grid-cols-1 mobile-gap-3 grid sm:gap-4 md:gap-6">
+                                <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6">
                                     <div>
-                                        <label htmlFor="facebook-link" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="facebook-link" className="mb-1 block text-sm font-medium text-gray-700">
                                             Facebook Page/Profile Link
                                         </label>
                                         <div className="flex">
@@ -431,14 +431,14 @@ export default function RegistrationForm() {
                                                 type="url"
                                                 id="facebook-link"
                                                 name="facebook-link"
-                                                className="mobile-px-3 mobile-py-2 mobile-text-sm block w-full min-w-0 flex-1 rounded-none rounded-r-md border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:px-3 sm:py-3"
+                                                className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:px-3 sm:py-3"
                                                 placeholder="https://facebook.com/yourpage"
                                             />
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label htmlFor="instagram-link" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="instagram-link" className="mb-1 block text-sm font-medium text-gray-700">
                                             Instagram Link
                                         </label>
                                         <div className="flex">
@@ -449,14 +449,14 @@ export default function RegistrationForm() {
                                                 type="url"
                                                 id="instagram-link"
                                                 name="instagram-link"
-                                                className="mobile-px-3 mobile-py-2 mobile-text-sm block w-full min-w-0 flex-1 rounded-none rounded-r-md border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:px-3 sm:py-3"
+                                                className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:px-3 sm:py-3"
                                                 placeholder="https://instagram.com/yourprofile"
                                             />
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label htmlFor="tiktok-link" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="tiktok-link" className="mb-1 block text-sm font-medium text-gray-700">
                                             TikTok Link
                                         </label>
                                         <div className="flex">
@@ -467,14 +467,14 @@ export default function RegistrationForm() {
                                                 type="url"
                                                 id="tiktok-link"
                                                 name="tiktok-link"
-                                                className="mobile-px-3 mobile-py-2 mobile-text-sm block w-full min-w-0 flex-1 rounded-none rounded-r-md border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:px-3 sm:py-3"
+                                                className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:px-3 sm:py-3"
                                                 placeholder="https://tiktok.com/@yourprofile"
                                             />
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label htmlFor="website-link" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="website-link" className="mb-1 block text-sm font-medium text-gray-700">
                                             Website (Optional)
                                         </label>
                                         <div className="flex">
@@ -485,21 +485,21 @@ export default function RegistrationForm() {
                                                 type="url"
                                                 id="website-link"
                                                 name="website-link"
-                                                className="mobile-px-3 mobile-py-2 mobile-text-sm block w-full min-w-0 flex-1 rounded-none rounded-r-md border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:px-3 sm:py-3"
+                                                className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:px-3 sm:py-3"
                                                 placeholder="https://yourwebsite.com"
                                             />
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label htmlFor="other-links" className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
+                                        <label htmlFor="other-links" className="mb-1 block text-sm font-medium text-gray-700">
                                             Other Links (Optional)
                                         </label>
                                         <textarea
                                             id="other-links"
                                             name="other-links"
                                             rows={2}
-                                            className="mobile-px-3 mobile-py-2 mobile-rounded-lg mobile-text-sm w-full border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
+                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
                                             placeholder="Add any other relevant links (one per line)"
                                             defaultValue={''}
                                         />
@@ -512,13 +512,13 @@ export default function RegistrationForm() {
                                     <i className="fas fa-file-alt mr-2 text-sm sm:mr-3 sm:text-base" />
                                     Business Permits &amp; Documents
                                 </h2>
-                                <div className="mobile-grid-cols-1 mobile-gap-3 grid sm:gap-4 md:gap-6">
+                                <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6">
                                     <div>
-                                        <label className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">Business Permit *</label>
+                                        <label className="mb-1 block text-sm font-medium text-gray-700">Business Permit *</label>
                                         <div className="flex w-full items-center justify-center">
                                             <label
                                                 htmlFor="business-permit"
-                                                className="mobile-rounded-lg flex h-24 w-full cursor-pointer flex-col items-center justify-center border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 sm:h-32 sm:rounded-lg"
+                                                className="flex h-24 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 sm:h-32 sm:rounded-lg"
                                             >
                                                 <div className="flex flex-col items-center justify-center pt-4 pb-5 sm:pt-5 sm:pb-6">
                                                     <i className="fas fa-file-pdf mb-1 text-xl text-gray-400 sm:mb-2 sm:text-2xl" />
@@ -546,13 +546,11 @@ export default function RegistrationForm() {
                                     </div>
 
                                     <div>
-                                        <label className="mobile-text-sm mb-1 block text-sm font-medium text-gray-700">
-                                            Additional Documents (Optional)
-                                        </label>
+                                        <label className="mb-1 block text-sm font-medium text-gray-700">Additional Documents (Optional)</label>
                                         <div className="flex w-full items-center justify-center">
                                             <label
                                                 htmlFor="additional-docs"
-                                                className="mobile-rounded-lg flex h-24 w-full cursor-pointer flex-col items-center justify-center border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 sm:h-32 sm:rounded-lg"
+                                                className="flex h-24 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 sm:h-32 sm:rounded-lg"
                                             >
                                                 <div className="flex flex-col items-center justify-center pt-4 pb-5 sm:pt-5 sm:pb-6">
                                                     <i className="fas fa-file-archive mb-1 text-xl text-gray-400 sm:mb-2 sm:text-2xl" />
@@ -578,13 +576,13 @@ export default function RegistrationForm() {
                             <div className="flex flex-col items-center justify-between sm:pt-6 md:flex-row">
                                 <button
                                     type="button"
-                                    className="mobile-px-4 mobile-py-2 mobile-rounded-lg mobile-text-sm mb-3 w-full border border-gray-300 font-medium text-gray-700 transition duration-300 hover:bg-gray-50 sm:rounded-lg sm:px-6 sm:py-3 md:mb-0 md:w-auto"
+                                    className="mb-3 w-full rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition duration-300 hover:bg-gray-50 sm:rounded-lg sm:px-6 sm:py-3 md:mb-0 md:w-auto"
                                 >
                                     <i className="fas fa-arrow-left mr-2" /> Back
                                 </button>
                                 <button
                                     type="submit"
-                                    className="mobile-px-4 mobile-py-2 mobile-text-sm flex w-full items-center justify-center bg-primary text-sm font-medium text-white transition duration-300 hover:bg-primary/90 sm:rounded-full sm:px-8 sm:py-3 md:w-auto"
+                                    className="flex w-full items-center justify-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-white transition duration-300 hover:bg-primary/90 sm:px-8 sm:py-3 md:w-auto"
                                 >
                                     Submit Application <i className="fas fa-paper-plane ml-2" />
                                 </button>
