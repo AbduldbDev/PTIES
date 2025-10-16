@@ -1,5 +1,6 @@
 import MapComponent from '@AdminUtils/components/map/MapComponent';
 import { useForm, usePage } from '@inertiajs/react';
+import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 type FormData = {
@@ -362,21 +363,13 @@ export default function RegistrationForm() {
 
     return (
         <>
-            <main className="pt-28 pb-12 sm:pt-32 sm:pb-16">
+            <section className="pt-28 pb-12 sm:pt-32 sm:pb-16">
                 <div className="mx-auto px-3 sm:px-4">
-                    <div className="mb-8 text-center sm:mb-12">
-                        <div className="mb-3 inline-flex items-center sm:mb-4">
-                            <div className="mr-2 h-1 w-6 rounded-full bg-secondary sm:mr-3 sm:w-8" />
-                            <h2 className="text-xs font-semibold tracking-wider text-primary uppercase sm:text-sm">Join Our Marketplace</h2>
-                            <div className="ml-2 h-1 w-6 rounded-full bg-secondary sm:ml-3 sm:w-8" />
-                        </div>
-                        <h1 className="text-dark mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl md:text-4xl">
-                            Seller <span className="text-primary">Registration</span>
-                        </h1>
-                        <p className="mx-auto max-w-3xl px-2 text-sm text-gray-600 sm:text-lg">
-                            Showcase your products to the community and grow your business with Pakil Marketplace
-                        </p>
-                    </div>
+                    <PageTitle
+                        title="Join Our Marketplace"
+                        subtitle="Seller Registration"
+                        desc="Showcase your products to the community and grow your business with Pakil Marketplace"
+                    />
 
                     <div className="mx-auto mb-8 max-w-4xl sm:mb-12">
                         <div className="px- flex items-center justify-between px-3">
@@ -833,7 +826,6 @@ export default function RegistrationForm() {
                                 </div>
                             </div>
 
-                            {/* Business Permits & Documents Section */}
                             <div className="form-section mb-8 rounded-lg border border-gray-200 p-4 sm:mb-12 sm:p-6">
                                 <h2 className="mb-4 flex items-center text-lg font-bold text-primary sm:mb-6 sm:text-xl">
                                     <i className="fas fa-file-alt mr-2 text-sm sm:mr-3 sm:text-base" />
@@ -1076,7 +1068,7 @@ export default function RegistrationForm() {
                         </form>
                     </div>
                 </div>
-            </main>
+            </section>
         </>
     );
 }

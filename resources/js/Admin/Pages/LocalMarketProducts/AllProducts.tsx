@@ -10,16 +10,16 @@ import { useTableManagement } from '@AdminUtils/hooks/useTableManagement';
 
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 
-type sellerProps = {
+type ProductProps = {
     id: number;
-    shop_id: string;
+    product_id: string;
+    shop: ShopProps;
+    product_name: string;
+    category: string;
+};
+
+type ShopProps = {
     business_name: string;
-    barangay: string;
-    location: string;
-    owner_name: string;
-    owner_contact: string;
-    email: string;
-    logo: string;
 };
 
 type PageProps = {
@@ -28,7 +28,7 @@ type PageProps = {
         error?: string;
     };
     errors?: Record<string, string | undefined>;
-    items: PaginatedResponse<sellerProps>;
+    items: PaginatedResponse<ProductProps>;
     status: string;
 };
 
@@ -63,35 +63,30 @@ export default function Home() {
         searchTerm,
         handleSearch,
         filteredItems: sortedItems,
-    } = useTableManagement<sellerProps>({
+    } = useTableManagement<ProductProps>({
         data: items.data,
         initialSort: { key: 'created_at', direction: 'desc' },
         meta: items.meta || undefined,
         customSearchFilter: (item, searchTerm) => {
             const searchLower = searchTerm.toLowerCase();
             return (
-                item.business_name.toLowerCase().includes(searchLower) ||
-                item.owner_name.toLowerCase().includes(searchLower) ||
-                item.email.toLowerCase().includes(searchLower) ||
-                item.owner_contact.toLowerCase().includes(searchLower) ||
-                item.barangay.toString().includes(searchLower) ||
-                item.location.toLowerCase().includes(searchLower)
+                item.product_id.toLowerCase().includes(searchLower) ||
+                item.shop.business_name.toLowerCase().includes(searchLower) ||
+                item.product_name.toLowerCase().includes(searchLower) ||
+                item.category.toLowerCase().includes(searchLower)
             );
         },
     });
 
     const handleView = (id: any) => {
-        router.get(`/Admin/sellers/view/${id}`);
+        router.get(`/Admin/market/products/view/${id}`);
     };
 
     const columns: SortableColumn[] = [
-        { key: 'business_name', label: 'Store Name', sortable: true },
-        { key: 'shop_id', label: 'Shop ID', sortable: true },
-        { key: 'owner_name', label: 'Owner Name', sortable: true },
-        { key: 'email', label: 'Email', sortable: true },
-        { key: 'owner_contact', label: 'Contact No.', sortable: true },
-        { key: 'barangay', label: 'Barangay', sortable: true, align: 'center' },
-        { key: 'location', label: 'Location', sortable: true, align: 'center' },
+        { key: 'product_id', label: 'Product ID', sortable: true },
+        { key: 'shop.business_name', label: 'Business Name', sortable: true },
+        { key: 'product_name', label: 'Product Name', sortable: true },
+        { key: 'category', label: 'Category', sortable: true },
         { key: 'action', label: 'Action', sortable: false, align: 'center' },
     ];
 
@@ -101,22 +96,22 @@ export default function Home() {
             <AppWrapper>
                 <PageMeta
                     title="Pakil Tourism Information and Engagement System"
-                    description="Explore Pakil's tourism sellers, events, and engage with the local community through our interactive information platform."
+                    description="Explore Pakil's tourism products, events, and engage with the local community through our interactive information platform."
                 />
                 {flash?.success && <FlashMessage type="success" message={flash.success} />}
                 {errors?.error && <FlashMessage type="error" message={errors.error} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
-                <PageBreadcrumb pageTitle="Sellers Management" />
+                <PageBreadcrumb pageTitle="Marketplace Management" />
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
-                    <ComponentCard title={`${status} Local Market sellers`}>
+                    <ComponentCard title={`${status} products`}>
                         <TableControls
                             searchTerm={searchTerm}
                             onSearchChange={handleSearch}
                             itemsPerPage={currentPerPage}
                             onItemsPerPageChange={(e) => handleItemsPerPageChange(e.target.value)}
-                            searchPlaceholder="Search sellers..."
+                            searchPlaceholder="Search products..."
                         />
                         <div className="overflow-hidden rounded-xl bg-white dark:bg-white/[0.03]">
                             <div className="max-w-full overflow-x-auto">
@@ -148,47 +143,26 @@ export default function Home() {
 
                                     <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                                         {sortedItems.length > 0 ? (
-                                            sortedItems.map((seller) => (
-                                                <TableRow key={seller.id}>
-                                                    <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        <div className="flex flex-col items-center justify-center gap-2">
-                                                            <a href={seller.logo} target="_blank" rel="noopener noreferrer">
-                                                                <img
-                                                                    className="h-[70px] w-[70px] cursor-pointer rounded-full object-cover"
-                                                                    src={seller.logo}
-                                                                    alt={`${seller.business_name}`}
-                                                                />
-                                                            </a>
-                                                            <span className="font-medium text-gray-800 dark:text-white/90">
-                                                                {' '}
-                                                                {seller.business_name}
-                                                            </span>
-                                                        </div>
+                                            sortedItems.map((product) => (
+                                                <TableRow key={product.id}>
+                                                    <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
+                                                        {product.product_id}
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {seller.shop_id}
+                                                        {product.shop.business_name}
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {seller.owner_name} Points
+                                                        {product.product_name}
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                        {seller.email}
-                                                    </TableCell>
-                                                    <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                        {seller.owner_contact}
-                                                    </TableCell>
-                                                    <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                        {seller.barangay}
-                                                    </TableCell>
-                                                    <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
-                                                        {seller.location}
+                                                        {product.category}
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
                                                         <div className="col-span-1 flex justify-center">
                                                             <div className="flex w-full items-center justify-center gap-2">
                                                                 <button
                                                                     aria-label="Edit-btn"
-                                                                    onClick={() => handleView(seller.id)}
+                                                                    onClick={() => handleView(product.id)}
                                                                     className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white/90"
                                                                 >
                                                                     <svg
@@ -218,7 +192,7 @@ export default function Home() {
                                                     colSpan={columns.length}
                                                     className="px-4 py-20 text-center text-gray-500 capitalize dark:text-gray-400"
                                                 >
-                                                    {searchTerm ? `No seller found matching "${searchTerm}"` : 'No sellers available'}
+                                                    {searchTerm ? `No product found matching "${searchTerm}"` : 'No products available'}
                                                 </TableCell>
                                             </TableRow>
                                         )}

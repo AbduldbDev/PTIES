@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('local_market_sellers', function (Blueprint $table) {
             $table->id();
+            $table->string('shop_id');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('business_name');
             $table->string('barangay');

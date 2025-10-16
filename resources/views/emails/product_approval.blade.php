@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seller Application Rejection</title>
+    <title>Product Approval Notification</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <style>
@@ -171,42 +171,37 @@
             <!-- Content -->
             <tr>
                 <td class="content">
-                    <h1>Seller Application Update</h1>
+                    <h1>Your Product Has Been Approved!</h1>
                     <p>Hi <strong>{{ $seller['owner_name'] }}</strong>,</p>
                     <p>
-                        We appreciate your interest in joining
+                        Great news! Your product submission to
                         <strong>PTIES (Pakil Tourism Information & Engagement System)</strong>
-                        as a seller. After reviewing your application, we regret to inform
-                        you that it has not been approved at this time.
+                        has been reviewed and approved by our team.
                     </p>
 
                     <div class="alert-box">
                         <p>
-                            ❌ Unfortunately, your application did not meet one or more of
-                            the current requirements for seller registration.
+                            🎉 Your product is now live on the marketplace and visible to
+                            all visitors and tourists browsing the platform.
                         </p>
                     </div>
 
                     <div class="details-box">
                         <div class="detail-row">
-                            <div class="detail-label">Business Name:</div>
-                            <div class="detail-value">{{ $seller['business_name'] }}</div>
+                            <div class="detail-label">Product Name:</div>
+                            <div class="detail-value">{{ $product['product_name'] }}</div>
                         </div>
                         <div class="detail-row">
-                            <div class="detail-label">Email:</div>
-                            <div class="detail-value">{{ $seller['email'] }}</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Barangay:</div>
-                            <div class="detail-value">{{ $seller['barangay'] }}</div>
+                            <div class="detail-label">Category:</div>
+                            <div class="detail-value">{{ $product['category'] }}</div>
                         </div>
                     </div>
 
                     <p>
-                        If you believe this decision was made in error or after making the
-                        necessary corrections, you may
-                        <strong>reapply in the future</strong>.
+                        You can now view your product listing and continue managing your
+                        inventory, pricing, and images through your seller dashboard.
                     </p>
+
                 </td>
             </tr>
 

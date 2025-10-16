@@ -8,24 +8,24 @@ use Inertia\Inertia;
 
 class SellerPageController extends Controller
 {
-    
-  public function terms()
+
+    public function terms()
     {
         return Inertia::render('User/Pages/SellerTerms');
     }
 
-        public function registration()
+    public function registration()
     {
         return Inertia::render('User/Pages/SellerRegistration');
     }
 
-     public function localmarket()
+    public function localmarket()
     {
         return Inertia::render('User/Pages/LocalMarket');
     }
 
-     public function productdetails()
+    public function productdetails()
     {
-        return Inertia::render('User/Pages/ProductDetails');
+        return Inertia::render('User/Pages/SellerAddNewProduct');
     }
 }

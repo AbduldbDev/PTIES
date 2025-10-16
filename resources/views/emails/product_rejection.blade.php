@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seller Application Rejection</title>
+    <title>Product Rejection Notification</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <style>
@@ -80,8 +80,8 @@
         }
 
         .alert-box {
-            background-color: #e9fbe9;
-            border-left: 4px solid #1a7f37;
+            background-color: #fbe9e9;
+            border-left: 4px solid #b91c1c;
             padding: 15px;
             margin: 20px 0;
             border-radius: 4px;
@@ -171,42 +171,41 @@
             <!-- Content -->
             <tr>
                 <td class="content">
-                    <h1>Seller Application Update</h1>
+                    <h1>Your Product Application Was Not Approved</h1>
                     <p>Hi <strong>{{ $seller['owner_name'] }}</strong>,</p>
                     <p>
-                        We appreciate your interest in joining
-                        <strong>PTIES (Pakil Tourism Information & Engagement System)</strong>
-                        as a seller. After reviewing your application, we regret to inform
-                        you that it has not been approved at this time.
+                        Thank you for submitting your product to
+                        <strong>PTIES (Pakil Tourism Information & Engagement System)</strong>. After careful review, we
+                        regret to inform you that your product
+                        did not meet our marketplace guidelines and was not approved.
                     </p>
 
                     <div class="alert-box">
                         <p>
-                            ❌ Unfortunately, your application did not meet one or more of
-                            the current requirements for seller registration.
+                            ❗ Please review your submission details and ensure they comply
+                            with our quality and authenticity requirements before submitting
+                            again.
                         </p>
                     </div>
 
                     <div class="details-box">
                         <div class="detail-row">
-                            <div class="detail-label">Business Name:</div>
-                            <div class="detail-value">{{ $seller['business_name'] }}</div>
+                            <div class="detail-label">Product Name:</div>
+                            <div class="detail-value">{{ $product['product_name'] }}</div>
                         </div>
                         <div class="detail-row">
-                            <div class="detail-label">Email:</div>
-                            <div class="detail-value">{{ $seller['email'] }}</div>
-                        </div>
-                        <div class="detail-row">
-                            <div class="detail-label">Barangay:</div>
-                            <div class="detail-value">{{ $seller['barangay'] }}</div>
+                            <div class="detail-label">Category:</div>
+                            <div class="detail-value">{{ $product['category'] }}</div>
                         </div>
                     </div>
 
                     <p>
-                        If you believe this decision was made in error or after making the
-                        necessary corrections, you may
-                        <strong>reapply in the future</strong>.
+                        You are encouraged to <strong>revise and reapply</strong> with
+                        improved product details, clearer descriptions, or better-quality
+                        images. Once resubmitted, our team will review your product again
+                        promptly.
                     </p>
+
                 </td>
             </tr>
 

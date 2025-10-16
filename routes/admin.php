@@ -29,7 +29,8 @@ use App\Http\Controllers\AdminController\{
     TourGuideController,
     WebsiteSettingsController,
     CustomerAccountController,
-    SellerManagementController
+    SellerManagementController,
+    MarketProductsController
 };
 
 Route::middleware('admin.access:guest')->group(function () {});
@@ -262,5 +263,15 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::get('/view/{id}', [SellerManagementController::class, 'view'])->name('view');
         Route::post('/approve/{id}', [SellerManagementController::class, 'approve'])->name('approve');
         Route::post('/reject/{id}', [SellerManagementController::class, 'reject'])->name('reject');
+    });
+
+
+    Route::prefix('/Admin/market/products')->name('localmarketproducts.')->group(function () {
+        Route::get('/', [MarketProductsController::class, 'index'])->name('index');
+        Route::get('/new', [MarketProductsController::class, 'new'])->name('new');
+        Route::get('/edit', [MarketProductsController::class, 'edit'])->name('edit');
+        Route::get('/view/{id}', [MarketProductsController::class, 'view'])->name('view');
+        Route::post('/approve/{id}', [MarketProductsController::class, 'approve'])->name('approve');
+        Route::post('/reject/{id}', [MarketProductsController::class, 'reject'])->name('reject');
     });
 });

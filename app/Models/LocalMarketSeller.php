@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class LocalMarketSeller extends Model
 {
+    protected $table = 'local_market_sellers';
     protected $fillable = [
+        'shop_id',
         'user_id',
         'business_name',
         'barangay',
@@ -34,4 +36,9 @@ class LocalMarketSeller extends Model
         'long',
         'lat',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

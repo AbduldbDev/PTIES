@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\LocalMarketSeller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SellerConfirmationMail;
@@ -81,7 +82,12 @@ class SellerRegistration extends Controller
                 }
             }
 
+            do {
+                $shopID = 'SHP' . Str::upper(Str::random(5));
+            } while (LocalMarketSeller::where('shop_id', $shopID)->exists());
+
             $sellerData = LocalMarketSeller::create([
+                'shop_id' => $shopID,
                 'user_id' => Auth::id(),
                 'business_name' => $request->business_name,
                 'barangay' => $request->barangay,

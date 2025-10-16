@@ -296,12 +296,29 @@ const otherNavItems: NavItem[] = [
     },
     {
         icon: <HouseMedical />,
-        name: 'Local Market Sellers',
+        name: 'Local Market',
         requiredUserType: ['admin', 'content_manager'],
         subItems: [
-            { name: 'All Sellers', path: '/Admin/sellers', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'Pendings Sellers', path: '/Admin/sellers/pending', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'Rejected Sellers', path: '/Admin/sellers/rejected', requiredUserType: ['admin', 'content_manager'] },
+            {
+                name: 'Local Sellers',
+                path: '',
+                requiredUserType: ['admin', 'content_manager'],
+                subItems: [
+                    { name: 'All Sellers', path: '/Admin/sellers', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'Pendings Sellers', path: '/Admin/sellers/pending', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'Rejected Sellers', path: '/Admin/sellers/rejected', requiredUserType: ['admin', 'content_manager'] },
+                ],
+            },
+            {
+                name: 'Marketplace Products',
+                path: '',
+                requiredUserType: ['admin', 'content_manager'],
+                subItems: [
+                    { name: 'All Products', path: '/Admin/market/products', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'New Products', path: '/Admin/market/products/new', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'Edit Request', path: '/Admin/market/products/edit', requiredUserType: ['admin', 'content_manager'] },
+                ],
+            },
         ],
     },
 ];

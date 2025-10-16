@@ -10,6 +10,7 @@ import { FormEvent, useState } from 'react';
 
 type SellerProps = {
     id: number;
+    shop_id: string;
     user_id: number;
     business_name: string;
     barangay: string;
@@ -153,7 +154,9 @@ export default function SellerDisplay() {
                                 )}
                                 <div className="flex-1">
                                     <div className="mb-2 flex items-center space-x-2">
-                                        <h2 className="text-xl font-bold text-gray-900 dark:text-white">{seller.business_name}</h2>
+                                        <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                                            {seller.business_name} ({seller.shop_id})
+                                        </h2>
                                         {getStatusBadge(seller.status)}
                                     </div>
                                     <p className="mb-1 text-gray-600 dark:text-white/70">

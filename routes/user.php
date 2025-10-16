@@ -12,10 +12,11 @@ use App\Http\Controllers\UserController\{
     EventsController,
     NewsletterController,
     RewardsController,
-    UserGamificationController
+    UserGamificationController,
 };
 use App\Http\Controllers\SellerController\SellerPageController;
 use App\Http\Controllers\SellerController\SellerRegistration;
+use App\Http\Controllers\SellerController\ProductManagementController;
 
 Route::middleware('user.access:auth')->group(function () {
     Route::prefix('/socialwall')->name('user.socialwall.')->group(function () {
@@ -35,9 +36,13 @@ Route::middleware('user.access:auth')->group(function () {
 
     Route::get('/seller/registration', [SellerPageController::class, 'registration']);
     Route::post('/seller/registration/submit', [SellerRegistration::class, 'store']);
-});
+    Route::get('/seller/registration/confirmation', [SellerRegistration::class, 'confirmation'])->name('seller.confirmation');
 
-Route::get('/seller/registration/confirmation', [SellerRegistration::class, 'confirmation'])->name('seller.confirmation');
+
+
+    Route::post('/seller/products/create', [ProductManagementController::class, 'store']);
+    Route::get('/seller/products/confirmation', [ProductManagementController::class, 'confirmation'])->name('sellerproducts.confirmation');
+});
 
 
 Route::get('/reward-shop', [RewardsController::class, 'index'])->name('rewards.index');
