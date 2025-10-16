@@ -84,11 +84,9 @@ const TextArea = ({
 
     const getBorderClasses = () => {
         if (error || externalError) {
-            // <-- Now considers externalError too
             return 'border-error-300 focus:border-error-300 focus:ring-error-500/10 dark:border-error-700 dark:focus:border-error-800';
         }
         if (isTouched && !error && !externalError && value) {
-            // <-- Added externalError check
             return 'border-success-300 focus:border-success-300 focus:ring-success-500/10 dark:border-success-700 dark:focus:border-success-800';
         }
         return 'border-gray-300 focus:border-brand-300 focus:ring-brand-500/10 dark:border-gray-700 dark:focus:border-brand-800';
@@ -105,7 +103,6 @@ const TextArea = ({
     return (
         <div className={`relative mb-7 ${className}`}>
             {' '}
-            {/* <-- Changed to relative and mb-7 to match InputField */}
             <label htmlFor={name} className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
                 {label}
                 {required && <span className="text-error-500"> *</span>}
@@ -122,14 +119,13 @@ const TextArea = ({
                     disabled={disabled}
                     readOnly={readonly}
                     className={textareaClasses}
-                    aria-invalid={!!error || !!externalError} // <-- Added externalError
-                    aria-describedby={error || externalError ? `${name}-error` : undefined} // <-- Added externalError
+                    aria-invalid={!!error || !!externalError} 
+                    aria-describedby={error || externalError ? `${name}-error` : undefined}
                 />
             </div>
-            {(error || externalError) && ( // <-- Now shows externalError too
+            {(error || externalError) && ( 
                 <p id={`${name}-error`} className="text-theme-xs text-error-500 absolute z-10 mt-1 w-full">
                     {' '}
-                    {/* <-- Changed to absolute positioning */}
                     {externalError || error}
                 </p>
             )}

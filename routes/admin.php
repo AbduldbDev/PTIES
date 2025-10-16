@@ -28,7 +28,8 @@ use App\Http\Controllers\AdminController\{
     TerminalController,
     TourGuideController,
     WebsiteSettingsController,
-    CustomerAccountController
+    CustomerAccountController,
+    SellerManagementController
 };
 
 Route::middleware('admin.access:guest')->group(function () {});
@@ -251,5 +252,15 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/create', [RewardsManagementContoller::class, 'create'])->name('create');
         Route::post('/update/{id}', [RewardsManagementContoller::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [RewardsManagementContoller::class, 'delete'])->name('delete');
+    });
+
+
+    Route::prefix('/Admin/sellers')->name('rewards.')->group(function () {
+        Route::get('/', [SellerManagementController::class, 'index'])->name('index');
+        Route::get('/pending', [SellerManagementController::class, 'pending'])->name('pending');
+        Route::get('/rejected', [SellerManagementController::class, 'rejected'])->name('rejected');
+        Route::get('/view/{id}', [SellerManagementController::class, 'view'])->name('view');
+        Route::post('/approve/{id}', [SellerManagementController::class, 'approve'])->name('approve');
+        Route::post('/reject/{id}', [SellerManagementController::class, 'reject'])->name('reject');
     });
 });

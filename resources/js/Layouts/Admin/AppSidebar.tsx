@@ -294,6 +294,16 @@ const otherNavItems: NavItem[] = [
             { name: 'All Rewards', path: '/Admin/rewards', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
+    {
+        icon: <HouseMedical />,
+        name: 'Local Market Sellers',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'All Sellers', path: '/Admin/sellers', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'Pendings Sellers', path: '/Admin/sellers/pending', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'Rejected Sellers', path: '/Admin/sellers/rejected', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
 ];
 
 const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {

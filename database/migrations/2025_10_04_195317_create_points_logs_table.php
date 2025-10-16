@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('points_logs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('attraction_id');
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('attraction_id')->nullable()->constrained('attractions')->nullOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->integer('points')->default(0);
             $table->timestamps();
         });

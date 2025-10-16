@@ -15,6 +15,7 @@ use App\Http\Controllers\UserController\{
     UserGamificationController
 };
 use App\Http\Controllers\SellerController\SellerPageController;
+use App\Http\Controllers\SellerController\SellerRegistration;
 
 Route::middleware('user.access:auth')->group(function () {
     Route::prefix('/socialwall')->name('user.socialwall.')->group(function () {
@@ -31,7 +32,12 @@ Route::middleware('user.access:auth')->group(function () {
     Route::get('/gamification/confirmation', [UserGamificationController::class, 'confirmation'])->name('gamification.confirmation');
     Route::get('/gamification/rejected', [UserGamificationController::class, 'reject'])->name('gamification.reject');
     Route::post('/reward/redeem', [RewardsController::class, 'redeem'])->name('rewards.redeem');
+
+    Route::get('/seller/registration', [SellerPageController::class, 'registration']);
+    Route::post('/seller/registration/submit', [SellerRegistration::class, 'store']);
 });
+
+Route::get('/seller/registration/confirmation', [SellerRegistration::class, 'confirmation'])->name('seller.confirmation');
 
 
 Route::get('/reward-shop', [RewardsController::class, 'index'])->name('rewards.index');
@@ -76,6 +82,6 @@ Route::get('/', [PageController::class, 'Home'])->name('user.home');
 Route::get('/explore/scanner', [UserGamificationController::class, 'scanner'])->name('users.scanner');
 
 Route::get('/seller/terms', [SellerPageController::class, 'terms']);
-Route::get('/seller/registration', [SellerPageController::class, 'registration']);
+
 Route::get('/localmarket', [SellerPageController::class, 'localmarket']);
 Route::get('/localmarket/product', [SellerPageController::class, 'productdetails']);

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('rewards_logs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('reward_id');
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('reward_id')->nullable()->constrained('rewards')->nullOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });
