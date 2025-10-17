@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\CMSBanner;
 use App\Models\PointsLog;
+use App\Models\RewardsLogs;
 use App\Models\SocialWall;
 use App\Models\User;
 
@@ -25,12 +26,13 @@ class ProfileController extends Controller
 
         $posts = SocialWall::where('user_id', Auth::id())->withCount('likes')->get();
         $visit = PointsLog::with('attraction')->where('user_id', Auth::id())->get();
-
+        $redeemLogs = RewardsLogs::with('reward')->where('user_id', Auth::id())->get();
         return Inertia::render('User/Pages/Profile', [
             'banner' => $banner,
             'item' => $profile,
             'posts' => $posts,
-            'visit' =>  $visit
+            'visit' =>  $visit,
+            'redeemLogs' => $redeemLogs
         ]);
     }
 

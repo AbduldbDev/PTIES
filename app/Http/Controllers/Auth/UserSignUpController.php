@@ -58,8 +58,8 @@ class UserSignUpController extends Controller
             'email.unique'      => 'This email is already registered. Try logging in.',
             'password.required' => 'You must choose a password.',
             'password.confirmed' => 'Password confirmation does not match.',
-            'password.*'        => 'The password must be at least 8 characters, contain uppercase and lowercase letters, and one number.',
-            'password.uncompromised' => 'This password has been exposed in a data breach. Please choose another.',
+            'password.*' => 'Password must be at least 8 characters long, include uppercase, lowercase, a number, and not appear in known data breaches.',
+
         ]);
 
         if ($validator->fails()) {

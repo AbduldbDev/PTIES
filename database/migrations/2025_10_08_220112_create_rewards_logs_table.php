@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('reward_id')->nullable()->constrained('rewards')->nullOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->boolean('status')->default(0);
+            $table->date('completed_at')->nullable();
+            $table->string('points')->default(0);
             $table->timestamps();
         });
     }

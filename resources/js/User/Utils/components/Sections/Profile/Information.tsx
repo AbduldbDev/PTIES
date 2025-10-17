@@ -93,7 +93,7 @@ export default function Information() {
     };
 
     return (
-        <section className="py-4 md:py-8">
+        <section className="py-4">
             <div className="container mx-auto px-4">
                 <div className="mb-8 hidden items-start gap-6 md:flex">
                     <div className="group relative flex-shrink-0">

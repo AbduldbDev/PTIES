@@ -2,6 +2,7 @@ import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
 import InformationCard from '@UserUtils/components/Sections/Profile/Information';
 import RecentVisit from '@UserUtils/components/Sections/Profile/RecentVisit';
+import RewardRedeemLogs from '@UserUtils/components/Sections/Profile/RedeemLogs';
 import SocialPost from '@UserUtils/components/Sections/Profile/SocialPost';
 
 type PageBannerProps = {
@@ -60,7 +61,7 @@ export default function Profile() {
             )}
 
             <InformationCard />
-
+            <RewardRedeemLogs />
             <RecentVisit />
 
             <SocialPost />
