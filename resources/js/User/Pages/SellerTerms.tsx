@@ -1,4 +1,18 @@
+import { usePage } from '@inertiajs/react';
+
 export default function SellerTerms() {
+    const { auth } = usePage().props as {
+        auth?: {
+            user: {
+                email: string;
+                user_type: string;
+                avatar?: string;
+                pakil_points: number;
+                profile: any;
+                is_seller?: boolean;
+            };
+        };
+    };
     return (
         <section className="terms-section min-h-screen pt-32 pb-20">
             <div className="terms-container container mx-auto px-4">
@@ -371,15 +385,18 @@ export default function SellerTerms() {
                                 and agree to comply with these Terms and Conditions for Sellers.
                             </p>
                             <div className="flex flex-col justify-center gap-4 sm:flex-row">
+                                {!auth?.user?.is_seller && (
+                                    <a
+                                        href="/seller/registration"
+                                        className="rounded-full bg-primary px-6 py-3 text-sm font-medium text-white transition duration-300 hover:bg-primary/90 lg:text-base"
+                                    >
+                                        <i className="fas fa-file-signature mr-2" />
+                                        Agree &amp; Registers
+                                    </a>
+                                )}
+
                                 <a
-                                    href="/seller/registration"
-                                    className="rounded-full bg-primary px-6 py-3 text-sm font-medium text-white transition duration-300 hover:bg-primary/90 lg:text-base"
-                                >
-                                    <i className="fas fa-file-signature mr-2" />
-                                    Agree &amp; Register
-                                </a>
-                                <a
-                                    href="index.html"
+                                    href="/"
                                     className="rounded-full bg-gray-200 px-6 py-3 text-sm font-medium text-gray-700 transition duration-300 hover:bg-gray-300 lg:text-base"
                                 >
                                     <i className="fas fa-home mr-2" />

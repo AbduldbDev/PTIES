@@ -12,4 +12,9 @@ class RewardsLogs extends Model
         'user_id',
         'status',
     ];
+
+    public function rewards()
+    {
+        return $this->belongsTo(Rewards::class, 'reward_id');
+    }
 }

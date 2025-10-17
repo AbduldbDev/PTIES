@@ -1,6 +1,7 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
 import InformationCard from '@UserUtils/components/Sections/Profile/Information';
+import RecentVisit from '@UserUtils/components/Sections/Profile/RecentVisit';
 import SocialPost from '@UserUtils/components/Sections/Profile/SocialPost';
 
 type PageBannerProps = {
@@ -60,56 +61,7 @@ export default function Profile() {
 
             <InformationCard />
 
-            <section className="">
-                <div className="container mx-auto px-4">
-                    <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-                        <div className="flex items-center justify-between border-b border-gray-100 p-4">
-                            <h2 className="flex items-center text-lg font-bold text-primary">
-                                <i className="fas fa-map-marked-alt mr-2"></i> Recent Visits
-                            </h2>
-                            <a href="#" className="text-sm text-primary hover:underline">
-                                View All
-                            </a>
-                        </div>
-                        <div className="p-4">
-                            <div className="space-y-3">
-                                <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3">
-                                    <div>
-                                        <p className="font-medium">San Pedro de Alcantara Church</p>
-                                        <p className="text-xs text-gray-500">June 10, 2023</p>
-                                    </div>
-                                    <div className="flex items-center text-secondary">
-                                        <img src="/User/Layout/Pakilpoints.png" className="h-[30px] w-[30px]" alt="" />
-                                        <span className="text-sm sm:text-sm">50 pts</span>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3">
-                                    <div>
-                                        <p className="font-medium">Ping-as Falls</p>
-                                        <p className="text-xs text-gray-500">May 28, 2023</p>
-                                    </div>
-                                    <div className="flex items-center text-secondary">
-                                        <img src="/User/Layout/Pakilpoints.png" className="h-[30px] w-[30px]" alt="" />
-                                        <span className="text-sm sm:text-sm">50 pts</span>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3">
-                                    <div>
-                                        <p className="font-medium">Pakil Town Plaza</p>
-                                        <p className="text-xs text-gray-500">May 15, 2023</p>
-                                    </div>
-                                    <div className="flex items-center text-secondary">
-                                        <img src="/User/Layout/Pakilpoints.png" className="h-[30px] w-[30px]" alt="" />
-                                        <span className="text-sm sm:text-sm">50 pts</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <RecentVisit />
 
             <SocialPost />
         </>

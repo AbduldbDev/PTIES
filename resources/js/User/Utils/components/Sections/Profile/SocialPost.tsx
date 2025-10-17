@@ -25,9 +25,6 @@ export default function SocialPost() {
                         <h2 className="flex items-center text-lg font-bold text-primary">
                             <i className="fas fa-share-alt mr-2"></i> My Social Posts
                         </h2>
-                        <a href="#" className="text-sm text-primary hover:underline">
-                            View All
-                        </a>
                     </div>
 
                     <div className="p-4">

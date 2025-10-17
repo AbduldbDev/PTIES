@@ -12,4 +12,9 @@ class PointsLog extends Model
         'user_id',
         'points',
     ];
+
+    public function attraction()
+    {
+        return $this->belongsTo(Attractions::class, 'attraction_id');
+    }
 }
