@@ -81,10 +81,7 @@ const Navbar = () => {
     };
 
     const getUserMenuItems = () => {
-        const baseItems = [
-            { label: 'Profile', href: '/profile', icon: 'fa-regular fa-user' },
-            { label: 'My Rewards', href: '#', icon: 'fa-solid fa-coins' },
-        ];
+        const baseItems = [{ label: 'Profile', href: '/profile', icon: 'fa-regular fa-user' }];
 
         if (auth?.user?.is_seller) {
             baseItems.push({
@@ -124,8 +121,9 @@ const Navbar = () => {
             { label: 'Social Wall', href: '/events/socialwall' },
         ],
         rewards: [
-            { label: 'Rewards', href: '/reward-shop' },
             { label: 'Guide', href: '/pakil-guide' },
+            { label: 'Rewards', href: '/reward-shop' },
+            { label: 'QR Scanner', href: '/explore/scanner' },
         ],
         market: [
             { label: 'Local Market', href: '/localmarket' },
@@ -660,9 +658,6 @@ const Navbar = () => {
                                     </div>
                                     <a href="/profile" className="block rounded-md px-4 py-2 text-primary hover:bg-primary/8">
                                         <i className="fa-regular fa-user mr-3"></i> Profile
-                                    </a>
-                                    <a href="#" className="block rounded-md px-4 py-2 text-primary hover:bg-primary/8">
-                                        <i className="fa-solid fa-coins mr-3"></i> My Rewards
                                     </a>
 
                                     {/* Seller Dashboard for Mobile - Conditionally shown */}
