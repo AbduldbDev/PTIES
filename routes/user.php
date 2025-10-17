@@ -35,14 +35,16 @@ Route::middleware('user.access:auth')->group(function () {
     Route::get('/gamification/rejected', [UserGamificationController::class, 'reject'])->name('gamification.reject');
     Route::post('/reward/redeem', [RewardsController::class, 'redeem'])->name('rewards.redeem');
 
+    Route::get('/seller/dashboard', [SellerPageController::class, 'dashboard'])->name('seller.dashboard');
     Route::get('/seller/registration', [SellerPageController::class, 'registration']);
     Route::post('/seller/registration/submit', [SellerRegistration::class, 'store']);
     Route::get('/seller/registration/confirmation', [SellerRegistration::class, 'confirmation'])->name('seller.confirmation');
 
-
-
     Route::post('/seller/products/create', [ProductManagementController::class, 'store']);
     Route::get('/seller/products/confirmation', [ProductManagementController::class, 'confirmation'])->name('sellerproducts.confirmation');
+
+
+    Route::post('/seller/shop/update/{id}', [SellerRegistration::class, 'update']);
 });
 Route::get('/', [PageController::class, 'Home'])->name('user.home');
 

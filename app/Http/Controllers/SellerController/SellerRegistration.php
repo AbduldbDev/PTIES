@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SellerConfirmationMail;
+use Illuminate\Support\Facades\Storage;
 
 class SellerRegistration extends Controller
 {
@@ -114,6 +115,38 @@ class SellerRegistration extends Controller
             ]);
             Mail::to($request->email)->send(new SellerConfirmationMail($sellerData));
             return redirect()->route('seller.confirmation')->with('success', 'created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' =>  $e->getMessage()]);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $validated = $request->validate([
+                'bio' => 'nullable|string|max:1000',
+                'product_description' => 'nullable|string|max:1000',
+                'facebook_link' => 'nullable|url|max:255',
+                'instagram_link' => 'nullable|url|max:255',
+                'tiktok_link' => 'nullable|url|max:255',
+                'website_link' => 'nullable|url|max:255',
+                'owner_contact' => 'nullable|string|max:20',
+                'email' => 'nullable|email|max:255',
+                'logo' => 'nullable|max:20480',
+
+            ]);
+
+            $seller = LocalMarketSeller::findOrFail($id);
+            if ($request->hasFile('logo')) {
+                if ($seller->logo && Storage::exists(str_replace('/storage/', 'public/', $seller->logo))) {
+                    Storage::delete(str_replace('/storage/', 'public/', $seller->logo));
+                }
+                $path = $request->file('logo')->store('public/Seller/Logo');
+                $validated['logo'] = Storage::url($path);
+            }
+
+            $seller->update($validated);
+            return redirect()->route('seller.dashboard')->with('success', 'updated successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' =>  $e->getMessage()]);
         }

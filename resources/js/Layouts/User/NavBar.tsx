@@ -17,6 +17,7 @@ const Navbar = () => {
                 avatar?: string;
                 pakil_points: number;
                 profile: any;
+                is_seller?: boolean;
             };
         };
     };
@@ -79,6 +80,23 @@ const Navbar = () => {
         setMobileSubMenuOpen(mobileSubMenuOpen === menu ? null : menu);
     };
 
+    const getUserMenuItems = () => {
+        const baseItems = [
+            { label: 'Profile', href: '/profile', icon: 'fa-regular fa-user' },
+            { label: 'My Rewards', href: '#', icon: 'fa-solid fa-coins' },
+        ];
+
+        if (auth?.user?.is_seller) {
+            baseItems.push({
+                label: 'Seller Dashboard',
+                href: '/seller/dashboard',
+                icon: 'fa-solid fa-store',
+            });
+        }
+
+        return baseItems;
+    };
+
     const dropdownItems = {
         about: [
             { label: 'About Us', href: '/about/tourism#' },
@@ -109,14 +127,11 @@ const Navbar = () => {
             { label: 'Rewards', href: '/reward-shop' },
             { label: 'Guide', href: '/pakil-guide' },
         ],
-             market: [
+        market: [
             { label: 'Local Market', href: '/localmarket' },
             { label: 'Become a Pakil Seller', href: '/seller/terms' },
         ],
-        user: [
-            { label: 'Profile', href: '/profile', icon: 'fa-regular fa-user' },
-            { label: 'My Rewards', href: '#', icon: 'fa-solid fa-coins' },
-        ],
+        user: getUserMenuItems(),
     };
 
     return (
@@ -129,7 +144,7 @@ const Navbar = () => {
                     <span id="current-time">{currentTime}</span>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <div className="relative inline-block">
+                    {/* <div className="relative inline-block">
                         <select className="cursor-pointer appearance-none rounded-md border-0 bg-primary pr-8 pl-3 text-xs text-white transition-all hover:bg-white/20 focus:border-blue-300 focus:ring-1 focus:ring-blue-300 focus:outline-none sm:text-sm">
                             <option value="en" className="bg-white text-gray-900">
                                 EN
@@ -147,7 +162,7 @@ const Navbar = () => {
                                 />
                             </svg>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="flex space-x-2">
                         <a href="https://www.facebook.com/pakilturismo" target="_blank" className="hover:text-blue-500">
                             <i className="fab fa-facebook-f"></i>
@@ -311,7 +326,7 @@ const Navbar = () => {
                                         ))}
                                     </div>
                                 </div>
-                                
+
                                 <div className="dropdown relative">
                                     <a
                                         href="#"
@@ -649,6 +664,14 @@ const Navbar = () => {
                                     <a href="#" className="block rounded-md px-4 py-2 text-primary hover:bg-primary/8">
                                         <i className="fa-solid fa-coins mr-3"></i> My Rewards
                                     </a>
+
+                                    {/* Seller Dashboard for Mobile - Conditionally shown */}
+                                    {auth?.user?.is_seller && (
+                                        <a href="/seller/dashboard" className="block rounded-md px-4 py-2 text-primary hover:bg-primary/8">
+                                            <i className="fa-solid fa-store mr-3"></i> Seller Dashboard
+                                        </a>
+                                    )}
+
                                     <button
                                         type="button"
                                         onClick={() => router.post('/logout')}

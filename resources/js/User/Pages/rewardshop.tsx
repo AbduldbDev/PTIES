@@ -4,6 +4,7 @@ import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import RewardsCard from '@UserUtils/components/Cards/RewardsCard';
 import ActiveFilters from '@UserUtils/components/Ui/ActiveFilters';
 import EmptyState from '@UserUtils/components/Ui/EmptyState';
+import FlashMessage from '@UserUtils/components/Ui/ErrorToast';
 import FilterButtons from '@UserUtils/components/Ui/FilterButtons';
 import SearchBar from '@UserUtils/components/Ui/SearchBar';
 import { useSearchFilter } from '@UserUtils/hooks/useSearchFilter';
@@ -104,9 +105,11 @@ export default function RewardShop() {
                 <div className="h-[15vh]"></div>
             )}
 
-            {flash?.success && flash.success}
-            {errors?.error && errors.error}
-            {flash?.error && errors?.error !== flash.error && flash.error}
+            {flash?.success && <FlashMessage type="success" message={flash.success} duration={3000} key={`success-${Date.now()}`} />}
+            {errors?.error && <FlashMessage type="error" message={errors.error} key={`error-${Date.now()}`} duration={3000} />}
+            {flash?.error && errors?.error !== flash.error && (
+                <FlashMessage type="error" key={`flash-error-${Date.now()}`} message={flash.error} duration={3000} />
+            )}
 
             <section className="bg-gradient-to-b py-6 md:py-12">
                 <div className="container mx-auto px-4">
@@ -151,7 +154,7 @@ export default function RewardShop() {
                     {items.length > 0 ? (
                         <>
                             {filteredData.length > 0 ? (
-                                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+                                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
                                     {filteredData.map((item, index) => (
                                         <RewardsCard key={index} item={item} />
                                     ))}

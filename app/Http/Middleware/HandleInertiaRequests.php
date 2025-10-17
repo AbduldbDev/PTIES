@@ -6,6 +6,7 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
+use App\Models\LocalMarketSeller; // Add this import
 
 class HandleInertiaRequests extends Middleware
 {
@@ -37,15 +38,23 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        // Check if user is a seller
+        $isSeller = false;
+        if ($request->user()) {
+            $isSeller = LocalMarketSeller::where('user_id', $request->user()->id)->exists();
+        }
+
         return array_merge(parent::share($request), [
             'cookieConsent' => $request->cookie('cookie_consent'),
             'auth' => [
                 'user' => $request->user() ? [
+                    'id' => $request->user()->id,
                     'image' => $request->user()->avatar,
                     'user_type' => $request->user()->user_type,
                     'email' => $request->user()->email,
                     'pakil_points' => $request->user()->pakil_points,
-                    'profile' => $this->getUserProfileData($request->user())
+                    'profile' => $this->getUserProfileData($request->user()),
+                    'is_seller' => $isSeller,
                 ] : null,
             ],
 
@@ -60,7 +69,6 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'success' => fn() => $request->session()->get('success'),
                 'error' => fn() => $request->session()->get('error'),
-
             ],
 
             'errors' => fn() => $request->session()->get('errors')
@@ -68,6 +76,7 @@ class HandleInertiaRequests extends Middleware
                 : (object) [],
         ]);
     }
+
     private function getUserProfileData($user)
     {
         if (!$user) {

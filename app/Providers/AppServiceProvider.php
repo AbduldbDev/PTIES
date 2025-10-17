@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-
+use App\Models\LocalMarketSeller;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
             },
 
             'auth' => function () {
+                $user = Auth::user();
                 return [
                     'user' => Auth::user() ? [
                         'id' => Auth::user()->id,

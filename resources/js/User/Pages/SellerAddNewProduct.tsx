@@ -1,5 +1,6 @@
 import { useForm, usePage } from '@inertiajs/react';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
+import FlashMessage from '@UserUtils/components/Ui/ErrorToast';
 import React, { useRef, useState } from 'react';
 type FormData = {
     product_name: string;
@@ -205,6 +206,11 @@ export default function AddProduct() {
 
     return (
         <section className="pt-28 pb-12 sm:pt-32 sm:pb-16">
+            {flash?.success && <FlashMessage type="success" message={flash.success} duration={3000} key={`success-${Date.now()}`} />}
+            {errors?.error && <FlashMessage type="error" message={errors.error} key={`error-${Date.now()}`} duration={3000} />}
+            {flash?.error && errors?.error !== flash.error && (
+                <FlashMessage type="error" key={`flash-error-${Date.now()}`} message={flash.error} duration={3000} />
+            )}
             <div className="container mx-auto max-w-7xl">
                 <PageTitle
                     title="ADD PRODUCTS"
@@ -219,9 +225,7 @@ export default function AddProduct() {
                                 <i className="fas fa-info-circle mr-2 text-primary"></i>
                                 Basic Information
                             </h2>
-                            {flash?.success && flash.success}
-                            {errors?.error && errors.error}
-                            {flash?.error && errors?.error !== flash.error && flash.error}
+
                             <div className="mx-auto max-w-7xl overflow-hidden rounded-xl bg-white shadow-md"></div>
 
                             <div className="mb-4">
