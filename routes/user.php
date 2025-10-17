@@ -41,7 +41,9 @@ Route::middleware('user.access:auth')->group(function () {
     Route::get('/seller/registration/confirmation', [SellerRegistration::class, 'confirmation'])->name('seller.confirmation');
 
     Route::get('/seller/product/new', [ProductManagementController::class, 'new']);
+    Route::get('/seller/product/edit/{id}', [ProductManagementController::class, 'edit']);
     Route::post('/seller/products/create', [ProductManagementController::class, 'store']);
+    Route::post('/seller/products/update/{id}', [ProductManagementController::class, 'update']);
     Route::get('/seller/products/confirmation', [ProductManagementController::class, 'confirmation'])->name('sellerproducts.confirmation');
 
 

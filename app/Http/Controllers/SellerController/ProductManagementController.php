@@ -82,6 +82,69 @@ class ProductManagementController extends Controller
         }
     }
 
+    public function update(Request $request, $id)
+    {
+        try {
+            $validated = $request->validate([
+                'product_name' => 'required|string|max:255',
+                'category' => 'required|string|max:255',
+                'description' => 'required|string',
+                'images.*' => 'nullable|max:2048',
+                'variants' => 'required|array',
+                'variants.*.name' => 'required_with:variants|string|max:255',
+                'variants.*.price' => 'required_with:variants|numeric',
+                'variants.*.description' => 'required_with:variants|string',
+                'variants.*.image' => 'nullable|max:2048',
+            ]);
+
+            $product = LocalMarketProducts::findOrFail($id);
+
+            $existingImages = json_decode($product->images, true) ?? [];
+            $newImagePaths = [];
+
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $path = $image->store('Seller/Products/Products', 'public');
+                    $newImagePaths[] = '/storage/' . $path;
+                }
+            }
+
+            $allImages = array_merge($existingImages, $newImagePaths);
+            $variantsData = [];
+            if (!empty($validated['variants'])) {
+                foreach ($validated['variants'] as $variant) {
+                    $variantImagePath = $variant['image_old'] ?? null;
+
+                    if (isset($variant['image']) && $variant['image'] instanceof \Illuminate\Http\UploadedFile) {
+                        $storedPath = $variant['image']->store('Seller/Products/Variants', 'public');
+                        $variantImagePath = '/storage/' . $storedPath;
+                    }
+
+                    $variantsData[] = [
+                        'name' => $variant['name'],
+                        'price' => $variant['price'] ?? null,
+                        'description' => $variant['description'] ?? null,
+                        'image' => $variantImagePath,
+                    ];
+                }
+            }
+
+            $product->update([
+                'product_name' => $request->product_name,
+                'category' => $request->category,
+                'description' => $request->description,
+                'images' => json_encode($allImages),
+                'variants' => json_encode($variantsData),
+                'status' => 0,
+            ]);
+
+            return redirect()->route('sellerproducts.confirmation')->with('success', 'Product updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+
     public function confirmation()
     {
         return Inertia::render('User/Pages/SellerProductConfirmation');
@@ -93,5 +156,15 @@ class ProductManagementController extends Controller
         return Inertia::render('User/Pages/SellerAddNewProduct');
     }
 
-    
+    public function edit($id)
+    {
+        $product = LocalMarketProducts::where('product_id', $id)->first();
+
+        return Inertia::render(
+            'User/Pages/SellerUpdateProduct',
+            [
+                'product' => $product,
+            ]
+        );
+    }
 }

@@ -1,7 +1,7 @@
 import { useForm, usePage } from '@inertiajs/react';
 import FlashMessage from '@UserUtils/components/Ui/ErrorToast';
 import { useState } from 'react';
-import MarketProduct from '../Utils/components/Cards/MarketProduct';
+import SellerProduct from '../Utils/components/Cards/SellerProduct';
 
 type SellerProps = {
     id: number;
@@ -35,6 +35,16 @@ type SellerProps = {
     updated_at: string;
 };
 
+type ProductProps = {
+    id: number;
+    product_id: string;
+    product_name: string;
+    category: string;
+    description: string;
+    images: string;
+    variants: string;
+};
+
 type PageProps = {
     flash?: {
         success?: string;
@@ -49,7 +59,7 @@ type PageProps = {
     active: number;
     pending: number;
     edit: number;
-    items: SellerProps[];
+    items: ProductProps[];
 };
 
 type EditFormData = {
@@ -472,13 +482,13 @@ export default function SellerDashboard() {
 
                                     {/* Action Buttons */}
                                     <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:gap-3">
-                                        {/* <button
-                                            onClick={() => openEditModal('logo')}
-                                            className="flex min-w-[100px] items-center justify-center rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-white shadow-md transition-all duration-300 hover:bg-blue-800 hover:shadow-lg sm:min-w-[110px] sm:px-5 sm:py-2.5 sm:text-sm md:min-w-[120px] md:rounded-xl md:px-6 md:py-3"
+                                        <a
+                                            href="/seller/product/new"
+                                            className="flex min-w-[100px] items-center justify-center bg-primary px-4 py-2 text-xs font-semibold text-white shadow-md transition-all duration-300 hover:bg-blue-800 hover:shadow-lg sm:min-w-[110px] sm:px-5 sm:py-2.5 sm:text-sm md:min-w-[120px] md:rounded-xl md:px-6 md:py-3"
                                         >
-                                            <i className="fas fa-edit mr-1.5 text-xs sm:mr-2 sm:text-sm" />
-                                            Edit
-                                        </button> */}
+                                            <i className="fas fa-plus mr-1.5 text-xs sm:mr-2 sm:text-sm" />
+                                            Add New Product
+                                        </a>
                                     </div>
                                 </div>
                                 {/* Additional Info */}
@@ -773,21 +783,21 @@ export default function SellerDashboard() {
                             </div>
                         </div>
                     </div>
+                    <div className="mt-12">
+                        <div className="mb-6 flex items-center justify-between">
+                            <h2 className="text-dark text-2xl font-bold">Related Products</h2>
+                            <a href="/localmarket" className="flex items-center font-medium text-primary hover:text-primary/80">
+                                View All <i className="fas fa-arrow-right ml-1" />
+                            </a>
+                        </div>
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                            {items.map((item, index) => (
+                                <SellerProduct key={index} product={item} />
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
-            {/* <div className="mt-12">
-                <div className="mb-6 flex items-center justify-between">
-                    <h2 className="text-dark text-2xl font-bold">Related Products</h2>
-                    <a href="/localmarket" className="flex items-center font-medium text-primary hover:text-primary/80">
-                        View All <i className="fas fa-arrow-right ml-1" />
-                    </a>
-                </div>
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    {items.map((item, index) => (
-                        <MarketProduct key={index} product={item} />
-                    ))}
-                </div>
-            </div> */}
 
             {/* Edit Modal */}
             {isEditModalOpen && (

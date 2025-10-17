@@ -350,7 +350,7 @@ export default function ProductDisplay() {
 
                     <div className="xl:col-span-2">
                         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                            {product.is_approved === 0 && (
+                            {product.status === 0 && (
                                 <>
                                     <button
                                         type="button"

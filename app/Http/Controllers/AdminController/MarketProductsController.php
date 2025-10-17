@@ -77,7 +77,7 @@ class MarketProductsController extends Controller
         $perPage = $request->input('per_page', 20);
 
         if ($request->input('per_page') === 'all') {
-            $items = LocalMarketProducts::where('status', 0)->where('is_approved', 1)->latest()->get();
+            $items = LocalMarketProducts::with('shop')->where('status', 0)->where('is_approved', 1)->latest()->get();
 
             return Inertia::render('Admin/Pages/LocalMarketProducts/AllProducts', [
                 'items' => [
@@ -89,7 +89,7 @@ class MarketProductsController extends Controller
             ]);
         }
 
-        $items = LocalMarketProducts::where('status', 0)->where('is_approved', 1)->latest()->paginate($perPage);
+        $items = LocalMarketProducts::with('shop')->where('status', 0)->where('is_approved', 1)->latest()->paginate($perPage);
         if ($request->has('per_page')) {
             $items->appends(['per_page' => $perPage]);
         }
