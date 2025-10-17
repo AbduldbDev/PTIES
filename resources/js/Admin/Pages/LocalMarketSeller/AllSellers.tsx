@@ -171,10 +171,10 @@ export default function Home() {
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
                                                         {seller.owner_name} Points
                                                     </TableCell>
-                                                    <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
+                                                    <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
                                                         {seller.email}
                                                     </TableCell>
-                                                    <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
+                                                    <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
                                                         {seller.owner_contact}
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-center text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">

@@ -1,6 +1,7 @@
 import { useForm, usePage } from '@inertiajs/react';
 import FlashMessage from '@UserUtils/components/Ui/ErrorToast';
 import { useState } from 'react';
+import MarketProduct from '../Utils/components/Cards/MarketProduct';
 
 type SellerProps = {
     id: number;
@@ -48,6 +49,7 @@ type PageProps = {
     active: number;
     pending: number;
     edit: number;
+    items: SellerProps[];
 };
 
 type EditFormData = {
@@ -63,7 +65,7 @@ type EditFormData = {
 };
 
 export default function SellerDashboard() {
-    const { active, sellerData, edit, pending, flash, errors } = usePage<PageProps>().props;
+    const { active, sellerData, edit, pending, flash, errors, items } = usePage<PageProps>().props;
     const { auth } = usePage().props as {
         auth?: {
             user: {
@@ -773,6 +775,19 @@ export default function SellerDashboard() {
                     </div>
                 </div>
             </div>
+            {/* <div className="mt-12">
+                <div className="mb-6 flex items-center justify-between">
+                    <h2 className="text-dark text-2xl font-bold">Related Products</h2>
+                    <a href="/localmarket" className="flex items-center font-medium text-primary hover:text-primary/80">
+                        View All <i className="fas fa-arrow-right ml-1" />
+                    </a>
+                </div>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                    {items.map((item, index) => (
+                        <MarketProduct key={index} product={item} />
+                    ))}
+                </div>
+            </div> */}
 
             {/* Edit Modal */}
             {isEditModalOpen && (

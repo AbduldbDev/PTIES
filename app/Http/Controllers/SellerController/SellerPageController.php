@@ -18,7 +18,7 @@ class SellerPageController extends Controller
         $activeProducts = LocalMarketProducts::where('shop_id', $sellerData->id)->where('status', 1)->where('is_approved', 1)->count();
         $pendingProducts = LocalMarketProducts::where('shop_id', $sellerData->id)->where('status', 0)->where('is_approved', 0)->count();
         $pendingEdit = LocalMarketProducts::where('shop_id', $sellerData->id)->where('status', 0)->where('is_approved', 1)->count();
-
+        $products = LocalMarketProducts::where('shop_id', $sellerData->id)->get();
 
         return Inertia::render(
             'User/Pages/SellerDashboard',
@@ -27,6 +27,7 @@ class SellerPageController extends Controller
                 'active' => $activeProducts,
                 'pending' => $pendingProducts,
                 'edit' => $pendingEdit,
+                'items' => $products,
             ]
         );
     }
