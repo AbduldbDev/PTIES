@@ -102,8 +102,15 @@ class CMSBannerSeeder extends Seeder
                 'key' => 'About Pakil',
                 'title' => 'The Story of Pakil',
                 'subtitle' => 'Heritage, Culture, and Community',
-                'desc' => 'Learn about Pakil’s rich history, traditions, and milestones that shaped its identity—from its cultural roots and historical leaders to the vibrant community it is today.',
+                'desc' => 'Discover Pakil’s rich heritage, timeless traditions, and vibrant community spirit.',
             ],
+            [
+                'key' => 'Market Place',
+                'title' => 'Pakil Local Marketplace',
+                'subtitle' => 'Support Local, Shop Local',
+                'desc' => 'Experience Pakil’s marketplace filled with local crafts, delicacies, and fresh produce.',
+            ],
+
 
         ];
 
