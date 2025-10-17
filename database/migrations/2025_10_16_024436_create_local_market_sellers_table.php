@@ -34,7 +34,6 @@ return new class extends Migration
             $table->string('instagram_link')->nullable();
             $table->string('tiktok_link')->nullable();
             $table->string('website_link')->nullable();
-            $table->string('other_links')->nullable();
             $table->string('business_permit');
             $table->text('additional_docs')->nullable();
             $table->string('long');

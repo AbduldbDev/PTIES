@@ -29,7 +29,6 @@ class LocalMarketSeller extends Model
         'instagram_link',
         'tiktok_link',
         'website_link',
-        'other_links',
         'business_permit',
         'additional_docs',
         'status',

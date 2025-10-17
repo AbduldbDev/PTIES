@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController\{
     NewsletterController,
     RewardsController,
     UserGamificationController,
+    MarketPlaceController
 };
 use App\Http\Controllers\SellerController\SellerPageController;
 use App\Http\Controllers\SellerController\SellerRegistration;
@@ -43,7 +44,7 @@ Route::middleware('user.access:auth')->group(function () {
     Route::post('/seller/products/create', [ProductManagementController::class, 'store']);
     Route::get('/seller/products/confirmation', [ProductManagementController::class, 'confirmation'])->name('sellerproducts.confirmation');
 });
-
+Route::get('/', [PageController::class, 'Home'])->name('user.home');
 
 Route::get('/reward-shop', [RewardsController::class, 'index'])->name('rewards.index');
 Route::get('/gamification/{id}', [UserGamificationController::class, 'details'])->name('gamification.details');
@@ -61,7 +62,7 @@ Route::prefix('/about')->name('user.')->group(function () {
     Route::get('/past-mayor', [AboutUsController::class, 'PastMayors'])->name('PastMayors');
 });
 
-Route::prefix('/explore')->name('user.')->group(function () {
+Route::prefix('/explore')->name('explore.')->group(function () {
     Route::get('/about', [ExploreController::class, 'About'])->name('about');
     Route::get('/local-products', [ExploreController::class, 'LocalProducts'])->name('localproducts');
     Route::get('/local-personalities', [ExploreController::class, 'LocalPersonalities'])->name('localpersonalities');
@@ -72,21 +73,22 @@ Route::prefix('/explore')->name('user.')->group(function () {
     Route::get('/establishments', [ExploreController::class, 'Establishments'])->name('establishments');
 });
 
-Route::prefix('/events')->name('user.')->group(function () {
+Route::prefix('/events')->name('events.')->group(function () {
     Route::get('/', [EventsController::class, 'Events'])->name('events');
     Route::get('/details/{id}', [EventsController::class, 'EventsSingle'])->name('eventssingle');
     Route::get('/socialwall', [EventsController::class, 'SocialWall'])->name('socialwall');
 });
 
+Route::prefix('/newsletter')->name('newsletter.')->group(function () {
+    Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+    Route::get('/confirmation', [NewsletterController::class, 'confirmation'])->name('newsletter.confirmation');
+});
+
 Route::get('/pakil-guide', [ExploreController::class, 'PakilGuide'])->name('pakilguide');
-
-Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
-Route::get('/newsletter/confirmation', [NewsletterController::class, 'confirmation'])->name('newsletter.confirmation');
-Route::get('/', [PageController::class, 'Home'])->name('user.home');
-
-Route::get('/explore/scanner', [UserGamificationController::class, 'scanner'])->name('users.scanner');
-
 Route::get('/seller/terms', [SellerPageController::class, 'terms']);
 
-Route::get('/localmarket', [SellerPageController::class, 'localmarket']);
-Route::get('/localmarket/product', [SellerPageController::class, 'productdetails']);
+
+
+Route::get('/localmarket', [MarketPlaceController::class, 'index']);
+Route::get('/localmarket/product/{id}', [MarketPlaceController::class, 'productdetails']);
+Route::get('/explore/scanner', [UserGamificationController::class, 'scanner'])->name('users.scanner');

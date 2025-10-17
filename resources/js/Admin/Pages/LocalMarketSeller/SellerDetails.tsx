@@ -31,7 +31,6 @@ type SellerProps = {
     instagram_link: string;
     tiktok_link: string;
     website_link: string;
-    other_links: string;
     business_permit: string;
     additional_docs: string;
     long: string;
@@ -231,9 +230,6 @@ export default function SellerDisplay() {
                             <InputField type="text" label="Instagram" name="instagram_link" value={seller.instagram_link} readonly={true} />
                             <InputField type="text" label="TikTok" name="tiktok_link" value={seller.tiktok_link} readonly={true} />
                             <InputField type="text" label="Website" name="website_link" value={seller.website_link} readonly={true} />
-                            {seller.other_links && (
-                                <Textarea label="Other Links" name="other_links" value={seller.other_links} readonly={true} rows={5} />
-                            )}
                         </div>
                     </ComponentCard>
 

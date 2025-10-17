@@ -60,7 +60,7 @@ class ProductManagementController extends Controller
                 }
             }
             $seller = LocalMarketSeller::where('user_id', Auth::id())->first();
-            
+
             do {
                 $productID =  'PRDCT' . Str::upper(Str::random(5));
             } while (LocalMarketSeller::where('shop_id', $productID)->exists());
@@ -71,7 +71,7 @@ class ProductManagementController extends Controller
                 'shop_id' => $seller->id,
                 'product_name' => $request->product_name,
                 'category' => $request->category,
-                'description' => $request->category,
+                'description' => $request->description,
                 'images' => json_encode($imagePaths),
                 'variants' => json_encode($variantsData),
             ]);

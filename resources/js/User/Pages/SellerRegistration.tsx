@@ -23,7 +23,6 @@ type FormData = {
     instagram_link: string;
     tiktok_link: string;
     website_link: string;
-    other_links: string;
     business_permit: File | null;
     additional_docs: File[] | null;
     long: string;
@@ -64,7 +63,6 @@ export default function RegistrationForm() {
         instagram_link: '',
         tiktok_link: '',
         website_link: '',
-        other_links: '',
         business_permit: null,
         additional_docs: null,
         long: '',
@@ -1030,21 +1028,6 @@ export default function RegistrationForm() {
                                                 placeholder="https://yourwebsite.com"
                                             />
                                         </div>
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="other-links" className="mb-1 block text-sm font-medium text-gray-700">
-                                            Other Links
-                                        </label>
-                                        <textarea
-                                            id="other-links"
-                                            name="other-links"
-                                            rows={5}
-                                            value={form.data['other_links']}
-                                            onChange={(e) => form.setData('other_links', e.target.value)}
-                                            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary sm:rounded-lg sm:px-4 sm:py-3"
-                                            placeholder="Add any other relevant links (one per line)"
-                                        />
                                     </div>
                                 </div>
                             </div>

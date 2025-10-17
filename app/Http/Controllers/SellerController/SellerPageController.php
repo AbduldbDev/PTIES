@@ -11,21 +11,11 @@ class SellerPageController extends Controller
 
     public function terms()
     {
-        return Inertia::render('User/Pages/SellerTerms');
+        return Inertia::render('User/Pages/SellerAddNewProduct');
     }
 
     public function registration()
     {
         return Inertia::render('User/Pages/SellerRegistration');
-    }
-
-    public function localmarket()
-    {
-        return Inertia::render('User/Pages/LocalMarket');
-    }
-
-    public function productdetails()
-    {
-        return Inertia::render('User/Pages/SellerAddNewProduct');
     }
 }
