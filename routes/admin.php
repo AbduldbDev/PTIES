@@ -23,7 +23,7 @@ use App\Http\Controllers\AdminController\{
     OfficialsController,
     PastMayorController,
     PostController,
-    PromotionalVidController,
+    PromotionalvidController,
     RewardsManagementContoller,
     TerminalController,
     TourGuideController,

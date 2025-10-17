@@ -33,7 +33,7 @@ class SellerPageController extends Controller
 
     public function terms()
     {
-        return Inertia::render('User/Pages/SellerAddNewProduct');
+        return Inertia::render('User/Pages/SellerTerms');
     }
 
     public function registration()

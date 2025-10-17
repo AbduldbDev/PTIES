@@ -86,4 +86,10 @@ class ProductManagementController extends Controller
     {
         return Inertia::render('User/Pages/SellerProductConfirmation');
     }
+
+
+    public function new()
+    {
+        return Inertia::render('User/Pages/SellerAddNewProduct');
+    }
 }
