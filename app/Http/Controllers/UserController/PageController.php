@@ -59,6 +59,13 @@ class PageController extends Controller
         ]);
     }
 
+    public function terms()
+    {
+        return Inertia::render('User/Pages/Terms');
+    }
 
-   
+    public function policy()
+    {
+        return Inertia::render('User/Pages/Policy');
+    }
 }

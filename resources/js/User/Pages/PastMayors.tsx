@@ -65,7 +65,7 @@ export default function PastMayors() {
                     {items.length === 0 ? (
                         <EmptyState
                             title="No Past Mayors Available"
-                            message="We're currently pdating our records of past mayors. Please check back soon."
+                            message="We're currently updating our records of past mayors. Please check back soon."
                             actionText="Return Home"
                             onAction={() => window.location.assign('/')}
                         />

@@ -40,7 +40,7 @@ type HistoryProps = {
 export default function About() {
     const { banner, content, history, barangays, barangayHighlights } = usePage<PageProps>().props;
 
-    const title = 'Pakil Tourism | About';
+    const title = 'Pakil Tourism | About Tourism';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
 

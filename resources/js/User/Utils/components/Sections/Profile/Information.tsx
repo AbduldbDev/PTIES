@@ -89,7 +89,7 @@ export default function Information() {
         if (item?.user?.avatar && item.user.avatar.trim() !== '') {
             return item.user.avatar;
         }
-        return '/images/user/user.png';
+        return '/images/user/User.png';
     };
 
     return (

@@ -70,7 +70,7 @@ export default function LocalProducts() {
                     {personalities.length === 0 ? (
                         <EmptyState
                             title="No Personalities Available"
-                            message="We're cCrrently Updating Our Catalog. Please check back soon."
+                            message="We're Currently Updating Our Catalog. Please check back soon."
                             actionText="Return Home"
                             onAction={() => window.location.assign('/')}
                         />

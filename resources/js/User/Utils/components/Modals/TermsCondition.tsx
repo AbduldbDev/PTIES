@@ -27,7 +27,7 @@ const TermsModal = ({ isOpen, onClose, onAgree }: TermsModalProps) => {
     if (!isOpen) return null;
 
     return (
-        <div className="bg-opacity-70 fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 backdrop-blur-sm sm:p-4">
+        <div className="bg-opacity-70 fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 p-3 backdrop-blur-sm sm:p-4">
             <div className="max-h-[95vh] w-full max-w-4xl overflow-hidden rounded-lg bg-white shadow-xl">
                 <div className="border-b border-gray-200 p-4">
                     <h2 className="text-center text-lg font-bold text-black uppercase sm:text-xl">Pakil Tourism Information & Engagement System</h2>

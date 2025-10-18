@@ -87,7 +87,7 @@ export default function HeroSection({ content }: Props) {
                                     <img
                                         src={typeof content.feature_img === 'string' ? content.feature_img : '/User/Images/church.jpg'}
                                         alt="Hero section feature"
-                                        className="h-auto w-full rounded-lg object-cover sm:rounded-xl"
+                                        className="aspect-video h-auto w-full rounded-lg object-cover sm:rounded-xl"
                                         loading="eager"
                                     />
                                 </div>

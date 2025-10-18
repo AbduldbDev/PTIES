@@ -369,7 +369,7 @@ export default function Home() {
                     </div>
                 </section>
             )}
-            
+
             {events.length > 0 && (
                 <section className="bg-white py-10">
                     <div className="container mx-auto px-6">

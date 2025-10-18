@@ -458,9 +458,9 @@ const Navbar = () => {
                 {/* Mobile menu */}
                 <div
                     id="mobile-menu"
-                    className={`lg:hidden ${mobileMenuOpen ? 'block' : 'hidden'} border-t border-primary/20 bg-white transition-all duration-300 ease-in-out`}
+                    className={`lg:hidden ${mobileMenuOpen ? 'block' : 'hidden'} w-full border-t border-primary/20 bg-white transition-all duration-300 ease-in-out`}
                 >
-                    <div className="container max-h-[80vh] space-y-1 overflow-y-auto px-4 py-2">
+                    <div className="max-h-[80vh] space-y-1 overflow-y-auto px-4 py-2">
                         <a href="/" className="block rounded-md px-4 py-3 text-primary hover:bg-primary/8">
                             Home
                         </a>

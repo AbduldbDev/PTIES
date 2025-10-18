@@ -39,7 +39,7 @@ interface PageProps {
 export default function SocialWall() {
     const { banner, items, topPost } = usePage<PageProps>().props;
 
-    const title = 'Pakil Tourism | SocialWall';
+    const title = 'Pakil Tourism | Social Wall';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
 

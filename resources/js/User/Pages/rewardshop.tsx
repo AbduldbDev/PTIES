@@ -50,7 +50,7 @@ export default function RewardShop() {
         initialFilter: 'all',
     });
 
-    const title = 'Pakil Tourism | Attractions';
+    const title = 'Pakil Tourism | Reward Shop';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
 

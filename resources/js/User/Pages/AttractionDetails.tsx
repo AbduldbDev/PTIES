@@ -57,7 +57,7 @@ export default function AttractionDetails() {
     const ContactArray = Array.isArray(item.contact) ? item.contact : [];
     const OperatingHours = (item.operating_hours || '').split('\n').filter((p) => p.trim() !== '');
     const information = (item.information || '').split('\n').filter((p) => p.trim() !== '');
-    const history = (item.information || '').split('\n').filter((p) => p.trim() !== '');
+    const history = (item.history || '').split('\n').filter((p) => p.trim() !== '');
     const rules = (item.local_rules || '').split('\n').filter((p) => p.trim() !== '');
     const fun_facts = (item.fun_facts || '').split('\n').filter((p) => p.trim() !== '');
     const fees = (item.fees || '').split('\n').filter((p) => p.trim() !== '');

@@ -31,7 +31,7 @@ interface PageProps {
 export default function Guide() {
     const { banner, food, accommodation } = usePage<PageProps>().props;
 
-    const title = 'Pakil Tourism | About';
+    const title = 'Pakil Tourism | Pakil Guide';
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
 

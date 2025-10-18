@@ -38,7 +38,7 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="bg-opacity-70 fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-md">
+        <div className="bg-opacity-70 fixed inset-0 z-[99999999] flex items-center justify-center bg-black/50 p-4 backdrop-blur-md">
             <div className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-lg bg-white shadow-xl">
                 {/* Header */}
                 <div className="relative bg-primary p-4 text-center text-white md:p-3">
@@ -218,11 +218,11 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
                         <p className="mb-6 text-xs text-gray-700 md:mb-4 md:text-sm">
                             <i className="fas fa-check-circle mr-2 text-accent"></i>
                             By continuing, you agree to our{' '}
-                            <a href="" className="font-semibold text-primary">
+                            <a href="/pakil/terms" className="font-semibold text-primary">
                                 Terms of Use
                             </a>{' '}
                             and{' '}
-                            <a href="" className="font-semibold text-primary">
+                            <a href="/pakil/policy" className="font-semibold text-primary">
                                 Privacy Policy
                             </a>
                             .

@@ -28,10 +28,16 @@ export const Footer = () => {
                                     Quick Links
                                 </h3>
                                 <ul className="space-y-1.5 sm:space-y-2 lg:space-y-2.5">
-                                    {['Home', 'About Pakil', 'Explore Pakil', 'Market', 'Contact'].map((link) => (
-                                        <li key={link}>
-                                            <a href="#" className="text-xs transition hover:text-blue-200 sm:text-sm md:text-xs lg:text-base">
-                                                {link}
+                                    {[
+                                        { name: 'Home', url: '/' },
+                                        { name: 'About Pakil', url: '/about/tourism' },
+                                        { name: 'Explore Pakil', url: '/explore/about' },
+                                        { name: 'Market', url: '/localmarket' },
+                                        { name: 'Contact', url: '/contact' },
+                                    ].map((link) => (
+                                        <li key={link.name}>
+                                            <a href={link.url} className="text-xs transition hover:text-blue-200 sm:text-sm md:text-xs lg:text-base">
+                                                {link.name}
                                             </a>
                                         </li>
                                     ))}
@@ -69,16 +75,24 @@ export const Footer = () => {
                                     Follow Us
                                 </h3>
                                 <div className="mb-3 flex space-x-2 sm:mb-4 sm:space-x-3 md:mb-3 md:space-x-2 lg:mb-4 lg:space-x-3">
-                                    {['facebook-f', 'instagram', 'youtube'].map((platform) => (
+                                    {[
+                                        { platform: 'facebook-f', url: 'https://www.facebook.com/pakilturismo' },
+                                        { platform: 'instagram', url: 'https://instagram.com/PakilTourism' },
+                                        { platform: 'youtube', url: 'https://youtube.com/@PakilTourism' },
+                                        { platform: 'tiktok', url: 'https://tiktok.com/@PakilTourism' },
+                                    ].map(({ platform, url }) => (
                                         <a
                                             key={platform}
-                                            href="#"
+                                            href={url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition hover:bg-white/30 sm:h-9 sm:w-9 md:h-8 md:w-8 lg:h-10 lg:w-10"
                                         >
                                             <i className={`fab fa-${platform} text-xs sm:text-sm md:text-xs lg:text-base`}></i>
                                         </a>
                                     ))}
                                 </div>
+
                                 <p className="mb-2 text-xs opacity-80 sm:text-sm md:text-xs lg:text-base">Subscribe to our newsletter</p>
                                 <div className="mt-1 flex">
                                     <input

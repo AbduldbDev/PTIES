@@ -51,7 +51,7 @@ Route::middleware('user.access:auth')->group(function () {
 });
 Route::get('/', [PageController::class, 'Home'])->name('user.home');
 
-Route::get('/reward-shop', [RewardsController::class, 'index'])->name('rewards.index');
+Route::get('/reward-shop', [RewardsController::class, 'index'])->name('rewardshop.index');
 Route::get('/gamification/{id}', [UserGamificationController::class, 'details'])->name('gamification.details');
 
 Route::prefix('/contact')->name('user.contact.')->group(function () {
@@ -97,3 +97,6 @@ Route::get('/seller/terms', [SellerPageController::class, 'terms']);
 Route::get('/localmarket', [MarketPlaceController::class, 'index']);
 Route::get('/localmarket/product/{id}', [MarketPlaceController::class, 'productdetails']);
 Route::get('/explore/scanner', [UserGamificationController::class, 'scanner'])->name('users.scanner');
+
+Route::get('/pakil/terms', [PageController::class, 'terms']);
+Route::get('/pakil/policy', [PageController::class, 'policy']);

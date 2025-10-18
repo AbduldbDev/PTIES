@@ -54,7 +54,7 @@ export default function SellerTerms() {
                         <div className="space-y-4 text-sm text-gray-700 md:text-base lg:pl-14">
                             <p>
                                 Welcome to the
-                                <strong>Pakil Tourism Information and Engagement System (PTIES)</strong>— the official tourism and community
+                                <strong> Pakil Tourism Information and Engagement System (PTIES)</strong>— the official tourism and community
                                 engagement platform of the Municipality of Pakil, Laguna.
                             </p>
                             <p>
@@ -328,7 +328,7 @@ export default function SellerTerms() {
                                 <strong> outside the PTIES platform</strong>.
                             </p>
                             <p>
-                                <strong>8.2.</strong> the platform serves solely as an
+                                <strong>8.2.</strong> The platform serves solely as an
                                 <strong> information and promotional tool</strong>, and does not guarantee the accuracy, completeness, or availability
                                 of the products listed.
                             </p>
