@@ -180,7 +180,7 @@ export default function Home() {
                                                                 className="h-10 w-10 overflow-hidden rounded-full object-cover"
                                                                 width={40}
                                                                 height={40}
-                                                                src={user.avatar ? `/storage/${user.avatar}` : '/images/user/User.png'}
+                                                                src={user.avatar ? `${user.avatar}` : '/images/user/User.png'}
                                                                 alt={`${user.avatar} ${user.avatar}`}
                                                             />
                                                             <div>

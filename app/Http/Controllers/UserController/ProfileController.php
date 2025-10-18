@@ -41,6 +41,7 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $account = AccountUsers::where('user_id', $id)->firstOrFail();
+        $user = User::findOrFail($id);
 
         $validated = $request->validate([
             'first_name'   => 'required|string|max:255',
@@ -48,28 +49,26 @@ class ProfileController extends Controller
             'last_name'    => 'required|string|max:255',
             'phone'        => 'nullable|string|max:20',
             'address'      => 'nullable|string|max:255',
-            'avatar' => 'nullable|image|mimes:webp,jpg,jpeg,png,gif|max:25600',
+            'avatar'       => 'nullable|image|mimes:webp,jpg,jpeg,png,gif|max:25600',
         ]);
 
         if ($request->hasFile('avatar')) {
-            $user = User::where('id', $id)->first();
-            $path = $request->file('avatar')->store('avatars', 'public');
-
-            $validated['avatar'] = '/storage/' . $path;
-
             if ($user->avatar) {
                 $oldPath = str_replace('/storage/', '', $user->avatar);
-
                 if (Storage::disk('public')->exists($oldPath)) {
                     Storage::disk('public')->delete($oldPath);
                 }
             }
+
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $validated['avatar'] = '/storage/' . $path;
+
             $user->update([
-                'avatar'      => $validated['avatar'],
+                'avatar' => $validated['avatar'],
             ]);
+        } else {
+            $validated['avatar'] = $user->avatar;
         }
-
-
 
         $account->update($validated);
 

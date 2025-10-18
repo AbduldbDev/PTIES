@@ -32,7 +32,7 @@ export default function UserDropdown({ auth }: UserDropdownProps) {
             <button onClick={toggleDropdown} className="dropdown-toggle flex items-center text-gray-700 dark:text-gray-400">
                 <span className="mr-3 h-11 w-11 overflow-hidden rounded-full">
                     <img
-                        src={auth?.user?.image ? `/storage/${auth.user.image}` : '/images/user/User.png'}
+                        src={auth?.user?.image ? `${auth.user.image}` : '/images/user/User.png'}
                         alt={auth?.user?.profile?.first_name || 'User'}
                     />
                 </span>

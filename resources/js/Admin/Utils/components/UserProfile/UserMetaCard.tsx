@@ -21,7 +21,7 @@ export default function UserMetaCard({ user }: UserMetaCardProps) {
                 <div className="flex w-full flex-col items-center gap-6 xl:flex-row">
                     <div className="h-20 w-20 overflow-hidden rounded-full border border-gray-200 dark:border-gray-800">
                         <img
-                            src={user?.avatar ? `/storage/${user.avatar}` : '/images/user/User.png'}
+                            src={user?.avatar ? `${user.avatar}` : '/images/user/User.png'}
                             alt={user?.email || 'User'}
                             className="h-full w-full object-cover"
                         />

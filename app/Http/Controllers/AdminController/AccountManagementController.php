@@ -11,13 +11,41 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use App\Models\CMSColor;
+use App\Models\Events;
+use App\Models\LocalMarketProducts;
+use App\Models\LocalMarketSeller;
+use App\Models\RewardsLogs;
+use App\Models\SocialWall;
 
 class AccountManagementController extends Controller
 {
 
     public function dashboard(Request $request)
     {
-        return Inertia::render('Admin/Pages/Dashboard');
+        $events = Events::get();
+        $total_Employees =  User::whereIn('user_type', ['admin', 'content_manager'])->count();
+        $total_Sellers =  LocalMarketSeller::where('status', 1)->count();
+        $total_tourist =  User::where('user_type', 'user')->count();
+        $total_products = LocalMarketProducts::where('status', 1)->count();
+
+        $pending_Sellers =  LocalMarketSeller::where('status', 0)->count();
+        $pending_products = LocalMarketProducts::where('status', 0)->count();
+        $social_wall = SocialWall::where('is_approved', 0)->count();
+        $pending_redemption = RewardsLogs::where('status', 0)->count();
+
+
+
+        return Inertia::render('Admin/Pages/Dashboard', [
+            'events' => $events,
+            'total_Employees' =>  $total_Employees,
+            'total_Sellers' =>  $total_Sellers,
+            'total_tourist' => $total_tourist,
+            'total_products' => $total_products,
+            'pending_Sellers' => $pending_Sellers,
+            'pending_products' => $pending_products,
+            'social_wall' => $social_wall,
+            'pending_redemption' => $pending_redemption
+        ]);
     }
 
 
@@ -84,8 +112,10 @@ class AccountManagementController extends Controller
 
             $profileImagePath = null;
             if ($request->hasFile('profileImage')) {
-                $profileImagePath = $request->file('profileImage')->store('EmployeAvatars', 'public');
+                $path = $request->file('profileImage')->store('EmployeAvatars', 'public');
+                $profileImagePath = '/storage/' . $path;
             }
+
 
             $user =  User::create([
                 'email' => $request->email,
@@ -140,12 +170,18 @@ class AccountManagementController extends Controller
             $user = User::findOrFail($request->id);
 
             if ($request->hasFile('profileImage')) {
+                // Delete old avatar if it exists
                 if ($user->avatar) {
-                    Storage::disk('public')->delete($user->avatar);
+                    $oldPath = str_replace('/storage/', '', $user->avatar);
+                    Storage::disk('public')->delete($oldPath);
                 }
-                $profileImagePath = $request->file('profileImage')->store('EmployeAvatars', 'public');
-                $user->avatar = $profileImagePath;
+
+                $path = $request->file('profileImage')->store('EmployeAvatars', 'public');
+                $user->avatar = '/storage/' . $path;
             }
+
+
+
 
             $user->user_type = $request->user_type;
             $user->save();

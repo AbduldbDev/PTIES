@@ -637,8 +637,8 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                     {isExpanded || isHovered || isMobileOpen ? (
                         <>
                             <img
-                                className="rounded-full"
-                                src={auth?.user?.image ? `/storage/${auth.user.image}` : '/images/user/User.png'}
+                                className="aspect-square overflow-hidden rounded-full object-cover"
+                                src={auth?.user?.image ? `${auth.user.image}` : '/images/user/User.png'}
                                 alt={auth?.user?.profile?.first_name || 'User'}
                                 width={50}
                                 height={50}
@@ -650,8 +650,8 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                         </>
                     ) : (
                         <img
-                            className="rounded-full"
-                            src={auth?.user?.image ? `/storage/${auth.user.image}` : '/images/user/User.png'}
+                            className="aspect-square overflow-hidden rounded-full object-cover"
+                            src={auth?.user?.image ? `${auth.user.image}` : '/images/user/User.png'}
                             alt={auth?.user?.profile?.first_name || 'User'}
                             width={50}
                             height={50}

@@ -111,10 +111,10 @@ export default function Rewards() {
                 {errors?.error && <FlashMessage type="error" message={errors.error} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
-                <PageBreadcrumb pageTitle="Rewards redemption" />
+                <PageBreadcrumb pageTitle="Rewards Redemption" />
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
-                    <ComponentCard title={`${status} Redeem`}>
+                    <ComponentCard title={`${status} Redemption`}>
                         <TableControls
                             searchTerm={searchTerm}
                             onSearchChange={handleSearch}
@@ -202,7 +202,7 @@ export default function Rewards() {
                                                     colSpan={columns.length}
                                                     className="px-4 py-20 text-center text-gray-500 capitalize dark:text-gray-400"
                                                 >
-                                                    {searchTerm ? `No Rewards found matching "${searchTerm}"` : 'No Rewards available'}
+                                                    {searchTerm ? `No Redemption found matching "${searchTerm}"` : 'No Redemptions available'}
                                                 </TableCell>
                                             </TableRow>
                                         )}
