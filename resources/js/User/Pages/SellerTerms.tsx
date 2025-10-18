@@ -23,7 +23,7 @@ export default function SellerTerms() {
                         <h2 className="text-sm font-semibold tracking-wider text-primary uppercase">Legal</h2>
                         <div className="ml-3 h-1 w-8 rounded-full bg-secondary" />
                     </div>
-                    <h1 className="mb-4 text-3xl font-bold text-primary md:text-4xl lg:text-5xl">Terms and Conditions for Sellers</h1>
+                    <h1 className="mb-4 text-3xl font-bold text-black md:text-4xl lg:text-5xl">Terms and Conditions for Sellers</h1>
                     <p className="mx-auto max-w-4xl text-sm text-gray-600 md:text-xl lg:text-base">
                         Pakil Tourism Information and Engagement System (PTIES) - Effective Date: October 10, 2025
                     </p>
@@ -391,7 +391,7 @@ export default function SellerTerms() {
                                         className="rounded-full bg-primary px-6 py-3 text-sm font-medium text-white transition duration-300 hover:bg-primary/90 lg:text-base"
                                     >
                                         <i className="fas fa-file-signature mr-2" />
-                                        Agree &amp; Registers
+                                        Agree &amp; Register
                                     </a>
                                 )}
 

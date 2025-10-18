@@ -22,8 +22,9 @@ export default function SocialPost() {
             <div className="container mx-auto px-4">
                 <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
                     <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3">
-                        <h2 className="flex items-center text-lg font-bold text-primary">
-                            <i className="fas fa-share-alt mr-2"></i> My Social Posts
+                        <h2 className="flex items-center text-lg font-bold text-primary sm:text-lg">
+                            <i className="fas fa-share-alt mr-2 text-base sm:text-lg"></i>
+                            <span className="text-sm sm:text-base"> My Social Posts</span>
                         </h2>
                     </div>
 
@@ -67,14 +68,14 @@ export default function SocialPost() {
                                 ))
                             ) : (
                                 <div className="col-span-full flex flex-col items-center justify-center py-12 text-center">
-                                    <div className="mb-4 rounded-full bg-gray-100 p-6">
-                                        <i className="fas fa-share-alt text-3xl text-gray-400"></i>
+                                    <div className="mb-3 rounded-full bg-gray-100 p-4 sm:mb-4 sm:p-6">
+                                        <i className="fas fa-share-alt text-2xl text-gray-400 sm:text-3xl"></i>
                                     </div>
-                                    <h3 className="mb-2 text-lg font-semibold text-gray-700">No posts yet</h3>
-                                    <p className="mb-4 text-gray-500">You haven't created any social posts yet.</p>
+                                    <h3 className="mb-2 text-base font-semibold text-gray-700 sm:text-lg">No posts yet</h3>
+                                    <p className="mb-4 text-sm text-gray-500 sm:text-base">You haven't created any social posts yet.</p>
                                     <a
                                         href="/socialwall/new"
-                                        className="rounded-full border border-primary bg-primary px-4 py-2 text-white transition-colors duration-300 hover:bg-white hover:text-primary"
+                                        className="rounded-full border border-primary bg-primary px-4 py-2 text-sm text-white transition-colors duration-300 hover:bg-white hover:text-primary sm:text-base"
                                     >
                                         Create Your First Post
                                     </a>

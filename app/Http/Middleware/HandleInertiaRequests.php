@@ -41,7 +41,7 @@ class HandleInertiaRequests extends Middleware
         // Check if user is a seller
         $isSeller = false;
         if ($request->user()) {
-            $isSeller = LocalMarketSeller::where('user_id', $request->user()->id)->exists();
+            $isSeller = LocalMarketSeller::where('user_id', $request->user()->id)->where('status', 1)->exists();
         }
 
         return array_merge(parent::share($request), [

@@ -130,7 +130,7 @@ export default function RewardShop() {
                         <div className="mb-8">
                             <div className="flex flex-col gap-4 md:flex-row">
                                 <SearchBar
-                                    placeholder="Search attractions by name, category, or description..."
+                                    placeholder="Search rewards by name, category, or description..."
                                     onSearch={setSearchTerm}
                                     value={searchTerm}
                                     className="max-w-2xl flex-1"

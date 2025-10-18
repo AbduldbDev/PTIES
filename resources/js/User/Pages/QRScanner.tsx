@@ -1,6 +1,7 @@
 import { Head } from '@inertiajs/react';
+import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface QRScannerProps {
     onScanSuccess?: (result: string) => void;
@@ -14,8 +15,12 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
     const description =
         'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
     const scannerRef = useRef<Html5QrcodeScanner | null>(null);
+    const [isScanning, setIsScanning] = useState(true);
+    const [scannedResult, setScannedResult] = useState<string | null>(null);
 
     useEffect(() => {
+        if (!isScanning) return;
+
         // Initialize scanner
         const scanner = new Html5QrcodeScanner(
             'qr-scanner-container',
@@ -35,6 +40,15 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
 
         const onSuccess = (decodedText: string) => {
             console.log('QR Code scanned:', decodedText);
+
+            // Stop scanning immediately
+            setIsScanning(false);
+            setScannedResult(decodedText);
+
+            // Clear the scanner
+            scanner.clear().catch((err) => {
+                console.error('Failed to clear scanner:', err);
+            });
 
             // Call the success callback if provided
             onScanSuccess?.(decodedText);
@@ -65,7 +79,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
             }
         };
 
-        // Start scanning automatically
+        // Start scanning
         scanner.render(onSuccess, onFailure);
 
         // Cleanup function
@@ -76,7 +90,13 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
                 });
             }
         };
-    }, [onScanSuccess, onScanError, redirectTo, redirectFunction]);
+    }, [isScanning, onScanSuccess, onScanError, redirectTo, redirectFunction]);
+
+    // Function to restart scanning (in case you want to add a retry button)
+    const restartScanning = () => {
+        setIsScanning(true);
+        setScannedResult(null);
+    };
 
     return (
         <>
@@ -88,16 +108,11 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
             <section className="pt-28 pb-12 sm:pt-32 sm:pb-16">
                 <div className="min-h-screen bg-gradient-to-br px-4 py-8 sm:px-6 lg:px-8">
                     <div className="mx-auto max-w-4xl">
-                        {/* Header Section */}
-                        <div className="mb-8 text-center">
-                            <div className="mb-4 flex justify-center">
-                                <div className="h-1 w-12 rounded-full bg-secondary"></div>
-                            </div>
-                            <h1 className="mb-4 text-3xl font-bold text-primary md:text-4xl">QR Code Scanner</h1>
-                            <p className="mx-auto max-w-2xl text-lg text-gray-600">
-                                Scan QR codes to access information about Pakil's heritage sites and attractions
-                            </p>
-                        </div>
+                        <PageTitle
+                            title="QR SCANNER"
+                            subtitle="Scan QR Codes to Earn Points"
+                            desc="Use your device to scan QR codes from attractions, vendors, or events and collect Pakil Points for rewards."
+                        />
 
                         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
                             <div className="p-6 md:p-8">
@@ -107,6 +122,16 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
                                         id="qr-scanner-container"
                                         className="mx-auto w-full max-w-md overflow-hidden rounded-xl border-4 border-primary"
                                     />
+
+                                    {/* Scan Status */}
+                                    {!isScanning && scannedResult && (
+                                        <div className="mt-4 text-center">
+                                            <div className="inline-flex items-center rounded-full bg-green-100 px-4 py-2 text-green-800">
+                                                <i className="fas fa-check-circle mr-2"></i>
+                                                Successfully scanned! Redirecting...
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Instructions Section */}
@@ -197,7 +222,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
                                 <div className="mt-6 text-center">
                                     <p className="flex items-center justify-center text-sm text-gray-500">
                                         <i className="fas fa-camera mr-2 text-primary"></i>
-                                        Point your camera at a QR code to scan
+                                        {isScanning ? 'Point your camera at a QR code to scan' : 'Scanning completed - processing...'}
                                     </p>
                                 </div>
                             </div>

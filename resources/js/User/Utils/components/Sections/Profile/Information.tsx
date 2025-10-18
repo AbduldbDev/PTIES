@@ -93,7 +93,7 @@ export default function Information() {
     };
 
     return (
-        <section className="py-4">
+        <section className="mt-10 py-4">
             <div className="container mx-auto px-4">
                 <div className="mb-8 hidden items-start gap-6 md:flex">
                     <div className="group relative flex-shrink-0">
@@ -175,8 +175,9 @@ export default function Information() {
 
                 <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
                     <div className="border-b border-gray-100 p-4">
-                        <h2 className="flex items-center text-lg font-bold text-primary">
-                            <i className="fas fa-info-circle mr-2"></i> Complete Profile
+                        <h2 className="flex items-center text-lg font-bold text-primary sm:text-lg">
+                            <i className="fas fa-info-circle mr-2 text-base sm:text-lg"></i>
+                            <span className="text-sm sm:text-base"> Complete Profile</span>
                         </h2>
                     </div>
 
