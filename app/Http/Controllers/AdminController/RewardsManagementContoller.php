@@ -131,8 +131,6 @@ class RewardsManagementContoller extends Controller
         }
     }
 
-
-
     public function delete($id)
     {
         try {
@@ -147,4 +145,7 @@ class RewardsManagementContoller extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
+
 }
+

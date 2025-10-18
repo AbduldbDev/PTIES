@@ -68,8 +68,6 @@ class UserGamificationController extends Controller
             );
 
 
-            // Log::info('Calculated distance', ['distance' => $distance]);
-
             if ($distance > 500) {
                 return redirect()->route('gamification.reject')->with(
                     'error',
@@ -88,6 +86,7 @@ class UserGamificationController extends Controller
             PointsLog::create([
                 'attraction_id' => $attraction->id,
                 'user_id' => Auth::id(),
+
             ]);
 
             return redirect()->route('gamification.confirmation')->with('success', 'Points redeemed successfully.');

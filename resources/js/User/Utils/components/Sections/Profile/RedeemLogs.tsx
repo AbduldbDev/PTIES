@@ -6,6 +6,7 @@ interface RewardRedeemLogProps {
     completed_at: string | null;
     reward: RewardProps;
     points: string;
+    created_at: string;
 }
 
 type RewardProps = {
@@ -30,11 +31,13 @@ export default function RewardRedeemLogs() {
         });
     };
 
-    const getStatusColor = (completedDate: string | null) => {
+    const getStatusColor = (status: string, completedDate: string | null) => {
+        if (status == '2') return 'text-blue-600';
         return completedDate ? 'text-green-600' : 'text-yellow-600';
     };
 
-    const getStatusText = (completedDate: string | null) => {
+    const getStatusText = (status: string, completedDate: string | null) => {
+        if (status == '2') return 'Refunded';
         return completedDate ? 'Completed' : 'Pending';
     };
 
@@ -91,20 +94,20 @@ export default function RewardRedeemLogs() {
                                                                 Redeemed:
                                                             </span>
                                                         </span>
-                                                        <span className="text-gray-700">{formatDate(item.completed_at)}</span>
+                                                        <span className="text-gray-700">{formatDate(item.created_at)}</span>
                                                     </div>
 
                                                     {/* Status Badge */}
-                                                    <div className={`flex items-center gap-1.5 ${getStatusColor(item.completed_at)}`}>
+                                                    <div className={`flex items-center gap-1.5 ${getStatusColor(item.status, item.completed_at)}`}>
                                                         <span className="flex items-center gap-1">
                                                             <i className="fas fa-circle text-xs opacity-70 sm:hidden"></i>
                                                             <span className="font-medium text-gray-600 sm:font-normal">Status:</span>
                                                         </span>
-                                                        <span className="font-semibold">{getStatusText(item.completed_at)}</span>
+                                                        <span className="font-semibold">{getStatusText(item.status, item.completed_at)}</span>
                                                     </div>
 
-                                                    {/* Completed Date - Only show if exists */}
-                                                    {item.completed_at && (
+                                                    {/* Completed Date - Only show if exists and not refunded */}
+                                                    {item.completed_at && item.status !== '2' && (
                                                         <div className="flex items-center gap-1.5 text-green-600">
                                                             <span className="flex items-center gap-1">
                                                                 <i className="fas fa-check-circle text-xs opacity-70 sm:hidden"></i>
@@ -119,9 +122,11 @@ export default function RewardRedeemLogs() {
                                             </div>
                                         </div>
                                         <div className="flex items-center justify-between sm:justify-end">
-                                            <div className="flex items-center text-red-500">
+                                            <div className={`flex items-center ${item.status == '2' ? 'text-green-500' : 'text-red-500'}`}>
                                                 <img src="/User/Layout/Pakilpoints.png" className="mr-1 h-5 w-5 sm:h-6 sm:w-6" alt="Points" />
-                                                <span className="text-sm font-medium">-{item.points} pts</span>
+                                                <span className="text-sm font-medium">
+                                                    {item.status == '2' ? `+${item.points} pts` : `-${item.points} pts`}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

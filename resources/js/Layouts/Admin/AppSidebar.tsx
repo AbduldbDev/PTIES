@@ -3,6 +3,7 @@ import {
     CalenderIcon,
     ChevronDownIcon,
     CommenQuestion,
+    CreditCard,
     Crown,
     DocsIcon,
     FontAwesomeFlag,
@@ -14,6 +15,7 @@ import {
     MapDot,
     Shop,
     SiteMap,
+    StarRegular,
     UserCircleIcon,
     UserCrown,
     UserGroup,
@@ -286,16 +288,32 @@ const otherNavItems: NavItem[] = [
         ],
     },
     {
-        icon: <HouseMedical />,
+        icon: <StarRegular />,
         name: 'Gamification Rewards',
         requiredUserType: ['admin', 'content_manager'],
         subItems: [
-            { name: 'Add New Reward', path: '/Admin/rewards/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Rewards', path: '/Admin/rewards', requiredUserType: ['admin', 'content_manager'] },
+            {
+                name: 'Rewards Managment',
+                path: '',
+                requiredUserType: ['admin', 'content_manager'],
+                subItems: [
+                    { name: 'Add New Reward', path: '/Admin/rewards/new', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'All Rewards', path: '/Admin/rewards', requiredUserType: ['admin', 'content_manager'] },
+                ],
+            },
+            {
+                name: 'Rewards Redemption ',
+                path: '',
+                requiredUserType: ['admin', 'content_manager'],
+                subItems: [
+                    { name: 'Pending Redeems', path: '/Admin/rewards/redeem/pending', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'Redeem History', path: '/Admin/rewards/redeem/', requiredUserType: ['admin', 'content_manager'] },
+                ],
+            },
         ],
     },
     {
-        icon: <HouseMedical />,
+        icon: <CreditCard />,
         name: 'Local Market',
         requiredUserType: ['admin', 'content_manager'],
         subItems: [

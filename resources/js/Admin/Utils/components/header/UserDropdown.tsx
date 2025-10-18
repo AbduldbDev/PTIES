@@ -37,7 +37,7 @@ export default function UserDropdown({ auth }: UserDropdownProps) {
                     />
                 </span>
 
-                <span className="text-theme-sm mr-1 block font-medium"> {displayName}</span>
+                <span className="mr-1 block text-theme-sm font-medium"> {displayName}</span>
                 <svg
                     className={`stroke-gray-500 transition-transform duration-200 dark:stroke-gray-400 ${isOpen ? 'rotate-180' : ''}`}
                     width="18"
@@ -59,13 +59,13 @@ export default function UserDropdown({ auth }: UserDropdownProps) {
             <Dropdown
                 isOpen={isOpen}
                 onClose={closeDropdown}
-                className="shadow-theme-lg dark:bg-gray-dark absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 dark:border-gray-800"
+                className="absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark"
             >
                 <div>
-                    <span className="text-theme-sm block font-medium text-gray-700 dark:text-gray-400">
+                    <span className="block text-theme-sm font-medium text-gray-700 dark:text-gray-400">
                         {auth?.user?.profile?.first_name || ''} {auth?.user?.profile?.middle_name || ''} {auth?.user?.profile?.last_name || ''}
                     </span>
-                    <span className="text-theme-xs mt-0.5 block text-gray-500 dark:text-gray-400">{auth?.user?.email || 'cant find'}</span>
+                    <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">{auth?.user?.email || 'cant find'}</span>
                 </div>
 
                 <ul className="flex flex-col gap-1 border-b border-gray-200 pt-4 pb-3 dark:border-gray-800">
@@ -74,7 +74,7 @@ export default function UserDropdown({ auth }: UserDropdownProps) {
                             onItemClick={closeDropdown}
                             tag="a"
                             to="/Admin/profile"
-                            className="group text-theme-sm flex items-center gap-3 rounded-lg px-3 py-2 font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+                            className="group flex items-center gap-3 rounded-lg px-3 py-2 text-theme-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
                         >
                             <svg
                                 className="fill-gray-500 group-hover:fill-gray-700 dark:fill-gray-400 dark:group-hover:fill-gray-300"
@@ -94,7 +94,7 @@ export default function UserDropdown({ auth }: UserDropdownProps) {
                             Edit profile
                         </DropdownItem>
                     </li>
-                    <li>
+                    {/* <li>
                         <DropdownItem
                             onItemClick={closeDropdown}
                             tag="a"
@@ -118,7 +118,7 @@ export default function UserDropdown({ auth }: UserDropdownProps) {
                             </svg>
                             Account settings
                         </DropdownItem>
-                    </li>
+                    </li> */}
                     {/* <li>
                         <DropdownItem
                             onItemClick={closeDropdown}
@@ -149,7 +149,7 @@ export default function UserDropdown({ auth }: UserDropdownProps) {
                     href="/Admin/logout"
                     method="post"
                     as="button"
-                    className="group text-theme-sm mt-3 flex items-center gap-3 rounded-lg px-3 py-2 font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+                    className="group mt-3 flex items-center gap-3 rounded-lg px-3 py-2 text-theme-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
                 >
                     <svg
                         className="fill-gray-500 group-hover:fill-gray-700 dark:group-hover:fill-gray-300"

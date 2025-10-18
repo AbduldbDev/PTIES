@@ -30,7 +30,8 @@ use App\Http\Controllers\AdminController\{
     WebsiteSettingsController,
     CustomerAccountController,
     SellerManagementController,
-    MarketProductsController
+    MarketProductsController,
+    RewardsRedeemManagementController
 };
 
 Route::middleware('admin.access:guest')->group(function () {});
@@ -255,6 +256,13 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::delete('/delete/{id}', [RewardsManagementContoller::class, 'delete'])->name('delete');
     });
 
+    Route::prefix('/Admin/rewards/redeem')->name('rewardsredeem.')->group(function () {
+        Route::get('/', [RewardsRedeemManagementController::class, 'completed'])->name('completed');
+        Route::get('/pending', [RewardsRedeemManagementController::class, 'pending'])->name('pending');
+        Route::get('/details/{id}', [RewardsRedeemManagementController::class, 'details'])->name('details');
+        Route::post('/complete/{id}', [RewardsRedeemManagementController::class, 'complete'])->name('complete');
+        Route::post('/refund/{id}', [RewardsRedeemManagementController::class, 'refund'])->name('refund');
+    });
 
     Route::prefix('/Admin/sellers')->name('rewards.')->group(function () {
         Route::get('/', [SellerManagementController::class, 'index'])->name('index');

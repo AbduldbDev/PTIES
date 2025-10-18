@@ -23,6 +23,7 @@ import CloseLineIcon from './close-line.svg?react';
 import CloseIcon from './close.svg?react';
 import CommenQuestion from './comments-question.svg?react';
 import CopyIcon from './copy.svg?react';
+import CreditCard from './credit-card-regular-full.svg?react';
 import Crown from './crown.svg?react';
 import DocsIcon from './docs.svg?react';
 import DollarLineIcon from './dollar-line.svg?react';
@@ -32,6 +33,7 @@ import EyeCloseIcon from './eye-close.svg?react';
 import EyeIcon from './eye.svg?react';
 import FileIcon from './file.svg?react';
 import FolderIcon from './folder.svg?react';
+import FontAwesomeFlag from './font-awesome-regular-full.svg?react';
 import GearIcon from './gear-solid-full.svg?react';
 import GearIconThin from './gear.svg?react';
 import Grid2 from './grid-2.svg?react';
@@ -58,21 +60,19 @@ import PlusIcon from './plus.svg?react';
 import ShootingStarIcon from './shooting-star.svg?react';
 import Shop from './shop.svg?react';
 import SiteMap from './sitemap-light-full.svg?react';
+import StarRegular from './star-regular-full.svg?react';
 import TableIcon from './table.svg?react';
 import TaskIcon from './task-icon.svg?react';
 import TimeIcon from './time.svg?react';
 import TrashBinIcon from './trash.svg?react';
 import UserCircleIcon from './user-circle.svg?react';
 import UserCrown from './user-crown.svg?react';
+import UserGroup from './user-group-light-full.svg?react';
 import UserIcon from './user-line.svg?react';
 import UserTie from './user-tie.svg?react';
 import VideoIcon from './videos.svg?react';
-import UserGroup from './user-group-light-full.svg?react';
-import FontAwesomeFlag from './font-awesome-regular-full.svg?react';
 
 export {
-    FontAwesomeFlag,
-    UserGroup,
     AlertHexaIcon,
     AlertIcon,
     AngleDownIcon,
@@ -98,6 +98,7 @@ export {
     CloseLineIcon,
     CommenQuestion,
     CopyIcon,
+    CreditCard,
     Crown,
     DocsIcon,
     DollarLineIcon,
@@ -109,6 +110,7 @@ export {
     EyeIcon,
     FileIcon,
     FolderIcon,
+    FontAwesomeFlag,
     GearIcon,
     GearIconThin,
     Grid2,
@@ -133,12 +135,14 @@ export {
     ShootingStarIcon,
     Shop,
     SiteMap,
+    StarRegular,
     TableIcon,
     TaskIcon,
     TimeIcon,
     TrashBinIcon,
     UserCircleIcon,
     UserCrown,
+    UserGroup,
     UserIcon,
     UserTie,
     VideoIcon,

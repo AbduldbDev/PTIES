@@ -24,9 +24,10 @@ class ProfileController extends Controller
             ->where('user_id', Auth::id())
             ->first();
 
-        $posts = SocialWall::where('user_id', Auth::id())->withCount('likes')->get();
-        $visit = PointsLog::with('attraction')->where('user_id', Auth::id())->get();
-        $redeemLogs = RewardsLogs::with('reward')->where('user_id', Auth::id())->get();
+        $posts = SocialWall::where('user_id', Auth::id())->withCount('likes')->latest()->take(8)->get();
+        $visit = PointsLog::with('attraction')->where('user_id', Auth::id())->latest()->take(5)->get();
+        $redeemLogs = RewardsLogs::with('reward')->where('user_id', Auth::id())->latest()->take(3)->get();
+
         return Inertia::render('User/Pages/Profile', [
             'banner' => $banner,
             'item' => $profile,

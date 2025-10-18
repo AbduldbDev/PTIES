@@ -60,6 +60,7 @@ class RewardsController extends Controller
             RewardsLogs::create([
                 'reward_id' => $reward->id,
                 'user_id' => Auth::id(),
+                'points' =>   $reward->price,
             ]);
 
             return redirect()->back()->with('success', 'Points redeem successfully');
