@@ -783,19 +783,21 @@ export default function SellerDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-12">
-                        <div className="mb-6 flex items-center justify-between">
-                            <h2 className="text-dark text-2xl font-bold">Related Products</h2>
-                            <a href="/localmarket" className="flex items-center font-medium text-primary hover:text-primary/80">
-                                View All <i className="fas fa-arrow-right ml-1" />
-                            </a>
+                    {items.length > 0 && (
+                        <div className="mt-12">
+                            <div className="mb-6 flex items-center justify-between">
+                                <h2 className="text-dark text-2xl font-bold">All Products</h2>
+                                <a href="/localmarket" className="flex items-center font-medium text-primary hover:text-primary/80">
+                                    View All <i className="fas fa-arrow-right ml-1" />
+                                </a>
+                            </div>
+                            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                                {items.map((item, index) => (
+                                    <SellerProduct key={index} product={item} />
+                                ))}
+                            </div>
                         </div>
-                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                            {items.map((item, index) => (
-                                <SellerProduct key={index} product={item} />
-                            ))}
-                        </div>
-                    </div>
+                    )}
                 </div>
             </div>
 

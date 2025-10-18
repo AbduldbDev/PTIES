@@ -219,7 +219,7 @@ export default function ProductDetails() {
                     </div>
                 </div>
 
-                <div className="mt-8">
+                {/* <div className="mt-8">
                     <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-md md:p-6">
                         <h2 className="text-dark mb-4 flex items-center text-lg font-bold md:text-xl">
                             <i className="fas fa-store mr-2 text-primary" />
@@ -245,7 +245,7 @@ export default function ProductDetails() {
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 <div className="mt-8">
                     <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-md md:p-6">
@@ -294,22 +294,11 @@ export default function ProductDetails() {
                                                 <p className="text-xs text-gray-600 md:text-sm">{product.shop.email}</p>
                                             </div>
                                         </div>
-
-                                        {/* Facebook name */}
-                                        <div className="flex items-center">
-                                            <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 md:h-10 md:w-10">
-                                                <i className="fab fa-facebook text-sm text-primary md:text-base" />
-                                            </div>
-                                            <div>
-                                                <p className="text-dark text-sm font-medium md:text-base">Facebook</p>
-                                                <p className="text-xs text-gray-600 md:text-sm">Artisan's Corner Pakil</p>
-                                            </div>
-                                        </div>
                                     </div>
 
                                     {/* Social Links */}
                                     <h4 className="mt-4 mb-2 text-xs font-semibold text-gray-500 md:text-sm">Social Links</h4>
-                                    <div className="flex items-center gap-3 md:gap-4">
+                                    <div className="mt-5 flex items-center gap-3 md:gap-4">
                                         {product.shop.facebook_link && (
                                             <a
                                                 href={product.shop.facebook_link}
@@ -394,20 +383,21 @@ export default function ProductDetails() {
                         </div>
                     </div>
                 </div>
-
-                <div className="mt-12">
-                    <div className="mb-6 flex items-center justify-between">
-                        <h2 className="text-dark text-2xl font-bold">Related Products</h2>
-                        <a href="/localmarket" className="flex items-center font-medium text-primary hover:text-primary/80">
-                            View All <i className="fas fa-arrow-right ml-1" />
-                        </a>
+                {related.length > 0 && (
+                    <div className="mt-12">
+                        <div className="mb-6 flex items-center justify-between">
+                            <h2 className="text-dark text-2xl font-bold">Related Products</h2>
+                            <a href="/localmarket" className="flex items-center font-medium text-primary hover:text-primary/80">
+                                View All <i className="fas fa-arrow-right ml-1" />
+                            </a>
+                        </div>
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                            {related.map((item, index) => (
+                                <MarketProduct key={index} product={item} />
+                            ))}
+                        </div>
                     </div>
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                        {related.map((item, index) => (
-                            <MarketProduct key={index} product={item} />
-                        ))}
-                    </div>
-                </div>
+                )}
             </div>
         </section>
     );
