@@ -28,7 +28,7 @@ export default function RecentVisit() {
     };
 
     return (
-        <section className="py-4">
+        <section className="py-1 lg:py-4">
             <div className="container mx-auto px-4">
                 <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
                     <div className="flex items-center justify-between border-b border-gray-100 p-4">

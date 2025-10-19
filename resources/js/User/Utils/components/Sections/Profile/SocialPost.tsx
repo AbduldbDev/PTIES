@@ -18,7 +18,7 @@ type PageProps = {
 export default function SocialPost() {
     const { posts } = usePage<PageProps>().props;
     return (
-        <section className="py-4">
+        <section className="py-1 lg:py-4">
             <div className="container mx-auto px-4">
                 <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
                     <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3">
@@ -40,7 +40,7 @@ export default function SocialPost() {
 
                                             {!post.is_approved && (
                                                 <div className="absolute inset-0 flex items-center justify-center">
-                                                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-yellow-500/80 lg:h-40 lg:w-40">
+                                                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-yellow-500/40 lg:h-40 lg:w-40">
                                                         <span className="text-sm font-semibold text-white">Pending</span>
                                                     </div>
                                                 </div>

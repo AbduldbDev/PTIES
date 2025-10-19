@@ -61,7 +61,8 @@ Route::middleware(['admin.access:auth', 'fetch.notifications'])->group(function 
 
 
     Route::prefix('/Admin')->name('admin')->group(function () {
-        Route::get('/', [AccountManagementController::class, 'dashboard'])->name('dashboard');
+        Route::get('/', [WebsiteSettingsController::class, 'dashboard'])->name('dashboard');
+        Route::get('/calendar', [WebsiteSettingsController::class, 'calendar'])->name('calendar');
         Route::get('/profile', [AdminProfileController::class, 'profile'])->name('profile');
         Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
     });
@@ -276,7 +277,7 @@ Route::middleware(['admin.access:auth', 'fetch.notifications'])->group(function 
         Route::post('/approve/{id}', [SellerManagementController::class, 'approve'])->name('approve');
         Route::post('/reject/{id}', [SellerManagementController::class, 'reject'])->name('reject');
     });
- 
+
 
     Route::prefix('/Admin/market/products')->name('localmarketproducts.')->group(function () {
         Route::get('/', [MarketProductsController::class, 'index'])->name('index');

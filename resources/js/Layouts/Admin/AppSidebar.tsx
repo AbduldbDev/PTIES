@@ -72,7 +72,7 @@ const dashBoardItems: NavItem[] = [
     {
         icon: <CalenderIcon />,
         name: 'Calendar',
-        path: '/Admin/',
+        path: '/Admin/calendar',
         requiredUserType: ['admin'],
     },
 ];
@@ -457,7 +457,25 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
             if (!hasAccess(nav.requiredUserType)) return;
 
             if (nav.subItems) {
-                checkItems(nav.subItems, [index.toString()], 'other');
+                checkItems(nav.subItems, [index.toString()], 'info');
+            }
+        });
+
+        dashBoardItems.forEach((nav, index) => {
+            // Skip items that user doesn't have access to
+            if (!hasAccess(nav.requiredUserType)) return;
+
+            if (nav.subItems) {
+                checkItems(nav.subItems, [index.toString()], 'dash');
+            }
+        });
+
+        ContentManagementItems.forEach((nav, index) => {
+            // Skip items that user doesn't have access to
+            if (!hasAccess(nav.requiredUserType)) return;
+
+            if (nav.subItems) {
+                checkItems(nav.subItems, [index.toString()], 'cm');
             }
         });
 
@@ -752,6 +770,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                 {renderMenuItems(AdminMenuItems, 'main')}
                             </div>
                         )}
+
                         {otherNavItems.some((item) => hasAccess(item.requiredUserType)) && (
                             <div className="mt-6">
                                 <h2

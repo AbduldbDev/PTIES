@@ -42,7 +42,7 @@ export default function RewardRedeemLogs() {
     };
 
     return (
-        <section className="py-4">
+        <section className="py-1 lg:py-4">
             <div className="container mx-auto px-4">
                 <div className="mb-6 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm sm:rounded-xl">
                     <div className="flex items-center justify-between border-b border-gray-100 p-4 sm:p-4">
