@@ -255,7 +255,7 @@ export default function Home() {
                                 <h4 className="mb-6 flex items-center text-lg font-bold text-primary sm:text-xl">
                                     <i className="fas fa-location-dot mr-3"></i> Geographical Information
                                 </h4>
-                                <div className="overflow-x-auto">
+                                <div className="mb-6 overflow-x-auto">
                                     <table className="w-full text-sm sm:text-base">
                                         <tbody>
                                             <tr>
@@ -285,10 +285,10 @@ export default function Home() {
                                     <h5 className="text-dark mb-3 flex items-center text-base font-semibold sm:text-lg">
                                         <i className="fas fa-project-diagram mr-2 text-secondary"></i> Political Subdivisions
                                     </h5>
-                                    <p className="mb-2 text-sm text-gray-700 sm:text-base">
+                                    <p className="mb-2 px-2 text-sm text-gray-700 sm:text-base">
                                         <span className="font-medium text-primary">13 Barangays</span>
                                     </p>
-                                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                                    <div className="grid grid-cols-1 gap-4 px-1 md:grid-cols-2">
                                         <div className="rounded-lg border border-gray-200 bg-white p-4">
                                             <h6 className="mb-2 flex items-center text-sm font-medium text-primary sm:text-base">
                                                 <i className="fas fa-arrow-right mr-2 text-xs"></i> Silangan (East)
@@ -324,7 +324,7 @@ export default function Home() {
                                     <h5 className="text-dark mb-3 flex items-center text-base font-semibold sm:text-lg">
                                         <i className="fas fa-route mr-2 text-secondary"></i> Distance From
                                     </h5>
-                                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                                    <div className="grid grid-cols-1 gap-4 px-1 md:grid-cols-2">
                                         <div className="rounded-lg border border-gray-200 bg-white p-3">
                                             <p className="text-xs text-gray-600 sm:text-sm">Sta. Cruz, Laguna</p>
                                             <p className="text-base font-bold text-primary sm:text-lg">19km</p>
