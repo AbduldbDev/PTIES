@@ -87,7 +87,7 @@ export default function GuideCreateForm() {
         }
 
         const hotlineRegex = /^(0\d{2,4})[- ]?\d{5,7}$/;
-        if (!hotlineRegex.test(form.data.contact)) {
+        if (!hotlineRegex.test(form.data.hotline)) {
             form.setError('hotline', 'Please enter a valid hotline number');
             return;
         }

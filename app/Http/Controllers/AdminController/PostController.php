@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\AdminController;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\LogsSocialWall;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\SocialWall;
@@ -90,6 +92,7 @@ class PostController extends Controller
             $items->appends(['per_page' => $perPage]);
         }
 
+
         return Inertia::render('Admin/Pages/SocialWall/PostsTable', [
             'items' => $items,
             'text' => $text,
@@ -109,6 +112,13 @@ class PostController extends Controller
         $post = SocialWall::findOrFail($id);
         $post->is_approved = 1;
         $post->save();
+        LogsSocialWall::create([
+            'post_id' => $post->id,
+            'user_id' => Auth::id(),
+            'status' => 'Approve'
+        ]);
+
+
         return redirect()->back()->with('success', 'Post Approved successfully.');
     }
 
@@ -117,6 +127,11 @@ class PostController extends Controller
         $post = SocialWall::findOrFail($id);
         $post->is_approved = 2;
         $post->save();
+        LogsSocialWall::create([
+            'post_id' => $post->id,
+            'user_id' => Auth::id(),
+            'status' => 'Reject'
+        ]);
 
         return redirect()->back()->with('success', 'Post Rejected successfully.');
     }

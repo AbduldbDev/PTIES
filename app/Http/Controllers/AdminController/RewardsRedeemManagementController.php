@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Models\LogsRedemptions;
 use App\Models\RewardsLogs;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -61,6 +63,8 @@ class RewardsRedeemManagementController extends Controller
             $items->appends(['per_page' => $perPage]);
         }
 
+
+
         return Inertia::render('Admin/Pages/RewardsRedeem/AllRewards', [
             'items' => $items,
             'status' => "Pending"
@@ -89,6 +93,13 @@ class RewardsRedeemManagementController extends Controller
             'completed_at' => Carbon::now(),
         ]);
 
+        LogsRedemptions::create([
+            'rewards_id' => $redemption->reward_id,
+            'user_id' => Auth::id(),
+            'details_id' => $redemption->id,
+            'status' => 'Completed'
+        ]);
+
         return back()->with('success', 'Redemption marked as completed successfully.');
     }
 
@@ -115,6 +126,13 @@ class RewardsRedeemManagementController extends Controller
 
         $redemption->update([
             'status' => '2',
+        ]);
+
+        LogsRedemptions::create([
+            'rewards_id' => $redemption->reward_id,
+            'user_id' => Auth::id(),
+            'details_id' => $redemption->id,
+            'status' => 'Refund'
         ]);
 
 

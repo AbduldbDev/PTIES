@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\AdminController;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\LocalMarketProducts;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Mail\ProductApprovalMail;
 use App\Mail\ProductRejectMail;
+use App\Models\LogsProductApproval;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 
@@ -119,6 +121,14 @@ class MarketProductsController extends Controller
 
             $seller = $product->shop;
             Mail::to($seller->user->email)->send(new ProductApprovalMail($seller, $product));
+
+            LogsProductApproval::create([
+                'product_id' => $product->id,
+                'user_id' => Auth::id(),
+                'status' => 'Approve'
+            ]);
+
+
             return redirect()->route('localmarketproducts.index')->with('success', 'Product Approved successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Approval saved, but email not sent: ' . $e->getMessage());
@@ -133,6 +143,13 @@ class MarketProductsController extends Controller
 
             $seller = $product->shop;
             Mail::to($seller->user->email)->send(new ProductRejectMail($seller, $product));
+
+            LogsProductApproval::create([
+                'product_id' => $product->id,
+                'user_id' => Auth::id(),
+                'status' => 'Reject'
+            ]);
+
             return redirect()->route('localmarketproducts.index')->with('success', 'Product Rejected successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Rejection saved, but email not sent: ' . $e->getMessage());

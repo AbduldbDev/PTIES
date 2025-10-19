@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AdminController;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\LocalMarketSeller;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SellerApprovalMail;
 use App\Mail\SellerRejectMail;
+use App\Models\LogsSeller;
 
 class SellerManagementController extends Controller
 {
@@ -123,6 +125,13 @@ class SellerManagementController extends Controller
         $seller->status = 1;
         $seller->save();
         Mail::to($seller->email)->send(new SellerApprovalMail($seller));
+        LogsSeller::create([
+            'seller_id' => $seller->id,
+            'user_id' => Auth::id(),
+            'status' => 'Approve'
+        ]);
+
+
         return redirect()->back()->with('success', 'Seller Approved successfully.');
     }
 
@@ -132,6 +141,11 @@ class SellerManagementController extends Controller
         $seller->status = 2;
         $seller->save();
         Mail::to($seller->email)->send(new SellerRejectMail($seller));
+        LogsSeller::create([
+            'seller_id' => $seller->id,
+            'user_id' => Auth::id(),
+            'status' => 'Reject'
+        ]);
         return redirect()->back()->with('success', 'Seller Rejected successfully.');
     }
 

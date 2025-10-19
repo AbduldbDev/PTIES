@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController\{
     AccountManagementController,
     AdminProfileController,
     AttractionsController,
+    AuditLogsController,
     BannerController,
     BarangayInfoController,
     CMScontroller,
@@ -286,5 +287,12 @@ Route::middleware(['admin.access:auth', 'fetch.notifications'])->group(function 
         Route::get('/view/{id}', [MarketProductsController::class, 'view'])->name('view');
         Route::post('/approve/{id}', [MarketProductsController::class, 'approve'])->name('approve');
         Route::post('/reject/{id}', [MarketProductsController::class, 'reject'])->name('reject');
+    });
+
+    Route::prefix('/Admin/audit/logs/')->name('localmarketproducts.')->group(function () {
+        Route::get('/rewards', [AuditLogsController::class, 'rewards'])->name('rewards');
+        Route::get('/products', [AuditLogsController::class, 'products'])->name('products');
+        Route::get('/social-wall', [AuditLogsController::class, 'socialwall'])->name('socialwall');
+        Route::get('/seller', [AuditLogsController::class, 'seller'])->name('seller');
     });
 });
