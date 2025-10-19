@@ -11,6 +11,8 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use App\Models\CMSBanner;
+use App\Models\Notification;
+use App\Models\User;
 
 class SocialWallController extends Controller
 {
@@ -25,9 +27,10 @@ class SocialWallController extends Controller
     public function store(Request $request)
     {
         try {
-            $validated = $request->validate([
+            $request->validate([
                 'caption' => 'required|string|min:10|max:500',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:25600',
+
             ]);
 
             $imagePath = null;
@@ -40,16 +43,29 @@ class SocialWallController extends Controller
                 $postId = Str::upper(Str::random(5));
             } while (SocialWall::where('post_id', $postId)->exists());
 
-            SocialWall::create([
+            $post =  SocialWall::create([
                 'user_id' => Auth::id(),
                 'post_id' => $postId,
                 'image' => $imagePath,
-                'caption' => $validated['caption'],
+                'caption' => $request->caption,
             ]);
+
+            $admins = User::whereIn('user_type', ['admin', 'content_manager'])->get();
+
+            foreach ($admins as $admin) {
+                Notification::create([
+                    'user_id' => $admin->id,
+                    'type' => 'Social Wall',
+                    'title' => 'New Post on Social Wall',
+                    'message' => Str::limit($request->caption, 50),
+                    'url' => '/Admin/social-wall/view/' . $post->id,
+                ]);
+            }
+
 
             return redirect()->route('user.socialwall.confirmation');
         } catch (\Exception $e) {
-            return redirect()->back()->withError(['error' => 'Something went wrong while uploading. Please try again.']);
+            return back()->with('error', $e->getMessage());
         }
     }
 

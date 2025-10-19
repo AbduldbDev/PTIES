@@ -11,6 +11,8 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SellerConfirmationMail;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use App\Models\Notification;
 
 class SellerRegistration extends Controller
 {
@@ -22,14 +24,14 @@ class SellerRegistration extends Controller
                 'barangay' => 'required|string|max:255',
                 'location' => 'required|string|max:255',
                 'bio' => 'nullable|string',
-                'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:20480',
+                'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:256000',
                 'owner_name' => 'required|string|max:255',
                 'owner_contact' => 'required|string|max:50',
                 'owner_address' => 'required|string|max:255',
                 'email' => 'required|email|unique:local_market_sellers,email',
                 'category' => 'required|array',
                 'product_description' => 'required|string',
-                'product_images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:20480',
+                'product_images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:256000',
                 'min_price' => 'nullable|numeric',
                 'max_price' => 'nullable|numeric',
                 'availability' => 'nullable|string|max:255',
@@ -37,8 +39,8 @@ class SellerRegistration extends Controller
                 'instagram_link' => 'nullable|string|max:255',
                 'tiktok_link' => 'nullable|string|max:255',
                 'website_link' => 'nullable|string|max:255',
-                'business_permit' => 'nullable|file|mimes:pdf,jpeg,png,jpg,webp|max:20480',
-                'additional_docs.*' => 'nullable|file|mimes:pdf,jpeg,png,jpg,webp|max:20480',
+                'business_permit' => 'nullable|file|mimes:pdf,jpeg,png,jpg,webp|max:256000',
+                'additional_docs.*' => 'nullable|file|mimes:pdf,jpeg,png,jpg,webp|max:256000',
                 'long' => 'nullable|string',
                 'lat' => 'nullable|string',
             ]);
@@ -113,6 +115,20 @@ class SellerRegistration extends Controller
                 'long' => $request->long,
                 'lat' => $request->lat,
             ]);
+
+            $admins = User::whereIn('user_type', ['admin', 'content_manager'])->get();
+
+            foreach ($admins as $admin) {
+                Notification::create([
+                    'user_id' => $admin->id,
+                    'type' => 'MarketPlace',
+                    'title' => 'New Seller Registered',
+                    'message' => Str::limit($sellerData->business_name, 50),
+                    'url' => '/Admin/sellers/view/' . $sellerData->id,
+                ]);
+            }
+
+
             Mail::to($request->email)->send(new SellerConfirmationMail($sellerData));
             return redirect()->route('seller.confirmation')->with('success', 'created successfully.');
         } catch (\Exception $e) {
@@ -132,7 +148,7 @@ class SellerRegistration extends Controller
                 'website_link' => 'nullable|url|max:255',
                 'owner_contact' => 'nullable|string|max:20',
                 'email' => 'nullable|email|max:255',
-                'logo' => 'nullable|max:20480',
+                'logo' => 'nullable|max:256000',
 
             ]);
 

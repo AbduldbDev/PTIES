@@ -70,7 +70,7 @@ class OfficialsController extends Controller
                 'facebook'       => 'nullable|string|max:255',
                 'contact'        => 'nullable|string|max:255',
                 'email'          => 'nullable|email|max:255',
-                'image'          => 'nullable|image|mimes:webp,jpg,jpeg,png|max:2048',
+                'image'          => 'nullable|image|mimes:webp,jpg,jpeg,png|max:25600',
             ]);
 
             $position = $validated['position'] === 'other'
@@ -143,7 +143,7 @@ class OfficialsController extends Controller
                 'facebook'       => 'nullable|string|max:255',
                 'contact'        => 'nullable|string|max:255',
                 'email'          => 'nullable|email|max:255',
-                'image'          => 'nullable|image|mimes:webp,jpg,jpeg,png|max:2048',
+                'image'          => 'nullable|image|mimes:webp,jpg,jpeg,png|max:25600',
             ]);
 
             $position = $validated['position'] === 'other'

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\CMSColor;
+use App\Models\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class WebsiteSettingsController  extends Controller
 {
@@ -46,5 +48,27 @@ class WebsiteSettingsController  extends Controller
 
             return back()->with('error', 'Failed to update color theme: ' . $e->getMessage());
         }
+    }
+
+
+    public function markAsRead($id)
+    {
+        $notification = Notification::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
+        $notification->update(['is_read' => true]);
+        return redirect($notification->url ?? '/');
+    }
+
+    public function destroy($id)
+    {
+        $notification = Notification::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
+        $notification->delete();
+
+        return back();
     }
 }

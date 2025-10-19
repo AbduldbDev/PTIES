@@ -77,20 +77,40 @@ export const Footer = () => {
                                 <div className="mb-3 flex space-x-2 sm:mb-4 sm:space-x-3 md:mb-3 md:space-x-2 lg:mb-4 lg:space-x-3">
                                     {[
                                         { platform: 'facebook-f', url: 'https://www.facebook.com/pakilturismo' },
-                                        { platform: 'instagram', url: 'https://instagram.com/PakilTourism' },
-                                        { platform: 'youtube', url: 'https://youtube.com/@PakilTourism' },
-                                        { platform: 'tiktok', url: 'https://tiktok.com/@PakilTourism' },
-                                    ].map(({ platform, url }) => (
-                                        <a
-                                            key={platform}
-                                            href={url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition hover:bg-white/30 sm:h-9 sm:w-9 md:h-8 md:w-8 lg:h-10 lg:w-10"
-                                        >
-                                            <i className={`fab fa-${platform} text-xs sm:text-sm md:text-xs lg:text-base`}></i>
-                                        </a>
-                                    ))}
+                                        { platform: 'instagram', url: '' },
+                                        { platform: 'youtube', url: '' },
+                                        { platform: 'tiktok', url: '' },
+                                    ].map(({ platform, url }) => {
+                                        const hasUrl = url && url.trim() !== '';
+
+                                        const baseClasses =
+                                            'flex h-8 w-8 items-center justify-center rounded-full transition sm:h-9 sm:w-9 md:h-8 md:w-8 lg:h-10 lg:w-10';
+                                        const iconClass = `fab fa-${platform} text-xs sm:text-sm md:text-xs lg:text-base`;
+
+                                        if (hasUrl) {
+                                            return (
+                                                <a
+                                                    key={platform}
+                                                    href={url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className={`${baseClasses} bg-white/20 opacity-100 hover:bg-white/30`}
+                                                >
+                                                    <i className={iconClass}></i>
+                                                </a>
+                                            );
+                                        }
+
+                                        return (
+                                            <div
+                                                key={platform}
+                                                className={`${baseClasses} cursor-not-allowed bg-white/10 opacity-40`}
+                                                title="Unavailable"
+                                            >
+                                                <i className={iconClass}></i>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
 
                                 <p className="mb-2 text-xs opacity-80 sm:text-sm md:text-xs lg:text-base">Subscribe to our newsletter</p>

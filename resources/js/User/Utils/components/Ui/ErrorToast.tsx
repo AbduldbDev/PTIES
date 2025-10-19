@@ -65,7 +65,7 @@ export default function FlashMessage({ type, message, key, duration = 5000 }: Fl
     const { container, iconColor, title: messageTitle, icon } = styles[type];
 
     return (
-        <div className="fixed top-30 right-4 z-50 w-full max-w-sm">
+        <div className="fixed top-30 right-4 z-50 max-w-sm">
             <div className={`animate-fade-in-up flex items-start space-x-3 rounded-lg border p-4 shadow-lg ${container}`}>
                 <div className="flex-shrink-0">
                     <div className={`flex h-6 w-6 items-center justify-center rounded-full ${iconColor} bg-opacity-20`}>

@@ -145,7 +145,4 @@ class RewardsManagementContoller extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
-
-
 }
-

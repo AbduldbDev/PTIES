@@ -38,7 +38,7 @@ Route::middleware('admin.access:guest')->group(function () {});
 Route::get('/Admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.homes');
 Route::post('/Admin/login', [AdminLoginController::class, 'login'])->name('admin.login');
 
-Route::middleware('admin.access:admin')->group(function () {
+Route::middleware(['admin.access:admin', 'fetch.notifications'])->group(function () {
     Route::prefix('/Admin/accounts')->name('account.management.')->group(function () {
         Route::get('/', [AccountManagementController::class, 'index'])->name('index');
         Route::get('/new', [AccountManagementController::class, 'new'])->name('new');
@@ -55,7 +55,11 @@ Route::middleware('admin.access:admin')->group(function () {
 });
 
 
-Route::middleware('admin.access:auth')->group(function () {
+Route::middleware(['admin.access:auth', 'fetch.notifications'])->group(function () {
+    Route::get('/notifications/read/{id}', [WebsiteSettingsController::class, 'markAsRead'])->name('notifications.read');
+    Route::delete('/notifications/{id}', [WebsiteSettingsController::class, 'destroy'])->name('notifications.destroy');
+
+
     Route::prefix('/Admin')->name('admin')->group(function () {
         Route::get('/', [AccountManagementController::class, 'dashboard'])->name('dashboard');
         Route::get('/profile', [AdminProfileController::class, 'profile'])->name('profile');
@@ -264,7 +268,7 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/refund/{id}', [RewardsRedeemManagementController::class, 'refund'])->name('refund');
     });
 
-    Route::prefix('/Admin/sellers')->name('rewards.')->group(function () {
+    Route::prefix('/Admin/sellers')->name('sellers.')->group(function () {
         Route::get('/', [SellerManagementController::class, 'index'])->name('index');
         Route::get('/pending', [SellerManagementController::class, 'pending'])->name('pending');
         Route::get('/rejected', [SellerManagementController::class, 'rejected'])->name('rejected');
@@ -272,7 +276,7 @@ Route::middleware('admin.access:auth')->group(function () {
         Route::post('/approve/{id}', [SellerManagementController::class, 'approve'])->name('approve');
         Route::post('/reject/{id}', [SellerManagementController::class, 'reject'])->name('reject');
     });
-
+ 
 
     Route::prefix('/Admin/market/products')->name('localmarketproducts.')->group(function () {
         Route::get('/', [MarketProductsController::class, 'index'])->name('index');

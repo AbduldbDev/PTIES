@@ -62,13 +62,22 @@ type NavItem = {
     requiredUserType?: string[];
 };
 
-const mainNavItems: NavItem[] = [
+const dashBoardItems: NavItem[] = [
     {
         icon: <GridIcon />,
         name: 'Dashboard',
         path: '/Admin/',
         requiredUserType: ['admin'],
     },
+    {
+        icon: <CalenderIcon />,
+        name: 'Calendar',
+        path: '/Admin/',
+        requiredUserType: ['admin'],
+    },
+];
+
+const AdminMenuItems: NavItem[] = [
     {
         icon: <UserCircleIcon />,
         name: 'Account Management',
@@ -85,135 +94,20 @@ const mainNavItems: NavItem[] = [
         requiredUserType: ['admin'],
         subItems: [{ name: 'Color Theme', path: '/Admin/theme/color', requiredUserType: ['admin'] }],
     },
+
+    {
+        icon: <GearIconThin />,
+        name: 'Audit Logs',
+        requiredUserType: ['admin'],
+        subItems: [
+            { name: 'Rewards Logs', path: '/Admin/audit/logs/rewards', requiredUserType: ['admin'] },
+            { name: 'Product Logs', path: '/Admin/audit/logs/products', requiredUserType: ['admin'] },
+            { name: 'Social Wall Logs', path: '/Admin/audit/logs/social-wall', requiredUserType: ['admin'] },
+            { name: 'Seller Logs', path: '/Admin/audit/logs/seller', requiredUserType: ['admin'] },
+        ],
+    },
 ];
-
-const otherNavItems: NavItem[] = [
-    {
-        icon: <UserCircleIcon />,
-        name: 'Customer Account',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [{ name: 'All Customer Account', path: '/Admin/accounts/customers', requiredUserType: ['admin', 'content_manager'] }],
-    },
-    {
-        icon: <CommenQuestion />,
-        name: 'FAQs',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'Add New FAQs', path: '/Admin/faqs/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All FAQs', path: '/Admin/faqs', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-    {
-        icon: <MapDot />,
-        name: 'Terminals',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'Add New Terminal', path: '/Admin/terminal/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Terminal', path: '/Admin/terminal', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-    {
-        icon: <UserTie />,
-        name: 'Tour Guides',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'Add Tour Guide', path: '/Admin/tour-guides/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Tour Guide', path: '/Admin/tour-guides', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-    {
-        icon: <FontAwesomeFlag />,
-        name: 'Attractions',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'New Attractions', path: '/Admin/attractions/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Attractions', path: '/Admin/attractions', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-
-    {
-        icon: <UserGroup />,
-        name: 'Key Officials',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'New Official', path: '/Admin/officials/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Officials', path: '/Admin/officials', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-
-    {
-        icon: <UserGroup />,
-        name: 'Past Mayors',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'New Mayor', path: '/Admin/past-mayor/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Mayors', path: '/Admin/past-mayor', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-
-    {
-        icon: <CalenderIcon />,
-        name: 'Pakil Events',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'New Event', path: '/Admin/events/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Events', path: '/Admin/events', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-    {
-        icon: <Shop />,
-        name: 'Establishments',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'Add Establishment', path: '/Admin/establishment/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Establishments', path: '/Admin/establishment', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-    {
-        icon: <ImageRegular />,
-        name: 'Social Wall Post',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'Pending Posts', path: '/Admin/social-wall/pending', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'Approved Posts', path: '/Admin/social-wall/approved', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'Rejected Posts', path: '/Admin/social-wall/rejected', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-
-    {
-        icon: <UserGroup />,
-        name: 'Subscribed Users',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [{ name: 'All Subscribed', path: '/Admin/subscribed', requiredUserType: ['admin', 'content_manager'] }],
-    },
-    {
-        icon: <Crown />,
-        name: 'Local Products',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'Add New Products', path: '/Admin/local-products/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Products', path: '/Admin/local-products/', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-    {
-        icon: <UserCrown />,
-        name: 'Local Personalities',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'Add New Personality', path: '/Admin/local-personalities/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Personalities', path: '/Admin/local-personalities', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-    {
-        icon: <HouseMedical />,
-        name: 'Emergency Hotlines',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'Add New Hotlines', path: '/Admin/hotlines/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Hotlines', path: '/Admin/hotlines', requiredUserType: ['admin', 'content_manager'] },
-        ],
-    },
-
+const ContentManagementItems: NavItem[] = [
     {
         icon: <DocsIcon />,
         name: 'Content Management',
@@ -261,6 +155,33 @@ const otherNavItems: NavItem[] = [
             },
         ],
     },
+    {
+        icon: <Crown />,
+        name: 'Local Products',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add New Products', path: '/Admin/local-products/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Products', path: '/Admin/local-products/', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+    {
+        icon: <UserCrown />,
+        name: 'Local Personalities',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add New Personality', path: '/Admin/local-personalities/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Personalities', path: '/Admin/local-personalities', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+    {
+        icon: <HouseMedical />,
+        name: 'Emergency Hotlines',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add New Hotlines', path: '/Admin/hotlines/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Hotlines', path: '/Admin/hotlines', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
 
     {
         icon: <SiteMap />,
@@ -285,6 +206,98 @@ const otherNavItems: NavItem[] = [
                     { name: 'All Memebers', path: '/Admin/structure/members', requiredUserType: ['admin', 'content_manager'] },
                 ],
             },
+        ],
+    },
+    {
+        icon: <MapDot />,
+        name: 'Terminals',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add New Terminal', path: '/Admin/terminal/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Terminal', path: '/Admin/terminal', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+    {
+        icon: <UserGroup />,
+        name: 'Past Mayors',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'New Mayor', path: '/Admin/past-mayor/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Mayors', path: '/Admin/past-mayor', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+    {
+        icon: <CommenQuestion />,
+        name: 'FAQs',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add New FAQs', path: '/Admin/faqs/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All FAQs', path: '/Admin/faqs', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+    {
+        icon: <UserGroup />,
+        name: 'Key Officials',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'New Official', path: '/Admin/officials/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Officials', path: '/Admin/officials', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+    {
+        icon: <UserTie />,
+        name: 'Tour Guides',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add Tour Guide', path: '/Admin/tour-guides/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Tour Guide', path: '/Admin/tour-guides', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+];
+
+const InformationItems: NavItem[] = [
+    {
+        icon: <UserCircleIcon />,
+        name: 'Account Management',
+        requiredUserType: ['admin'],
+        subItems: [
+            { name: 'Add Account', path: '/Admin/accounts/new', requiredUserType: ['admin'] },
+            { name: 'All Accounts', path: '/Admin/accounts', requiredUserType: ['admin'] },
+        ],
+    },
+
+    {
+        icon: <GearIconThin />,
+        name: 'Website Settings',
+        requiredUserType: ['admin'],
+        subItems: [{ name: 'Color Theme', path: '/Admin/theme/color', requiredUserType: ['admin'] }],
+    },
+
+    {
+        icon: <GearIconThin />,
+        name: 'Audit Logs',
+        requiredUserType: ['admin'],
+        subItems: [{ name: 'Color Theme', path: '/Admin/theme/color', requiredUserType: ['admin'] }],
+    },
+    {
+        icon: <Shop />,
+        name: 'Establishments',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add Establishment', path: '/Admin/establishment/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Establishments', path: '/Admin/establishment', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+];
+
+const otherNavItems: NavItem[] = [
+    {
+        icon: <FontAwesomeFlag />,
+        name: 'Attractions',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'New Attractions', path: '/Admin/attractions/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Attractions', path: '/Admin/attractions', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
     {
@@ -338,6 +351,40 @@ const otherNavItems: NavItem[] = [
                 ],
             },
         ],
+    },
+
+    {
+        icon: <CalenderIcon />,
+        name: 'Pakil Events',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'New Event', path: '/Admin/events/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Events', path: '/Admin/events', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+
+    {
+        icon: <ImageRegular />,
+        name: 'Social Wall Post',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Pending Posts', path: '/Admin/social-wall/pending', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'Approved Posts', path: '/Admin/social-wall/approved', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'Rejected Posts', path: '/Admin/social-wall/rejected', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+
+    {
+        icon: <UserGroup />,
+        name: 'Subscribed Users',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [{ name: 'All Subscribed', path: '/Admin/subscribed', requiredUserType: ['admin', 'content_manager'] }],
+    },
+    {
+        icon: <UserCircleIcon />,
+        name: 'Customer Account',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [{ name: 'All Customer Account', path: '/Admin/accounts/customers', requiredUserType: ['admin', 'content_manager'] }],
     },
 ];
 
@@ -395,7 +442,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
         };
 
         // Check main nav items
-        mainNavItems.forEach((nav, index) => {
+        AdminMenuItems.forEach((nav, index) => {
             // Skip items that user doesn't have access to
             if (!hasAccess(nav.requiredUserType)) return;
 
@@ -550,7 +597,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
         );
     };
 
-    const renderMenuItems = (items: NavItem[], menuType: 'main' | 'other') => {
+    const renderMenuItems = (items: NavItem[], menuType: 'dash' | 'main' | 'other' | 'cm' | 'info') => {
         // Filter items based on user access
         const accessibleItems = items.filter((item) => hasAccess(item.requiredUserType));
 
@@ -662,9 +709,30 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
             <div className="no-scrollbar flex flex-1 flex-col overflow-y-auto py-2 duration-300 ease-linear">
                 <nav className="mb-4">
                     <div className="flex flex-col gap-1">
-                        {/* Main Menu Section - Only show if user has access to at least one item */}
-                        {mainNavItems.some((item) => hasAccess(item.requiredUserType)) && (
+                        {dashBoardItems.some((item) => hasAccess(item.requiredUserType)) && (
                             <div>
+                                <h2
+                                    className={`mb-3 flex text-xs font-medium tracking-wider text-gray-500 uppercase ${
+                                        !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start'
+                                    }`}
+                                >
+                                    <span
+                                        className={`transition-opacity duration-300 ${isExpanded || isHovered || isMobileOpen ? 'opacity-100' : 'h-0 w-0 overflow-hidden opacity-0'}`}
+                                    >
+                                        General Menu
+                                    </span>
+                                    <span
+                                        className={`transition-opacity duration-300 ${!isExpanded && !isHovered && !isMobileOpen ? 'opacity-100' : 'h-0 w-0 overflow-hidden opacity-0'}`}
+                                    >
+                                        <HorizontaLDots className="size-6" />
+                                    </span>
+                                </h2>
+                                {renderMenuItems(dashBoardItems, 'dash')}
+                            </div>
+                        )}
+
+                        {AdminMenuItems.some((item) => hasAccess(item.requiredUserType)) && (
+                            <div className="mt-6">
                                 <h2
                                     className={`mb-3 flex text-xs font-medium tracking-wider text-gray-500 uppercase ${
                                         !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start'
@@ -681,11 +749,9 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                         <HorizontaLDots className="size-6" />
                                     </span>
                                 </h2>
-                                {renderMenuItems(mainNavItems, 'main')}
+                                {renderMenuItems(AdminMenuItems, 'main')}
                             </div>
                         )}
-
-                        {/* Other Items Section - Only show if user has access to at least one item */}
                         {otherNavItems.some((item) => hasAccess(item.requiredUserType)) && (
                             <div className="mt-6">
                                 <h2
@@ -696,7 +762,7 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                     <span
                                         className={`transition-opacity duration-300 ${isExpanded || isHovered || isMobileOpen ? 'opacity-100' : 'h-0 w-0 overflow-hidden opacity-0'}`}
                                     >
-                                        Content Manager
+                                        Engagements
                                     </span>
                                     <span
                                         className={`transition-opacity duration-300 ${!isExpanded && !isHovered && !isMobileOpen ? 'opacity-100' : 'h-0 w-0 overflow-hidden opacity-0'}`}
@@ -704,7 +770,29 @@ const AppSidebar: React.FC<AppHeaderProps> = ({ auth }) => {
                                         <HorizontaLDots className="size-6" />
                                     </span>
                                 </h2>
-                                {renderMenuItems(otherNavItems, 'other')}
+                                {renderMenuItems(otherNavItems, 'info')}
+                            </div>
+                        )}
+
+                        {ContentManagementItems.some((item) => hasAccess(item.requiredUserType)) && (
+                            <div className="mt-6">
+                                <h2
+                                    className={`mb-3 flex text-xs font-medium tracking-wider text-gray-500 uppercase ${
+                                        !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start'
+                                    }`}
+                                >
+                                    <span
+                                        className={`transition-opacity duration-300 ${isExpanded || isHovered || isMobileOpen ? 'opacity-100' : 'h-0 w-0 overflow-hidden opacity-0'}`}
+                                    >
+                                        Content Management
+                                    </span>
+                                    <span
+                                        className={`transition-opacity duration-300 ${!isExpanded && !isHovered && !isMobileOpen ? 'opacity-100' : 'h-0 w-0 overflow-hidden opacity-0'}`}
+                                    >
+                                        <HorizontaLDots className="size-6" />
+                                    </span>
+                                </h2>
+                                {renderMenuItems(ContentManagementItems, 'cm')}
                             </div>
                         )}
                     </div>

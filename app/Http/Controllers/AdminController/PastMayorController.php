@@ -49,7 +49,7 @@ class PastMayorController extends Controller
                 'position'       => 'required|string|max:255',
                 'start_term' => 'required|digits:4',
                 'end_term'   => 'required|digits:4',
-                'image'          => 'required|image|mimes:webp,jpg,jpeg,png|max:2048',
+                'image'          => 'required|image|mimes:webp,jpg,jpeg,png|max:25600',
             ]);
 
             $imagePath = null;
@@ -81,7 +81,7 @@ class PastMayorController extends Controller
                 'position'    => 'required|string|max:255',
                 'start_term'  => 'required|digits:4',
                 'end_term'    => 'required|digits:4',
-                'image'       => 'nullable|image|mimes:webp,jpg,jpeg,png|max:2048',
+                'image'       => 'nullable|image|mimes:webp,jpg,jpeg,png|max:25600',
             ]);
 
             $pastMayor = PastMayors::findOrFail($id);

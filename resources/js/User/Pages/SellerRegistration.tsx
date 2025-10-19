@@ -1,6 +1,7 @@
 import MapComponent from '@AdminUtils/components/map/MapComponent';
 import { useForm, usePage } from '@inertiajs/react';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
+import FlashMessage from '@UserUtils/components/Ui/ErrorToast';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 type FormData = {
@@ -394,9 +395,11 @@ export default function RegistrationForm() {
                             <div className="text-gray-500">Permits</div>
                         </div>
                     </div>
-                    {flash?.success && flash.success}
-                    {errors?.error && errors.error}
-                    {flash?.error && errors?.error !== flash.error && flash.error}
+                    {flash?.success && <FlashMessage type="success" message={flash.success} duration={3000} key={`success-${Date.now()}`} />}
+                    {errors?.error && <FlashMessage type="error" message={errors.error} key={`error-${Date.now()}`} duration={3000} />}
+                    {flash?.error && errors?.error !== flash.error && (
+                        <FlashMessage type="error" key={`flash-error-${Date.now()}`} message={flash.error} duration={3000} />
+                    )}
                     <div className="mx-auto max-w-7xl overflow-hidden rounded-xl bg-white shadow-md">
                         <form id="seller-registration-form" className="p-4 sm:p-6 md:p-8" onSubmit={handleSubmit}>
                             {/* Seller Information Section */}

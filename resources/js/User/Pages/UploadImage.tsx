@@ -1,5 +1,6 @@
 import { Head, useForm, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
+import FlashMessage from '@UserUtils/components/Ui/ErrorToast';
 import { ChangeEvent, useRef, useState } from 'react';
 import ReactCrop, { centerCrop, Crop, makeAspectCrop, PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
@@ -270,7 +271,11 @@ const SocialWallUpload = () => {
             ) : (
                 <div className="h-[15vh]"></div>
             )}
-
+            {flash?.success && <FlashMessage type="success" message={flash.success} duration={3000} key={`success-${Date.now()}`} />}
+            {errors?.error && <FlashMessage type="error" message={errors.error} key={`error-${Date.now()}`} duration={3000} />}
+            {flash?.error && errors?.error !== flash.error && (
+                <FlashMessage type="error" key={`flash-error-${Date.now()}`} message={flash.error} duration={3000} />
+            )}
             <form onSubmit={handleSubmit}>
                 <section className="py-6 md:py-12">
                     <div className="container mx-auto max-w-6xl px-3 md:px-4">
@@ -281,15 +286,6 @@ const SocialWallUpload = () => {
                                     <p className="mb-5 text-sm text-gray-600 md:mb-8 md:text-base">
                                         Upload your favorite moments from Pakil to be featured on our social wall
                                     </p>
-
-                                    {(error || errors?.error || flash?.error) && (
-                                        <div className="mb-4 flex items-center gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-xs text-red-700 shadow-sm md:mb-6 md:text-base">
-                                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-100">
-                                                <i className="fas fa-exclamation-circle text-red-600"></i>
-                                            </div>
-                                            <span className="flex-1 text-sm">{error || errors?.error || flash?.error}</span>
-                                        </div>
-                                    )}
 
                                     <div className="mb-4 md:mb-6">
                                         <label className="mb-2 block text-sm font-medium text-gray-700 md:text-base">

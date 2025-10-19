@@ -11,7 +11,7 @@ use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 use App\Http\Middleware\RouteAccessMiddleware;
 use App\Http\Middleware\RouteAdminAccessMiddleware;
 use App\Http\Middleware\CheckVerified;
-
+use App\Http\Middleware\FetchNotifications;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,6 +32,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'user.access' => RouteAccessMiddleware::class,
             'admin.access' => RouteAdminAccessMiddleware::class,
             'verified' => CheckVerified::class,
+            'fetch.notifications' => FetchNotifications::class,
         ]);
 
         $middleware->web(append: [
@@ -40,25 +41,26 @@ return Application::configure(basePath: dirname(__DIR__))
             AddLinkHeadersForPreloadedAssets::class,
             SecurityHeaders::class,
 
+
         ]);
     })->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
-            if (in_array($response->getStatusCode(), [500, 503, 404, 403])) {
-                return Inertia::render('ErrorPage', [
-                    'status' => $response->getStatusCode()
-                ])->toResponse($request)
-                    ->setStatusCode($response->getStatusCode());
-            }
+        // $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
+        //     if (in_array($response->getStatusCode(), [500, 503, 404, 403])) {
+        //         return Inertia::render('ErrorPage', [
+        //             'status' => $response->getStatusCode()
+        //         ])->toResponse($request)
+        //             ->setStatusCode($response->getStatusCode());
+        //     }
 
 
-            // Handle session expiration errors
-            if ($response->getStatusCode() === 419) {
-                return back()->with([
-                    'message' => 'The page expired, please try again.',
-                ]);
-            }
+        //     // Handle session expiration errors
+        //     if ($response->getStatusCode() === 419) {
+        //         return back()->with([
+        //             'message' => 'The page expired, please try again.',
+        //         ]);
+        //     }
 
-            return $response;
-        });
+        //     return $response;
+        // });
     })
     ->create();
