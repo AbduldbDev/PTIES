@@ -85,7 +85,7 @@ class HandleInertiaRequests extends Middleware
 
         switch ($user->user_type) {
             case 'admin':
-            case 'employee':
+            case 'content_manager':
                 $profile = $user->profile;
                 break;
             case 'user':

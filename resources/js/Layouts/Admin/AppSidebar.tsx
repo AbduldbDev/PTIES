@@ -67,13 +67,13 @@ const dashBoardItems: NavItem[] = [
         icon: <GridIcon />,
         name: 'Dashboard',
         path: '/Admin/',
-        requiredUserType: ['admin'],
+        requiredUserType: ['admin', 'content_manager'],
     },
     {
         icon: <CalenderIcon />,
         name: 'Calendar',
         path: '/Admin/calendar',
-        requiredUserType: ['admin'],
+        requiredUserType: ['admin', 'content_manager'],
     },
 ];
 
@@ -107,7 +107,6 @@ const AdminMenuItems: NavItem[] = [
         ],
     },
 ];
-
 
 const ContentManagementItems: NavItem[] = [
     {
