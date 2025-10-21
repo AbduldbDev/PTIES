@@ -103,7 +103,7 @@ export default function AllHotilines() {
         { key: 'user.profile.last_name', label: 'Updated By:', sortable: true },
         { key: 'rewards.name', label: 'Reward Name', sortable: false },
         { key: 'status', label: 'status', sortable: false },
-        { key: 'created_at', label: 'Date& Time', sortable: false },
+        { key: 'created_at', label: 'Date & Time', sortable: false },
         { key: 'action', label: 'Action', sortable: false, align: 'center' },
     ];
 

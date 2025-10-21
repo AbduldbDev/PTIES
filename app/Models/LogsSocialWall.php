@@ -14,7 +14,7 @@ class LogsSocialWall extends Model
     ];
     public function post()
     {
-        return $this->belongsTo(LocalMarketProducts::class, 'product_id');
+        return $this->belongsTo(SocialWall::class, 'post_id');
     }
 
     public function user()

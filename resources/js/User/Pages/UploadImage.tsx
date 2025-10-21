@@ -213,13 +213,14 @@ const SocialWallUpload = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        console.log('Submitting form with data:', form.data);
 
         if (!isCropped || !form.data.image) {
             setError('Please crop and save your image first');
             return;
         }
 
-        if (form.data.caption.trim().length < 10) {
+        if (form.data.caption.trim().length < 1) {
             setError('Caption must be at least 10 characters');
             return;
         }

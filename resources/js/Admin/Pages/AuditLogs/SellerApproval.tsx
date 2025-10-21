@@ -101,7 +101,7 @@ export default function AllHotilines() {
         { key: 'user.profile.last_name', label: 'Updated By:', sortable: true },
         { key: 'seller.business_name', label: 'Business Name', sortable: false },
         { key: 'status', label: 'Status', sortable: false },
-        { key: 'created_at', label: 'Date& Time', sortable: false },
+        { key: 'created_at', label: 'Date & Time', sortable: false },
         { key: 'action', label: 'Action', sortable: false, align: 'center' },
     ];
 
@@ -167,7 +167,22 @@ export default function AllHotilines() {
                                                         {Seller.seller.business_name}
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {Seller.status}
+                                                        <span
+                                                            className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                                                                Seller.status === 'approve' || Seller.status === 'Approve'
+                                                                    ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
+                                                                    : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300'
+                                                            }`}
+                                                        >
+                                                            <span
+                                                                className={`h-1.5 w-1.5 rounded-full ${
+                                                                    Seller.status === 'approve' || Seller.status === 'Approve'
+                                                                        ? 'bg-green-600 dark:bg-green-400'
+                                                                        : 'bg-red-600 dark:bg-red-400'
+                                                                }`}
+                                                            ></span>
+                                                            {Seller.status}
+                                                        </span>
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
                                                         {formatDate(Seller.created_at)}
