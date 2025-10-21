@@ -17,6 +17,16 @@ export const PromotionalVideo = ({
     highlights = [],
     thumbnail = '/User/Images/church.jpg',
 }: PromotionalVideoProps) => {
+    const [copied, setCopied] = useState(false);
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(window.location.href);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000); // reset after 2 seconds
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
+    };
     const [isPlaying, setIsPlaying] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -87,12 +97,13 @@ export const PromotionalVideo = ({
                             </div>
 
                             <div className="flex flex-col gap-4 sm:flex-row">
-                                <a
-                                    href="#"
+                                <button
+                                    onClick={handleCopy}
                                     className="flex items-center justify-center rounded-full bg-primary px-6 py-2 text-center text-sm font-medium text-white transition duration-300 hover:bg-primary/90"
                                 >
-                                    <i className="fas fa-share-alt mr-2"></i> Share This Video
-                                </a>
+                                    <i className="fas fa-share-alt mr-2"></i>
+                                    {copied ? 'Copied!' : 'Share This Video'}
+                                </button>
                             </div>
 
                             <div className="mt-8">

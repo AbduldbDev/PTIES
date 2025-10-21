@@ -125,7 +125,7 @@ class TourGuideController extends Controller
                 'image' => $ImagePath,
             ]);
 
-            return redirect()->back()->with('success', 'Guide updated successfully!');
+            return redirect()->back()->with('success', 'Tour guide updated successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
