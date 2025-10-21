@@ -59,7 +59,8 @@ Route::middleware(['admin.access:admin', 'fetch.notifications'])->group(function
 Route::middleware(['admin.access:auth', 'fetch.notifications'])->group(function () {
     Route::get('/notifications/read/{id}', [WebsiteSettingsController::class, 'markAsRead'])->name('notifications.read');
     Route::delete('/notifications/{id}', [WebsiteSettingsController::class, 'destroy'])->name('notifications.destroy');
-
+    Route::get('Admin/analytics/monthly-visits', [WebsiteSettingsController::class, 'monthlyVisits']);
+    Route::get('Admin/analytics/yearly-visits/{year?}', [WebsiteSettingsController::class, 'yearlyVisits']);
 
     Route::prefix('/Admin')->name('admin')->group(function () {
         Route::get('/', [WebsiteSettingsController::class, 'dashboard'])->name('dashboard');
