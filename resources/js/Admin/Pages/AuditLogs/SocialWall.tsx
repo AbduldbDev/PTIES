@@ -11,16 +11,16 @@ import { Head, router, useForm, usePage } from '@inertiajs/react';
 
 interface LogsProps {
     id: number;
-    product_id: string;
+    post_id: string;
     user_id: string;
     status: string;
     created_at: string;
-    products: Products;
+    post: Post;
     user: Users;
 }
 
-type Products = {
-    product_name: string;
+type Post = {
+    post_id: string;
 };
 
 type Users = {
@@ -73,7 +73,7 @@ export default function AllHotilines() {
         customSearchFilter: (item, searchTerm) => {
             const searchLower = searchTerm.toLowerCase();
             return (
-                item.products.product_name.toLowerCase().includes(searchLower) ||
+                item.post.post_id.toLowerCase().includes(searchLower) ||
                 item.user.profile.first_name.toLowerCase().includes(searchLower) ||
                 item.user.profile.last_name.toLowerCase().includes(searchLower) ||
                 item.status.toLowerCase().includes(searchLower)
@@ -82,7 +82,7 @@ export default function AllHotilines() {
     });
 
     const handleView = (id: any) => {
-        router.get(`/Admin/market/products/view/${id}`);
+        router.get(`/Admin/market/post/view/${id}`);
     };
 
     const formatDate = (dateString: string) => {
@@ -99,7 +99,7 @@ export default function AllHotilines() {
 
     const columns: SortableColumn[] = [
         { key: 'user.profile.last_name', label: 'Updated By:', sortable: true },
-        { key: 'products.product_name', label: 'Product Name', sortable: false },
+        { key: 'post.post_id', label: 'Post ID', sortable: false },
         { key: 'status', label: 'Status', sortable: false },
         { key: 'created_at', label: 'Date& Time', sortable: false },
         { key: 'action', label: 'Action', sortable: false, align: 'center' },
@@ -117,7 +117,7 @@ export default function AllHotilines() {
                 {errors?.error && <FlashMessage type="error" message={errors.error} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
 
-                <PageBreadcrumb pageTitle="Product Approval Logs" />
+                <PageBreadcrumb pageTitle="Social Wall Logs" />
 
                 <div className="grid grid-cols-1 gap-10 xl:grid-cols-1">
                     <ComponentCard title="All logs">
@@ -158,19 +158,19 @@ export default function AllHotilines() {
 
                                     <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                                         {sortedItems.length > 0 ? (
-                                            sortedItems.map((Products) => (
-                                                <TableRow key={Products.id}>
+                                            sortedItems.map((Post) => (
+                                                <TableRow key={Post.id}>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {Products.user.profile.last_name}, {Products.user.profile.first_name}
+                                                        {Post.user.profile.last_name}, {Post.user.profile.first_name}
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {Products.products.product_name}
+                                                        {Post.post.post_id}
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {Products.status}
+                                                        {Post.status}
                                                     </TableCell>
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-                                                        {formatDate(Products.created_at)}
+                                                        {formatDate(Post.created_at)}
                                                     </TableCell>
 
                                                     <TableCell className="border border-gray-100 px-4 py-3 text-start text-theme-sm text-gray-500 capitalize dark:border-white/[0.05] dark:text-gray-400">
@@ -178,7 +178,7 @@ export default function AllHotilines() {
                                                             <div className="flex w-full items-center justify-center gap-2">
                                                                 <button
                                                                     aria-label="Edit-btn"
-                                                                    onClick={() => handleView(Products.product_id)}
+                                                                    onClick={() => handleView(Post.post_id)}
                                                                     className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white/90"
                                                                 >
                                                                     <svg

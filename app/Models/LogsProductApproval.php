@@ -13,8 +13,13 @@ class LogsProductApproval extends Model
         'status',
         'details_id'
     ];
-    public function product()
+    public function products()
     {
         return $this->belongsTo(LocalMarketProducts::class, 'product_id');
+    }
+
+      public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

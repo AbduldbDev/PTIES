@@ -77,6 +77,7 @@ export default function AllHotilines() {
             return (
                 item.rewards.name.toLowerCase().includes(searchLower) ||
                 item.user.profile.first_name.toLowerCase().includes(searchLower) ||
+                item.user.profile.last_name.toLowerCase().includes(searchLower) ||
                 item.status.toLowerCase().includes(searchLower)
             );
         },

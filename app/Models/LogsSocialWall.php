@@ -11,6 +11,14 @@ class LogsSocialWall extends Model
         'post_id',
         'user_id',
         'status',
-        'details_id'
     ];
+    public function post()
+    {
+        return $this->belongsTo(LocalMarketProducts::class, 'product_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
