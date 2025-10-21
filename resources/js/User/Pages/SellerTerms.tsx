@@ -98,7 +98,7 @@ export default function SellerTerms() {
                         <div className="space-y-4 text-sm text-gray-700 md:text-base lg:pl-14">
                             <p>
                                 <strong>2.1.</strong> Only verified
-                                <strong> residents, entrepreneurs, cooperatives, or business owners</strong>
+                                <strong> residents, entrepreneurs, cooperatives, or business owners </strong>
                                 operating within the Municipality of Pakil, Laguna are eligible to register as Sellers.
                             </p>
                             <p>

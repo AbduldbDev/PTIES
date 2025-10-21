@@ -43,7 +43,7 @@ class AuditLogsController extends Controller
         if ($request->input('per_page') === 'all') {
             $items = LogsProductApproval::with(['products', 'user.profile'])->latest()->get();
 
-            return Inertia::render('Admin/Pages/AuditLogs/RewardRedeem', [
+            return Inertia::render('Admin/Pages/AuditLogs/ProductApproval', [
                 'items' => [
                     'data' => $items,
                     'links' => [],
@@ -57,7 +57,7 @@ class AuditLogsController extends Controller
             $items->appends(['per_page' => $perPage]);
         }
 
-        return Inertia::render('Admin/Pages/AuditLogs/RewardRedeem', [
+        return Inertia::render('Admin/Pages/AuditLogs/ProductApproval', [
             'items' => $items
         ]);
     }

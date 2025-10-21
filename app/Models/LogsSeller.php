@@ -11,6 +11,5 @@ class LogsSeller extends Model
         'seller_id',
         'user_id',
         'status',
-        'details_id'
     ];
 }
