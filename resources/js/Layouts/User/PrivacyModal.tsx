@@ -8,19 +8,43 @@ interface PTIExsodalProps {
 const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
     const [canClose, setCanClose] = useState(false);
     const [contentScrolled, setContentScrolled] = useState(false);
+    const [agreed, setAgreed] = useState(false);
+
+    // Check if user has already agreed (modal should not show)
+    const hasAgreedBefore = (): boolean => {
+        const lastAgreed = localStorage.getItem('ptiExsodalAgreed');
+        if (!lastAgreed) return false;
+
+        const agreedDate = new Date(lastAgreed);
+        const today = new Date();
+        return agreedDate.toDateString() === today.toDateString();
+    };
+
+    // Mark that user agreed today
+    const markAsAgreedToday = (): void => {
+        localStorage.setItem('ptiExsodalAgreed', new Date().toISOString());
+    };
 
     useEffect(() => {
         if (isOpen) {
+            // Check if user has already agreed today
+            if (hasAgreedBefore()) {
+                onClose();
+                return;
+            }
+
             document.body.style.overflow = 'hidden';
             setCanClose(false);
             setContentScrolled(false);
+            setAgreed(false);
         } else {
             document.body.style.overflow = 'auto';
         }
+
         return () => {
             document.body.style.overflow = 'auto';
         };
-    }, [isOpen]);
+    }, [isOpen, onClose]);
 
     const handleContentScroll = (e: React.UIEvent<HTMLDivElement>) => {
         const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
@@ -35,6 +59,19 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
         }
     };
 
+    const handleAgreementChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setAgreed(e.target.checked);
+    };
+
+    const handleClose = () => {
+        if (agreed) {
+            // Only save to localStorage if user agreed
+            markAsAgreedToday();
+        }
+        setAgreed(false);
+        onClose();
+    };
+
     if (!isOpen) return null;
 
     return (
@@ -45,7 +82,7 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
                     <h2 className="text-xl font-bold md:text-lg">Announcement</h2>
                     {canClose && (
                         <button
-                            onClick={onClose}
+                            onClick={handleClose}
                             className="absolute top-3 right-3 text-white hover:text-gray-200 md:top-2 md:right-2"
                             aria-label="Close"
                         >
@@ -127,7 +164,7 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
                             <div>
                                 <p className="font-semibold text-gray-900">Social Wall</p>
                                 <p className="text-gray-700">
-                                    Post your experiences, share photos, and like other visitors’ posts to engage with the PTIES community.
+                                    Post your experiences, share photos, and like other visitors' posts to engage with the PTIES community.
                                 </p>
                             </div>
                         </li>
@@ -194,7 +231,7 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
                             </li>
                             <li className="flex items-start">
                                 <i className="fas fa-shield-alt mt-1 mr-2 w-6 flex-shrink-0 text-accent"></i>
-                                <span>Inactive accounts will be removed after 5 years, unverified ones after 6 months.</span>
+                                <span>Inactive accounts will be removed after 5 years, unverified ones after one (1) week.</span>
                             </li>
                             <li className="flex items-start">
                                 <i className="fas fa-info-circle mt-1 mr-2 w-6 flex-shrink-0 text-accent"></i>
@@ -215,18 +252,27 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
                             </p>
                         </div>
 
-                        <p className="mb-6 text-xs text-gray-700 md:mb-4 md:text-sm">
-                            <i className="fas fa-check-circle mr-2 text-accent"></i>
-                            By continuing, you agree to our{' '}
-                            <a href="/pakil/terms" className="font-semibold text-primary">
-                                Terms of Use
-                            </a>{' '}
-                            and{' '}
-                            <a href="/pakil/policy" className="font-semibold text-primary">
-                                Privacy Policy
-                            </a>
-                            .
-                        </p>
+                        {/* Agreement Checkbox */}
+                        <div className="mb-6 flex items-start space-x-3 md:mb-4">
+                            <input
+                                type="checkbox"
+                                id="agreement"
+                                checked={agreed}
+                                onChange={handleAgreementChange}
+                                className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                            />
+                            <label htmlFor="agreement" className="text-xs text-gray-700 md:text-sm">
+                                I agree to the{' '}
+                                <a href="/pakil/terms" className="font-semibold text-primary hover:underline">
+                                    Terms of Use
+                                </a>{' '}
+                                and{' '}
+                                <a href="/pakil/policy" className="font-semibold text-primary hover:underline">
+                                    Privacy Policy
+                                </a>
+                                .
+                            </label>
+                        </div>
                     </div>
                 </div>
 
@@ -234,8 +280,11 @@ const PTIExsodal: React.FC<PTIExsodalProps> = ({ isOpen, onClose }) => {
                 <div className="flex justify-end border-t border-primary/20 bg-gray-50 p-2 md:p-3">
                     {canClose ? (
                         <button
-                            onClick={onClose}
-                            className="rounded-full bg-primary px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-primary/70 md:px-3 md:py-1.5 lg:text-sm"
+                            onClick={handleClose}
+                            disabled={!agreed}
+                            className={`rounded-full px-4 py-2 text-xs font-medium text-white transition-colors md:px-3 md:py-1.5 lg:text-sm ${
+                                agreed ? 'cursor-pointer bg-primary hover:bg-primary/70' : 'cursor-not-allowed bg-gray-400'
+                            }`}
                         >
                             I Understand
                         </button>
