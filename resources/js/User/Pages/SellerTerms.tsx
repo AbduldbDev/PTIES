@@ -78,7 +78,7 @@ export default function SellerTerms() {
                                 <p className="font-semibold text-primary">Important Notice Regarding PTIES Platform Usage:</p>
                                 <p className="mt-2">
                                     PTIES is <strong>NOT AN E-COMMERCE PLATFORM</strong> and
-                                    <strong>does not facilitate direct sales, payments, or deliveries</strong>. All transactions, if any, are
+                                    <strong> does not facilitate direct sales, payments, or deliveries</strong>. All transactions, if any, are
                                     conducted
                                     <strong> independently between the Seller and interested buyers outside of the system</strong>.
                                 </p>
