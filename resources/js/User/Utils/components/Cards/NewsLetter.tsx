@@ -50,6 +50,7 @@ export default function NewsLetter() {
             },
         });
     };
+    
     const handleBlur = (field: keyof FormData) => {
         setTouched((prev) => ({ ...prev, [field]: true }));
         const error = validateField(field, form.data[field]);

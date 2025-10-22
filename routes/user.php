@@ -86,7 +86,7 @@ Route::prefix('/events')->name('events.')->group(function () {
 
 Route::prefix('/newsletter')->name('newsletter.')->group(function () {
     Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
-    Route::get('/confirmation', [NewsletterController::class, 'confirmation'])->name('newsletter.confirmation');
+    Route::get('/confirmation', [NewsletterController::class, 'confirmation'])->name('confirmationpage');
 });
 
 Route::get('/pakil-guide', [ExploreController::class, 'PakilGuide'])->name('pakilguide');

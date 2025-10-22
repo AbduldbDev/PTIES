@@ -1,6 +1,55 @@
+import { useForm } from '@inertiajs/react';
 import Svg from '@UserUtils/components/Footer/Svg';
+import { FormEvent } from 'react';
+
+type FormData = {
+    name: string;
+    email: string;
+};
 
 export const Footer = () => {
+    const form = useForm<FormData>({
+        name: 'anonymous',
+        email: '',
+    });
+
+    const validateField = (field: keyof FormData, value: string) => {
+        switch (field) {
+            case 'email':
+                if (!value) return 'Email is required';
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return !emailRegex.test(value) ? 'Invalid email address' : '';
+            default:
+                return '';
+        }
+    };
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+
+        const emailError = validateField('email', form.data.email);
+        if (emailError) {
+            form.setError('email', emailError);
+            return;
+        }
+
+        // Clear any previous errors
+        form.clearErrors();
+
+        form.post('/newsletter/subscribe', {
+            forceFormData: true,
+            onSuccess: () => {
+                form.reset();
+                form.clearErrors();
+                // Reset name to 'anonymous' after successful submission
+                form.setData('name', 'anonymous');
+            },
+            onError: (errors) => {
+                console.log('Subscription failed:', errors);
+            },
+        });
+    };
+
     return (
         <>
             <div className="footer"></div>
@@ -114,16 +163,30 @@ export const Footer = () => {
                                 </div>
 
                                 <p className="mb-2 text-xs opacity-80 sm:text-sm md:text-xs lg:text-base">Subscribe to our newsletter</p>
-                                <div className="mt-1 flex">
+                                <form onSubmit={handleSubmit} className="mt-1 flex">
                                     <input
                                         type="email"
                                         placeholder="Your email"
+                                        value={form.data.email}
+                                        onChange={(e) => form.setData('email', e.target.value)}
                                         className="w-full rounded-l border border-white/20 bg-white/10 px-2 py-1.5 text-xs placeholder-white/70 focus:ring-1 focus:ring-white/50 focus:outline-none sm:px-3 sm:py-2 sm:text-sm md:px-2 md:py-1.5 md:text-xs lg:px-3 lg:py-2 lg:text-base"
                                     />
-                                    <button className="rounded-r bg-white/20 px-2 py-1.5 text-xs transition hover:bg-white/30 sm:px-3 sm:py-2 sm:text-sm md:px-2 md:py-1.5 md:text-xs lg:px-3 lg:py-2 lg:text-base">
+                                    <button
+                                        type="submit"
+                                        disabled={form.processing}
+                                        className="rounded-r bg-white/20 px-2 py-1.5 text-xs transition hover:bg-white/30 disabled:opacity-50 sm:px-3 sm:py-2 sm:text-sm md:px-2 md:py-1.5 md:text-xs lg:px-3 lg:py-2 lg:text-base"
+                                    >
                                         <i className="fas fa-paper-plane"></i>
                                     </button>
-                                </div>
+                                </form>
+                                {form.errors.email && (
+                                    <p className="mt-1 text-xs text-red-300 sm:text-sm md:text-xs lg:text-base">{form.errors.email}</p>
+                                )}
+                                {form.recentlySuccessful && (
+                                    <p className="mt-1 text-xs text-green-300 sm:text-sm md:text-xs lg:text-base">
+                                        Successfully subscribed to newsletter!
+                                    </p>
+                                )}
                             </div>
                         </div>
 

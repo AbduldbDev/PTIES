@@ -25,7 +25,7 @@ class NewsletterController extends Controller
 
         Mail::to($subscriber->email)->send(new NewsLetterConfirmation($subscriber));
 
-        return redirect()->route('newsletter.confirmation');
+        return redirect()->route('newsletter.confirmationpage');
     }
 
     public function confirmation()

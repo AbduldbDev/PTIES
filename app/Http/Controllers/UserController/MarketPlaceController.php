@@ -31,10 +31,6 @@ class MarketPlaceController extends Controller
             return redirect()->route('user.localmarket.index')->with('error', 'Product not found.');
         }
 
-
-
-
-
         return Inertia::render('User/Pages/ProductDetails', [
             'product' => $details,
             'related' => $related,
