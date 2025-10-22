@@ -254,6 +254,15 @@ const ContentManagementItems: NavItem[] = [
             { name: 'All Tour Guide', path: '/Admin/tour-guides', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
+    {
+        icon: <Shop />,
+        name: 'Establishments',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add Establishment', path: '/Admin/establishment/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Establishments', path: '/Admin/establishment', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
 ];
 
 const InformationItems: NavItem[] = [
@@ -279,15 +288,6 @@ const InformationItems: NavItem[] = [
         name: 'Audit Logs',
         requiredUserType: ['admin'],
         subItems: [{ name: 'Color Theme', path: '/Admin/theme/color', requiredUserType: ['admin'] }],
-    },
-    {
-        icon: <Shop />,
-        name: 'Establishments',
-        requiredUserType: ['admin', 'content_manager'],
-        subItems: [
-            { name: 'Add Establishment', path: '/Admin/establishment/new', requiredUserType: ['admin', 'content_manager'] },
-            { name: 'All Establishments', path: '/Admin/establishment', requiredUserType: ['admin', 'content_manager'] },
-        ],
     },
 ];
 
