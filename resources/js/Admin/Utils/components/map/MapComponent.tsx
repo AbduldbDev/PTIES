@@ -42,6 +42,7 @@ const MapComponent = ({ initialLat, initialLng, onMarkerMove }: MapComponentProp
             }
 
             const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+            console.log('Google Maps Key:', import.meta.env.VITE_GOOGLE_MAPS_API_KEY);
 
             if (!apiKey) {
                 console.error('Google Maps API key is not defined');
