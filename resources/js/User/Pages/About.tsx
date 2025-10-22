@@ -300,7 +300,7 @@ export default function About() {
 
                     <div className="mt-12 text-center">
                         <a
-                            href="#"
+                            href="/events"
                             className="inline-flex items-center rounded-full border border-transparent bg-primary px-6 py-3 text-white shadow-sm transition duration-300 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
                         >
                             <i className="fas fa-calendar-check mr-2"></i> View Full Festival Calendar
