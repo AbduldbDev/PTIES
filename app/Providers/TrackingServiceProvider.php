@@ -63,11 +63,10 @@ class TrackingServiceProvider extends ServiceProvider
         $visitorId = Cookie::get('visitor_id');
 
         if (!$visitorId) {
-            // Create a more compact but unique visitor ID
-            $visitorId = md5(request()->ip() . request()->userAgent() . time() . Str::random(16));
-            Cookie::queue('visitor_id', $visitorId, 60 * 24 * 30); // 30 days
+            $visitorId = Str::random(20);
+            Cookie::queue('visitor_id', $visitorId, 60 * 24 * 30);
         }
 
-        return $visitorId;
+        return substr($visitorId, 0, 20);
     }
 }

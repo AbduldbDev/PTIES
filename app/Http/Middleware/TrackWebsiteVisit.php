@@ -40,7 +40,6 @@ class TrackWebsiteVisit
         $visitorId = $this->getVisitorId();
         $today = now()->toDateString();
 
-        // Check if already visited today
         $alreadyVisited = DB::table('website_visits')
             ->where('visitor_id', $visitorId)
             ->whereDate('visited_at', $today)
@@ -50,9 +49,9 @@ class TrackWebsiteVisit
             WebsiteVisit::create([
                 'visitor_id' => $visitorId,
                 'ip_address' => $request->ip(),
-                'user_agent' => substr($request->userAgent(), 0, 500), // Limit length
+                'user_agent' => substr($request->userAgent(), 0, 500),
                 'visited_at' => now(),
-                'url' => substr($request->fullUrl(), 0, 1000), // Limit URL length
+                'url' => substr($request->fullUrl(), 0, 1000),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -64,11 +63,13 @@ class TrackWebsiteVisit
         $visitorId = Cookie::get('visitor_id');
 
         if (!$visitorId) {
-            // Create a more compact but unique visitor ID
-            $visitorId = md5(request()->ip() . request()->userAgent() . time() . Str::random(16));
-            Cookie::queue('visitor_id', $visitorId, 60 * 24 * 30); // 30 days
+            $visitorId = Str::random(20);
+            Cookie::queue(
+                Cookie::make('visitor_id', $visitorId, 60 * 24 * 30, null, null, false, false)
+            );
         }
 
-        return $visitorId;
+        // Always ensure it’s max 20 chars
+        return substr($visitorId, 0, 20);
     }
 }
