@@ -186,6 +186,11 @@ class ProductManagementController extends Controller
     {
         $product = LocalMarketProducts::where('product_id', $id)->first();
 
+        if (!$product) {
+            return redirect()->route('seller.dashboard');
+        }
+
+
         return Inertia::render(
             'User/Pages/SellerUpdateProduct',
             [

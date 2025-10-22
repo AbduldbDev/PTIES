@@ -90,11 +90,11 @@ Route::prefix('/newsletter')->name('newsletter.')->group(function () {
 });
 
 Route::get('/pakil-guide', [ExploreController::class, 'PakilGuide'])->name('pakilguide');
-Route::get('/seller/terms', [SellerPageController::class, 'terms']);
+Route::get('/seller/terms', [SellerPageController::class, 'terms'])->name('seller.registration.terms');
 
 
 
-Route::get('/localmarket', [MarketPlaceController::class, 'index']);
+Route::get('/localmarket', [MarketPlaceController::class, 'index'])->name('user.localmarket.index');
 Route::get('/localmarket/product/{id}', [MarketPlaceController::class, 'productdetails']);
 Route::get('/explore/scanner', [UserGamificationController::class, 'scanner'])->name('users.scanner');
 

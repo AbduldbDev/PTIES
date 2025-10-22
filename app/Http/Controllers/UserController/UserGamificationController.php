@@ -23,6 +23,10 @@ class UserGamificationController extends Controller
 
         $details = Attractions::where('attraction_id', $id)->first();
 
+        if (!$details) {
+            return redirect()->route('explore.attractions');
+        }
+
         return Inertia::render(
             'User/Pages/GamificationDetails',
             [

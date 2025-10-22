@@ -41,7 +41,17 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $account = AccountUsers::where('user_id', $id)->firstOrFail();
+
+        if (!$account) {
+            return redirect()->route('user.profile.index');
+        }
+
         $user = User::findOrFail($id);
+
+        if (!$user) {
+            return redirect()->route('user.profile.index');
+        }
+
 
         $validated = $request->validate([
             'first_name'   => 'required|string|max:255',

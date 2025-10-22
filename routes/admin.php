@@ -87,7 +87,7 @@ Route::middleware(['admin.access:auth', 'fetch.notifications'])->group(function 
         Route::get('/pakil-intro', [CMScontroller::class, 'PakilIntro'])->name('PakilIntro');
         Route::get('/citizen-charter', [CMScontroller::class, 'CitizenCharter'])->name('CitizenCharter');
         Route::get('/municipal-statistics', [CMScontroller::class, 'MunicipalStats'])->name('MunicipalStats');
-    });
+    }); 
 
     Route::prefix('/Admin/cms/update')->name('cms.update.')->group(function () {
         Route::post('/hero-section', [CMSUpdatecontroller::class, 'UpdateHeroSection'])->name('HeroSection');

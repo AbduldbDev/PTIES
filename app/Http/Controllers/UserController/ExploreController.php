@@ -130,11 +130,12 @@ class ExploreController extends Controller
     public function AttractionDetails($id)
     {
         $attraction = Attractions::where('attraction_id', $id)->first();
-        $attraction->contact = $this->parseContentValue($attraction->contact);
 
         if (!$attraction) {
-            return redirect()->route('user.attractions');
+            return redirect()->route('explore.attractions');
         }
+
+        $attraction->contact = $this->parseContentValue($attraction->contact);
 
         return Inertia::render(
             'User/Pages/AttractionDetails',

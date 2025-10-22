@@ -15,7 +15,7 @@ use Inertia\Inertia;
 class AccountManagementController extends Controller
 {
 
-  
+
 
     public function index(Request $request)
     {
@@ -105,7 +105,7 @@ class AccountManagementController extends Controller
                 'date_employed' => Carbon::now(),
             ]);
 
-            return redirect()->route('account.management.index')->with('success', 'User Account Created Successfully!');
+            return redirect()->route('account.management.index')->with('success', 'Employee Account Created Successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -165,7 +165,7 @@ class AccountManagementController extends Controller
                 'date_employed' => Carbon::now(),
             ]);
 
-            return redirect()->route('account.management.index')->with('success', 'User Account Update Successfully!');
+            return redirect()->route('account.management.index')->with('success', 'Employee Account Update Successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -179,6 +179,12 @@ class AccountManagementController extends Controller
     public function edit($id)
     {
         $user = User::with('profile')->findOrFail($id);
+
+        if (!$user) {
+            return redirect()->route('account.management.index')->with('error', 'Employee account not found.');
+        }
+
+
         return Inertia::render('Admin/Pages/AccountManagement/EditForm', [
             'user' => $user,
         ]);
@@ -189,6 +195,6 @@ class AccountManagementController extends Controller
         $product = User::findOrFail($id);
         $product->delete();
 
-        return redirect()->back()->with('success', 'User deleted successfully!');
+        return redirect()->back()->with('success', 'Employee deleted successfully!');
     }
 }
