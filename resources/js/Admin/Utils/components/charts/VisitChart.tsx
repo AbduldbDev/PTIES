@@ -170,7 +170,7 @@ const VisitChart: React.FC<VisitChartProps> = ({ height = 400, width = '100%', d
                         cx="50%"
                         cy="50%"
                         labelLine={false}
-                        label={({ month, visits }) => `${month}: ${visits}`}
+                        label={({ name, value }: any) => `${name}: ${value}`}
                         outerRadius={120}
                         fill={colors.primary}
                         dataKey="visits"

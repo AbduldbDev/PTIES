@@ -119,17 +119,16 @@ class WebsiteSettingsController  extends Controller
     }
     public function monthlyVisits(Request $request)
     {
-        // Get the current date and calculate the start date for the last 12 months
         $endDate = Carbon::now();
         $startDate = Carbon::now()->subMonths(11)->startOfMonth();
 
-        // Query to get monthly visits and unique visitors
+        // Group by month, counting visits and unique IPs
         $monthlyData = DB::table('website_visits')
             ->select(
                 DB::raw('YEAR(visited_at) as year'),
                 DB::raw('MONTH(visited_at) as month'),
                 DB::raw('COUNT(*) as visits'),
-                DB::raw('COUNT(DISTINCT visitor_id) as unique_visitors')
+                DB::raw('COUNT(DISTINCT ip_address) as unique_visitors') // count unique IPs
             )
             ->whereBetween('visited_at', [$startDate, $endDate])
             ->groupBy('year', 'month')
@@ -137,10 +136,9 @@ class WebsiteSettingsController  extends Controller
             ->orderBy('month', 'asc')
             ->get();
 
-        // Create an array with all months from start to end date
+        // Prepare all months
         $allMonths = [];
         $currentDate = $startDate->copy();
-
         while ($currentDate <= $endDate) {
             $allMonths[$currentDate->format('Y-m')] = [
                 'year' => $currentDate->year,
@@ -152,7 +150,7 @@ class WebsiteSettingsController  extends Controller
             $currentDate->addMonth();
         }
 
-        // Merge actual data with all months
+        // Merge actual data
         foreach ($monthlyData as $data) {
             $key = $data->year . '-' . str_pad($data->month, 2, '0', STR_PAD_LEFT);
             if (isset($allMonths[$key])) {
@@ -161,20 +159,15 @@ class WebsiteSettingsController  extends Controller
             }
         }
 
-        // Convert to array and ensure current month is last (for left-to-right display)
-        $result = array_values($allMonths);
-
-        // Format the response
-        $formattedData = array_map(function ($monthData) {
-            return [
-                'month' => $monthData['month_name'],
-                'visits' => (int) $monthData['visits'],
-                'uniqueVisitors' => (int) $monthData['unique_visitors']
-            ];
-        }, $result);
+        $formattedData = array_map(fn($monthData) => [
+            'month' => $monthData['month_name'],
+            'visits' => (int) $monthData['visits'],
+            'uniqueVisitors' => (int) $monthData['unique_visitors']
+        ], array_values($allMonths));
 
         return response()->json($formattedData);
     }
+
 
     // Alternative method that returns data with current month on the left
     public function monthlyVisitsReverse(Request $request)

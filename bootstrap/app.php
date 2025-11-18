@@ -27,12 +27,12 @@ return Application::configure(basePath: dirname(__DIR__))
 
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->encryptCookies(except: ['appearance', 'sidebar_state']);
-        $middleware->append(App\Http\Middleware\TrackVisits::class);
         $middleware->alias([
             'user.access' => RouteAccessMiddleware::class,
             'admin.access' => RouteAdminAccessMiddleware::class,
             'verified' => CheckVerified::class,
             'fetch.notifications' => FetchNotifications::class,
+            'track.visits' => \App\Http\Middleware\TrackVisits::class,
         ]);
 
         $middleware->web(append: [

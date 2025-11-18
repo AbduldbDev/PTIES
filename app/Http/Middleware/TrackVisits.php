@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use App\Models\WebsiteVisit;
 use Carbon\Carbon;
 use Stevebauman\Location\Facades\Location;
@@ -13,10 +14,13 @@ class TrackVisits
 {
     public function handle(Request $request, Closure $next): Response
     {
-        // Skip non-GET requests or admin routes
-        if (!$request->isMethod('get') || $request->is('admin/*') || $request->is('Admin/*')) {
+        if (
+            !$request->isMethod('get') ||
+            Str::startsWith(strtolower($request->path()), 'Admin')
+        ) {
             return $next($request);
         }
+
 
         $visitorIp = $request->ip();
         $oneHourAgo = Carbon::now()->subHour();
