@@ -32,7 +32,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin.access' => RouteAdminAccessMiddleware::class,
             'verified' => CheckVerified::class,
             'fetch.notifications' => FetchNotifications::class,
-            'track.visits' => \App\Http\Middleware\TrackVisits::class,
+            
         ]);
 
         $middleware->web(append: [

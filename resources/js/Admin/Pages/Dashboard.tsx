@@ -196,7 +196,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="col-span-4">
+                    {/* <div className="col-span-4">
                         <ComponentCard title="Website Visits">
                             <div>
                                 <VisitChart
@@ -206,7 +206,7 @@ export default function Home() {
                                 />
                             </div>
                         </ComponentCard>
-                    </div>
+                    </div> */}
                 </div>
             </AppWrapper>
         </>
