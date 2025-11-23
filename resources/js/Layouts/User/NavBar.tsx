@@ -174,8 +174,8 @@ const Navbar = () => {
                 <div className="container mx-auto px-4">
                     <nav className="flex items-center justify-between py-2">
                         <a href="/" className="flex items-center space-x-2">
-                            <img src="/User/Layout/Logo.png" alt="Logo" className="h-[55px] w-[55px]" />
                             <img src="/User/Layout/Seal.png" alt="Seal" className="h-[50px] w-[50px]" />
+                            <img src="/User/Layout/Logo.png" alt="Logo" className="h-[55px] w-[55px]" />
                         </a>
 
                         {/* Desktop Navigation */}

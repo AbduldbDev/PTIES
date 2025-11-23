@@ -4,6 +4,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/Font/Wkwkwk-ZVGpJ.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     --primary: #052675;
     --secondary: #f59e0b;
@@ -15,7 +22,8 @@
     --color-secondary: var(--secondary);
     --color-accent: var(--accent);
     --font-*: initial;
-    --font-outfit: Outfit, sans-serif;
+    --font-outfit: 'Outfit', sans-serif;
+    --font-custom: 'CustomFont', sans-serif;
 
     --breakpoint-*: initial;
     --breakpoint-2xsm: 375px;

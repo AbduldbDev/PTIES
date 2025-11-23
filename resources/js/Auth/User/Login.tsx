@@ -103,8 +103,8 @@ export default function Login() {
                     <div className="w-full max-w-xl">
                         <div className="mb-8 flex justify-center">
                             <div className="flex items-center space-x-4">
-                                <img src="/User/Layout/Logo.png" alt="Logo" className="h-16 w-16" />
                                 <img src="/User/Layout/Seal.png" alt="Seal" className="h-14 w-14" />
+                                <img src="/User/Layout/Logo.png" alt="Logo" className="h-16 w-16" />
                             </div>
                         </div>
 

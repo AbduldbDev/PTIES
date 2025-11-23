@@ -24,7 +24,7 @@ export default function HeroSection({ content }: Props) {
                         }}
                     ></div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent opacity-70 md:opacity-90"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/70 to-transparent opacity-50 md:opacity-90"></div>
 
                 <div className="relative z-10 container mx-auto px-4 py-8 md:px-6 md:py-12 lg:py-20">
                     <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-10 xl:gap-12">
@@ -41,13 +41,11 @@ export default function HeroSection({ content }: Props) {
                             <h1 className="mb-2 text-2xl leading-tight font-bold text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
                                 <span className="text-secondary">{content.title}</span>
                             </h1>
-                            <h2 className="mb-3 text-lg font-semibold text-white sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-                                {content.subtitle}
-                            </h2>
-                            <p className="mx-auto mb-4 max-w-md text-sm text-white/90 italic md:text-base lg:mx-0 lg:mb-6 lg:text-lg">
-                                <i className="fas fa-quote-left mr-1 text-[10px] text-secondary/50 md:text-xs"></i>
+                            <h2 className="mb-3 text-2xl font-semibold text-white md:text-2xl lg:text-3xl xl:text-4xl">{content.subtitle}</h2>
+                            <p className="mx-auto mb-4 max-w-xl font-custom text-lg text-white/90 italic md:text-base lg:mx-0 lg:mb-6 lg:text-3xl">
+                                <i className="fas fa-quote-left mr-1 text-[10px] text-secondary/90 md:text-2xl"></i>
                                 {content.slogan}
-                                <i className="fas fa-quote-right ml-1 text-[10px] text-secondary/50 md:text-xs"></i>
+                                <i className="fas fa-quote-right ml-1 text-[10px] text-secondary/90 md:text-2xl"></i>
                             </p>
 
                             <div className="flex flex-col justify-center gap-2 sm:flex-row sm:gap-3 lg:justify-start">

@@ -107,7 +107,7 @@ export default function TourismAboutPage() {
                     <div className="container mx-auto px-4 sm:px-5 md:px-6">
                         <PageTitle
                             title="Local Government"
-                            subtitle="Tourism Department of Pakil, Laguna"
+                            subtitle="Pakil Tourism, History, Culture and Arts - Turumba Festival "
                             desc="Preserving heritage, promoting sustainable tourism, and enhancing visitor experiences"
                         ></PageTitle>
 

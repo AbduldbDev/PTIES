@@ -5,8 +5,8 @@ export default function Cookies() {
                 <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
                     <div className="flex-shrink-0">
                         <a href="#" className="flex items-center space-x-2">
-                            <img src="/User/Layout/Logo.png" alt="Logo" className="h-10 w-10 sm:h-12 sm:w-12 md:h-[55px] md:w-[55px]" />
                             <img src="/User/Layout/Seal.png" alt="Seal" className="h-9 w-9 sm:h-10 sm:w-10 md:h-[50px] md:w-[50px]" />
+                            <img src="/User/Layout/Logo.png" alt="Logo" className="h-10 w-10 sm:h-12 sm:w-12 md:h-[55px] md:w-[55px]" />
                         </a>
                     </div>
 
