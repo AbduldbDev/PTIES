@@ -319,7 +319,10 @@ const otherNavItems: NavItem[] = [
                 name: 'Rewards Redemption ',
                 path: '',
                 requiredUserType: ['admin', 'content_manager'],
-                subItems: [{ name: 'Pending Redeems', path: '/Admin/rewards/redeem/pending', requiredUserType: ['admin', 'content_manager'] }],
+                subItems: [
+                    { name: 'Redeem History', path: '/Admin/rewards/redeem', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'Pending Redeems', path: '/Admin/rewards/redeem/pending', requiredUserType: ['admin', 'content_manager'] },
+                ],
             },
         ],
     },
