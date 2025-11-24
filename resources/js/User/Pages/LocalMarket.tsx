@@ -357,7 +357,7 @@ export default function LocalMarket() {
                             {finalFilteredData.length > 0 ? (
                                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                                     {finalFilteredData.map((item, index) => (
-                                        <MarketProduct key={index} product={item} />
+                                        <MarketProduct key={index} product={item} index={index} />
                                     ))}
                                 </div>
                             ) : (

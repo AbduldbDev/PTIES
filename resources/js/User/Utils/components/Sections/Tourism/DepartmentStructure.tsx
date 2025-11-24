@@ -64,9 +64,19 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
         const isActive = activeAccordion === department.id;
 
         return (
-            <div key={department.id} className={`mb-3 ${level > 0 ? 'ml-6 border-l-2 border-primary/20 pl-4' : ''}`}>
+            <div
+                key={department.id}
+                className={`mb-3 ${level > 0 ? 'ml-6 border-l-2 border-primary/20 pl-4' : ''}`}
+                data-aos="fade-up"
+                data-aos-delay={level * 100}
+            >
                 <div className="overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
-                    <button className="flex w-full items-center justify-between p-4 text-left" onClick={() => toggleAccordion(department.id)}>
+                    <button
+                        className="flex w-full items-center justify-between p-4 text-left"
+                        onClick={() => toggleAccordion(department.id)}
+                        data-aos="fade-right"
+                        data-aos-delay={200 + level * 50}
+                    >
                         <div className="flex items-center">
                             <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
                                 <i className={`fas ${department.icon} text-primary`}></i>
@@ -93,17 +103,19 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
 
                     <div className={`${isActive ? 'block' : 'hidden'} px-4 pb-4`}>
                         <div className="border-l-2 border-primary/30 pl-4">
-                            <p className="mb-3 text-gray-700">{department.description}</p>
+                            <p className="mb-3 text-gray-700" data-aos="fade-up" data-aos-delay="100">
+                                {department.description}
+                            </p>
 
                             {/* Display leaders if any */}
                             {leaders.length > 0 && (
-                                <div className="mb-3 rounded-lg border border-gray-200 bg-white p-3">
+                                <div className="mb-3 rounded-lg border border-gray-200 bg-white p-3" data-aos="zoom-in" data-aos-delay="200">
                                     <p className="mb-1 font-medium text-primary">{leaders.length === 1 ? 'Department Head:' : 'Department Heads:'}</p>
                                     <ul className="space-y-1 text-sm text-gray-700">
                                         {leaders
                                             .sort((a, b) => a.order_no - b.order_no)
-                                            .map((member) => (
-                                                <li key={member.id}>
+                                            .map((member, index) => (
+                                                <li key={member.id} data-aos="fade-right" data-aos-delay={300 + index * 50}>
                                                     • {member.name} - {member.position}
                                                 </li>
                                             ))}
@@ -113,13 +125,13 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
 
                             {/* Display regular team members if any */}
                             {regularMembers.length > 0 && (
-                                <div className="rounded-lg border border-gray-200 bg-white p-3">
+                                <div className="rounded-lg border border-gray-200 bg-white p-3" data-aos="zoom-in" data-aos-delay="300">
                                     <p className="mb-1 font-medium text-primary">Team Members:</p>
                                     <ul className="space-y-1 text-sm text-gray-700">
                                         {regularMembers
                                             .sort((a, b) => a.order_no - b.order_no)
-                                            .map((member) => (
-                                                <li key={member.id}>
+                                            .map((member, index) => (
+                                                <li key={member.id} data-aos="fade-right" data-aos-delay={400 + index * 50}>
                                                     • {member.name} - {member.position}
                                                 </li>
                                             ))}
@@ -155,22 +167,39 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
                 <div
                     className={`official-card relative z-10 mt-5 rounded-xl border border-gray-200 bg-white p-5 text-center shadow-md transition-all hover:shadow-lg ${level > 0 ? 'mt-4' : ''}`}
                     style={{ width: '320px' }}
+                    data-aos="zoom-in"
+                    data-aos-delay={level * 150}
+                    data-aos-duration="600"
                 >
                     {/* Large Pin Icon on top-left */}
-                    <div className="absolute -top-4 -right-4 flex h-10 w-10 items-center justify-center rounded-full bg-secondary shadow-md">
+                    <div
+                        className="absolute -top-4 -right-4 flex h-10 w-10 items-center justify-center rounded-full bg-secondary shadow-md"
+                        data-aos="zoom-in"
+                        data-aos-delay={300 + level * 150}
+                    >
                         <i className="fas fa-thumbtack rotate-45 text-lg text-white"></i>
                     </div>
-                    <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10">
+                    <div
+                        className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10"
+                        data-aos="bounce-in"
+                        data-aos-delay={200 + level * 150}
+                    >
                         <i className={`fas ${department.icon} text-xl text-primary`}></i>
                     </div>
 
-                    <h4 className="mb-1 text-lg font-bold text-primary">{department.title}</h4>
-                    <p className="mb-2 text-sm text-gray-600">{department.subtitle}</p>
-                    <p className="mb-3 line-clamp-2 text-sm text-gray-700">{department.description}</p>
+                    <h4 className="mb-1 text-lg font-bold text-primary" data-aos="fade-down" data-aos-delay={250 + level * 150}>
+                        {department.title}
+                    </h4>
+                    <p className="mb-2 text-sm text-gray-600" data-aos="fade-up" data-aos-delay={300 + level * 150}>
+                        {department.subtitle}
+                    </p>
+                    <p className="mb-3 line-clamp-2 text-sm text-gray-700" data-aos="fade-up" data-aos-delay={350 + level * 150}>
+                        {department.description}
+                    </p>
 
                     {/* Display parent department if exists */}
                     {parentDepartment && (
-                        <div className="mb-3 border-t border-gray-200 pt-3">
+                        <div className="mb-3 border-t border-gray-200 pt-3" data-aos="fade-up" data-aos-delay={400 + level * 150}>
                             <p className="flex items-center justify-center text-xs text-gray-500">
                                 <i className="fas fa-level-up-alt mr-1 rotate-90"></i>
                                 Part of {parentDepartment.title}
@@ -180,7 +209,7 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
 
                     {/* Display leaders if any */}
                     {leaders.length > 0 && (
-                        <div className="mb-3 border-t border-gray-200 pt-3">
+                        <div className="mb-3 border-t border-gray-200 pt-3" data-aos="fade-up" data-aos-delay={450 + level * 150}>
                             <p className="mb-1 flex items-center justify-center text-sm font-medium text-primary">
                                 <i className="fas fa-crown mr-1 text-xs"></i>
                                 {leaders.length === 1 ? 'Head' : 'Heads'}
@@ -188,8 +217,13 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
                             <ul className="space-y-1 text-xs text-gray-700">
                                 {leaders
                                     .sort((a, b) => a.order_no - b.order_no)
-                                    .map((member) => (
-                                        <li key={member.id} className="flex items-center justify-between rounded px-1 py-0.5 hover:bg-gray-50">
+                                    .map((member, index) => (
+                                        <li
+                                            key={member.id}
+                                            className="flex items-center justify-between rounded px-1 py-0.5 hover:bg-gray-50"
+                                            data-aos="fade-right"
+                                            data-aos-delay={500 + level * 150 + index * 50}
+                                        >
                                             <span className="flex items-center">
                                                 <span className="mr-2 h-2 w-2 rounded-full bg-primary/40"></span>
                                                 {member.name}
@@ -203,7 +237,7 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
 
                     {/* Display regular team members if any */}
                     {regularMembers.length > 0 && (
-                        <div className="border-t border-gray-200 pt-3">
+                        <div className="border-t border-gray-200 pt-3" data-aos="fade-up" data-aos-delay={550 + level * 150}>
                             <p className="mb-1 flex items-center justify-center text-sm font-medium text-primary">
                                 <i className="fas fa-users mr-1 text-xs"></i>
                                 Team Members
@@ -211,8 +245,13 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
                             <ul className="space-y-1 text-xs text-gray-700">
                                 {regularMembers
                                     .sort((a, b) => a.order_no - b.order_no)
-                                    .map((member) => (
-                                        <li key={member.id} className="flex items-center justify-between rounded px-1 py-0.5 hover:bg-gray-50">
+                                    .map((member, index) => (
+                                        <li
+                                            key={member.id}
+                                            className="flex items-center justify-between rounded px-1 py-0.5 hover:bg-gray-50"
+                                            data-aos="fade-right"
+                                            data-aos-delay={600 + level * 150 + index * 50}
+                                        >
                                             <span className="flex items-center">
                                                 <span className="mr-2 h-2 w-2 rounded-full bg-gray-300"></span>
                                                 {member.name}
@@ -226,7 +265,7 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
 
                     {/* Show indicator if department has children */}
                     {hasChildren && (
-                        <div className="mt-3 border-t border-gray-200 pt-3">
+                        <div className="mt-3 border-t border-gray-200 pt-3" data-aos="fade-up" data-aos-delay={650 + level * 150}>
                             <p className="flex items-center justify-center text-xs font-medium text-primary">
                                 <i className="fas fa-sitemap mr-1"></i>
                                 {department.children!.length} sub-department{department.children!.length !== 1 ? 's' : ''}
@@ -239,11 +278,15 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
                 {hasChildren && (
                     <div className="relative mt-6 flex justify-center">
                         {/* Main vertical connector from parent to horizontal line */}
-                        <div className="absolute -top-4 left-1/2 h-6 -translate-x-1/2 transform border-l border-dashed border-primary"></div>
+                        <div
+                            className="absolute -top-4 left-1/2 h-6 -translate-x-1/2 transform border-l border-dashed border-primary"
+                            data-aos="fade-down"
+                            data-aos-delay={700 + level * 150}
+                        ></div>
 
                         {/* Horizontal connector line spanning all children (only if > 1 child) */}
                         {department.children!.length > 1 && (
-                            <div className="absolute top-2 right-0 left-0 flex justify-center">
+                            <div className="absolute top-2 right-0 left-0 flex justify-center" data-aos="zoom-in" data-aos-delay={750 + level * 150}>
                                 <div className="h-0.5 w-full max-w-[calc(100%-3rem)] border-t border-dashed border-primary"></div>
                             </div>
                         )}
@@ -253,7 +296,11 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
                             {department.children!.map((child) => (
                                 <div key={child.id} className="relative flex justify-center">
                                     {/* Individual vertical connector */}
-                                    <div className="absolute -top-6 left-1/2 h-6 -translate-x-1/2 transform border-l border-dashed border-primary"></div>
+                                    <div
+                                        className="absolute -top-6 left-1/2 h-6 -translate-x-1/2 transform border-l border-dashed border-primary"
+                                        data-aos="fade-down"
+                                        data-aos-delay={800 + level * 150}
+                                    ></div>
 
                                     {renderDepartmentTreePC(child, level + 1)}
                                 </div>
@@ -268,14 +315,20 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
     return (
         <div>
             {/* Mobile Accordion View with Hierarchy */}
-            <div className="space-y-4 px-2 lg:hidden">{departments.map((department) => renderDepartmentTreeMobile(department))}</div>
+            <div className="space-y-4 px-2 lg:hidden">
+                {departments.map((department, index) => (
+                    <div key={department.id} data-aos="fade-up" data-aos-delay={index * 100}>
+                        {renderDepartmentTreeMobile(department)}
+                    </div>
+                ))}
+            </div>
 
             {/* Desktop Tree View */}
             <div className="hidden lg:block">
                 <div className="flex justify-center">
                     <div className="tree-container">
-                        {departments.map((department) => (
-                            <div key={department.id} className="relative">
+                        {departments.map((department, index) => (
+                            <div key={department.id} className="relative" data-aos="fade-up" data-aos-delay={index * 200}>
                                 {renderDepartmentTreePC(department, 0)}
                             </div>
                         ))}
@@ -283,13 +336,19 @@ const DepartmentStructure = ({ departments }: DepartmentStructureProps) => {
                 </div>
             </div>
 
-            <div className="mt-12 text-center">
-                <div className="inline-block max-w-2xl rounded-xl bg-primary/5 p-6">
-                    <h4 className="mb-2 text-lg font-bold text-primary">Need to contact a specific department?</h4>
-                    <p className="mb-4 text-gray-700">Reach out to our tourism office for inquiries and assistance</p>
+            <div className="mt-12 text-center" data-aos="fade-up" data-aos-delay="300">
+                <div className="inline-block max-w-2xl rounded-xl bg-primary/5 p-6" data-aos="zoom-in" data-aos-delay="400">
+                    <h4 className="mb-2 text-lg font-bold text-primary" data-aos="fade-down" data-aos-delay="500">
+                        Need to contact a specific department?
+                    </h4>
+                    <p className="mb-4 text-gray-700" data-aos="fade-up" data-aos-delay="550">
+                        Reach out to our tourism office for inquiries and assistance
+                    </p>
                     <a
                         href="/contact"
                         className="inline-flex items-center rounded-full bg-primary px-6 py-2 text-white transition hover:bg-primary/90"
+                        data-aos="zoom-in"
+                        data-aos-delay="600"
                     >
                         <i className="fas fa-envelope mr-2"></i> Contact Tourism Office
                     </a>

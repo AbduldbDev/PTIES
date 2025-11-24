@@ -83,7 +83,7 @@ export default function TourismAboutPage() {
                 <div className="h-[15vh]"></div>
             )}
             {!content.about && !content.mission_vision && departments.length <= 0 && !content.citizen_charter && (
-                <div className="py-16">
+                <section className="py-16">
                     <PageTitle
                         title="NO INFORMATION AVAILABLE"
                         subtitle="Currently No Information Provided"
@@ -95,7 +95,7 @@ export default function TourismAboutPage() {
                         actionText="Return Home"
                         onAction={() => (window.location.href = '/')}
                     />
-                </div>
+                </section>
             )}
 
             {content.about && (
@@ -120,40 +120,48 @@ export default function TourismAboutPage() {
                             }}
                         />
 
-                        <div className="mt-10 rounded-lg border border-gray-200 bg-gradient-to-r from-primary/10 to-accent/10 p-5 backdrop-blur-sm md:mt-12 md:rounded-xl md:p-6 lg:mt-16 lg:p-8">
+                        <div
+                            className="mt-10 rounded-lg border border-gray-200 bg-gradient-to-r from-primary/10 to-accent/10 p-5 backdrop-blur-sm md:mt-12 md:rounded-xl md:p-6 lg:mt-16 lg:p-8"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                        >
                             <div className="flex flex-col items-center md:flex-row">
-                                <div className="mb-4 md:mr-6 md:mb-0 lg:mr-8">
+                                <div className="mb-4 md:mr-6 md:mb-0 lg:mr-8" data-aos="zoom-in" data-aos-delay="200">
                                     <i className="fas fa-leaf text-3xl text-primary md:text-4xl lg:text-5xl"></i>
                                 </div>
                                 <div className="flex-1">
-                                    <h4 className="text-dark mb-2 text-lg font-bold md:mb-3 md:text-xl lg:text-2xl">
+                                    <h4
+                                        className="text-dark mb-2 text-lg font-bold md:mb-3 md:text-xl lg:text-2xl"
+                                        data-aos="fade-right"
+                                        data-aos-delay="300"
+                                    >
                                         Commitment to Sustainable Tourism
                                     </h4>
-                                    <p className="mb-3 text-sm text-gray-700 md:mb-4 md:text-base">
+                                    <p className="mb-3 text-sm text-gray-700 md:mb-4 md:text-base" data-aos="fade-up" data-aos-delay="400">
                                         The Tourism Department actively promotes eco-friendly practices including waste management, responsible
                                         trekking, and heritage conservation. We monitor tourism impacts and support initiatives that reduce
                                         environmental footprint while protecting Pakil's biodiversity.
                                     </p>
-                                    <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-                                        <div className="text-center">
+                                    <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4" data-aos="fade-up" data-aos-delay="500">
+                                        <div className="text-center" data-aos="zoom-in" data-aos-delay="600">
                                             <div className="mx-auto mb-1 flex h-10 w-10 items-center justify-center rounded-full bg-white md:mb-2 md:h-12 md:w-12">
                                                 <i className="fas fa-recycle text-xs text-accent md:text-sm"></i>
                                             </div>
                                             <p className="text-xs font-medium md:text-sm">Eco-Tourism</p>
                                         </div>
-                                        <div className="text-center">
+                                        <div className="text-center" data-aos="zoom-in" data-aos-delay="700">
                                             <div className="mx-auto mb-1 flex h-10 w-10 items-center justify-center rounded-full bg-white md:mb-2 md:h-12 md:w-12">
                                                 <i className="fas fa-hands text-xs text-accent md:text-sm"></i>
                                             </div>
                                             <p className="text-xs font-medium md:text-sm">Community Training</p>
                                         </div>
-                                        <div className="text-center">
+                                        <div className="text-center" data-aos="zoom-in" data-aos-delay="800">
                                             <div className="mx-auto mb-1 flex h-10 w-10 items-center justify-center rounded-full bg-white md:mb-2 md:h-12 md:w-12">
                                                 <i className="fas fa-monument text-xs text-accent md:text-sm"></i>
                                             </div>
                                             <p className="text-xs font-medium md:text-sm">Heritage Protection</p>
                                         </div>
-                                        <div className="text-center">
+                                        <div className="text-center" data-aos="zoom-in" data-aos-delay="900">
                                             <div className="mx-auto mb-1 flex h-10 w-10 items-center justify-center rounded-full bg-white md:mb-2 md:h-12 md:w-12">
                                                 <i className="fas fa-users text-xs text-accent md:text-sm"></i>
                                             </div>
@@ -164,15 +172,19 @@ export default function TourismAboutPage() {
                             </div>
                         </div>
 
-                        <div className="mt-8 text-center md:mt-10 lg:mt-12">
-                            <h4 className="text-dark mb-2 text-lg font-bold md:mb-3 md:text-xl">Want to collaborate or learn more?</h4>
-                            <p className="mx-auto mb-4 max-w-2xl text-xs text-gray-600 md:mb-5 md:text-sm">
+                        <div className="mt-8 text-center md:mt-10 lg:mt-12" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                            <h4 className="text-dark mb-2 text-lg font-bold md:mb-3 md:text-xl" data-aos="fade-down" data-aos-delay="400">
+                                Want to collaborate or learn more?
+                            </h4>
+                            <p className="mx-auto mb-4 max-w-2xl text-xs text-gray-600 md:mb-5 md:text-sm" data-aos="fade-up" data-aos-delay="500">
                                 Contact the Pakil Tourism Department for partnerships, inquiries, or to share your ideas for sustainable tourism
                                 development.
                             </p>
                             <a
                                 href="/contact"
                                 className="inline-flex items-center rounded-full border border-transparent bg-primary px-4 py-2 text-xs font-medium text-white shadow-sm transition duration-300 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none md:px-5 md:py-2.5 md:text-sm lg:px-6 lg:py-3 lg:text-base"
+                                data-aos="zoom-in"
+                                data-aos-delay="600"
                             >
                                 <i className="fas fa-envelope mr-1.5 text-xs md:mr-2 md:text-sm"></i> Contact Tourism Office
                             </a>
@@ -180,6 +192,7 @@ export default function TourismAboutPage() {
                     </div>
                 </section>
             )}
+
             {content.mission_vision && (
                 <section id="mission&vision" className="py-0 md:py-16">
                     <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -188,6 +201,7 @@ export default function TourismAboutPage() {
                     </div>
                 </section>
             )}
+
             {departments.length > 0 && (
                 <section id="department_structure" className="py-12">
                     <PageTitle
@@ -198,6 +212,7 @@ export default function TourismAboutPage() {
                     <DeparmentStructure departments={departments} />
                 </section>
             )}
+
             {content.citizen_charter && (
                 <section id="citizen_charter" className="py-10">
                     <div className="max-w-8xl container mx-auto px-6">

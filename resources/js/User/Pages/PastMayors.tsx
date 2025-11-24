@@ -26,7 +26,7 @@ export default function PastMayors() {
 
     const title = 'Pakil Tourism | Past Mayors';
     const description =
-        'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
+        "Discover Pakil's festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.";
 
     return (
         <>
@@ -63,26 +63,43 @@ export default function PastMayors() {
                     )}
 
                     {items.length === 0 ? (
-                        <EmptyState
-                            title="No Past Mayors Available"
-                            message="We're currently updating our records of past mayors. Please check back soon."
-                            actionText="Return Home"
-                            onAction={() => window.location.assign('/')}
-                        />
+                        <div data-aos="fade-up" data-aos-duration="800">
+                            <EmptyState
+                                title="No Past Mayors Available"
+                                message="We're currently updating our records of past mayors. Please check back soon."
+                                actionText="Return Home"
+                                onAction={() => window.location.assign('/')}
+                            />
+                        </div>
                     ) : (
                         <>
+                            {/* Desktop Timeline View */}
                             <div className="relative hidden lg:block">
-                                <div className="absolute left-1/2 h-full w-1 -translate-x-1/2 transform bg-gradient-to-b from-primary via-secondary to-accent"></div>
+                                <div
+                                    className="absolute left-1/2 h-full w-1 -translate-x-1/2 transform bg-gradient-to-b from-primary via-secondary to-accent"
+                                    data-aos="fade-down"
+                                    data-aos-duration="1000"
+                                    data-aos-delay="300"
+                                ></div>
 
                                 {items.map((mayor, index) => (
                                     <div key={index}>
                                         {index % 2 === 0 ? (
-                                            <div className="relative mb-8 flex items-center justify-between">
+                                            // Left side card
+                                            <div
+                                                className="relative mb-8 flex items-center justify-between"
+                                                data-aos="fade-right"
+                                                data-aos-delay={index * 150}
+                                            >
                                                 <div className="flex w-5/12 justify-end">
                                                     <div className="w-full max-w-sm rounded-xl border border-gray-100 bg-white p-3 shadow-lg transition-all duration-300 hover:shadow-xl">
                                                         <div className="flex flex-col items-center text-center">
                                                             <div className="relative mb-4">
-                                                                <div className="creative-frame relative mx-auto h-56 overflow-hidden rounded-lg border-4 border-white shadow-lg">
+                                                                <div
+                                                                    className="creative-frame relative mx-auto h-56 overflow-hidden rounded-lg border-4 border-white shadow-lg"
+                                                                    data-aos="zoom-in"
+                                                                    data-aos-delay={index * 150 + 100}
+                                                                >
                                                                     <div className="glow-effect absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400/30 to-purple-500/30 blur-xl"></div>
                                                                     <img
                                                                         src={mayor.image}
@@ -91,27 +108,52 @@ export default function PastMayors() {
                                                                     />
                                                                 </div>
                                                             </div>
-                                                            <h4 className="mb-2 text-2xl font-bold text-primary">{mayor.name}</h4>
-                                                            <p className="mb-2 text-gray-600">{mayor.position}</p>
+                                                            <h4
+                                                                className="mb-2 text-2xl font-bold text-primary"
+                                                                data-aos="fade-down"
+                                                                data-aos-delay={index * 150 + 200}
+                                                            >
+                                                                {mayor.name}
+                                                            </h4>
+                                                            <p className="mb-2 text-gray-600" data-aos="fade-up" data-aos-delay={index * 150 + 250}>
+                                                                {mayor.position}
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="absolute left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full border-4 border-white bg-primary px-5 py-2 shadow-lg">
+                                                <div
+                                                    className="absolute left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full border-4 border-white bg-primary px-5 py-2 shadow-lg"
+                                                    data-aos="zoom-in"
+                                                    data-aos-delay={index * 150 + 50}
+                                                >
                                                     <span className="text-sm font-bold text-white"> {mayor.term}</span>
                                                 </div>
                                                 <div className="w-5/12"></div>
                                             </div>
                                         ) : (
-                                            <div className="relative mb-8 flex items-center justify-between">
+                                            // Right side card
+                                            <div
+                                                className="relative mb-8 flex items-center justify-between"
+                                                data-aos="fade-left"
+                                                data-aos-delay={index * 150}
+                                            >
                                                 <div className="w-5/12"></div>
-                                                <div className="absolute left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full border-4 border-white bg-primary px-5 py-2 shadow-lg">
+                                                <div
+                                                    className="absolute left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full border-4 border-white bg-primary px-5 py-2 shadow-lg"
+                                                    data-aos="zoom-in"
+                                                    data-aos-delay={index * 150 + 50}
+                                                >
                                                     <span className="text-sm font-bold text-white"> {mayor.term}</span>
                                                 </div>
                                                 <div className="w-5/12">
                                                     <div className="w-full max-w-sm rounded-xl border border-gray-100 bg-white p-3 shadow-lg transition-all duration-300 hover:shadow-xl">
                                                         <div className="flex flex-col items-center text-center">
                                                             <div className="relative mb-4">
-                                                                <div className="creative-frame relative mx-auto h-56 overflow-hidden rounded-lg border-4 border-white shadow-lg">
+                                                                <div
+                                                                    className="creative-frame relative mx-auto h-56 overflow-hidden rounded-lg border-4 border-white shadow-lg"
+                                                                    data-aos="zoom-in"
+                                                                    data-aos-delay={index * 150 + 100}
+                                                                >
                                                                     <div className="glow-effect absolute inset-0 rounded-lg bg-gradient-to-r from-primary/30 to-secondary/30 blur-xl"></div>
                                                                     <img
                                                                         src={mayor.image}
@@ -120,8 +162,16 @@ export default function PastMayors() {
                                                                     />
                                                                 </div>
                                                             </div>
-                                                            <h4 className="mb-2 text-2xl font-bold text-primary">{mayor.name}</h4>
-                                                            <p className="mb-2 text-gray-600"> {mayor.position}</p>
+                                                            <h4
+                                                                className="mb-2 text-2xl font-bold text-primary"
+                                                                data-aos="fade-down"
+                                                                data-aos-delay={index * 150 + 200}
+                                                            >
+                                                                {mayor.name}
+                                                            </h4>
+                                                            <p className="mb-2 text-gray-600" data-aos="fade-up" data-aos-delay={index * 150 + 250}>
+                                                                {mayor.position}
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -131,24 +181,43 @@ export default function PastMayors() {
                                 ))}
                             </div>
 
+                            {/* Mobile Grid View */}
                             <div className="lg:hidden">
                                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                                     {items.map((mayor, index) => (
                                         <div
                                             key={index}
                                             className="gallery-card rounded-xl border border-gray-100 bg-white p-5 shadow-lg transition-all duration-300 hover:shadow-xl"
+                                            data-aos="zoom-in"
+                                            data-aos-delay={index * 100}
                                         >
                                             <div className="flex flex-col items-center text-center">
                                                 <div className="relative mb-4">
-                                                    <div className="mx-auto h-40 w-40 overflow-hidden rounded-lg border-4 border-white shadow-lg">
+                                                    <div
+                                                        className="mx-auto h-40 w-40 overflow-hidden rounded-lg border-4 border-white shadow-lg"
+                                                        data-aos="flip-up"
+                                                        data-aos-delay={index * 100 + 50}
+                                                    >
                                                         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
                                                             <img src={mayor.image} alt={mayor.name} />
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h4 className="mb-1 text-xl font-bold text-primary">{mayor.name}</h4>
-                                                <p className="mb-2 text-sm text-gray-600">{mayor.position}</p>
-                                                <div className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+                                                <h4
+                                                    className="mb-1 text-xl font-bold text-primary"
+                                                    data-aos="fade-down"
+                                                    data-aos-delay={index * 100 + 100}
+                                                >
+                                                    {mayor.name}
+                                                </h4>
+                                                <p className="mb-2 text-sm text-gray-600" data-aos="fade-up" data-aos-delay={index * 100 + 150}>
+                                                    {mayor.position}
+                                                </p>
+                                                <div
+                                                    className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary"
+                                                    data-aos="zoom-in"
+                                                    data-aos-delay={index * 100 + 200}
+                                                >
                                                     {mayor.term}
                                                 </div>
                                             </div>
@@ -157,7 +226,7 @@ export default function PastMayors() {
                                 </div>
                             </div>
 
-                            <div className="mt-12 text-center text-sm text-gray-500">
+                            <div className="mt-12 text-center text-sm text-gray-500" data-aos="fade-up" data-aos-delay="300">
                                 <p>
                                     <i className="fas fa-info-circle mr-2"></i>Portrait images will be added as they become available from municipal
                                     archives

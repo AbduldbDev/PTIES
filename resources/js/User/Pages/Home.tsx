@@ -3,8 +3,10 @@ import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import EventsCard from '@UserUtils/components/Cards/EventsCard';
 import FeaturedPost from '@UserUtils/components/Cards/FeaturedPost';
 import NewsLetter from '@UserUtils/components/Cards/NewsLetter';
+import Explore from '@UserUtils/components/Sections/Home/Explore';
 import HeroSection from '@UserUtils/components/Sections/Home/Hero';
 import Introduction from '@UserUtils/components/Sections/Home/Introduction';
+import Map from '@UserUtils/components/Sections/Home/Map';
 import PromotionalVideo from '@UserUtils/components/Sections/Home/Promotion';
 import { CMSContent } from '@UserUtils/Types/cms';
 
@@ -89,43 +91,7 @@ export default function Home() {
                 <div className="h-[15vh]"></div>
             )}
 
-            <section id="explore" className="py-8 md:py-10 lg:py-12">
-                <div className="container mx-auto px-4 sm:px-5 md:px-6">
-                    <PageTitle
-                        title="Discover"
-                        subtitle="Welcome to Pakil"
-                        desc="A charming Laguna town where faith, heritage, and nature come together to create unforgettable experiences."
-                    ></PageTitle>
-
-                    <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-3 md:gap-8">
-                        <div className="rounded-lg border border-primary/20 bg-gray-50 p-4 transition-all hover:border-secondary/50 sm:rounded-xl sm:p-5 md:p-6">
-                            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 sm:mb-4 sm:h-14 sm:w-14 sm:rounded-lg">
-                                <i className="fas fa-church text-xl text-primary sm:text-2xl"></i>
-                            </div>
-                            <h3 className="mb-2 text-lg font-bold text-primary sm:text-xl">Religious Heritage</h3>
-                            <p className="text-sm text-gray-600 sm:text-base">
-                                Explore the historic San Pedro de Alcantara Church and other spiritual landmarks.
-                            </p>
-                        </div>
-
-                        <div className="rounded-lg border border-primary/20 bg-gray-50 p-4 transition-all hover:border-secondary/50 sm:rounded-xl sm:p-5 md:p-6">
-                            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 sm:mb-4 sm:h-14 sm:w-14 sm:rounded-lg">
-                                <i className="fas fa-water text-xl text-primary sm:text-2xl"></i>
-                            </div>
-                            <h3 className="mb-2 text-lg font-bold text-primary sm:text-xl">Natural Wonders</h3>
-                            <p className="text-sm text-gray-600 sm:text-base">Discover beautiful waterfalls and scenic landscapes around Pakil.</p>
-                        </div>
-
-                        <div className="rounded-lg border border-primary/20 bg-gray-50 p-4 transition-all hover:border-secondary/50 sm:rounded-xl sm:p-5 md:p-6">
-                            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 sm:mb-4 sm:h-14 sm:w-14 sm:rounded-lg">
-                                <i className="fas fa-utensils text-xl text-primary sm:text-2xl"></i>
-                            </div>
-                            <h3 className="mb-2 text-lg font-bold text-primary sm:text-xl">Local Cuisine</h3>
-                            <p className="text-sm text-gray-600 sm:text-base">Taste authentic Filipino dishes and local specialties.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Explore />
 
             {promvid && (
                 <PromotionalVideo
@@ -149,127 +115,7 @@ export default function Home() {
                 />
             )}
 
-            <section className="py-10">
-                <div className="container mx-auto px-2 lg:px-6">
-                    <PageTitle
-                        title="Geography"
-                        subtitle="Location & Demographics"
-                        desc="Discover Pakil's strategic position in Laguna and key statistical information"
-                    ></PageTitle>
-
-                    <div className="flex flex-col gap-12 lg:flex-row">
-                        {/* Map */}
-                        <div className="lg:w-1/2">
-                            <div className="relative overflow-hidden rounded-xl border-4 border-white shadow-xl">
-                                <div className="aspect-video w-full lg:aspect-3/4">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sph!4v1755097572862!5m2!1sen!2sph!6m8!1m7!1sOg0pa6oRDwwSajvFUpDecA!2m2!1d14.38069181417978!2d121.4788246363631!3f36.29077528578861!4f6.762827195992841!5f0.7820865974627469"
-                                        className="h-full w-full"
-                                        style={{ border: 0 }}
-                                        loading="lazy"
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                        title="Google Map"
-                                        allow="accelerometer; gyroscope; magnetometer"
-                                    ></iframe>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Info */}
-                        <div className="lg:w-1/2">
-                            <div className="h-full rounded-xl bg-[#f2f4f8] p-6">
-                                <h4 className="mb-6 flex items-center text-lg font-bold text-primary sm:text-xl">
-                                    <i className="fas fa-location-dot mr-3"></i> Geographical Information
-                                </h4>
-                                <div className="mb-6 overflow-x-auto">
-                                    <table className="w-full text-sm sm:text-base">
-                                        <tbody>
-                                            <tr>
-                                                <td className="w-20 px-2 py-1 font-medium text-primary sm:w-28">North</td>
-                                                <td className="px-2 py-1 text-gray-700">Pangil, Laguna (along Mabato river)</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="w-20 px-2 py-1 font-medium text-primary sm:w-28">East</td>
-                                                <td className="px-2 py-1 text-gray-700">Real, Quezon (along Tibag river)</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="w-20 px-2 py-1 font-medium text-primary sm:w-28">South</td>
-                                                <td className="px-2 py-1 text-gray-700">
-                                                    Paete, Laguna (along Tuyong llog), Jalajala, Rizal (Inuod point and along Turnina river)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="w-20 px-2 py-1 font-medium text-primary sm:w-28">West</td>
-                                                <td className="px-2 py-1 text-gray-700">Mabitac, Laguna (Hinukay river)</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                {/* Political Subdivisions */}
-                                <div className="mb-8">
-                                    <h5 className="text-dark mb-3 flex items-center text-base font-semibold sm:text-lg">
-                                        <i className="fas fa-project-diagram mr-2 text-secondary"></i> Political Subdivisions
-                                    </h5>
-                                    <p className="mb-2 px-2 text-sm text-gray-700 sm:text-base">
-                                        <span className="font-medium text-primary">13 Barangays</span>
-                                    </p>
-                                    <div className="grid grid-cols-1 gap-4 px-1 md:grid-cols-2">
-                                        <div className="rounded-lg border border-gray-200 bg-white p-4">
-                                            <h6 className="mb-2 flex items-center text-sm font-medium text-primary sm:text-base">
-                                                <i className="fas fa-arrow-right mr-2 text-xs"></i> Silangan (East)
-                                            </h6>
-                                            <ul className="space-y-1 text-sm text-gray-700 lg:text-base">
-                                                <li>Baño</li>
-                                                <li>Burgos</li>
-                                                <li>Gonzales</li>
-                                                <li>Rizal</li>
-                                                <li>Taft</li>
-                                                <li>Tavera</li>
-                                                <li>Saray</li>
-                                            </ul>
-                                        </div>
-                                        <div className="rounded-lg border border-gray-200 bg-white p-4">
-                                            <h6 className="mb-2 flex items-center text-sm font-medium text-primary sm:text-base">
-                                                <i className="fas fa-arrow-right mr-2 text-xs"></i> Kanularan (West)
-                                            </h6>
-                                            <ul className="space-y-1 text-sm text-gray-700 lg:text-base">
-                                                <li>Banilan</li>
-                                                <li>Casa Real</li>
-                                                <li>Casinsin</li>
-                                                <li>Dorado</li>
-                                                <li>Kabulusan</li>
-                                                <li>Matikiw</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Distance */}
-                                <div>
-                                    <h5 className="text-dark mb-3 flex items-center text-base font-semibold sm:text-lg">
-                                        <i className="fas fa-route mr-2 text-secondary"></i> Distance From
-                                    </h5>
-                                    <div className="grid grid-cols-1 gap-4 px-1 md:grid-cols-2">
-                                        <div className="rounded-lg border border-gray-200 bg-white p-3">
-                                            <p className="text-xs text-gray-600 sm:text-sm">Sta. Cruz, Laguna</p>
-                                            <p className="text-base font-bold text-primary sm:text-lg">19km</p>
-                                        </div>
-                                        <div className="rounded-lg border border-gray-200 bg-white p-3">
-                                            <p className="text-xs text-gray-600 sm:text-sm">Manila via Laguna</p>
-                                            <p className="text-base font-bold text-primary sm:text-lg">114km</p>
-                                        </div>
-                                        <div className="rounded-lg border border-gray-200 bg-white p-3">
-                                            <p className="text-xs text-gray-600 sm:text-sm">Manila via Rizal</p>
-                                            <p className="text-base font-bold text-primary sm:text-lg">80km</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Map />
 
             {topPost && (
                 <section className="py-10" id="featured_posts">
@@ -283,7 +129,7 @@ export default function Home() {
                         <div className="mx-auto mb-8 max-w-4xl">
                             <FeaturedPost post={topPost} />
 
-                            <div className="mt-6 text-center">
+                            <div className="mt-6 text-center" data-aos="fade-up" data-aos-delay="400">
                                 <button
                                     onClick={() => (window.location.href = '/socialwall/new')}
                                     className="mx-auto flex items-center rounded-full bg-primary px-6 py-3 font-medium text-white transition duration-300 hover:bg-primary/90"
@@ -303,11 +149,11 @@ export default function Home() {
 
                         <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                             {events.map((event, index) => (
-                                <EventsCard key={index} events={event} />
+                                <EventsCard key={index} events={event} index={index} />
                             ))}
                         </div>
 
-                        <div className="text-center">
+                        <div className="text-center" data-aos="fade-up" data-aos-delay="400">
                             <a
                                 href="/events"
                                 className="inline-flex items-center rounded-full border border-primary px-6 py-3 font-medium text-primary transition duration-300 hover:bg-primary hover:text-white"
@@ -318,7 +164,6 @@ export default function Home() {
                     </div>
                 </section>
             )}
-
             <NewsLetter />
         </>
     );

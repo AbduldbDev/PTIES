@@ -26,9 +26,10 @@ type Contact = {
 
 type Props = {
     item: AttractionProps;
+    index: number;
 };
 
-export default function AttractionsCard({ item }: Props) {
+export default function AttractionsCard({ item, index }: Props) {
     const images: string[] = Array.isArray(item.images)
         ? item.images
         : (() => {
@@ -43,7 +44,11 @@ export default function AttractionsCard({ item }: Props) {
     const OperatingHours = (item.operating_hours || '').split('\n').filter((p) => p.trim() !== '');
 
     return (
-        <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
+        <div
+            className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
+            data-aos="fade-up"
+            data-aos-delay={500 + index * 50}
+        >
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 blur-lg transition-opacity duration-500 group-hover:opacity-100"></div>
 
             <div className="relative">

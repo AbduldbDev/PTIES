@@ -50,7 +50,7 @@ export default function NewsLetter() {
             },
         });
     };
-    
+
     const handleBlur = (field: keyof FormData) => {
         setTouched((prev) => ({ ...prev, [field]: true }));
         const error = validateField(field, form.data[field]);
@@ -58,7 +58,7 @@ export default function NewsLetter() {
     };
 
     return (
-        <section className="py-12 md:py-16 lg:py-20">
+        <section className="py-12 md:py-16 lg:py-20" data-aos="fade-up" data-aos-delay="200">
             <div className="container mx-auto px-4 sm:px-5 md:px-6">
                 <div className="mx-auto max-w-4xl overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md md:rounded-xl md:shadow-lg">
                     <div className="md:flex">

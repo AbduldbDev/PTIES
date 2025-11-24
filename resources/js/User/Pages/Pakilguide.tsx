@@ -1,6 +1,7 @@
 import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
+
 type PageBannerProps = {
     title: string;
     subtitle: string;
@@ -8,12 +9,12 @@ type PageBannerProps = {
     image: string;
 };
 
-export default function GamificationGuid() {
+export default function GamificationGuide() {
     const { banner } = usePage<{ banner: PageBannerProps }>().props;
 
     const title = 'Pakil Tourism | Guide';
     const description =
-        'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
+        "Discover Pakil's festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.";
 
     return (
         <>
@@ -38,13 +39,20 @@ export default function GamificationGuid() {
                     <PageTitle
                         title="Tourism Trail"
                         subtitle="Pakil Rewards Journey"
-                        desc="Embark on an adventure across Pakil! Unlock points, collect rewards, and complete challenges as you explore attractions and discover the town’s culture in a fun, rewarding way."
+                        desc="Embark on an adventure across Pakil! Unlock points, collect rewards, and complete challenges as you explore attractions and discover the town's culture in a fun, rewarding way."
                     ></PageTitle>
 
                     <div className="relative mx-auto max-w-5xl">
-                        <div className="absolute top-0 left-16 -z-10 hidden h-full w-0.5 bg-gradient-to-b from-primary via-secondary to-accent md:block"></div>
+                        {/* Timeline Line */}
+                        <div
+                            className="absolute top-0 left-16 -z-10 hidden h-full w-0.5 bg-gradient-to-b from-primary via-secondary to-accent md:block"
+                            data-aos="fade-down"
+                            data-aos-duration="1200"
+                            data-aos-delay="200"
+                        ></div>
 
-                        <div className="mb-12 flex flex-col items-center gap-6 md:flex-row">
+                        {/* Step 1 */}
+                        <div className="mb-12 flex flex-col items-center gap-6 md:flex-row" data-aos="fade-up" data-aos-delay="300">
                             <div className="md:order-2 md:w-1/2">
                                 <div className="group relative">
                                     <div className="absolute -inset-2 rounded-xl bg-primary/20 opacity-75 blur transition duration-300 group-hover:opacity-100"></div>
@@ -53,7 +61,11 @@ export default function GamificationGuid() {
                                         alt="Tourist exploring church"
                                         className="relative h-auto w-full rounded-xl border-4 border-white shadow-lg"
                                     />
-                                    <div className="absolute -right-4 -bottom-4 rounded-lg border border-gray-100 bg-white p-3 shadow-md">
+                                    <div
+                                        className="absolute -right-4 -bottom-4 rounded-lg border border-gray-100 bg-white p-3 shadow-md"
+                                        data-aos="zoom-in"
+                                        data-aos-delay="500"
+                                    >
                                         <div className="flex items-center">
                                             <div className="mr-2 rounded-lg bg-primary/10 p-2">
                                                 <i className="fas fa-map-signs text-primary"></i>
@@ -67,7 +79,11 @@ export default function GamificationGuid() {
                                 </div>
                             </div>
                             <div className="md:order-1 md:w-1/2">
-                                <div className="rounded-xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm">
+                                <div
+                                    className="rounded-xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm"
+                                    data-aos="fade-right"
+                                    data-aos-delay="400"
+                                >
                                     <h3 className="mb-3 text-xl font-bold text-primary">Explore Pakil's Treasures</h3>
                                     <p className="mb-4 text-gray-600">
                                         Visit our cultural landmarks, natural wonders, and historical sites. Look for official QR code signage at each
@@ -83,7 +99,8 @@ export default function GamificationGuid() {
                             </div>
                         </div>
 
-                        <div className="mb-12 flex flex-col items-center gap-6 md:flex-row">
+                        {/* Step 2 */}
+                        <div className="mb-12 flex flex-col items-center gap-6 md:flex-row" data-aos="fade-up" data-aos-delay="400">
                             <div className="md:w-1/2">
                                 <div className="group relative">
                                     <div className="absolute -inset-2 rounded-xl bg-secondary/20 opacity-75 blur transition duration-300 group-hover:opacity-100"></div>
@@ -92,7 +109,11 @@ export default function GamificationGuid() {
                                         alt="Phone scanning QR code"
                                         className="relative h-auto w-full rounded-xl border-4 border-white shadow-lg"
                                     />
-                                    <div className="absolute -bottom-4 -left-4 rounded-lg border border-gray-100 bg-white p-3 shadow-md">
+                                    <div
+                                        className="absolute -bottom-4 -left-4 rounded-lg border border-gray-100 bg-white p-3 shadow-md"
+                                        data-aos="zoom-in"
+                                        data-aos-delay="600"
+                                    >
                                         <div className="flex items-center">
                                             <div className="mr-2 rounded-lg bg-secondary/10 p-2">
                                                 <i className="fas fa-camera text-secondary"></i>
@@ -106,7 +127,11 @@ export default function GamificationGuid() {
                                 </div>
                             </div>
                             <div className="md:w-1/2">
-                                <div className="rounded-xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm">
+                                <div
+                                    className="rounded-xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm"
+                                    data-aos="fade-left"
+                                    data-aos-delay="500"
+                                >
                                     <h3 className="mb-3 text-xl font-bold text-primary">Capture Your Visit</h3>
                                     <p className="mb-4 text-gray-600">
                                         Use your phone's camera through our website to scan location QR codes. Must be logged in with internet
@@ -126,7 +151,8 @@ export default function GamificationGuid() {
                             </div>
                         </div>
 
-                        <div className="mb-12 flex flex-col items-center gap-6 md:flex-row">
+                        {/* Step 3 */}
+                        <div className="mb-12 flex flex-col items-center gap-6 md:flex-row" data-aos="fade-up" data-aos-delay="500">
                             <div className="md:order-2 md:w-1/2">
                                 <div className="group relative">
                                     <div className="absolute -inset-2 rounded-xl bg-accent/20 opacity-75 blur transition duration-300 group-hover:opacity-100"></div>
@@ -135,7 +161,11 @@ export default function GamificationGuid() {
                                         alt="Phone showing points earned"
                                         className="relative h-auto w-full rounded-xl border-4 border-white shadow-lg"
                                     />
-                                    <div className="absolute -right-4 -bottom-4 rounded-lg border border-gray-100 bg-white p-3 shadow-md">
+                                    <div
+                                        className="absolute -right-4 -bottom-4 rounded-lg border border-gray-100 bg-white p-3 shadow-md"
+                                        data-aos="zoom-in"
+                                        data-aos-delay="700"
+                                    >
                                         <div className="flex items-center">
                                             <div className="mr-2 rounded-lg bg-accent/10 p-2">
                                                 <i className="fas fa-coins text-accent"></i>
@@ -149,7 +179,11 @@ export default function GamificationGuid() {
                                 </div>
                             </div>
                             <div className="md:order-1 md:w-1/2">
-                                <div className="rounded-xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm">
+                                <div
+                                    className="rounded-xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm"
+                                    data-aos="fade-right"
+                                    data-aos-delay="600"
+                                >
                                     <h3 className="mb-3 text-xl font-bold text-primary">Instant Rewards</h3>
                                     <p className="mb-4 text-gray-600">
                                         Points are automatically added to your account after verification. Each location can only be claimed once
@@ -168,7 +202,8 @@ export default function GamificationGuid() {
                             </div>
                         </div>
 
-                        <div className="mb-12 flex flex-col items-center gap-6 md:flex-row">
+                        {/* Step 4 */}
+                        <div className="mb-12 flex flex-col items-center gap-6 md:flex-row" data-aos="fade-up" data-aos-delay="600">
                             <div className="md:w-1/2">
                                 <div className="group relative">
                                     <div className="absolute -inset-2 rounded-xl bg-purple-100 opacity-75 blur transition duration-300 group-hover:opacity-100"></div>
@@ -177,7 +212,11 @@ export default function GamificationGuid() {
                                         alt="Browsing rewards on phone"
                                         className="relative h-auto w-full rounded-xl border-4 border-white shadow-lg"
                                     />
-                                    <div className="absolute -bottom-4 -left-4 rounded-lg border border-gray-100 bg-white p-3 shadow-md">
+                                    <div
+                                        className="absolute -bottom-4 -left-4 rounded-lg border border-gray-100 bg-white p-3 shadow-md"
+                                        data-aos="zoom-in"
+                                        data-aos-delay="800"
+                                    >
                                         <div className="flex items-center">
                                             <div className="mr-2 rounded-lg bg-purple-100 p-2">
                                                 <i className="fas fa-gift text-purple-600"></i>
@@ -191,7 +230,11 @@ export default function GamificationGuid() {
                                 </div>
                             </div>
                             <div className="md:w-1/2">
-                                <div className="rounded-xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm">
+                                <div
+                                    className="rounded-xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm"
+                                    data-aos="fade-left"
+                                    data-aos-delay="700"
+                                >
                                     <h3 className="mb-3 text-xl font-bold text-primary">Exclusive Souvenirs</h3>
                                     <p className="mb-4 text-gray-600">Choose from authentic Pakil keepsakes in our rewards catalog:</p>
                                     <div className="grid grid-cols-2 gap-3">
@@ -216,7 +259,8 @@ export default function GamificationGuid() {
                             </div>
                         </div>
 
-                        <div className="flex flex-col items-center gap-6 md:flex-row">
+                        {/* Step 5 */}
+                        <div className="flex flex-col items-center gap-6 md:flex-row" data-aos="fade-up" data-aos-delay="700">
                             <div className="md:order-2 md:w-1/2">
                                 <div className="group relative">
                                     <div className="absolute -inset-2 rounded-xl bg-yellow-100 opacity-75 blur transition duration-300 group-hover:opacity-100"></div>
@@ -225,7 +269,11 @@ export default function GamificationGuid() {
                                         alt="Tourist receiving reward"
                                         className="relative h-auto w-full rounded-xl border-4 border-white shadow-lg"
                                     />
-                                    <div className="absolute -right-4 -bottom-4 rounded-lg border border-gray-100 bg-white p-3 shadow-md">
+                                    <div
+                                        className="absolute -right-4 -bottom-4 rounded-lg border border-gray-100 bg-white p-3 shadow-md"
+                                        data-aos="zoom-in"
+                                        data-aos-delay="900"
+                                    >
                                         <div className="flex items-center">
                                             <div className="mr-2 rounded-lg bg-yellow-100 p-2">
                                                 <i className="fas fa-trophy text-yellow-600"></i>
@@ -239,7 +287,11 @@ export default function GamificationGuid() {
                                 </div>
                             </div>
                             <div className="md:order-1 md:w-1/2">
-                                <div className="rounded-xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm">
+                                <div
+                                    className="rounded-xl border border-gray-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm"
+                                    data-aos="fade-right"
+                                    data-aos-delay="800"
+                                >
                                     <h3 className="mb-3 text-xl font-bold text-primary">Final Reward</h3>
                                     <p className="mb-4 text-gray-600">
                                         Visit the Tourism Office to collect your chosen reward. Present your redemption code from the website.
@@ -262,9 +314,10 @@ export default function GamificationGuid() {
                             </div>
                         </div>
 
-                        <div className="flex justify-center">
+                        {/* CTA Section */}
+                        <div className="flex justify-center" data-aos="zoom-in" data-aos-delay="1000">
                             <div className="mt-16 flex flex-col text-center">
-                                <div className="mb-6 inline-flex flex-row items-center">
+                                <div className="mb-6 inline-flex flex-row items-center" data-aos="fade-up" data-aos-delay="1100">
                                     <div className="h-1 w-8 rounded-full bg-primary"></div>
                                     <span className="mx-3 text-sm font-medium text-primary">Complete the Journey</span>
                                     <div className="h-1 w-8 rounded-full bg-primary"></div>
@@ -272,6 +325,8 @@ export default function GamificationGuid() {
                                 <a
                                     href="/explore/attractions"
                                     className="inline-flex items-center rounded-full bg-gradient-to-r from-primary to-primary/80 px-6 py-3 font-medium text-white shadow-lg transition duration-300 hover:shadow-xl"
+                                    data-aos="bounce-in"
+                                    data-aos-delay="1200"
                                 >
                                     <i className="fas fa-map-marker-alt mr-2"></i> Start Exploring Now
                                 </a>

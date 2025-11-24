@@ -136,8 +136,8 @@ export default function Guide() {
                             {filteredData.length > 0 ? (
                                 <>
                                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                                        {filteredData.map((item) => (
-                                            <Establishment key={item.id} details={item} />
+                                        {filteredData.map((item, index) => (
+                                            <Establishment key={item.id} details={item} index={index} />
                                         ))}
                                     </div>
                                 </>

@@ -96,8 +96,8 @@ export default function Contact() {
                         ></PageTitle>
 
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                            {hotlines.map((holtinesItem: HotlineProps) => (
-                                <Hotlines key={holtinesItem.id} hotlines={holtinesItem} />
+                            {hotlines.map((holtinesItem, index) => (
+                                <Hotlines key={holtinesItem.id} hotlines={holtinesItem} index={index} />
                             ))}
                         </div>
                     </div>
@@ -113,8 +113,8 @@ export default function Contact() {
                             desc="Explore Pakil with our knowledgeable local guides"
                         ></PageTitle>
                         <div className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-                            {guide.map((guideItem: PakilGuideProps) => (
-                                <TourGuide key={guideItem.id} guide={guideItem} />
+                            {guide.map((guideItem, index) => (
+                                <TourGuide key={guideItem.id} guide={guideItem} index={index} />
                             ))}
                         </div>
                     </div>

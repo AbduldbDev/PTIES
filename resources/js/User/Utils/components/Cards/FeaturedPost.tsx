@@ -81,7 +81,11 @@ export default function FeaturedPost({ post }: Props) {
     };
 
     return (
-        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md md:rounded-xl md:shadow-lg">
+        <div
+            className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md md:rounded-xl md:shadow-lg"
+            data-aos="fade-up"
+            data-aos-delay="200"
+        >
             <div className="relative aspect-video w-full">
                 <img src={`/storage/${post.image}`} alt={post.caption} className="absolute inset-0 h-full w-full object-cover" />
                 <div className="absolute top-4 right-4 rounded-full bg-white/90 p-2 shadow">

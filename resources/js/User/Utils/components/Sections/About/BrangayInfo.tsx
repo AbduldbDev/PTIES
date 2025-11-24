@@ -1,5 +1,6 @@
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import MunicipalStatsCard from '@UserUtils/components/Cards/MunicipalStats';
+
 type BarangayProps = {
     id: number;
     barangay: string;
@@ -8,6 +9,7 @@ type BarangayProps = {
     type: string;
     index: string;
 };
+
 type MunicipalStats = {
     area?: string;
     population?: string;
@@ -39,18 +41,33 @@ export default function BarangayInfo({ barangays, barangayHighlights, content }:
                         desc="Discover the political subdivisions of Pakil and their leaders"
                     ></PageTitle>
 
-                    <div className="mb-7 space-y-5 rounded-xl border border-gray-200 bg-white p-6 shadow-lg lg:mb-12">
+                    {/* Map and Stats Section */}
+                    <div
+                        className="mb-7 space-y-5 rounded-xl border border-gray-200 bg-white p-6 shadow-lg lg:mb-12"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                    >
                         <div className="w-full">
                             <div className="aspect-w-16 aspect-h-9 flex items-center justify-center rounded-lg bg-gray-50">
                                 <img src="/User/SVG/pakil.svg" alt="Pakil Municipal Map" className="h-auto w-full object-contain p-4" />
                             </div>
                         </div>
-                        {content && <MunicipalStatsCard content={content} />}
+                        {content && (
+                            <div data-aos="fade-up" data-aos-delay="400">
+                                <MunicipalStatsCard content={content} />
+                            </div>
+                        )}
                     </div>
+
+                    {/* Barangays Tables Section */}
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                         {/* East Side Barangays */}
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                            <div className="border-b border-primary/20 bg-primary/10 p-5">
+                        <div
+                            className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md"
+                            data-aos="fade-right"
+                            data-aos-delay="300"
+                        >
+                            <div className="border-b border-primary/20 bg-primary/10 p-5" data-aos="fade-down" data-aos-delay="400">
                                 <h4 className="flex items-center text-xl font-bold text-primary">
                                     <i className="fas fa-sun mr-3"></i> Silangan (East) Barangays
                                 </h4>
@@ -73,8 +90,8 @@ export default function BarangayInfo({ barangays, barangayHighlights, content }:
                                         </thead>
                                         <tbody className="divide-y divide-gray-200 bg-white">
                                             {eastBarangays.length > 0 ? (
-                                                eastBarangays.map((item) => (
-                                                    <tr key={item.id}>
+                                                eastBarangays.map((item, index) => (
+                                                    <tr key={item.id} data-aos="fade-up" data-aos-delay={500 + index * 50}>
                                                         <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
                                                             {item.index}
                                                         </td>
@@ -83,7 +100,7 @@ export default function BarangayInfo({ barangays, barangayHighlights, content }:
                                                     </tr>
                                                 ))
                                             ) : (
-                                                <tr>
+                                                <tr data-aos="fade-up" data-aos-delay="500">
                                                     <td colSpan={3} className="px-3 py-4 text-center text-sm text-gray-500">
                                                         <p>No barangays found.</p>
                                                     </td>
@@ -96,8 +113,12 @@ export default function BarangayInfo({ barangays, barangayHighlights, content }:
                         </div>
 
                         {/* West Side Barangays */}
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                            <div className="border-b border-primary/20 bg-primary/10 p-5">
+                        <div
+                            className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md"
+                            data-aos="fade-left"
+                            data-aos-delay="300"
+                        >
+                            <div className="border-b border-primary/20 bg-primary/10 p-5" data-aos="fade-down" data-aos-delay="400">
                                 <h4 className="flex items-center text-xl font-bold text-primary">
                                     <i className="fas fa-moon mr-3"></i> Kanluran (West) Barangays
                                 </h4>
@@ -120,8 +141,8 @@ export default function BarangayInfo({ barangays, barangayHighlights, content }:
                                         </thead>
                                         <tbody className="divide-y divide-gray-200 bg-white">
                                             {westBarangays.length > 0 ? (
-                                                westBarangays.map((item) => (
-                                                    <tr key={item.id}>
+                                                westBarangays.map((item, index) => (
+                                                    <tr key={item.id} data-aos="fade-up" data-aos-delay={500 + index * 50}>
                                                         <td className="px-3 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
                                                             {item.index}
                                                         </td>
@@ -130,7 +151,7 @@ export default function BarangayInfo({ barangays, barangayHighlights, content }:
                                                     </tr>
                                                 ))
                                             ) : (
-                                                <tr>
+                                                <tr data-aos="fade-up" data-aos-delay="500">
                                                     <td colSpan={3} className="px-3 py-4 text-center text-sm text-gray-500">
                                                         <p>No barangays found.</p>
                                                     </td>
@@ -143,8 +164,13 @@ export default function BarangayInfo({ barangays, barangayHighlights, content }:
                         </div>
                     </div>
 
-                    <div className="mt-7 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md lg:mt-12">
-                        <div className="border-b border-primary/20 bg-primary/10 p-5">
+                    {/* Barangay Highlights Section */}
+                    <div
+                        className="mt-7 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md lg:mt-12"
+                        data-aos="fade-up"
+                        data-aos-delay="400"
+                    >
+                        <div className="border-b border-primary/20 bg-primary/10 p-5" data-aos="fade-down" data-aos-delay="500">
                             <h4 className="flex items-center text-xl font-bold text-primary">
                                 <i className="fas fa-star mr-3"></i> Barangay Highlights
                             </h4>
@@ -152,15 +178,22 @@ export default function BarangayInfo({ barangays, barangayHighlights, content }:
 
                         <div className="grid grid-cols-1 gap-6 p-6 md:grid-cols-2 lg:grid-cols-3">
                             {barangayHighlights.length > 0 ? (
-                                barangayHighlights.map((item) => (
-                                    <div key={item.id} className="border-l-4 border-primary pl-4">
+                                barangayHighlights.map((item, index) => (
+                                    <div
+                                        key={item.id}
+                                        className="border-l-4 border-primary pl-4"
+                                        data-aos="zoom-in"
+                                        data-aos-delay={600 + index * 100}
+                                    >
                                         <h5 className="text-dark mb-2 font-bold">{item.barangay}</h5>
                                         <p className="mb-1 text-sm text-gray-700">Captain: {item.captain ?? '—'}</p>
                                         <p className="text-sm text-gray-700">{item.highlights}</p>
                                     </div>
                                 ))
                             ) : (
-                                <p className="col-span-3 text-center text-gray-500">No highlights available.</p>
+                                <p className="col-span-3 text-center text-gray-500" data-aos="fade-up" data-aos-delay="600">
+                                    No highlights available.
+                                </p>
                             )}
                         </div>
                     </div>

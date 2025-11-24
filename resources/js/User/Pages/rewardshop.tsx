@@ -156,7 +156,7 @@ export default function RewardShop() {
                             {filteredData.length > 0 ? (
                                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
                                     {filteredData.map((item, index) => (
-                                        <RewardsCard key={index} item={item} />
+                                        <RewardsCard key={index} item={item} index={index} />
                                     ))}
                                 </div>
                             ) : (

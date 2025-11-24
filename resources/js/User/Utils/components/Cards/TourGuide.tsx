@@ -9,12 +9,17 @@ interface PakilGuideProps {
 }
 interface Props {
     guide: PakilGuideProps;
+    index: number;
 }
 
-export default function TourGuide({ guide }: Props) {
+export default function TourGuide({ guide, index }: Props) {
     return (
         <>
-            <div className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md md:rounded-2xl">
+            <div
+                className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md md:rounded-2xl"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+            >
                 <div className="relative aspect-4/4 h-40 flex-shrink-0 object-cover md:h-70">
                     <img src={`/storage/${guide.image}`} alt="Tour Guide" className="h-full w-full object-cover" />
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-transparent to-transparent p-3 md:p-4">

@@ -90,7 +90,7 @@ export const Events = () => {
 
                         <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                             {items.map((event, index) => (
-                                <EventsCard key={index} events={event} />
+                                <EventsCard key={index} events={event} index={index} />
                             ))}
                         </div>
 

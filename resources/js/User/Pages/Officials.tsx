@@ -79,7 +79,7 @@ export default function Officials() {
                     {mayor || viceMayor || councilMembers.length > 0 || departmentHeads.length > 0 ? (
                         <div className="mx-auto max-w-7xl">
                             {mayor && (
-                                <div className="mb-10 flex justify-center">
+                                <div className="mb-10 flex justify-center" data-aos="zoom-in" data-aos-duration="800">
                                     <div className="official-card flex w-full max-w-md flex-col overflow-hidden rounded-xl bg-white shadow-lg">
                                         <div className="relative aspect-square w-full overflow-hidden rounded-lg">
                                             <img
@@ -124,7 +124,7 @@ export default function Officials() {
                             )}
 
                             {viceMayor && (
-                                <div className="mb-12 flex justify-center">
+                                <div className="mb-12 flex justify-center" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
                                     <div className="official-card flex w-full max-w-md flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-md">
                                         <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-gray-200">
                                             <img
@@ -166,46 +166,64 @@ export default function Officials() {
                             )}
 
                             {councilMembers.length > 0 && (
-                                <div className="mb-10">
+                                <div className="mb-10" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
                                     <div className="mb-6 text-center">
-                                        <h3 className="flex items-center justify-center text-2xl font-bold text-primary">
+                                        <h3
+                                            className="flex items-center justify-center text-2xl font-bold text-primary"
+                                            data-aos="fade-down"
+                                            data-aos-delay="300"
+                                        >
                                             Sangguniang Bayan Members
                                         </h3>
-                                        <p className="text-gray-600">Elected council members of Pakil</p>
+                                        <p className="text-gray-600" data-aos="fade-up" data-aos-delay="400">
+                                            Elected council members of Pakil
+                                        </p>
                                     </div>
 
                                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                                        {councilMembers.map((official) => (
-                                            <OfficialsCard key={official.id} official={official} />
+                                        {councilMembers.map((official, index) => (
+                                            <div key={official.id}>
+                                                <OfficialsCard official={official} index={index} />
+                                            </div>
                                         ))}
                                     </div>
                                 </div>
                             )}
 
                             {departmentHeads.length > 0 && (
-                                <div>
+                                <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
                                     <div className="mb-6 text-center">
-                                        <h3 className="flex items-center justify-center text-2xl font-bold text-primary">Department Heads</h3>
-                                        <p className="text-gray-600">Administrative leaders of Pakil</p>
+                                        <h3
+                                            className="flex items-center justify-center text-2xl font-bold text-primary"
+                                            data-aos="fade-down"
+                                            data-aos-delay="400"
+                                        >
+                                            Department Heads
+                                        </h3>
+                                        <p className="text-gray-600" data-aos="fade-up" data-aos-delay="500">
+                                            Administrative leaders of Pakil
+                                        </p>
                                     </div>
 
                                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                                        {departmentHeads.map((official) => (
-                                            <OfficialsCard key={official.id} official={official} />
+                                        {departmentHeads.map((official, index) => (
+                                            <div key={official.id}>
+                                                <OfficialsCard official={official} index={index} />
+                                            </div>
                                         ))}
                                     </div>
                                 </div>
                             )}
                         </div>
                     ) : (
-                        <>
+                        <div data-aos="fade-up" data-aos-duration="800">
                             <EmptyState
                                 title="No Key Officials Available"
                                 message="We're currently updating our records of our key officials. Please check back soon."
                                 actionText="Return Home"
                                 onAction={() => window.location.assign('/')}
                             />
-                        </>
+                        </div>
                     )}
                 </div>
             </section>

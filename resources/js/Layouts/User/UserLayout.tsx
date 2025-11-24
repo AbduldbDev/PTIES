@@ -17,15 +17,6 @@ export default function UserLayout({ children }: PropsWithChildren) {
     const [showLoader, setShowLoader] = useState(true);
     const loaderTimeout = useRef<NodeJS.Timeout | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(true);
-    useEffect(() => {
-        Aos.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            mirror: false,
-            offset: 500,
-        });
-        Aos.refresh();
-    }, []);
 
     useEffect(() => {
         if (!colorsLoaded) return;
@@ -55,6 +46,13 @@ export default function UserLayout({ children }: PropsWithChildren) {
             }
         };
     }, [colorsLoaded]);
+
+    Aos.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: false,
+        offset: 0,
+    });
 
     return (
         <>

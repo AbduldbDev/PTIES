@@ -79,6 +79,8 @@ export default function SocialWall() {
 
                                 <div className="mt-6 text-center">
                                     <button
+                                        data-aos="fade-up"
+                                        data-aos-delay="200"
                                         onClick={() => (window.location.href = '/socialwall/new')}
                                         className="mx-auto flex items-center rounded-full bg-primary px-6 py-3 font-medium text-white transition duration-300 hover:bg-primary/90"
                                     >
@@ -88,7 +90,7 @@ export default function SocialWall() {
                             </div>
 
                             <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-                                {items && items.map((items: SocialWallPost) => <SocialWallCard key={items.id} post={items} />)}
+                                {items && items.map((items, index) => <SocialWallCard key={items.id} post={items} index={index} />)}
                             </div>
 
                             {/* <div className="mt-8 text-center">

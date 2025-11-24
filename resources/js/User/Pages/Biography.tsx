@@ -40,7 +40,7 @@ export default function SingleOfficial() {
 
     const title = 'Pakil Tourism | Officials';
     const description =
-        'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
+        "Discover Pakil's festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.";
 
     return (
         <>
@@ -59,22 +59,31 @@ export default function SingleOfficial() {
 
             <section className="py-4 md:py-8">
                 <div className="container mx-auto max-w-5xl px-4">
-                    <div className="mb-4 md:mb-6">
+                    {/* Back Button */}
+                    <div className="mb-4 md:mb-6" data-aos="fade-right" data-aos-delay="100">
                         <a href="/about/officials" className="inline-flex items-center text-sm text-primary hover:text-primary/80 md:text-base">
                             <i className="fas fa-arrow-left mr-2"></i> Back to Officials
                         </a>
                     </div>
 
-                    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
+                    {/* Main Card */}
+                    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg" data-aos="fade-up" data-aos-duration="800">
+                        {/* Hero Image Section */}
                         <div className="relative w-full">
                             <div className="aspect-w-1 aspect-h-1">
                                 <img
                                     src={item.image ? `${item.image}` : '/images/user/User.png'}
                                     alt="Hon. Juan Dela Cruz"
                                     className="h-full w-full object-cover"
+                                    data-aos="zoom-in"
+                                    data-aos-delay="200"
                                 />
                             </div>
-                            <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6">
+                            <div
+                                className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6"
+                                data-aos="fade-up"
+                                data-aos-delay="300"
+                            >
                                 <div className="flex flex-col items-start justify-between sm:flex-row sm:items-end">
                                     <div className="mb-2 sm:mb-0">
                                         <h1 className="text-xl font-bold text-white md:text-2xl">Hon. {item.name}</h1>
@@ -87,15 +96,17 @@ export default function SingleOfficial() {
                             </div>
                         </div>
 
+                        {/* Content Section */}
                         <div className="p-4 md:p-6">
-                            <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <div className="rounded-lg bg-primary/5 p-4">
+                            {/* Info Cards */}
+                            <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2" data-aos="fade-up" data-aos-delay="400">
+                                <div className="rounded-lg bg-primary/5 p-4" data-aos="zoom-in" data-aos-delay="500">
                                     <h3 className="mb-2 text-xs font-semibold tracking-wider text-primary uppercase md:text-sm">
                                         <i className="fas fa-user-tie mr-2"></i> Position
                                     </h3>
                                     <p className="text-sm text-gray-700 md:text-base">{item.position}</p>
                                 </div>
-                                <div className="rounded-lg bg-primary/5 p-4">
+                                <div className="rounded-lg bg-primary/5 p-4" data-aos="zoom-in" data-aos-delay="600">
                                     <h3 className="mb-2 text-xs font-semibold tracking-wider text-primary uppercase md:text-sm">
                                         <i className="fas fa-clock mr-2"></i> Term Duration
                                     </h3>
@@ -103,28 +114,30 @@ export default function SingleOfficial() {
                                 </div>
                             </div>
 
-                            <div className="mb-6">
+                            {/* Biography Section */}
+                            <div className="mb-6" data-aos="fade-right" data-aos-delay="500">
                                 <h2 className="mb-3 flex items-center text-lg font-bold text-primary md:text-xl">
                                     <i className="fas fa-book-open mr-2 text-sm md:text-base"></i>
                                     Biography
                                 </h2>
                                 <div className="space-y-3 text-sm text-gray-700 md:text-base">
                                     {paragraphs.map((paragraph, index) => (
-                                        <p key={index} className="mb-4 text-gray-800">
+                                        <p key={index} className="mb-4 text-gray-800" data-aos="fade-up" data-aos-delay={600 + index * 50}>
                                             {paragraph}
                                         </p>
                                     ))}
                                 </div>
                             </div>
 
+                            {/* Achievements Section */}
                             {achievements.length > 0 && (
-                                <div className="mb-6">
+                                <div className="mb-6" data-aos="fade-right" data-aos-delay="600">
                                     <h2 className="mb-3 flex items-center text-lg font-bold text-primary md:text-xl">
                                         <i className="fas fa-trophy mr-2 text-sm md:text-base"></i> Notable Achievements
                                     </h2>
                                     <ul className="space-y-2 text-sm md:space-y-3 md:text-base">
                                         {achievements.map((achievement, index) => (
-                                            <li key={index} className="flex items-start">
+                                            <li key={index} className="flex items-start" data-aos="fade-right" data-aos-delay={700 + index * 50}>
                                                 <i className="fas fa-check-circle mt-0.5 mr-2 text-xs text-secondary md:mt-1 md:text-sm"></i>
                                                 <span>{achievement}</span>
                                             </li>
@@ -133,15 +146,21 @@ export default function SingleOfficial() {
                                 </div>
                             )}
 
+                            {/* Education Section */}
                             {educationArray.length > 0 && (
-                                <div className="mb-6">
+                                <div className="mb-6" data-aos="fade-right" data-aos-delay="700">
                                     <h2 className="mb-3 flex items-center text-lg font-bold text-primary md:text-xl">
                                         <i className="fas fa-graduation-cap mr-2 text-sm md:text-base"></i>
                                         Educational Background
                                     </h2>
                                     <div className="rounded-lg">
                                         {educationArray.map((educ, index) => (
-                                            <div key={index} className="mb-3 flex items-start md:mb-4">
+                                            <div
+                                                key={index}
+                                                className="mb-3 flex items-start md:mb-4"
+                                                data-aos="fade-up"
+                                                data-aos-delay={800 + index * 100}
+                                            >
                                                 <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 md:mr-4">
                                                     <i className="fas fa-university text-lg text-primary md:text-xl"></i>
                                                 </div>
@@ -155,8 +174,9 @@ export default function SingleOfficial() {
                                 </div>
                             )}
 
+                            {/* Contact Section */}
                             {(item.facebook || item.contact || item.email) && (
-                                <div className="contact-section">
+                                <div className="contact-section" data-aos="fade-up" data-aos-delay="800">
                                     <h2 className="mb-3 flex items-center text-lg font-bold text-primary md:text-xl">
                                         <i className="fas fa-envelope mr-2 text-sm md:text-base"></i>
                                         Contact Information
@@ -169,6 +189,8 @@ export default function SingleOfficial() {
                                                 rel="noopener noreferrer"
                                                 className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20"
                                                 aria-label="Facebook"
+                                                data-aos="zoom-in"
+                                                data-aos-delay="900"
                                             >
                                                 <i className="fab fa-facebook-f text-sm md:text-base"></i>
                                             </a>
@@ -178,6 +200,8 @@ export default function SingleOfficial() {
                                                 href={`tel:${item.contact}`}
                                                 className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20"
                                                 aria-label="Phone"
+                                                data-aos="zoom-in"
+                                                data-aos-delay="950"
                                             >
                                                 <i className="fas fa-phone text-sm md:text-base"></i>
                                             </a>
@@ -187,6 +211,8 @@ export default function SingleOfficial() {
                                                 href={`mailto:${item.email}`}
                                                 className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/20"
                                                 aria-label="Email"
+                                                data-aos="zoom-in"
+                                                data-aos-delay="1000"
                                             >
                                                 <i className="fas fa-envelope text-sm md:text-base"></i>
                                             </a>

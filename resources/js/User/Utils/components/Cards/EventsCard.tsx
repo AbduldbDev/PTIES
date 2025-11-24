@@ -21,9 +21,10 @@ type Schedule = {
 
 interface Props {
     events: EventProps;
+    index: number;
 }
 
-export default function EventsCard({ events }: Props) {
+export default function EventsCard({ events, index }: Props) {
     const images: string[] = Array.isArray(events.image)
         ? events.image
         : (() => {
@@ -37,7 +38,11 @@ export default function EventsCard({ events }: Props) {
     const firstImage = images.length > 0 ? `${images[0]}` : '/User/Images/church.jpg';
 
     return (
-        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
+        <div
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+            className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg"
+        >
             <div className="relative">
                 <div className="aspect-video overflow-hidden">
                     <img src={firstImage} alt={events.title} className="h-full w-full object-cover" />

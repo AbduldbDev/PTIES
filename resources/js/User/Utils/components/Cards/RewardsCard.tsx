@@ -13,13 +13,14 @@ type RewardsProps = {
 
 type Props = {
     item: RewardsProps;
+    index: number;
 };
 
 type FormData = {
     reward_id: number;
 };
 
-export default function RewardsCard({ item }: Props) {
+export default function RewardsCard({ item, index }: Props) {
     const { post, processing, reset, clearErrors } = useForm<FormData>({
         reward_id: item.id,
     });
@@ -37,7 +38,7 @@ export default function RewardsCard({ item }: Props) {
     };
 
     return (
-        <div className="group relative h-full">
+        <div className="group relative h-full" data-aos="fade-up" data-aos-delay={500 + index * 50}>
             <div className="absolute -inset-2 rounded-xl bg-primary/20 opacity-75 blur transition duration-300 group-hover:opacity-100"></div>
             <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition duration-200 hover:shadow-md">
                 <div className="relative pt-[100%]">

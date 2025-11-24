@@ -21,9 +21,10 @@ interface SocialWallPost {
 
 interface Props {
     post: SocialWallPost;
+    index: number;
 }
 
-export default function SocialWallPost({ post }: Props) {
+export default function SocialWallPost({ post, index }: Props) {
     const { auth } = usePage().props as {
         auth?: {
             user?: {
@@ -83,7 +84,11 @@ export default function SocialWallPost({ post }: Props) {
     };
 
     return (
-        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md">
+        <div
+            className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-300 hover:shadow-md"
+            data-aos="fade-up"
+            data-aos-delay={500 + index * 100}
+        >
             <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
                 <img src={`/storage/${post.image}`} alt={post.caption || 'Social post'} className="absolute inset-0 h-full w-full object-cover" />
             </div>

@@ -87,7 +87,7 @@ export default function Terminals() {
                             />
                         ) : (
                             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                                {terminals && terminals.map((terminal: TerminalProps) => <Terminal key={terminal.id} terminal={terminal} />)}
+                                {terminals && terminals.map((terminal, index) => <Terminal key={terminal.id} terminal={terminal} index={index} />)}
                             </div>
                         )}
                     </div>

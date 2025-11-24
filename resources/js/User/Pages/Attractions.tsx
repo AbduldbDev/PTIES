@@ -158,7 +158,7 @@ export default function Attractions() {
                             {filteredData.length > 0 ? (
                                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
                                     {filteredData.map((items, index) => (
-                                        <AttractionsCard key={index} item={items} />
+                                        <AttractionsCard key={index} item={items} index={index} />
                                     ))}
                                 </div>
                             ) : (

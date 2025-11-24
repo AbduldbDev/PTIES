@@ -76,7 +76,8 @@ export const EventsSingle = () => {
 
             <section className="py-6 sm:py-8 md:py-12">
                 <div className="container mx-auto px-4">
-                    <nav className="mb-2 text-sm lg:mb-6">
+                    {/* Breadcrumb */}
+                    <nav className="mb-2 text-sm lg:mb-6" data-aos="fade-down" data-aos-delay="100">
                         <ol className="flex flex-wrap items-center">
                             <li className="inline-flex items-center">
                                 <a href="/" className="text-gray-500 hover:text-primary">
@@ -96,8 +97,9 @@ export const EventsSingle = () => {
                         </ol>
                     </nav>
 
+                    {/* Image Gallery */}
                     <div className="mb-6">
-                        <div className="-mx-4 mb-4 overflow-hidden rounded-xl shadow-lg sm:mx-0">
+                        <div className="-mx-4 mb-4 overflow-hidden rounded-xl shadow-lg sm:mx-0" data-aos="zoom-in" data-aos-duration="800">
                             <img
                                 src={selectedImage}
                                 alt={event.title}
@@ -109,7 +111,7 @@ export const EventsSingle = () => {
                         </div>
 
                         {eventImages.length > 1 && (
-                            <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6">
+                            <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6" data-aos="fade-up" data-aos-delay="200">
                                 {eventImages.map((image, index) => (
                                     <button
                                         key={index}
@@ -117,6 +119,8 @@ export const EventsSingle = () => {
                                             selectedImage === image ? 'border-primary' : 'border-gray-200'
                                         }`}
                                         onClick={() => setSelectedImage(image)}
+                                        data-aos="zoom-in"
+                                        data-aos-delay={300 + index * 50}
                                     >
                                         <div className="aspect-video w-full">
                                             <img
@@ -134,8 +138,13 @@ export const EventsSingle = () => {
                         )}
                     </div>
 
+                    {/* Event Header */}
                     <div className="mb-6">
-                        <div className="mb-2 flex items-center text-sm text-gray-500 sm:text-base md:text-lg">
+                        <div
+                            className="mb-2 flex items-center text-sm text-gray-500 sm:text-base md:text-lg"
+                            data-aos="fade-right"
+                            data-aos-delay="400"
+                        >
                             <i className="far fa-calendar-alt mr-2 text-primary"></i>
                             <span>
                                 {(() => {
@@ -153,16 +162,26 @@ export const EventsSingle = () => {
                                 })()}
                             </span>
                         </div>
-                        <h1 className="mb-3 text-xl font-bold sm:text-2xl md:text-3xl">{event.title}</h1>
+                        <h1 className="mb-3 text-xl font-bold sm:text-2xl md:text-3xl" data-aos="fade-up" data-aos-delay="500">
+                            {event.title}
+                        </h1>
                     </div>
 
+                    {/* Main Content */}
                     <div className="flex flex-col-reverse gap-6 md:flex-row">
+                        {/* Left Column - Content */}
                         <div className="w-full md:w-2/3">
-                            <div className="prose mb-8 max-w-none">
+                            {/* Description */}
+                            <div className="prose mb-8 max-w-none" data-aos="fade-right" data-aos-delay="600">
                                 <div className="prose mt-3 mb-6 max-w-none rounded-lg border border-primary/10 bg-[#f2f4f8] p-3 text-gray-700 md:p-4">
                                     {descriptions.length > 0 ? (
                                         descriptions.map((paragraph, index) => (
-                                            <p key={index} className="mb-3 text-sm text-gray-700 sm:text-base md:text-lg">
+                                            <p
+                                                key={index}
+                                                className="mb-3 text-sm text-gray-700 sm:text-base md:text-lg"
+                                                data-aos="fade-up"
+                                                data-aos-delay={700 + index * 50}
+                                            >
                                                 {paragraph}
                                             </p>
                                         ))
@@ -171,8 +190,9 @@ export const EventsSingle = () => {
                                     )}
                                 </div>
 
+                                {/* Schedule */}
                                 {scheduleArray.length > 0 && (
-                                    <div className="mb-8">
+                                    <div className="mb-8" data-aos="fade-right" data-aos-delay="800">
                                         <h3 className="mb-4 text-lg font-bold text-primary sm:text-xl md:text-2xl">Event Schedule</h3>
                                         <div className="space-y-3">
                                             {scheduleArray.map((item, index) => {
@@ -191,7 +211,12 @@ export const EventsSingle = () => {
                                                 });
 
                                                 return (
-                                                    <details key={index} className="group rounded-lg bg-gray-50 p-3 md:p-4">
+                                                    <details
+                                                        key={index}
+                                                        className="group rounded-lg bg-gray-50 p-3 md:p-4"
+                                                        data-aos="zoom-in"
+                                                        data-aos-delay={900 + index * 100}
+                                                    >
                                                         <summary className="flex cursor-pointer items-center justify-between">
                                                             <div className="flex items-center">
                                                                 <div className="mr-3 rounded-lg bg-primary/10 p-2">
@@ -216,22 +241,33 @@ export const EventsSingle = () => {
                             </div>
                         </div>
 
+                        {/* Right Column - Sidebar */}
                         <div className="w-full md:w-1/3">
-                            <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 shadow-md sm:p-5 md:p-6">
+                            <div
+                                className="rounded-xl border border-gray-200 bg-gray-50 p-4 shadow-md sm:p-5 md:p-6"
+                                data-aos="fade-left"
+                                data-aos-delay="600"
+                            >
                                 <h3 className="mb-4 flex items-center text-base font-bold text-primary sm:text-lg md:text-xl">
                                     <i className="fas fa-info-circle mr-2 text-sm md:text-base"></i> Quick Info
                                 </h3>
 
                                 <div className="space-y-4 md:space-y-5">
+                                    {/* Admission */}
                                     {admission.length > 0 && (
-                                        <div>
+                                        <div data-aos="fade-up" data-aos-delay="700">
                                             <div className="mb-2 flex items-center">
                                                 <i className="fas fa-ticket-alt mr-2 text-sm text-primary md:text-base"></i>
                                                 <h4 className="text-dark text-sm font-semibold sm:text-base">ADMISSION</h4>
                                             </div>
                                             <ul className="space-y-2 text-xs text-gray-700 sm:text-sm md:text-base">
                                                 {admission.map((item, index) => (
-                                                    <li key={index} className="flex items-start">
+                                                    <li
+                                                        key={index}
+                                                        className="flex items-start"
+                                                        data-aos="fade-right"
+                                                        data-aos-delay={800 + index * 50}
+                                                    >
                                                         <i className="fa-solid fa-circle-dot text-dark mt-1 mr-2 text-xs md:text-sm"></i>
                                                         <span>{item}</span>
                                                     </li>
@@ -240,16 +276,21 @@ export const EventsSingle = () => {
                                         </div>
                                     )}
 
+                                    {/* Attire */}
                                     {attire.length > 0 && (
-                                        <div>
+                                        <div data-aos="fade-up" data-aos-delay="800">
                                             <div className="mb-2 flex items-center">
                                                 <i className="fas fa-tshirt mr-2 text-sm text-primary md:text-base"></i>
                                                 <h4 className="text-dark text-sm font-semibold sm:text-base">ATTIRE</h4>
                                             </div>
-
                                             <ul className="space-y-2 text-xs text-gray-700 sm:text-sm md:text-base">
                                                 {attire.map((item, index) => (
-                                                    <li key={index} className="flex items-start">
+                                                    <li
+                                                        key={index}
+                                                        className="flex items-start"
+                                                        data-aos="fade-right"
+                                                        data-aos-delay={900 + index * 50}
+                                                    >
                                                         <i className="fa-solid fa-circle-dot text-dark mt-1 mr-2 text-xs md:text-sm"></i>
                                                         <span>{item}</span>
                                                     </li>
@@ -258,15 +299,21 @@ export const EventsSingle = () => {
                                         </div>
                                     )}
 
+                                    {/* Contact */}
                                     {contacts.length > 0 && (
-                                        <div>
+                                        <div data-aos="fade-up" data-aos-delay="900">
                                             <div className="mb-2 flex items-center">
                                                 <i className="fas fa-phone-alt mr-2 text-sm text-primary md:text-base"></i>
                                                 <h4 className="text-dark text-sm font-semibold sm:text-base">CONTACT</h4>
                                             </div>
                                             <ul className="space-y-2 text-xs text-gray-700 sm:text-sm md:text-base">
                                                 {contacts.map((item, index) => (
-                                                    <li key={index} className="flex items-start">
+                                                    <li
+                                                        key={index}
+                                                        className="flex items-start"
+                                                        data-aos="fade-right"
+                                                        data-aos-delay={1000 + index * 50}
+                                                    >
                                                         <i className="fa-solid fa-circle-dot text-dark mt-1 mr-2 text-xs md:text-sm"></i>
                                                         <span>{item}</span>
                                                     </li>
@@ -275,7 +322,8 @@ export const EventsSingle = () => {
                                         </div>
                                     )}
 
-                                    <div className="space-y-3 pt-2">
+                                    {/* Action Buttons */}
+                                    <div className="space-y-3 pt-2" data-aos="zoom-in" data-aos-delay="1100">
                                         <a
                                             href={`https://www.google.com/maps?q=${event.lat},${event.long}&z=15&t=m`}
                                             target="_blank"

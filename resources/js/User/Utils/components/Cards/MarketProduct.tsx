@@ -24,9 +24,10 @@ type ShopProps = {
 
 interface Props {
     product: ProductProps;
+    index: number;
 }
 
-export default function MarketProduct({ product }: Props) {
+export default function MarketProduct({ product, index }: Props) {
     // ✅ Parse images
     const images: string[] = Array.isArray(product.images)
         ? product.images
@@ -64,7 +65,11 @@ export default function MarketProduct({ product }: Props) {
     };
 
     return (
-        <div className="group relative cursor-pointer overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg">
+        <div
+            className="group relative cursor-pointer overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md transition duration-300 hover:shadow-lg"
+            data-aos="fade-up"
+            data-aos-delay={500 + index * 50}
+        >
             <div className="pointer-events-none absolute -inset-1 rounded-xl bg-primary/20 opacity-75 blur transition duration-300 group-hover:opacity-100" />
 
             {/* Image */}

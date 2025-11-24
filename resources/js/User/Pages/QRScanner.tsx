@@ -13,7 +13,7 @@ interface QRScannerProps {
 const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redirectTo, redirectFunction }) => {
     const title = 'Pakil Tourism | QR Scanner';
     const description =
-        'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
+        "Discover Pakil's festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.";
     const scannerRef = useRef<Html5QrcodeScanner | null>(null);
     const [isScanning, setIsScanning] = useState(true);
     const [scannedResult, setScannedResult] = useState<string | null>(null);
@@ -114,18 +114,24 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
                             desc="Use your device to scan QR codes from attractions, vendors, or events and collect Pakil Points for rewards."
                         />
 
-                        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
+                        <div
+                            className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg"
+                            data-aos="fade-up"
+                            data-aos-duration="800"
+                        >
                             <div className="p-6 md:p-8">
                                 {/* Scanner Container */}
                                 <div className="mb-8">
                                     <div
                                         id="qr-scanner-container"
                                         className="mx-auto w-full max-w-md overflow-hidden rounded-xl border-4 border-primary"
+                                        data-aos="zoom-in"
+                                        data-aos-delay="300"
                                     />
 
                                     {/* Scan Status */}
                                     {!isScanning && scannedResult && (
-                                        <div className="mt-4 text-center">
+                                        <div className="mt-4 text-center" data-aos="zoom-in" data-aos-delay="200">
                                             <div className="inline-flex items-center rounded-full bg-green-100 px-4 py-2 text-green-800">
                                                 <i className="fas fa-check-circle mr-2"></i>
                                                 Successfully scanned! Redirecting...
@@ -135,14 +141,14 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
                                 </div>
 
                                 {/* Instructions Section */}
-                                <div className="mb-6 rounded-xl bg-[#f2f4f8] p-6">
+                                <div className="mb-6 rounded-xl bg-[#f2f4f8] p-6" data-aos="fade-right" data-aos-delay="400">
                                     <h3 className="mb-4 flex items-center text-xl font-bold text-primary">
                                         <i className="fas fa-info-circle mr-3 text-secondary"></i>
                                         How to Use QR Scanner
                                     </h3>
                                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                                         <div className="space-y-4">
-                                            <div className="flex items-start">
+                                            <div className="flex items-start" data-aos="fade-up" data-aos-delay="500">
                                                 <div className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
                                                     1
                                                 </div>
@@ -153,7 +159,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div className="flex items-start">
+                                            <div className="flex items-start" data-aos="fade-up" data-aos-delay="600">
                                                 <div className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
                                                     2
                                                 </div>
@@ -166,7 +172,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
                                             </div>
                                         </div>
                                         <div className="space-y-4">
-                                            <div className="flex items-start">
+                                            <div className="flex items-start" data-aos="fade-up" data-aos-delay="700">
                                                 <div className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
                                                     3
                                                 </div>
@@ -177,7 +183,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div className="flex items-start">
+                                            <div className="flex items-start" data-aos="fade-up" data-aos-delay="800">
                                                 <div className="mt-1 mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
                                                     4
                                                 </div>
@@ -193,25 +199,29 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
                                 </div>
 
                                 {/* Tips Section */}
-                                <div className="rounded-xl border border-gray-200 bg-gradient-to-r from-primary/10 to-accent/10 p-6">
+                                <div
+                                    className="rounded-xl border border-gray-200 bg-gradient-to-r from-primary/10 to-accent/10 p-6"
+                                    data-aos="fade-left"
+                                    data-aos-delay="600"
+                                >
                                     <h4 className="mb-3 flex items-center font-bold text-primary">
                                         <i className="fas fa-lightbulb mr-2 text-secondary"></i>
                                         Pro Tips for Better Scanning
                                     </h4>
                                     <div className="grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
-                                        <div className="flex items-center">
+                                        <div className="flex items-center" data-aos="fade-right" data-aos-delay="700">
                                             <i className="fas fa-sun mr-2 text-secondary"></i>
                                             <span className="text-gray-700">Avoid direct sunlight glare</span>
                                         </div>
-                                        <div className="flex items-center">
+                                        <div className="flex items-center" data-aos="fade-left" data-aos-delay="700">
                                             <i className="fas fa-hand-holding mr-2 text-secondary"></i>
                                             <span className="text-gray-700">Keep device steady while scanning</span>
                                         </div>
-                                        <div className="flex items-center">
+                                        <div className="flex items-center" data-aos="fade-right" data-aos-delay="800">
                                             <i className="fas fa-ruler-combined mr-2 text-secondary"></i>
                                             <span className="text-gray-700">Maintain 6-12 inches distance</span>
                                         </div>
-                                        <div className="flex items-center">
+                                        <div className="flex items-center" data-aos="fade-left" data-aos-delay="800">
                                             <i className="fas fa-expand mr-2 text-secondary"></i>
                                             <span className="text-gray-700">Ensure QR code fills the frame</span>
                                         </div>
@@ -219,7 +229,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
                                 </div>
 
                                 {/* Status Message */}
-                                <div className="mt-6 text-center">
+                                <div className="mt-6 text-center" data-aos="fade-up" data-aos-delay="900">
                                     <p className="flex items-center justify-center text-sm text-gray-500">
                                         <i className="fas fa-camera mr-2 text-primary"></i>
                                         {isScanning ? 'Point your camera at a QR code to scan' : 'Scanning completed - processing...'}
@@ -229,7 +239,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onScanError, redir
                         </div>
 
                         {/* Support Section */}
-                        <div className="mt-8 text-center">
+                        <div className="mt-8 text-center" data-aos="fade-up" data-aos-delay="1000">
                             <div className="inline-flex items-center space-x-2 text-gray-600">
                                 <i className="fas fa-question-circle text-primary"></i>
                                 <span>Need help? </span>

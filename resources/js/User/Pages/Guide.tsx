@@ -2,6 +2,7 @@ import { Head, usePage } from '@inertiajs/react';
 import Banner from '@UserUtils/components/Banner/Banner';
 import PageTitle from '@UserUtils/components/Banner/PageTitle';
 import Establishment from '@UserUtils/components/Cards/Establishment';
+
 type PageBannerProps = {
     title: string;
     subtitle: string;
@@ -33,7 +34,7 @@ export default function Guide() {
 
     const title = 'Pakil Tourism | Pakil Guide';
     const description =
-        'Discover Pakil’s festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.';
+        "Discover Pakil's festivals, attractions, and guides. Plan your stay, explore local eats, and earn rewards with QR experiences.";
 
     return (
         <>
@@ -53,9 +54,10 @@ export default function Guide() {
                 <div className="h-[15vh]"></div>
             )}
 
+            {/* Travel Basics Section */}
             <section className="py-5 md:py-10 lg:py-12">
                 <div className="container mx-auto max-w-5xl px-4 sm:px-5 md:px-6">
-                    <div>
+                    <div data-aos="fade-up" data-aos-duration="800">
                         <PageTitle
                             title="Essentials"
                             subtitle="Your Travel Basics"
@@ -63,58 +65,57 @@ export default function Guide() {
                         />
 
                         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 lg:gap-8">
-                            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:rounded-xl md:p-5 lg:p-6">
-                                <h4 className="mb-3 flex items-center text-lg font-bold text-primary md:mb-4 md:text-xl">
-                                    <i className="fas fa-calendar-day mr-2 text-sm md:mr-3 md:text-base"></i> When to Visit
-                                </h4>
-                                <div className="text-sm text-gray-700 md:text-base">
-                                    <p>Year-round; peak season from April to September.</p>
+                            {[
+                                {
+                                    icon: 'fa-calendar-day',
+                                    title: 'When to Visit',
+                                    content: 'Year-round; peak season from April to September.',
+                                },
+                                {
+                                    icon: 'fa-tshirt',
+                                    title: 'What to Wear',
+                                    content: (
+                                        <ul className="list-disc space-y-1 pl-4 md:pl-5">
+                                            <li>Light, comfortable clothing (Dec-May)</li>
+                                            <li>Boots/windbreakers for hiking</li>
+                                            <li>Rain gear (June-Oct)</li>
+                                        </ul>
+                                    ),
+                                },
+                                {
+                                    icon: 'fa-phone-alt',
+                                    title: 'Communication',
+                                    content:
+                                        'International Direct Dial (IDD) and National Direct Dial (NDD) services available. PLDT direct dial code: 049.',
+                                },
+                                {
+                                    icon: 'fa-map-marked-alt',
+                                    title: 'Getting Around',
+                                    content:
+                                        'Well-developed roads with jeepneys and tricycles between barangays. Personal/rented vehicles recommended for less commercialized areas.',
+                                },
+                            ].map((item, index) => (
+                                <div
+                                    key={index}
+                                    className="overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:rounded-xl md:p-5 lg:p-6"
+                                    data-aos="zoom-in"
+                                    data-aos-delay={200 + index * 100}
+                                >
+                                    <h4 className="mb-3 flex items-center text-lg font-bold text-primary md:mb-4 md:text-xl">
+                                        <i className={`fas ${item.icon} mr-2 text-sm md:mr-3 md:text-base`}></i> {item.title}
+                                    </h4>
+                                    <div className="text-sm text-gray-700 md:text-base">{item.content}</div>
                                 </div>
-                            </div>
-
-                            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:rounded-xl md:p-5 lg:p-6">
-                                <h4 className="mb-3 flex items-center text-lg font-bold text-primary md:mb-4 md:text-xl">
-                                    <i className="fas fa-tshirt mr-2 text-sm md:mr-3 md:text-base"></i> What to Wear
-                                </h4>
-                                <div className="text-sm text-gray-700 md:text-base">
-                                    <ul className="list-disc space-y-1 pl-4 md:pl-5">
-                                        <li>Light, comfortable clothing (Dec-May)</li>
-                                        <li>Boots/windbreakers for hiking</li>
-                                        <li>Rain gear (June-Oct)</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:rounded-xl md:p-5 lg:p-6">
-                                <h4 className="mb-3 flex items-center text-lg font-bold text-primary md:mb-4 md:text-xl">
-                                    <i className="fas fa-phone-alt mr-2 text-sm md:mr-3 md:text-base"></i> Communication
-                                </h4>
-                                <div className="text-sm text-gray-700 md:text-base">
-                                    <p>
-                                        International Direct Dial (IDD) and National Direct Dial (NDD) services available. PLDT direct dial code: 049.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:rounded-xl md:p-5 lg:p-6">
-                                <h4 className="mb-3 flex items-center text-lg font-bold text-primary md:mb-4 md:text-xl">
-                                    <i className="fas fa-map-marked-alt mr-2 text-sm md:mr-3 md:text-base"></i> Getting Around
-                                </h4>
-                                <div className="text-sm text-gray-700 md:text-base">
-                                    <p>
-                                        Well-developed roads with jeepneys and tricycles between barangays. Personal/rented vehicles recommended for
-                                        less commercialized areas.
-                                    </p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
             </section>
 
+            {/* How to Get There Section */}
             <section className="py-5 md:py-10 lg:py-12">
                 <div className="container mx-auto max-w-5xl px-4 sm:px-5 md:px-6">
-                    <div>
+                    <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
                         <PageTitle
                             title="Essentials"
                             subtitle="How to Get There"
@@ -123,7 +124,11 @@ export default function Guide() {
 
                         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 lg:gap-8">
                             {/* By Private Transport */}
-                            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:rounded-xl md:p-5 lg:p-6">
+                            <div
+                                className="overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:rounded-xl md:p-5 lg:p-6"
+                                data-aos="fade-right"
+                                data-aos-delay="400"
+                            >
                                 <h4 className="mb-3 flex items-center text-lg font-bold text-primary md:mb-4 md:text-xl">
                                     <i className="fas fa-car mr-2 text-sm md:mr-3 md:text-base"></i> By Private Transport
                                 </h4>
@@ -140,7 +145,11 @@ export default function Guide() {
                             </div>
 
                             {/* By Bus */}
-                            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:rounded-xl md:p-5 lg:p-6">
+                            <div
+                                className="overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:rounded-xl md:p-5 lg:p-6"
+                                data-aos="fade-left"
+                                data-aos-delay="400"
+                            >
                                 <h4 className="mb-3 flex items-center text-lg font-bold text-primary md:mb-4 md:text-xl">
                                     <i className="fas fa-bus mr-2 text-sm md:mr-3 md:text-base"></i> By Bus
                                 </h4>
@@ -171,22 +180,25 @@ export default function Guide() {
                 </div>
             </section>
 
+            {/* Accommodation Section */}
             {accommodation?.length > 0 && (
-                <section>
+                <section data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
                     <div className="container mx-auto max-w-7xl px-6">
                         <div>
                             <PageTitle
                                 title="Essentials"
                                 subtitle="Where to Stay"
-                                desc="Find comfortable accommodations in Pakil, from homestays and guesthouses to nearby hotels—perfect for every traveler’s budget and style."
+                                desc="Find comfortable accommodations in Pakil, from homestays and guesthouses to nearby hotels—perfect for every traveler's budget and style."
                             />
 
                             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                                {accommodation.map((item) => (
-                                    <Establishment key={item.id} details={item} />
+                                {accommodation.map((item, index) => (
+                                    <div key={item.id}>
+                                        <Establishment details={item} index={index} />
+                                    </div>
                                 ))}
                             </div>
-                            <div className="mt-10 text-center">
+                            <div className="mt-10 text-center" data-aos="fade-up" data-aos-delay="700">
                                 <a
                                     href="/explore/establishments"
                                     className="inline-flex items-center rounded-full border border-primary px-6 py-3 font-medium text-primary transition duration-300 hover:bg-primary hover:text-white"
@@ -199,22 +211,25 @@ export default function Guide() {
                 </section>
             )}
 
+            {/* Food Section */}
             {food?.length > 0 && (
-                <section className="py-6 md:py-10">
+                <section className="py-6 md:py-10" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
                     <div className="container mx-auto max-w-7xl px-4 sm:px-6">
                         <div>
                             <PageTitle
                                 title="Essentials"
                                 subtitle="Where to Eat"
-                                desc="Savor Pakil’s authentic flavors at local eateries, carinderias, and restaurants that showcase the town’s culinary heritage."
+                                desc="Savor Pakil's authentic flavors at local eateries, carinderias, and restaurants that showcase the town's culinary heritage."
                             />
 
                             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                                {food.map((item) => (
-                                    <Establishment key={item.id} details={item} />
+                                {food.map((item, index) => (
+                                    <div key={item.id} data-aos="zoom-in">
+                                        <Establishment details={item} index={index} />
+                                    </div>
                                 ))}
                             </div>
-                            <div className="mt-10 text-center">
+                            <div className="mt-10 text-center" data-aos="fade-up" data-aos-delay="800">
                                 <a
                                     href="/explore/establishments"
                                     className="inline-flex items-center rounded-full border border-primary px-6 py-3 font-medium text-primary transition duration-300 hover:bg-primary hover:text-white"

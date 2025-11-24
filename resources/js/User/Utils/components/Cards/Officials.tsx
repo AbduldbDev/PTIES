@@ -8,10 +8,15 @@ type Official = {
 };
 interface Props {
     official: Official;
+    index: number;
 }
-export default function Officials({ official }: Props) {
+export default function Officials({ official, index }: Props) {
     return (
-        <div className="official-card flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-md transition-all duration-300 hover:shadow-lg">
+        <div
+            className="official-card flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-md transition-all duration-300 hover:shadow-lg"
+            data-aos="zoom-in"
+            data-aos-delay={500 + index * 100}
+        >
             <div className="relative aspect-square w-full overflow-hidden rounded-lg">
                 <img src={official?.image || '/images/user/User.png'} alt={official?.name || 'Official'} className="h-full w-full object-cover" />
 
