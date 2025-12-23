@@ -1,182 +1,151 @@
-export default function Festival() {
+type FestivalProps = {
+    name?: string;
+    founded?: string;
+    duration?: string;
+    venue?: string;
+    description?: string;
+    highlights?: Highlight[];
+};
+
+type Highlight = {
+    icon: string;
+    title: string;
+    desc: string;
+};
+
+interface Props {
+    content: FestivalProps;
+}
+
+export default function Festival({ content }: Props) {
+    const paragraphs = (content.description || '').split('\n').filter((p) => p.trim() !== '');
     return (
         <>
-            <div className="flex flex-col items-start gap-12 lg:flex-row">
-                <div className="lg:w-2/3">
-                    <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                        <div className="p-8">
-                            <div className="mb-6 flex items-center">
-                                <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-xl text-white">
-                                    <i className="fa-solid fa-calendar-days"></i>
+            <div className="space-y-8">
+                {/* Festival header with facts */}
+                <div className="flex flex-col gap-6 lg:flex-row">
+                    {/* Festival title and description */}
+                    <div className="flex-1">
+                        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+                            {/* Perfect circle icon container */}
+                            <div className="flex justify-center sm:justify-start">
+                                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white sm:h-16 sm:w-16 md:h-20 md:w-20">
+                                    <i className="fa-solid fa-calendar-days text-lg sm:text-xl md:text-2xl"></i>
                                 </div>
-                                <h4 className="text-dark text-2xl font-bold">"The Feast of Nuestra Señora de los Dolores de Turumba"</h4>
                             </div>
-                            <div className="prose prose-lg space-y-6 text-gray-700">
-                                <p>
-                                    In 1788, the miraculous painting of Nuestra Señora de los Dolores de Turumba, depicting an image of the Sorrowful
-                                    Mother Mary, and measuring at 9 inches by 11 inches, was found at Pakil's shore. The people believed that the
-                                    painting was accidentally thrown overboard from a missionary's boat that was caught in a typhoon at Laguna Lake.
-                                </p>
 
-                                <p>
-                                    Legend has it that the painting was found resting on a big stone by some local women. When they tried to lift the
-                                    painting to bring it to the church, they found it too heavy. Father Miguel Soriano, parish priest of the Saint
-                                    Peter of Alcantara Parish Church at that time, instructed the townsfolk to gather and chant the Litany of Saints.
-                                    As the priest was about to lift the painting, the people broke into trance-like singing and dancing. Miraculously,
-                                    the painting became easy to carry and was finally brought to the church. This manner of ecstatic dancing later on
-                                    was called Turumba.
-                                </p>
-
-                                <p>
-                                    To commemorate this event, the townsfolk hold annually the Turumba Festival. This celebration is the longest
-                                    running festival in the Philippines which starts on a Friday before Palm Sunday and ending on Pentecost Sunday.
-                                    Aside from the town's fiesta on 19 October, there are nine annual fiestas or lupi wherein the image is carried by
-                                    the dancing devotees in a procession.
-                                </p>
+                            <div className="text-center sm:text-left">
+                                <h1 className="text-dark text-xl leading-tight font-bold sm:text-2xl md:text-3xl lg:text-4xl">"{content?.name}"</h1>
+                                <div className="mt-3 flex flex-wrap justify-center gap-2 text-xs text-gray-600 sm:justify-start sm:gap-3 sm:text-sm">
+                                    <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1.5">
+                                        <i className="fas fa-history mr-1.5 text-[10px] sm:text-xs"></i>
+                                        <span className="font-medium">Founded:</span>
+                                        <span className="ml-1">{content?.founded}</span>
+                                    </span>
+                                    <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1.5">
+                                        <i className="fas fa-calendar-alt mr-1.5 text-[10px] sm:text-xs"></i>
+                                        <span className="font-medium">Duration:</span>
+                                        <span className="ml-1">{content?.duration}</span>
+                                    </span>
+                                    <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1.5">
+                                        <i className="fas fa-church mr-1.5 text-[10px] sm:text-xs"></i>
+                                        <span className="font-medium">Venue:</span>
+                                        <span className="ml-1">{content?.venue}</span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-md">
-                            <h5 className="mb-4 flex items-center text-xl font-bold text-primary">
-                                <i className="fas fa-users mr-3"></i> Devotees & Pilgrims
-                            </h5>
-                            <div className="prose text-gray-700">
-                                <p>
-                                    The festival attracts thousands of devotees coming from Batangas, Quezon, and Rizal provinces. In some cases, the
-                                    festival participants claim that the Nuestra Señora visited them in their dreams and instructed them to make a
-                                    pilgrimage to her home in Pakil.
-                                </p>
+                    {/* <div className="lg:hidden">
+                        <details className="rounded-lg border border-gray-200 bg-white shadow-sm">
+                            <summary className="cursor-pointer border-b border-gray-100 bg-primary/5 px-4 py-3 font-medium text-primary">
+                                <i className="fas fa-info-circle mr-2"></i> Festival Facts
+                            </summary>
+                            <div className="p-4">
+                                <ul className="space-y-3">
+                                    <li className="flex items-center justify-between border-b border-gray-100 pb-2">
+                                        <span className="text-sm font-medium text-gray-700">Duration</span>
+                                        <span className="text-sm text-gray-600">April to September</span>
+                                    </li>
+                                    <li className="flex items-center justify-between border-b border-gray-100 pb-2">
+                                        <span className="text-sm font-medium text-gray-700">Founded</span>
+                                        <span className="text-sm text-gray-600">1788</span>
+                                    </li>
+                                    <li className="flex items-center justify-between border-b border-gray-100 pb-2">
+                                        <span className="text-sm font-medium text-gray-700">Main Venue</span>
+                                        <span className="text-sm text-gray-600">St. Peter of Alcantara Church</span>
+                                    </li>
+                                    <li className="flex items-center justify-between">
+                                        <span className="text-sm font-medium text-gray-700">Participants</span>
+                                        <span className="text-sm text-gray-600">Thousands from Southern Luzon</span>
+                                    </li>
+                                </ul>
                             </div>
-                        </div>
+                        </details>
+                    </div> */}
+                </div>
 
-                        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-md">
-                            <h5 className="mb-4 flex items-center text-xl font-bold text-primary">
-                                <i className="fas fa-water mr-3"></i> Healing Waters
-                            </h5>
-                            <div className="prose text-gray-700">
-                                <p>
-                                    The pilgrims complete their vows by bathing two to seven times at the miraculous Panghulo spring, which is
-                                    believed to cure the body and soul. Guests are allowed to bring containers so that they can take home the healing
-                                    waters. Every year, the number of devotees to the Turumba continues to increase.
-                                </p>
-                            </div>
+                <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+                    <div className="p-6 md:p-8">
+                        <div className="prose prose-lg max-w-none space-y-6 text-gray-700">
+                            {paragraphs.map((paragraph, index) => (
+                                <p key={index}>{paragraph}</p>
+                            ))}
                         </div>
                     </div>
                 </div>
 
-                <div className="w-full lg:w-1/3">
-                    <div className="mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                        <div className="border-b border-primary/20 bg-primary/10 p-5">
-                            <h4 className="flex items-center text-xl font-bold text-primary">
-                                <i className="fas fa-info-circle mr-3"></i> Festival Facts
-                            </h4>
-                        </div>
-                        <div className="p-6">
-                            <ul className="space-y-4">
-                                <li className="flex items-start">
-                                    <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                        <i className="fas fa-history"></i>
+                {/* Feature cards - Full width responsive grid */}
+
+                {content.highlights && content.highlights.length > 0 && (
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {content.highlights.map((highlight, index) => (
+                            <div
+                                key={index}
+                                className="overflow-hidden rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition duration-300 hover:shadow-md"
+                            >
+                                <div className="mb-4 flex items-center">
+                                    <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                                        <i className={`fas ${highlight.icon} text-lg`}></i>
                                     </div>
-                                    <div>
-                                        <h5 className="text-dark font-bold">Founded</h5>
-                                        <p className="text-sm text-gray-700">1788</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                        <i className="fas fa-calendar-alt"></i>
-                                    </div>
-                                    <div>
-                                        <h5 className="text-dark font-bold">Duration</h5>
-                                        <p className="text-sm text-gray-700">March to June (7 months)</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                        <i className="fas fa-church"></i>
-                                    </div>
-                                    <div>
-                                        <h5 className="text-dark font-bold">Main Venue</h5>
-                                        <p className="text-sm text-gray-700">St. Peter of Alcantara Parish Church</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                        <i className="fas fa-user-plus"></i>
-                                    </div>
-                                    <div>
-                                        <h5 className="text-dark font-bold">Participants</h5>
-                                        <p className="text-sm text-gray-700">Thousands from across Southern Luzon</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                                    <h5 className="text-lg font-bold text-gray-800">{highlight.title}</h5>
+                                </div>
+                                <p className="text-sm text-gray-600">{highlight.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {/* <div className="space-y-6">
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-xl font-bold text-gray-800 md:text-2xl">
+                            <i className="fas fa-images mr-3 text-primary"></i> Festival Gallery
+                        </h2>
+                        <button className="text-sm font-medium text-primary hover:text-primary/80">
+                            View All <i className="fas fa-arrow-right ml-1"></i>
+                        </button>
                     </div>
 
-                    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                        <div className="border-b border-primary/20 bg-primary/10 p-5">
-                            <h4 className="flex items-center text-xl font-bold text-primary">
-                                <i className="fas fa-images mr-3"></i> Festival Moments
-                            </h4>
-                        </div>
-                        <div className="grid grid-cols-2 gap-2 p-4">
-                            <div className="h-32 overflow-hidden rounded-lg">
-                                <img
-                                    src="/User/Images/church.jpg"
-                                    alt="Turumba Festival"
-                                    className="h-full w-full object-cover transition duration-300 hover:scale-110"
-                                />
+                    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                        {Array.from({ length: 10 }).map((_, index) => (
+                            <div key={index} className="group relative overflow-hidden rounded-lg bg-gray-100">
+                                <div className="aspect-square overflow-hidden">
+                                    <img
+                                        src="/User/Images/church.jpg"
+                                        alt={`Turumba Festival ${index + 1}`}
+                                        className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                                    />
+                                </div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition duration-300 group-hover:opacity-100">
+                                    <div className="absolute right-2 bottom-2 left-2 text-white">
+                                        <p className="truncate text-xs font-medium">Turumba Moment {index + 1}</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="h-32 overflow-hidden rounded-lg">
-                                <img
-                                    src="/User/Images/church.jpg"
-                                    alt="Turumba Festival"
-                                    className="h-full w-full object-cover transition duration-300 hover:scale-110"
-                                />
-                            </div>
-                            <div className="h-32 overflow-hidden rounded-lg">
-                                <img
-                                    src="/User/Images/church.jpg"
-                                    alt="Turumba Festival"
-                                    className="h-full w-full object-cover transition duration-300 hover:scale-110"
-                                />
-                            </div>
-                            <div className="h-32 overflow-hidden rounded-lg">
-                                <img
-                                    src="/User/Images/church.jpg"
-                                    alt="Turumba Festival"
-                                    className="h-full w-full object-cover transition duration-300 hover:scale-110"
-                                />
-                            </div>
-                        </div>
+                        ))}
                     </div>
-                </div>
-            </div>
-
-            <div className="mt-12 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md">
-                <div className="border-b border-primary/20 bg-primary/10 p-5">
-                    <h4 className="flex items-center text-xl font-bold text-primary">
-                        <i className="fas fa-calendar-day mr-3"></i> Festival Schedule Highlights
-                    </h4>
-                </div>
-                <div className="p-6">
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                        <div className="border-l-4 border-primary pl-4">
-                            <h5 className="text-dark mb-2 font-bold">Palm Sunday Weekend</h5>
-                            <p className="text-sm text-gray-700">Opening procession with the first lupi (novena) and traditional Turumba dancing</p>
-                        </div>
-                        <div className="border-l-4 border-secondary pl-4">
-                            <h5 className="text-dark mb-2 font-bold">Holy Week</h5>
-                            <p className="text-sm text-gray-700">Special ceremonies commemorating the Sorrows of Mary</p>
-                        </div>
-                        <div className="border-l-4 border-accent pl-4">
-                            <h5 className="text-dark mb-2 font-bold">Pentecost Sunday</h5>
-                            <p className="text-sm text-gray-700">Grand finale procession and mass celebration</p>
-                        </div>
-                    </div>
-                </div>
+                </div> */}
             </div>
         </>
     );

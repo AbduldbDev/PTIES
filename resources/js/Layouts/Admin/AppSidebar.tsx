@@ -143,6 +143,7 @@ const ContentManagementItems: NavItem[] = [
                     { name: 'About Pakil', path: '/Admin/cms/pakil-intro', requiredUserType: ['admin', 'content_manager'] },
                     { name: 'Barangay Information', path: '/Admin/barangay-info', requiredUserType: ['admin', 'content_manager'] },
                     { name: 'Municipal Statistics', path: '/Admin/cms/municipal-statistics', requiredUserType: ['admin', 'content_manager'] },
+                    { name: 'Festival Section', path: '/Admin/cms/festival-section', requiredUserType: ['admin', 'content_manager'] },
                 ],
             },
             {
@@ -172,6 +173,15 @@ const ContentManagementItems: NavItem[] = [
         subItems: [
             { name: 'Add New Personality', path: '/Admin/local-personalities/new', requiredUserType: ['admin', 'content_manager'] },
             { name: 'All Personalities', path: '/Admin/local-personalities', requiredUserType: ['admin', 'content_manager'] },
+        ],
+    },
+    {
+        icon: <StarRegular />,
+        name: 'Cultural Properties',
+        requiredUserType: ['admin', 'content_manager'],
+        subItems: [
+            { name: 'Add New Property', path: '/Admin/cultural-properties/new', requiredUserType: ['admin', 'content_manager'] },
+            { name: 'All Properties', path: '/Admin/cultural-properties', requiredUserType: ['admin', 'content_manager'] },
         ],
     },
     {

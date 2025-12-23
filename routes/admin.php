@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminController\{
     CMScontroller,
     CMSHistoryController,
     CMSUpdatecontroller,
+    CulturalPropertiesController,
     DepartmentMemberController,
     DepartmentStructureController,
     EstablishmentController,
@@ -87,6 +88,7 @@ Route::middleware(['admin.access:auth', 'fetch.notifications'])->group(function 
         Route::get('/pakil-intro', [CMScontroller::class, 'PakilIntro'])->name('PakilIntro');
         Route::get('/citizen-charter', [CMScontroller::class, 'CitizenCharter'])->name('CitizenCharter');
         Route::get('/municipal-statistics', [CMScontroller::class, 'MunicipalStats'])->name('MunicipalStats');
+        Route::get('/festival-section', [CMScontroller::class, 'FestivalSection'])->name('FestivalSection');
     });
 
     Route::prefix('/Admin/cms/update')->name('cms.update.')->group(function () {
@@ -97,6 +99,7 @@ Route::middleware(['admin.access:auth', 'fetch.notifications'])->group(function 
         Route::post('/pakil-intro', [CMSUpdatecontroller::class, 'UpdatePakilIntro'])->name('PakilIntro');
         Route::post('/citizen-charter', [CMSUpdatecontroller::class, 'CitizenCharter'])->name('CitizenCharter');
         Route::post('/municipal-statistics', [CMSUpdatecontroller::class, 'UpdateMunicipalStats'])->name('UpdateMunicipalStats');
+        Route::post('/festival-section', [CMSUpdatecontroller::class, 'UpdateFestivalSection'])->name('UpdateFestivalSection');
     });
 
     Route::prefix('/Admin/cms/banner')->name('banners.')->group(function () {
@@ -184,6 +187,15 @@ Route::middleware(['admin.access:auth', 'fetch.notifications'])->group(function 
         Route::post('/create', [LocalProductsController::class, 'create'])->name('create');
         Route::post('/update/{id}', [LocalProductsController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [LocalProductsController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('/Admin/cultural-properties')->name('culturalproperties.')->group(function () {
+        Route::get('/', [CulturalPropertiesController::class, 'index'])->name('index');
+        Route::get('/new', [CulturalPropertiesController::class, 'new'])->name('new');
+        Route::get('/edit/{id}', [CulturalPropertiesController::class, 'edit'])->name('edit');
+        Route::post('/create', [CulturalPropertiesController::class, 'create'])->name('create');
+        Route::post('/update/{id}', [CulturalPropertiesController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [CulturalPropertiesController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('/Admin/social-wall')->name('socailwall.')->group(function () {

@@ -108,6 +108,7 @@ const Navbar = () => {
             { label: 'Attractions', href: '/explore/attractions' },
             { label: 'Personalities', href: '/explore/local-personalities' },
             { label: 'Local Products', href: '/explore/local-products' },
+            { label: 'Cultural Properties', href: '/explore/cultural-properties' },
             { label: 'Terminals', href: '/explore/terminals' },
             { label: 'Guide', href: '/explore/guide' },
         ],

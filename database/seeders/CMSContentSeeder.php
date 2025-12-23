@@ -16,7 +16,7 @@ class CMSContentSeeder extends Seeder
     {
         $contents = [
             ['page_key' => 'home_page', 'section_key' => 'hero', 'content_key' => 'title', 'content_value' => 'Pakil'],
-            ['page_key' => 'home_page', 'section_key' => 'hero', 'content_key' => 'subtitle', 'content_value' => 'The Pilgrimage Town of Laguna'],
+            ['page_key' => 'home_page', 'section_key' => 'hero', 'content_key' => 'subtitle', 'content_value' => 'The Pilgrimage Capital of Laguna'],
             ['page_key' => 'home_page', 'section_key' => 'hero', 'content_key' => 'slogan', 'content_value' => 'Pakil where fun starts with faith'],
             ['page_key' => 'home_page', 'section_key' => 'hero', 'content_key' => 'feature_title', 'content_value' => 'San Pedro de Alcantara Church'],
             ['page_key' => 'home_page', 'section_key' => 'hero', 'content_key' => 'feature_img', 'content_value' => 'CMSBanner/0eeb0h9j2lxDR8LwyGMgDJVkUNBLcvV3c5RsIq90.jpg'],

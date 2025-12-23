@@ -219,7 +219,7 @@ export default function ProductDetails() {
                     </div>
                 </div>
 
-                {/* <div className="mt-8">
+                <div className="mt-8">
                     <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-md md:p-6">
                         <h2 className="text-dark mb-4 flex items-center text-lg font-bold md:text-xl">
                             <i className="fas fa-store mr-2 text-primary" />
@@ -238,14 +238,8 @@ export default function ProductDetails() {
                                 <p className="mt-2 text-sm text-gray-600 md:text-base">{product.shop.bio}</p>
                             </div>
                         </div>
-                        <div className="mt-4 border-t border-gray-200 pt-4">
-                            <button className="flex w-full items-center justify-center rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition duration-300 hover:bg-gray-200 md:text-base">
-                                <i className="fas fa-store mr-2" />
-                                Visit Shop
-                            </button>
-                        </div>
                     </div>
-                </div> */}
+                </div>
 
                 <div className="mt-8">
                     <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-md md:p-6">
@@ -383,6 +377,8 @@ export default function ProductDetails() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="max-w-8xl container mx-auto">
                 {related.length > 0 && (
                     <div className="mt-12">
                         <div className="mb-6 flex items-center justify-between">
@@ -393,7 +389,7 @@ export default function ProductDetails() {
                         </div>
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                             {related.map((item, index) => (
-                                <MarketProduct key={index} product={item} />
+                                <MarketProduct key={index} index={index} product={item} />
                             ))}
                         </div>
                     </div>

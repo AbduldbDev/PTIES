@@ -118,7 +118,7 @@ export default function About() {
                         desc="The longest religious festival in the Philippines"
                     ></PageTitle>
 
-                    <Festival />
+                    <Festival content={content.festival} />
 
                     <div className="mt-12 text-center">
                         <a

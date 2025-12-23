@@ -63,6 +63,13 @@ class CMSBannerSeeder extends Seeder
                 'desc' => 'Learn about the remarkable figures who left a lasting legacy.',
             ],
             [
+                'key' => 'Cultural Properties',
+                'title' => 'Heritage of Pakil',
+                'subtitle' => 'Faith, Tradition, and History',
+                'desc' => 'Discover Pakil’s historic sites, sacred objects, and living traditions.',
+
+            ],
+            [
                 'key' => 'Terminals',
                 'title' => 'Pakil terminals',
                 'subtitle' => 'Your Ride to Every Spot',

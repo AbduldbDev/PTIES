@@ -8,7 +8,7 @@ type RewardsProps = {
     category: string;
     price: number;
     image: string;
-    status: string;
+    status: number;
 };
 
 type Props = {
@@ -37,46 +37,74 @@ export default function RewardsCard({ item, index }: Props) {
         });
     };
 
+    const isAvailable = item.status != 0;
+
     return (
-        <div className="group relative h-full" data-aos="fade-up" data-aos-delay={500 + index * 50}>
-            <div className="absolute -inset-2 rounded-xl bg-primary/20 opacity-75 blur transition duration-300 group-hover:opacity-100"></div>
-            <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition duration-200 hover:shadow-md">
-                <div className="relative pt-[100%]">
-                    <img src={`/storage/${item.image}`} alt="Wooden handicrafts" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="group relative h-full" data-aos="fade-up" data-aos-delay={100 + index * 50}>
+            <div className="absolute -inset-0.5 rounded-lg bg-primary/10 opacity-0 transition duration-300 group-hover:opacity-70" />
+
+            <div className="relative flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition duration-200 hover:shadow-md">
+                {/* Image section */}
+                <div className="relative overflow-hidden pt-[75%]">
+                    <img src={`/storage/${item.image}`} alt={item.name} className="absolute inset-0 h-full w-full object-cover" />
+
+                    {/* Category badge */}
                     <span className="absolute top-2 left-2 z-10 rounded-full bg-primary px-2 py-1 text-xs text-white capitalize">
                         {item.category}
                     </span>
-                    {item.status == '0' && (
+
+                    {/* Unavailable overlay */}
+                    {!isAvailable && (
                         <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                            <span className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-red-700/50 px-2 py-1 text-xs font-medium text-white">
-                                Not Available
-                            </span>
+                            <span className="rounded bg-black/70 px-3 py-1.5 text-xs font-medium text-white">Not Available</span>
                         </div>
                     )}
                 </div>
-                <div className="flex flex-1 flex-col p-3">
-                    <h3 className="text-dark mb-1 line-clamp-1 font-semibold">{item.name}</h3>
-                    <div className="flex-1">
-                        <h1 className="text-sm text-gray-500">{item.description}</h1>
-                        <span className="mt-2 flex items-center text-sm text-gray-600">
-                            <img src="/User/Layout/Pakilpoints.png" className="h-[30px] w-[30px]" alt="" />
-                            <span>{item.price} pts</span>
-                        </span>
+
+                {/* Content section */}
+                <div className="relative flex flex-1 flex-col p-3">
+                    {/* Product name */}
+                    <h3 className="text-dark mb-1.5 line-clamp-1 text-sm font-semibold">{item.name}</h3>
+
+                    {/* Description */}
+                    <div className="mb-3 flex-1">
+                        <p className="line-clamp-2 text-xs leading-relaxed text-gray-600">{item.description}</p>
                     </div>
-                    <div className="text-end">
-                        <button
-                            onClick={handleSubmit}
-                            disabled={processing || item.status == '0'}
-                            type="button"
-                            className={`mt-2 rounded-full border px-5 py-1 text-sm font-medium ${
-                                item.status == '0'
-                                    ? 'cursor-not-allowed border-gray-400 bg-gray-400 text-gray-200'
-                                    : 'border-primary bg-primary text-white hover:border-primary hover:bg-transparent hover:text-primary'
-                            }`}
-                        >
-                            {processing ? 'Processing...' : 'Redeem'}
-                        </button>
+
+                    {/* Price section */}
+                    <div className="mb-3 flex items-center justify-between border-t border-gray-100 pt-3">
+                        <div className="flex items-center">
+                            <img src="/User/Layout/Pakilpoints.png" className="mr-1.5 h-5 w-5" alt="Pakil Points" />
+                            <div>
+                                <span className="text-base font-bold text-gray-800">{item.price.toLocaleString()}</span>
+                                <span className="ml-1 text-xs text-gray-500">pts</span>
+                            </div>
+                        </div>
+
+                        {/* Stock indicator */}
+                        <div className="flex items-center">
+                            <div className={`mr-1.5 h-1.5 w-1.5 rounded-full ${isAvailable ? 'bg-green-500' : 'bg-red-500'}`} />
+                            <span className={`text-xs ${isAvailable ? 'text-green-600' : 'text-red-500'}`}>
+                                {isAvailable ? 'In Stock' : 'Out Of Stock'}
+                            </span>
+                        </div>
                     </div>
+
+                    {/* Redeem button */}
+                    <button
+                        onClick={handleSubmit}
+                        disabled={processing || !isAvailable}
+                        type="button"
+                        className={`h-9 w-full rounded-md text-xs font-medium transition duration-200 ${
+                            isAvailable
+                                ? processing
+                                    ? 'bg-gray-400 text-white'
+                                    : 'bg-primary text-white hover:bg-primary/90'
+                                : 'cursor-not-allowed bg-gray-100 text-gray-400'
+                        }`}
+                    >
+                        {processing ? 'Processing...' : isAvailable ? 'Redeem Now' : 'Unavailable'}
+                    </button>
                 </div>
             </div>
         </div>

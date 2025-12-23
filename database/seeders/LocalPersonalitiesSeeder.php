@@ -39,20 +39,7 @@ class LocalPersonalitiesSeeder extends Seeder
                 'legacy' => 'fa-music|The Five-Decade Drummer|Regalado recorded drum tracks for over 400 albums with various performers.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-            ],
-            [
-                'category' => 'fa-solid fa-building-columns|First Legal Intersex Case Winner in the Philippines',
-                'name' => 'Jeff Cagandahan',
-                'description' => 'Jeff Cagandahan (born Jennifer Cagandahan, January 13, 1981, in Pakil, Laguna) is a Filipino intersex man and human rights activist. Diagnosed with congenital adrenal hyperplasia (CAH), he grew up with both female and male physical traits. After long challenges with stigma and discrimination, Jeff successfully petitioned to change both his name and legal sex marker — becoming the first person in the Philippines to do so in court. Beyond his landmark legal case, he co-founded Intersex Philippines, helps lead Intersex Asia, and works to raise awareness, improve healthcare access, and advocate for legal protections and societal acceptance for intersex people.',
-                'highlights_title' => 'Notable Achievements',
-                'highlights_content' => '[{"text":"Co-founder of Intersex Philippines","icon":"fa-solid fa-building-columns"},{"text":"Board member of Intersex Asia, helping expand intersex rights & visibility across the region","icon":"fa-solid fa-building-columns"},{"text":"Public speaker & advocate calling for better intersex awareness, legal recognition, and medical care","icon":"fa-solid fa-building-columns"}]',
-                'born' => 'January 13, 1981',
-                'died' => null,
-                'image' => 'Personalities/68c4b8c6bf102_1757722822.jpg',
-                'legacy' => 'fa-solid fa-building-columns|Intersex Rights Pioneer|First person in the Philippines to win a legal petition (Republic v. Cagandahan) to change name and gender entries on birth certificate.',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
+            ]
         ]);
     }
 }

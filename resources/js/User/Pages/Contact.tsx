@@ -109,7 +109,7 @@ export default function Contact() {
                     <div className="container mx-auto px-4 sm:px-6">
                         <PageTitle
                             title="Local Experts"
-                            subtitle="Certified Tour Guides"
+                            subtitle="Tourist Guides"
                             desc="Explore Pakil with our knowledgeable local guides"
                         ></PageTitle>
                         <div className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">

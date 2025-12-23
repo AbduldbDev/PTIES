@@ -390,4 +390,50 @@ class CMSUpdatecontroller extends Controller
                 ->with('error', 'Something went wrong while updating the municipal statistics section. Please try again later.');
         }
     }
+
+    public function UpdateFestivalSection(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'founded' => 'required|string|max:255',
+            'duration' => 'required|string|max:255',
+            'venue' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'highlights' => 'nullable|array',
+        ]);
+
+        try {
+            $fields = ['name', 'founded', 'duration', 'venue', 'description'];
+            foreach ($fields as $field) {
+                CMSContent::updateOrCreate(
+                    [
+                        'page_key'    => 'explore_pakil',
+                        'section_key' => 'festival',
+                        'content_key' => $field,
+                    ],
+                    [
+                        'content_value' => $request->$field,
+                    ]
+                );
+            }
+
+            if ($request->has('highlights')) {
+                CMSContent::updateOrCreate(
+                    [
+                        'page_key'    => 'explore_pakil',
+                        'section_key' => 'festival',
+                        'content_key' => 'highlights',
+                    ],
+                    [
+                        'content_value' => json_encode($request->highlights),
+                    ]
+                );
+            }
+
+            return redirect()->back()->with('success', 'Introduction section updated successfully!');
+        } catch (\Throwable $e) {
+            return redirect()->back()
+                ->with('error', 'Something went wrong while updating the Introduction section. Please try again later.');
+        }
+    }
 }

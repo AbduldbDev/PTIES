@@ -13,8 +13,7 @@ use App\Models\PakilTerminals;
 use App\Models\LocalPersonalities;
 use App\Models\LocalProducts;
 use App\Models\Attractions;
-
-
+use App\Models\CulturalProperties;
 
 class ExploreController extends Controller
 {
@@ -113,6 +112,18 @@ class ExploreController extends Controller
             'personalities' => $personalities,
         ]);
     }
+
+    public function CulturalProperties()
+    {
+        $culturalProperties = CulturalProperties::get();
+        $banner = CMSBanner::where('key', 'Cultural Properties')->first();
+
+        return Inertia::render('User/Pages/CulturalProperties', [
+            'banner' => $banner,
+            'culturalProperties' => $culturalProperties,
+        ]);
+    }
+
 
     public function Attractions()
     {

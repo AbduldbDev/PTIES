@@ -70,6 +70,7 @@ Route::prefix('/explore')->name('explore.')->group(function () {
     Route::get('/about', [ExploreController::class, 'About'])->name('about');
     Route::get('/local-products', [ExploreController::class, 'LocalProducts'])->name('localproducts');
     Route::get('/local-personalities', [ExploreController::class, 'LocalPersonalities'])->name('localpersonalities');
+    Route::get('/cultural-properties', [ExploreController::class, 'CulturalProperties'])->name('culturalproperties');
     Route::get('/attractions', [ExploreController::class, 'Attractions'])->name('attractions');
     Route::get('/attraction-details/{id}', [ExploreController::class, 'AttractionDetails'])->name('attractiondetails');
     Route::get('/guide', [ExploreController::class, 'Guide'])->name('guide');

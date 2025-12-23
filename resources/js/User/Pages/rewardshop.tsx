@@ -17,7 +17,7 @@ type RewardsProps = {
     category: string;
     price: number;
     image: string;
-    status: string;
+    status: number;
 };
 
 type PageBannerProps = {
@@ -154,7 +154,7 @@ export default function RewardShop() {
                     {items.length > 0 ? (
                         <>
                             {filteredData.length > 0 ? (
-                                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
+                                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-5">
                                     {filteredData.map((item, index) => (
                                         <RewardsCard key={index} item={item} index={index} />
                                     ))}
@@ -176,24 +176,6 @@ export default function RewardShop() {
                             onAction={() => (window.location.href = '/')}
                         />
                     )}
-
-                    {/* <div className="mt-8 flex justify-center">
-                        <nav className="flex items-center space-x-2">
-                            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-600">
-                                <i className="fas fa-chevron-left text-xs"></i>
-                            </button>
-                            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">1</button>
-                            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
-                                2
-                            </button>
-                            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">
-                                3
-                            </button>
-                            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-600">
-                                <i className="fas fa-chevron-right text-xs"></i>
-                            </button>
-                        </nav>
-                    </div> */}
                 </div>
             </section>
         </>
