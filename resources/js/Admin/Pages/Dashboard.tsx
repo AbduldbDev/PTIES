@@ -1,8 +1,8 @@
 import { AppWrapper, PageMeta } from '@AdminUtils/components/common/PageMeta';
+import TotalVisitsChart from '@AdminUtils/components/dashboard/Chart';
+import StatCard from '@AdminUtils/components/dashboard/StatsCard';
 import FlashMessage from '@AdminUtils/context/FlashMessage';
 import { Head, usePage } from '@inertiajs/react';
-import VisitChart from '../Utils/components/charts/VisitChart';
-import ComponentCard from '../Utils/components/common/ComponentCard';
 import { useTheme } from '../Utils/context/ThemeContext';
 
 type PageProps = {
@@ -82,131 +82,93 @@ export default function Home() {
                 {flash?.success && <FlashMessage type="success" message={flash.success} />}
                 {errors?.error && <FlashMessage type="error" message={errors.error} />}
                 {flash?.error && errors?.error !== flash.error && <FlashMessage type="error" message={flash.error} />}
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 xl:gap-6">
+                    {auth?.user?.user_type === 'admin' && (
+                        <>
+                            <StatCard
+                                title="Total Employee"
+                                value={total_Employees}
+                                icon="fa-user-group"
+                                iconColor="text-blue-600 dark:text-blue-400"
+                                bgColor="bg-blue-50 dark:bg-blue-900/20"
+                            />
 
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-4">
-                    {auth?.user?.user_type == 'admin' && (
-                        <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 dark:border-gray-800 dark:bg-white/[0.03]">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800">
-                                <i className="fa-solid fa-user-group text-gray-800 dark:text-white/90"></i>
-                            </div>
+                            <StatCard
+                                title="Total Sellers"
+                                value={total_Sellers}
+                                icon="fa-store"
+                                iconColor="text-green-600 dark:text-green-400"
+                                bgColor="bg-green-50 dark:bg-green-900/20"
+                            />
 
-                            <div className="mt-5 flex items-end justify-between">
-                                <div>
-                                    <span className="text-sm text-gray-500 dark:text-gray-400">Total Employee</span>
-                                    <h4 className="mt-2 text-title-sm font-bold text-gray-800 dark:text-white/90">{total_Employees}</h4>
-                                </div>
-                            </div>
-                        </div>
+                            <StatCard
+                                title="Total Tourists"
+                                value={total_tourist}
+                                icon="fa-plane"
+                                iconColor="text-purple-600 dark:text-purple-400"
+                                bgColor="bg-purple-50 dark:bg-purple-900/20"
+                            />
+
+                            <StatCard
+                                title="Total Products"
+                                value={total_products}
+                                icon="fa-boxes-stacked"
+                                iconColor="text-amber-600 dark:text-amber-400"
+                                bgColor="bg-amber-50 dark:bg-amber-900/20"
+                            />
+                        </>
                     )}
-
-                    {auth?.user?.user_type == 'admin' && (
-                        <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 dark:border-gray-800 dark:bg-white/[0.03]">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800">
-                                <i className="fa-solid fa-user-group text-gray-800 dark:text-white/90"></i>
-                            </div>
-
-                            <div className="mt-5 flex items-end justify-between">
-                                <div>
-                                    <span className="text-sm text-gray-500 dark:text-gray-400">Total Sellers</span>
-                                    <h4 className="mt-2 text-title-sm font-bold text-gray-800 dark:text-white/90">{total_Sellers}</h4>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                {/* Pending items section */}
+                <div className="mt-5">
+                    {auth?.user?.user_type === 'admin' && (
+                        <h3 className="mb-4 text-lg font-semibold text-gray-700 dark:text-gray-300">Pending Approvals</h3>
                     )}
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 xl:gap-6">
+                        <StatCard
+                            title="Pending Sellers"
+                            value={pending_Sellers}
+                            icon="fa-user-clock"
+                            iconColor="text-orange-600 dark:text-orange-400"
+                            bgColor="bg-orange-50 dark:bg-orange-900/20"
+                            status="pending"
+                            badgeColor="bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300"
+                        />
 
-                    {auth?.user?.user_type == 'admin' && (
-                        <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 dark:border-gray-800 dark:bg-white/[0.03]">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800">
-                                <i className="fa-solid fa-user-group text-gray-800 dark:text-white/90"></i>
-                            </div>
+                        <StatCard
+                            title="Pending Products"
+                            value={pending_products}
+                            icon="fa-box-open"
+                            iconColor="text-red-600 dark:text-red-400"
+                            bgColor="bg-red-50 dark:bg-red-900/20"
+                            status="pending"
+                            badgeColor="bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300"
+                        />
 
-                            <div className="mt-5 flex items-end justify-between">
-                                <div>
-                                    <span className="text-sm text-gray-500 dark:text-gray-400">Total Toursits</span>
-                                    <h4 className="mt-2 text-title-sm font-bold text-gray-800 dark:text-white/90">{total_tourist}</h4>
-                                </div>
-                            </div>
-                        </div>
-                    )}
+                        <StatCard
+                            title="Pending Post Approval"
+                            value={social_wall}
+                            icon="fa-image"
+                            iconColor="text-indigo-600 dark:text-indigo-400"
+                            bgColor="bg-indigo-50 dark:bg-indigo-900/20"
+                            status="pending"
+                            badgeColor="bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 dark:text-indigo-300"
+                        />
 
-                    {auth?.user?.user_type == 'admin' && (
-                        <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 dark:border-gray-800 dark:bg-white/[0.03]">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800">
-                                <i className="fa-solid fa-boxes-stacked text-gray-800 dark:text-white/90"></i>
-                            </div>
-
-                            <div className="mt-5 flex items-end justify-between">
-                                <div>
-                                    <span className="text-sm text-gray-500 dark:text-gray-400">Total Products</span>
-                                    <h4 className="mt-2 text-title-sm font-bold text-gray-800 dark:text-white/90">{total_products}</h4>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 dark:border-gray-800 dark:bg-white/[0.03]">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800">
-                            <i className="fa-solid fa-user-group text-gray-800 dark:text-white/90"></i>
-                        </div>
-
-                        <div className="mt-5 flex items-end justify-between">
-                            <div>
-                                <span className="text-sm text-gray-500 dark:text-gray-400">Pending Sellers</span>
-                                <h4 className="mt-2 text-title-sm font-bold text-gray-800 dark:text-white/90">{pending_Sellers}</h4>
-                            </div>
-                        </div>
+                        <StatCard
+                            title="Pending Redemption"
+                            value={pending_redemption}
+                            icon="fa-coins"
+                            iconColor="text-emerald-600 dark:text-emerald-400"
+                            bgColor="bg-emerald-50 dark:bg-emerald-900/20"
+                            status="pending"
+                            badgeColor="bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300"
+                        />
                     </div>
+                </div>
 
-                    <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 dark:border-gray-800 dark:bg-white/[0.03]">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800">
-                            <i className="fa-solid fa-boxes-stacked text-gray-800 dark:text-white/90"></i>
-                        </div>
-
-                        <div className="mt-5 flex items-end justify-between">
-                            <div>
-                                <span className="text-sm text-gray-500 dark:text-gray-400">Pending Products</span>
-                                <h4 className="mt-2 text-title-sm font-bold text-gray-800 dark:text-white/90">{pending_products}</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 dark:border-gray-800 dark:bg-white/[0.03]">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800">
-                            <i className="fa-solid fa-image text-gray-800 dark:text-white/90"></i>
-                        </div>
-
-                        <div className="mt-5 flex items-end justify-between">
-                            <div>
-                                <span className="text-sm text-gray-500 dark:text-gray-400">Pending Post Approval</span>
-                                <h4 className="mt-2 text-title-sm font-bold text-gray-800 dark:text-white/90">{social_wall}</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 dark:border-gray-800 dark:bg-white/[0.03]">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800">
-                            <i className="fa-solid fa-coins text-gray-800 dark:text-white/90"></i>
-                        </div>
-
-                        <div className="mt-5 flex items-end justify-between">
-                            <div>
-                                <span className="text-sm text-gray-500 dark:text-gray-400">Pending Redemption</span>
-                                <h4 className="mt-2 text-title-sm font-bold text-gray-800 dark:text-white/90">{pending_redemption}</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* <div className="col-span-4">
-                        <ComponentCard title="Website Visits">
-                            <div>
-                                <VisitChart
-                                    darkMode={resolvedTheme === 'dark'}
-                                    height={400}
-                                    // other props...
-                                />
-                            </div>
-                        </ComponentCard>
-                    </div> */}
+                <div className="mt-5">
+                    <TotalVisitsChart />
                 </div>
             </AppWrapper>
         </>

@@ -13,6 +13,7 @@ use App\Http\Middleware\RouteAdminAccessMiddleware;
 use App\Http\Middleware\CheckVerified;
 use App\Http\Middleware\FetchNotifications;
 use App\Http\Middleware\TrackWebsiteVisit;
+use App\Http\Middleware\LogWebsiteVisit;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Inertia\Inertia;
@@ -32,8 +33,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin.access' => RouteAdminAccessMiddleware::class,
             'verified' => CheckVerified::class,
             'fetch.notifications' => FetchNotifications::class,
-            
+            'log.visit' => LogWebsiteVisit::class,
         ]);
+
 
         $middleware->web(append: [
             HandleAppearance::class,

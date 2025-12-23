@@ -18,7 +18,7 @@ interface Props {
 }
 
 export default function Festival({ content }: Props) {
-    const paragraphs = (content.description || '').split('\n').filter((p) => p.trim() !== '');
+    const paragraphs = (content?.description || '').split('\n').filter((p) => p.trim() !== '');
     return (
         <>
             <div className="space-y-8">
@@ -29,7 +29,7 @@ export default function Festival({ content }: Props) {
                         <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
                             {/* Perfect circle icon container */}
                             <div className="flex justify-center sm:justify-start">
-                                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white sm:h-16 sm:w-16 md:h-20 md:w-20">
+                                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white sm:h-16 sm:w-16 md:h-15 md:w-15">
                                     <i className="fa-solid fa-calendar-days text-lg sm:text-xl md:text-2xl"></i>
                                 </div>
                             </div>
@@ -56,47 +56,19 @@ export default function Festival({ content }: Props) {
                             </div>
                         </div>
                     </div>
-
-                    {/* <div className="lg:hidden">
-                        <details className="rounded-lg border border-gray-200 bg-white shadow-sm">
-                            <summary className="cursor-pointer border-b border-gray-100 bg-primary/5 px-4 py-3 font-medium text-primary">
-                                <i className="fas fa-info-circle mr-2"></i> Festival Facts
-                            </summary>
-                            <div className="p-4">
-                                <ul className="space-y-3">
-                                    <li className="flex items-center justify-between border-b border-gray-100 pb-2">
-                                        <span className="text-sm font-medium text-gray-700">Duration</span>
-                                        <span className="text-sm text-gray-600">April to September</span>
-                                    </li>
-                                    <li className="flex items-center justify-between border-b border-gray-100 pb-2">
-                                        <span className="text-sm font-medium text-gray-700">Founded</span>
-                                        <span className="text-sm text-gray-600">1788</span>
-                                    </li>
-                                    <li className="flex items-center justify-between border-b border-gray-100 pb-2">
-                                        <span className="text-sm font-medium text-gray-700">Main Venue</span>
-                                        <span className="text-sm text-gray-600">St. Peter of Alcantara Church</span>
-                                    </li>
-                                    <li className="flex items-center justify-between">
-                                        <span className="text-sm font-medium text-gray-700">Participants</span>
-                                        <span className="text-sm text-gray-600">Thousands from Southern Luzon</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </details>
-                    </div> */}
                 </div>
 
-                <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-                    <div className="p-6 md:p-8">
-                        <div className="prose prose-lg max-w-none space-y-6 text-gray-700">
-                            {paragraphs.map((paragraph, index) => (
-                                <p key={index}>{paragraph}</p>
-                            ))}
+                {paragraphs.length > 0 && (
+                    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+                        <div className="p-6 md:p-8">
+                            <div className="prose prose-lg max-w-none space-y-6 text-gray-700">
+                                {paragraphs.map((paragraph, index) => (
+                                    <p key={index}>{paragraph}</p>
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                {/* Feature cards - Full width responsive grid */}
+                )}
 
                 {content.highlights && content.highlights.length > 0 && (
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

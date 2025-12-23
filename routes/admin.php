@@ -66,6 +66,7 @@ Route::middleware(['admin.access:auth', 'fetch.notifications'])->group(function 
     Route::prefix('/Admin')->name('admin')->group(function () {
         Route::get('/', [WebsiteSettingsController::class, 'dashboard'])->name('dashboard');
         Route::get('/calendar', [WebsiteSettingsController::class, 'calendar'])->name('calendar');
+        Route::get('/stats/monthly-visits', [WebsiteSettingsController::class, 'monthlyVisits'])->name('monthlyVisits');
         Route::get('/profile', [AdminProfileController::class, 'profile'])->name('profile');
         Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
     });
