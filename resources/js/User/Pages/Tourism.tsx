@@ -82,6 +82,7 @@ export default function TourismAboutPage() {
             ) : (
                 <div className="h-[15vh]"></div>
             )}
+            
             {!content.about && !content.mission_vision && departments.length <= 0 && !content.citizen_charter && (
                 <section className="py-16">
                     <PageTitle

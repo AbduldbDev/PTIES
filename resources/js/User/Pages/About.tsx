@@ -5,6 +5,7 @@ import HistoryCard from '@UserUtils/components/Cards/History';
 import BrangayInfo from '@UserUtils/components/Sections/About/BrangayInfo';
 import Festival from '@UserUtils/components/Sections/About/Festival';
 import Introductions from '@UserUtils/components/Sections/About/Introduction';
+import EmptyState from '@UserUtils/components/Ui/EmptyState';
 import { CMSContent } from '@UserUtils/Types/cms';
 
 interface PageProps {
@@ -64,6 +65,22 @@ export default function About() {
                 <div className="h-[15vh]"></div>
             )}
 
+            {!content.introduction && !content.festival && history?.length <= 0 && !content.municipal_stats && (
+                <section className="py-16">
+                    <PageTitle
+                        title="NO INFORMATION AVAILABLE"
+                        subtitle="Currently No Information Provided"
+                        desc="Please check back soon for the latest updates."
+                    />
+                    <EmptyState
+                        title="No Tourism Information Available"
+                        message="We are currently updating our tourism content. Please check back soon for our updated information."
+                        actionText="Return Home"
+                        onAction={() => (window.location.href = '/')}
+                    />
+                </section>
+            )}
+
             {content.introduction && (
                 <section className="px-4 py-12 md:py-16 lg:py-20">
                     <div className="mx-auto max-w-5xl">
@@ -110,28 +127,32 @@ export default function About() {
                 </section>
             )}
 
-            <section className="py-20">
-                <div className="container mx-auto px-6">
-                    <PageTitle
-                        title="Celebrations"
-                        subtitle="Turumba sa Birhen Festival"
-                        desc="The longest religious festival in the Philippines"
-                    ></PageTitle>
+            {content.festival && (
+                <section className="py-20">
+                    <div className="container mx-auto px-6">
+                        <PageTitle
+                            title="Celebrations"
+                            subtitle="Turumba sa Birhen Festival"
+                            desc="The longest religious festival in the Philippines"
+                        ></PageTitle>
 
-                    <Festival content={content.festival} />
+                        <Festival content={content.festival} />
 
-                    <div className="mt-12 text-center">
-                        <a
-                            href="/events"
-                            className="inline-flex items-center rounded-full border border-transparent bg-primary px-6 py-3 text-white shadow-sm transition duration-300 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
-                        >
-                            <i className="fas fa-calendar-check mr-2"></i> View Full Festival Calendar
-                        </a>
+                        <div className="mt-12 text-center">
+                            <a
+                                href="/events"
+                                className="inline-flex items-center rounded-full border border-transparent bg-primary px-6 py-3 text-white shadow-sm transition duration-300 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+                            >
+                                <i className="fas fa-calendar-check mr-2"></i> View Full Festival Calendar
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
 
-            <BrangayInfo content={content.municipal_stats} barangays={barangays} barangayHighlights={barangayHighlights} />
+            {content.municipal_stats && (
+                <BrangayInfo content={content.municipal_stats} barangays={barangays} barangayHighlights={barangayHighlights} />
+            )}
         </>
     );
 }
